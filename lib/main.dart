@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
-import 'package:tempoloco/presentation/funnel/splash_screen.dart';
+import 'package:tempoloco/presentation/funnel/onboarding/onboarding_funnel.dart';
+import 'package:tempoloco/presentation/screen/splash_screen.dart';
 import 'package:tempoloco/presentation/theme/themes.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Tempoloco',
-      initialRoute: '/onboarding',
+      initialRoute: '/splashscreen',
       debugShowCheckedModeBanner: false,
       theme: themeData,
       getPages: [
@@ -23,7 +22,7 @@ class MyApp extends StatelessWidget {
         ),
         GetPage(
           name: '/onboarding',
-          page: () => const SplashScreen(),
+          page: () => const OnboardingFunnel(),
           transition: Transition.fadeIn,
         ),
       ],
