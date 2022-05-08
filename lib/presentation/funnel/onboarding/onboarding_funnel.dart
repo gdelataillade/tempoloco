@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tempoloco/common/animation/fade_in.dart';
 import 'package:tempoloco/presentation/funnel/onboarding/onboarding_state.dart';
 import 'package:tempoloco/presentation/theme/themes.dart';
 
@@ -15,7 +14,7 @@ class _OnboardingFunnelState extends State<OnboardingFunnel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kindigo,
+      backgroundColor: ktempoPurple,
       body: GetBuilder<OnboardingFunnelState>(
         init: OnboardingFunnelState(),
         builder: (state) => SafeArea(

@@ -18,7 +18,7 @@ class OnboardingEmailStep extends StatelessWidget {
         OnboardingTextInput(
           value: state.email,
           onSubmit: (String value) {
-            state.email = value;
+            state.email = value.trim();
             state.goNextStep();
           },
         ),

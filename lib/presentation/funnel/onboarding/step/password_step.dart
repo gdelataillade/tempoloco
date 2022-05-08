@@ -18,7 +18,7 @@ class OnboardingPasswordStep extends StatelessWidget {
         OnboardingTextInput(
           value: state.password,
           onSubmit: (String value) {
-            state.password = value;
+            state.password = value.trim();
             state.goNextStep();
           },
         ),

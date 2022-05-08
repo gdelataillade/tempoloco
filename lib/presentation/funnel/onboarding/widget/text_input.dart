@@ -22,14 +22,14 @@ class OnboardingTextInput extends StatelessWidget {
         textInputAction: TextInputAction.next,
         controller: controller,
         textAlign: TextAlign.center,
-        cursorColor: kwhite,
+        cursorColor: ktempoWhite,
         onSubmitted: (input) => onSubmit(input.trim()),
         decoration: InputDecoration(
           focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: kwhite),
+            borderSide: BorderSide(color: ktempoWhite),
           ),
           enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: kwhite.withOpacity(0.7)),
+            borderSide: BorderSide(color: ktempoWhite.withOpacity(0.7)),
           ),
         ),
       ),
