@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tempoloco/presentation/theme/themes.dart';
+import 'package:tempoloco/theme.dart';
 
 class Helper {
   static void setup() {
@@ -16,7 +16,7 @@ class Helper {
       content,
       titleText: Text(
         title,
-        style: TextStyle(
+        style: const TextStyle(
           color: ktempoWhite,
           fontWeight: FontWeight.w800,
           fontSize: 16,
@@ -24,7 +24,7 @@ class Helper {
       ),
       messageText: Text(
         content,
-        style: TextStyle(
+        style: const TextStyle(
           color: ktempoWhite,
           fontWeight: FontWeight.w300,
           fontSize: 14,

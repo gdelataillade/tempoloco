@@ -7,8 +7,9 @@ const Color ktempoPink = Color(0xff8534A1);
 const Color ktempoDark = Color(0xff19033A);
 const Color ktempoWhite = Color(0xffF5EEFC);
 
-final ThemeData themeData = ThemeData(
+final ThemeData themeData = ThemeData.dark().copyWith(
   brightness: Brightness.dark,
+  backgroundColor: ktempoPurple,
   primaryColor: ktempoIndigo,
   focusColor: ktempoDark,
 );

@@ -10,17 +10,17 @@ class OnboardingPasswordStep extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = Get.find<OnboardingFunnelState>();
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         const SizedBox(),
-        FadeIn(child: Text("Password")),
+        const FadeIn(child: Text("Password")),
         OnboardingTextInput(
           value: state.password,
-          onSubmit: (String value) {
-            state.password = value.trim();
-            state.goNextStep();
-          },
+          isPassword: true,
+          onSubmit: (String password) =>
+              state.validatePassword(password.trim()),
         ),
       ],
     );

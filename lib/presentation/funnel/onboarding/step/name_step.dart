@@ -10,18 +10,16 @@ class OnboardingNameStep extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = Get.find<OnboardingFunnelState>();
+
     return FadeIn(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           const SizedBox(),
-          Text("Name"),
+          const Text("Name"),
           OnboardingTextInput(
             value: state.name,
-            onSubmit: (String value) {
-              state.name = value;
-              state.goNextStep();
-            },
+            onSubmit: (String name) => state.validateName(name.trim()),
           ),
         ],
       ),

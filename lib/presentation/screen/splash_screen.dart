@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
-import 'package:tempoloco/presentation/theme/themes.dart';
+import 'package:tempoloco/common/widget/loading.dart';
+import 'package:tempoloco/theme.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -30,18 +30,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: ktempoPurple,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Lottie.asset('assets/lottie/metronome.json'),
-          Text(
-            "Tempoloco",
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-        ],
-      ),
+      body: Loading(),
     );
   }
 }

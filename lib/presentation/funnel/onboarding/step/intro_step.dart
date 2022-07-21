@@ -29,11 +29,11 @@ class _OnboardingIntroStepState extends State<OnboardingIntroStep> {
                     children: [
                       RawMaterialButton(
                         onPressed: state.startRegister,
-                        child: Text("Sign up"),
+                        child: const Text("Sign up"),
                       ),
                       RawMaterialButton(
                         onPressed: state.startLogin,
-                        child: Text("Already have an account? Log in"),
+                        child: const Text("Already have an account? Log in"),
                       ),
                     ],
                   ),
@@ -44,7 +44,7 @@ class _OnboardingIntroStepState extends State<OnboardingIntroStep> {
                       isTapped = true;
                     });
                   },
-                  child: Text("Tap"),
+                  child: const Text("Tap"),
                 ),
         ],
       ),

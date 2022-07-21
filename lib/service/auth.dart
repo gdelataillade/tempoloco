@@ -12,11 +12,9 @@ class Auth {
       return res.user != null;
     } catch (e) {
       String msg = e.toString();
-      if (!msg.contains("The password is invalid")) {
-        // analyticsLct.logError("Auth", "signInWithEmailAndPassword", msg);
-      }
+      if (!msg.contains("The password is invalid")) {}
       if (msg.contains("user-not-found")) {
-        msg = "This email doesn't exist:\n$email";
+        msg = "No account created with\n$email";
       } else if (msg.contains("wrong-password")) {
         msg = "Wrong password";
       } else if (msg.contains("network-request-failed")) {
@@ -39,7 +37,6 @@ class Auth {
       return res.user != null;
     } catch (e) {
       String msg = e.toString();
-      // analyticsLct.logError("Auth", "createUserWithEmailAndPassword", msg);
       if (msg.contains("email-already-in-use")) {
         msg = "This email is already associated with an account.";
       } else if (msg.contains("network-request-failed")) {

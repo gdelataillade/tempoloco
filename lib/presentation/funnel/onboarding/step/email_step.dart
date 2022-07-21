@@ -10,17 +10,15 @@ class OnboardingEmailStep extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = Get.find<OnboardingFunnelState>();
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         const SizedBox(),
-        FadeIn(child: Text("Email")),
+        const FadeIn(child: Text("Email")),
         OnboardingTextInput(
           value: state.email,
-          onSubmit: (String value) {
-            state.email = value.trim();
-            state.goNextStep();
-          },
+          onSubmit: (String email) => state.validateEmail(email.trim()),
         ),
       ],
     );

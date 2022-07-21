@@ -8,8 +8,8 @@ class OnboardingMusicStep extends StatelessWidget {
   Widget build(BuildContext context) {
     return FadeIn(
       child: Column(
-        children: [
-          Text("Music"),
+        children: const [
+          Text("What kind of music do you love ?"),
         ],
       ),
     );

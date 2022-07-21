@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:tempoloco/presentation/funnel/onboarding/onboarding_funnel.dart';
 import 'package:tempoloco/presentation/screen/splash_screen.dart';
-import 'package:tempoloco/presentation/theme/themes.dart';
+import 'package:tempoloco/theme.dart';
 import 'package:tempoloco/utils/helper.dart';
 
 Future<void> main() async {
@@ -12,10 +12,12 @@ Future<void> main() async {
   await Firebase.initializeApp();
   Helper.setup();
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -28,11 +30,13 @@ class MyApp extends StatelessWidget {
           name: '/splashscreen',
           page: () => const SplashScreen(),
           transition: Transition.fadeIn,
+          transitionDuration: const Duration(milliseconds: 200),
         ),
         GetPage(
           name: '/onboarding',
           page: () => const OnboardingFunnel(),
           transition: Transition.fadeIn,
+          transitionDuration: const Duration(milliseconds: 200),
         ),
       ],
     );

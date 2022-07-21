@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tempoloco/common/widget/loading.dart';
 import 'package:tempoloco/presentation/funnel/onboarding/onboarding_state.dart';
-import 'package:tempoloco/presentation/theme/themes.dart';
+import 'package:tempoloco/theme.dart';
 
 class OnboardingFunnel extends StatefulWidget {
   const OnboardingFunnel({Key? key}) : super(key: key);
@@ -25,13 +26,16 @@ class _OnboardingFunnelState extends State<OnboardingFunnel> {
 
               return Stack(
                 children: [
-                  Center(child: state.steps[index]),
+                  Center(
+                    child: state.isLoading.value
+                        ? const Loading()
+                        : state.steps[index],
+                  ),
                   if (index > 0)
                     Align(
-                      alignment:
-                          index == 0 ? Alignment.topRight : Alignment.topLeft,
+                      alignment: Alignment.topLeft,
                       child: GestureDetector(
-                        onTap: index == 0 ? state.exitFunnel : state.goPrevStep,
+                        onTap: index == 1 ? state.exitFunnel : state.goPrevStep,
                         child: Icon(
                           index == 0 ? Icons.close : Icons.arrow_back,
                           size: 32,
