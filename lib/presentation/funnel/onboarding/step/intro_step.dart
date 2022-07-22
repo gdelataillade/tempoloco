@@ -15,7 +15,7 @@ class _OnboardingIntroStepState extends State<OnboardingIntroStep> {
 
   @override
   Widget build(BuildContext context) {
-    final state = Get.find<OnboardingFunnelState>();
+    final state = Get.find<OnboardingState>();
     return FadeIn(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,

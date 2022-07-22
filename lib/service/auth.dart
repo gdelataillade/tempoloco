@@ -48,13 +48,19 @@ class Auth {
     }
   }
 
-  static Future<void> resetPassword(String email) async {
+  static Future<bool> resetPassword(String email) async {
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      return true;
     } catch (e) {
-      final msg = e.toString();
-      // analyticsLct.logError("Auth", "resetPassword", msg);
-      Helper.snack('Oups 🤓', msg);
+      String msg = e.toString();
+      if (msg.contains("invalid-email")) {
+        msg = "Email address do not exist";
+      }
+      Helper.snack("Reset password error", "Email address do not exist");
+      return false;
     }
   }
+
+  static Future signOut() async => FirebaseAuth.instance.signOut();
 }

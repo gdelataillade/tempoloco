@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:tempoloco/presentation/funnel/onboarding/onboarding_funnel.dart';
+import 'package:tempoloco/presentation/screen/home/home.dart';
 import 'package:tempoloco/presentation/screen/splash_screen.dart';
 import 'package:tempoloco/theme.dart';
 import 'package:tempoloco/utils/helper.dart';
@@ -35,6 +36,12 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/onboarding',
           page: () => const OnboardingFunnel(),
+          transition: Transition.fadeIn,
+          transitionDuration: const Duration(milliseconds: 200),
+        ),
+        GetPage(
+          name: '/home',
+          page: () => const Home(),
           transition: Transition.fadeIn,
           transitionDuration: const Duration(milliseconds: 200),
         ),

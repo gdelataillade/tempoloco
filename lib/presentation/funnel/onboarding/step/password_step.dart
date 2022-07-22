@@ -9,13 +9,18 @@ class OnboardingPasswordStep extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = Get.find<OnboardingFunnelState>();
+    final state = Get.find<OnboardingState>();
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         const SizedBox(),
         const FadeIn(child: Text("Password")),
+        if (state.authType == AuthType.login)
+          RawMaterialButton(
+            onPressed: state.resetPassword,
+            child: const Text("Forgot your password ?"),
+          ),
         OnboardingTextInput(
           value: state.password,
           isPassword: true,

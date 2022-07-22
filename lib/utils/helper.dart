@@ -30,6 +30,7 @@ class Helper {
           fontSize: 14,
         ),
       ),
+      duration: const Duration(seconds: 4),
       backgroundColor: ktempoDark,
       margin: const EdgeInsets.all(25),
       snackPosition: SnackPosition.TOP,

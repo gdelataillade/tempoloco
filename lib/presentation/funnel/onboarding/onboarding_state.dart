@@ -11,7 +11,7 @@ import 'package:tempoloco/utils/helper.dart';
 
 enum AuthType { login, register }
 
-class OnboardingFunnelState extends GetxController {
+class OnboardingState extends GetxController {
   final steps = <Widget>[const OnboardingIntroStep()].obs;
 
   String name = "";
@@ -20,6 +20,7 @@ class OnboardingFunnelState extends GetxController {
 
   RxInt stepIndex = 0.obs;
   RxBool isLoading = false.obs;
+  RxList<String> selectedGenres = <String>[].obs;
 
   late AuthType authType;
 
@@ -57,25 +58,47 @@ class OnboardingFunnelState extends GetxController {
     stepIndex.value = 0;
   }
 
-  Future<bool> login() async {
+  Future<void> login() async {
+    isLoading.value = true;
+
     debugPrint("[Auth] login with: $email:$password");
 
     final res = await Auth.login(email, password);
 
     debugPrint("[Auth] login ${res ? "succesful" : "failed"}");
-    return res;
+
+    Get.offAllNamed('/home');
   }
 
   Future<void> register() async {
+    isLoading.value = true;
+
     debugPrint("[Auth] register with: $email:$password");
 
     final res = await Auth.register(email, password);
 
-    debugPrint("[Auth] login ${res ? "succesful" : "failed"}");
-    if (res) {
-      stepIndex.value++;
-    }
+    debugPrint("[Auth] register ${res ? "succesful" : "failed"}");
+
+    if (res) stepIndex.value++;
+
+    isLoading.value = false;
   }
+
+  Future<void> resetPassword() async {
+    isLoading.value = true;
+
+    final res = await Auth.resetPassword(email);
+
+    if (res) {
+      Helper.snack(
+        "Password reset",
+        "An email has been sent to $email",
+      );
+    }
+    isLoading.value = false;
+  }
+
+  Future<void> signOut() async => Auth.signOut();
 
   void validateName(String value) {
     if (value.length < 2) {
@@ -120,5 +143,11 @@ class OnboardingFunnelState extends GetxController {
 
     password = value;
     authType == AuthType.login ? login() : register();
+  }
+
+  void selectGenre(String genre) {
+    selectedGenres.contains(genre)
+        ? selectedGenres.remove(genre)
+        : selectedGenres.add(genre);
   }
 }

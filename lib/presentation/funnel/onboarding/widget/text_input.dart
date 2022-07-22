@@ -36,7 +36,8 @@ class _OnboardingTextInputState extends State<OnboardingTextInput> {
       child: TextField(
         autofocus: true,
         obscureText: widget.isPassword && !hidePassword,
-        textInputAction: TextInputAction.next,
+        textInputAction:
+            widget.isPassword ? TextInputAction.done : TextInputAction.next,
         controller: controller,
         textAlign: TextAlign.center,
         cursorColor: ktempoWhite,

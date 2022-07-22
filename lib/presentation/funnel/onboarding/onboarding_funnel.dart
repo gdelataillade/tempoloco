@@ -2,22 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tempoloco/common/widget/loading.dart';
 import 'package:tempoloco/presentation/funnel/onboarding/onboarding_state.dart';
+import 'package:tempoloco/presentation/funnel/onboarding/step/music_step.dart';
 import 'package:tempoloco/theme.dart';
 
 class OnboardingFunnel extends StatefulWidget {
   const OnboardingFunnel({Key? key}) : super(key: key);
 
   @override
-  State<OnboardingFunnel> createState() => _OnboardingFunnelState();
+  State<OnboardingFunnel> createState() => _OnboardingState();
 }
 
-class _OnboardingFunnelState extends State<OnboardingFunnel> {
+class _OnboardingState extends State<OnboardingFunnel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ktempoPurple,
-      body: GetBuilder<OnboardingFunnelState>(
-        init: OnboardingFunnelState(),
+      body: GetBuilder<OnboardingState>(
+        init: OnboardingState(),
         builder: (state) => SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(15),
@@ -26,6 +27,7 @@ class _OnboardingFunnelState extends State<OnboardingFunnel> {
 
               return Stack(
                 children: [
+                  // const Center(child: OnboardingMusicStep()),
                   Center(
                     child: state.isLoading.value
                         ? const Loading()

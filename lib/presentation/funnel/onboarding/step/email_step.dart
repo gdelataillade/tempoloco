@@ -9,7 +9,7 @@ class OnboardingEmailStep extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = Get.find<OnboardingFunnelState>();
+    final state = Get.find<OnboardingState>();
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -9,7 +9,7 @@ class OnboardingNameStep extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = Get.find<OnboardingFunnelState>();
+    final state = Get.find<OnboardingState>();
 
     return FadeIn(
       child: Column(
