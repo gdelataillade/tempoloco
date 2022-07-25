@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tempoloco/common/widget/loading.dart';
+import 'package:tempoloco/presentation/common/widget/loading.dart';
 import 'package:tempoloco/presentation/funnel/onboarding/onboarding_state.dart';
-import 'package:tempoloco/presentation/funnel/onboarding/step/music_step.dart';
 import 'package:tempoloco/theme.dart';
 
 class OnboardingFunnel extends StatefulWidget {
@@ -27,7 +26,6 @@ class _OnboardingState extends State<OnboardingFunnel> {
 
               return Stack(
                 children: [
-                  // const Center(child: OnboardingMusicStep()),
                   Center(
                     child: state.isLoading.value
                         ? const Loading()

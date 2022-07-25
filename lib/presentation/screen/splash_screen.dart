@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tempoloco/common/widget/loading.dart';
+import 'package:tempoloco/presentation/common/widget/loading.dart';
 import 'package:tempoloco/theme.dart';
 
 class SplashScreen extends StatefulWidget {

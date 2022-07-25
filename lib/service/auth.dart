@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 import 'package:tempoloco/utils/helper.dart';
 
 class Auth {
@@ -62,5 +63,14 @@ class Auth {
     }
   }
 
-  static Future signOut() async => FirebaseAuth.instance.signOut();
+  static Future signOut() async {
+    FirebaseAuth.instance.signOut();
+    Get.offAllNamed('/onboarding');
+  }
+
+  static Future<void> updateDisplayName(String name) async {
+    if (FirebaseAuth.instance.currentUser != null) {
+      FirebaseAuth.instance.currentUser!.updateDisplayName(name);
+    }
+  }
 }

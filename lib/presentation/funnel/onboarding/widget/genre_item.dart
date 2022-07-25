@@ -17,51 +17,47 @@ class OnBoardingMusicStepGenreItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = Get.find<OnboardingState>();
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        GestureDetector(
-          onTap: () => state.selectGenre(genre),
-          child: Stack(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(80),
-                child: Container(
-                  height: 100,
-                  width: 100,
-                  color: ktempoDark,
-                  // decoration: BoxDecoration(
-                  //   color: ktempoDark,
-                  //   border: Border.all(
-                  //       color: isSelected ? ktempoWhite : ktempoIndigo),
-                  //   borderRadius: BorderRadius.circular(80),
-                  // ),
-                  child: Image.network(artistPictureUrl),
-                ),
-              ),
-              Obx(
-                () {
-                  final isSelected = state.selectedGenres.contains(genre);
+    return Obx(() {
+      final isSelected = state.selectedGenres.contains(genre);
 
-                  if (!isSelected) return const SizedBox.shrink();
-                  return Container(
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          GestureDetector(
+            onTap: () => state.selectGenre(genre),
+            child: Stack(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(80),
+                  child: Container(
                     height: 100,
                     width: 100,
-                    color: Colors.transparent,
+                    color: ktempoDark,
+                    child: Image.network(artistPictureUrl),
+                  ),
+                ),
+                if (isSelected)
+                  Container(
+                    height: 100,
+                    width: 100,
                     decoration: BoxDecoration(
-                      color: ktempoDark,
-                      border: Border.all(color: ktempoWhite),
+                      color: Colors.transparent,
+                      border: Border.all(color: ktempoYellow, width: 3),
                       borderRadius: BorderRadius.circular(80),
                     ),
                     child: const SizedBox.expand(),
-                  );
-                },
-              ),
-            ],
+                  ),
+              ],
+            ),
           ),
-        ),
-        Text(genre),
-      ],
-    );
+          const SizedBox(height: 5),
+          Text(
+            genre,
+            style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w300),
+          ),
+        ],
+      );
+    });
   }
 }

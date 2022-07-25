@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tempoloco/model/user.dart';
 import 'package:tempoloco/presentation/funnel/onboarding/step/intro_step.dart';
 import 'package:tempoloco/presentation/funnel/onboarding/step/music_step.dart';
 import 'package:tempoloco/presentation/funnel/onboarding/step/name_step.dart';
 import 'package:tempoloco/presentation/funnel/onboarding/step/email_step.dart';
 import 'package:tempoloco/presentation/funnel/onboarding/step/password_step.dart';
 import 'package:tempoloco/service/auth.dart';
+import 'package:tempoloco/service/database.dart';
 import 'package:tempoloco/utils/constant.dart';
 import 'package:tempoloco/utils/helper.dart';
 
@@ -67,7 +69,11 @@ class OnboardingState extends GetxController {
 
     debugPrint("[Auth] login ${res ? "succesful" : "failed"}");
 
-    Get.offAllNamed('/home');
+    if (!res) {
+      isLoading.value = false;
+    } else {
+      Get.offAllNamed('/home');
+    }
   }
 
   Future<void> register() async {
@@ -76,6 +82,7 @@ class OnboardingState extends GetxController {
     debugPrint("[Auth] register with: $email:$password");
 
     final res = await Auth.register(email, password);
+    Auth.updateDisplayName(name);
 
     debugPrint("[Auth] register ${res ? "succesful" : "failed"}");
 
@@ -98,8 +105,6 @@ class OnboardingState extends GetxController {
     isLoading.value = false;
   }
 
-  Future<void> signOut() async => Auth.signOut();
-
   void validateName(String value) {
     if (value.length < 2) {
       Helper.snack(
@@ -108,7 +113,7 @@ class OnboardingState extends GetxController {
       );
       return;
     }
-    name = value;
+    name = value.capitalizeFirst!;
     stepIndex.value++;
   }
 
@@ -149,5 +154,17 @@ class OnboardingState extends GetxController {
     selectedGenres.contains(genre)
         ? selectedGenres.remove(genre)
         : selectedGenres.add(genre);
+  }
+
+  Future<void> saveSelectedGenre() async {
+    User newUser = User(
+      uid: DateTime.now().microsecondsSinceEpoch.toString(),
+      name: name,
+      email: email,
+      createdDate: DateTime.now(),
+    );
+
+    final res = await DB.createUser(newUser);
+    if (res) Get.offAllNamed('/home');
   }
 }

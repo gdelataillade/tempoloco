@@ -10,7 +10,8 @@ class Helper {
     }
   }
 
-  static void snack(String title, String content) {
+  static void snack(String title, String content,
+      {Duration duration = const Duration(seconds: 4)}) {
     Get.snackbar(
       title,
       content,
@@ -30,7 +31,7 @@ class Helper {
           fontSize: 14,
         ),
       ),
-      duration: const Duration(seconds: 4),
+      duration: duration,
       backgroundColor: ktempoDark,
       margin: const EdgeInsets.all(25),
       snackPosition: SnackPosition.TOP,
