@@ -159,8 +159,8 @@ class OnboardingState extends GetxController {
   }
 
   Future<void> saveSelectedGenre() async {
-    final library = createLibrary();
-    final artists = createArtists(library);
+    final tracks = generateTracks();
+    final library = createLibrary(tracks);
 
     User newUser = User(
       uid: DateTime.now().microsecondsSinceEpoch.toString(),
@@ -168,15 +168,15 @@ class OnboardingState extends GetxController {
       email: email,
       createdDate: DateTime.now(),
       library: library,
-      artists: [],
+      artists: tracks,
     );
 
     final res = await DB.createUser(newUser);
     if (res) Get.offAllNamed('/home');
   }
 
-  List<String> createLibrary() {
-    List<String> res = [];
+  List<Map<String, String>> generateTracks() {
+    List<Map<String, String>> res = [];
     final random = Random();
 
     for (int i = 0; i < selectedGenres.length; i++) {
@@ -186,7 +186,7 @@ class OnboardingState extends GetxController {
       final List tracks = genre["tracks"];
 
       for (int j = 0; j < tracks.length; j++) {
-        res.add(tracks[j]["title"]);
+        res.add(tracks[j]);
       }
     }
 
@@ -198,8 +198,12 @@ class OnboardingState extends GetxController {
     return res;
   }
 
-  List<String> createArtists(List<String> library) {
+  List<String> createLibrary(List<Map<String, String>> tracks) {
     List<String> res = [];
+
+    for (int i = 0; i < tracks.length; i++) {
+      res.add(tracks[i]["title"]!);
+    }
 
     return res;
   }

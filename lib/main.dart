@@ -5,13 +5,12 @@ import 'package:tempoloco/presentation/funnel/onboarding/onboarding_funnel.dart'
 import 'package:tempoloco/presentation/screen/home/home.dart';
 import 'package:tempoloco/presentation/screen/splash_screen.dart';
 import 'package:tempoloco/theme.dart';
-import 'package:tempoloco/utils/helper.dart';
+import 'package:tempoloco/service/locator.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp();
-  Helper.setup();
+  await Future.wait([Firebase.initializeApp(), setupLocator()]);
 
   runApp(const MyApp());
 }
