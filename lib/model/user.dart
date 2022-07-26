@@ -21,6 +21,7 @@ class User {
   List<String> favorites;
   List<String> library;
   List<Map<String, int>> highscores;
+  List<Map<String, String>> artists;
 
   User({
     required this.uid,
@@ -34,6 +35,7 @@ class User {
     this.favorites = const <String>[],
     this.library = const <String>[],
     this.highscores = const <Map<String, int>>[],
+    this.artists = const <Map<String, String>>[],
   });
 
   factory User.fromJson(Map<String, dynamic> data, String uid) =>

@@ -42,7 +42,7 @@ class OnBoardingMusicStepGenreItem extends StatelessWidget {
                     width: 100,
                     decoration: BoxDecoration(
                       color: Colors.transparent,
-                      border: Border.all(color: ktempoYellow, width: 3),
+                      border: Border.all(color: ktempoWhite, width: 3),
                       borderRadius: BorderRadius.circular(80),
                     ),
                     child: const SizedBox.expand(),

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tempoloco/model/user.dart';
@@ -157,14 +159,48 @@ class OnboardingState extends GetxController {
   }
 
   Future<void> saveSelectedGenre() async {
+    final library = createLibrary();
+    final artists = createArtists(library);
+
     User newUser = User(
       uid: DateTime.now().microsecondsSinceEpoch.toString(),
       name: name,
       email: email,
       createdDate: DateTime.now(),
+      library: library,
+      artists: [],
     );
 
     final res = await DB.createUser(newUser);
     if (res) Get.offAllNamed('/home');
+  }
+
+  List<String> createLibrary() {
+    List<String> res = [];
+    final random = Random();
+
+    for (int i = 0; i < selectedGenres.length; i++) {
+      final genre =
+          onboardingGenres.where((e) => e["genre"] == selectedGenres[i]).first;
+
+      final List tracks = genre["tracks"];
+
+      for (int j = 0; j < tracks.length; j++) {
+        res.add(tracks[j]["title"]);
+      }
+    }
+
+    while (res.length > 8) {
+      final index = random.nextInt(res.length);
+      res.removeAt(index);
+    }
+
+    return res;
+  }
+
+  List<String> createArtists(List<String> library) {
+    List<String> res = [];
+
+    return res;
   }
 }
