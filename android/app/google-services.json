@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1013742470138",
+    "project_id": "tempoloco-app",
+    "storage_bucket": "tempoloco-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1013742470138:android:d1fef13a152fac1b975a43",
+        "android_client_info": {
+          "package_name": "tempoloco.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1013742470138-i1s2vkthhepc9n4hf0qh690pt5dlqtn3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8bUM1Jt4NGZnQMbk-sVanV5FsWZOgR4s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1013742470138-i1s2vkthhepc9n4hf0qh690pt5dlqtn3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1013742470138-9ta38ql0c5s8m2ogafm9las4v891u1cs.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "tempoloco"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
