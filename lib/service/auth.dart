@@ -1,8 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:tempoloco/service/storage.dart';
 import 'package:tempoloco/utils/helper.dart';
 
 class Auth {
+  static User? get currentUser => FirebaseAuth.instance.currentUser;
+  static String? get uid => FirebaseAuth.instance.currentUser?.uid;
+
   static Future<bool> login(String email, String pwd) async {
     try {
       final UserCredential res =
@@ -52,6 +56,7 @@ class Auth {
   static Future<bool> resetPassword(String email) async {
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      await Storage.writeData("credentials", "password", "");
       return true;
     } catch (e) {
       String msg = e.toString();
@@ -63,10 +68,17 @@ class Auth {
     }
   }
 
-  static Future signOut() async {
-    FirebaseAuth.instance.signOut();
+  static Future<void> signOut() async {
+    await Future.wait([
+      Storage.writeData("credentials", "password", ""),
+      FirebaseAuth.instance.signOut(),
+    ]);
+
     Get.offAllNamed('/onboarding');
   }
+
+  static Future<void> deleteUserAuth() async =>
+      await FirebaseAuth.instance.currentUser?.delete();
 
   static Future<void> updateDisplayName(String name) async {
     if (FirebaseAuth.instance.currentUser != null) {

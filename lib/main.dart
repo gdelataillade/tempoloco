@@ -6,11 +6,16 @@ import 'package:tempoloco/presentation/screen/home/home.dart';
 import 'package:tempoloco/presentation/screen/splash_screen.dart';
 import 'package:tempoloco/theme.dart';
 import 'package:tempoloco/service/locator.dart';
+import 'package:tempoloco/utils/helper.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Future.wait([Firebase.initializeApp(), setupLocator()]);
+  await Future.wait([
+    Firebase.initializeApp(),
+    Helper.setup(),
+    setupLocator(),
+  ]);
 
   runApp(const MyApp());
 }

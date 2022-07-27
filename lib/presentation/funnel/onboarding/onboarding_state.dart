@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tempoloco/model/user.dart';
@@ -10,6 +11,7 @@ import 'package:tempoloco/presentation/funnel/onboarding/step/email_step.dart';
 import 'package:tempoloco/presentation/funnel/onboarding/step/password_step.dart';
 import 'package:tempoloco/service/auth.dart';
 import 'package:tempoloco/service/database.dart';
+import 'package:tempoloco/service/storage.dart';
 import 'package:tempoloco/utils/constant.dart';
 import 'package:tempoloco/utils/helper.dart';
 
@@ -27,6 +29,23 @@ class OnboardingState extends GetxController {
   RxList<String> selectedGenres = <String>[].obs;
 
   late AuthType authType;
+
+  @override
+  Future<void> onInit() async {
+    await persistentLogin();
+    super.onInit();
+  }
+
+  Future<void> persistentLogin() async {
+    final String storedEmail = Storage.readData("credentials", "email") ?? "";
+    final String storedPwd = Storage.readData("credentials", "password") ?? "";
+
+    if (storedEmail.isNotEmpty && storedPwd.isNotEmpty) {
+      email = storedEmail;
+      password = storedPwd;
+      await login();
+    }
+  }
 
   void startRegister() {
     authType = AuthType.register;
@@ -72,8 +91,11 @@ class OnboardingState extends GetxController {
     debugPrint("[Auth] login ${res ? "succesful" : "failed"}");
 
     if (!res) {
+      Storage.writeData("credentials", "password", "");
       isLoading.value = false;
     } else {
+      Storage.writeData("credentials", "email", email);
+      Storage.writeData("credentials", "password", password);
       Get.offAllNamed('/home');
     }
   }
@@ -84,9 +106,14 @@ class OnboardingState extends GetxController {
     debugPrint("[Auth] register with: $email:$password");
 
     final res = await Auth.register(email, password);
-    Auth.updateDisplayName(name);
 
     debugPrint("[Auth] register ${res ? "succesful" : "failed"}");
+
+    await Future.wait([
+      Auth.updateDisplayName(name),
+      Storage.writeData("credentials", "email", email),
+      Storage.writeData("credentials", "password", password),
+    ]);
 
     if (res) stepIndex.value++;
 
@@ -120,7 +147,9 @@ class OnboardingState extends GetxController {
   }
 
   void validateEmail(String value) {
-    if (!value.contains("@") || !value.contains(".") || value.length < 6) {
+    final bool isValid = EmailValidator.validate(value);
+
+    if (!isValid) {
       Helper.snack(
         "Email is not valid",
         "Please use a valid email address",
@@ -159,6 +188,8 @@ class OnboardingState extends GetxController {
   }
 
   Future<void> saveSelectedGenre() async {
+    isLoading.value = true;
+
     final tracks = generateTracks();
     final library = createLibrary(tracks);
 
