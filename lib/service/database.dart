@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:tempoloco/model/user.dart';
 import 'package:tempoloco/service/auth.dart';
+import 'package:tempoloco/service/firestore.dart';
 import 'package:tempoloco/utils/helper.dart';
 
 class DB {
+  static String? get uid => Auth.uid;
+
   static Future<bool> createUser(User user) async {
     try {
-      await FirebaseFirestore.instance.collection('user').add(user.toJson());
+      await FirestoreService.instance
+          .setData(path: 'user/$uid', data: user.toJson());
       debugPrint("===> [Firestore] Create user: ${user.uid}");
       return true;
     } catch (e) {
@@ -19,11 +22,16 @@ class DB {
 
   static Future<void> updateUser(Map<String, dynamic> data) async {
     try {
-      final uid = Auth.uid;
-      await FirebaseFirestore.instance.doc('user/$uid').update(data);
+      await FirestoreService.instance.updateData(path: 'user/$uid', data: data);
       debugPrint('===> [Firestore] Update user $uid: $data');
     } catch (e) {
       debugPrint("===> [Firestore] Error updating user: $e");
     }
   }
+
+  static Stream<User> get userStream =>
+      FirestoreService.instance.documentStream(
+        builder: (data, documentId) => User.fromJson(data!, documentId),
+        path: 'user/$uid',
+      );
 }

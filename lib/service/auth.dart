@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tempoloco/service/storage.dart';
 import 'package:tempoloco/utils/helper.dart';
@@ -32,14 +33,15 @@ class Auth {
     }
   }
 
-  static Future<bool> register(String email, String pwd) async {
+  static Future<String?> register(String email, String pwd) async {
     try {
       final UserCredential res =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: pwd,
       );
-      return res.user != null;
+      if (res.user == null) return null;
+      return res.user!.uid;
     } catch (e) {
       String msg = e.toString();
       if (msg.contains("email-already-in-use")) {
@@ -49,7 +51,7 @@ class Auth {
             "Erreur de connexion avec le serveur.\nÊtes-vous connecté à internet?";
       }
       Helper.snack('Register error', msg);
-      return false;
+      return null;
     }
   }
 
@@ -73,7 +75,7 @@ class Auth {
       Storage.writeData("credentials", "password", ""),
       FirebaseAuth.instance.signOut(),
     ]);
-
+    debugPrint("[Auth] sign out");
     Get.offAllNamed('/onboarding');
   }
 

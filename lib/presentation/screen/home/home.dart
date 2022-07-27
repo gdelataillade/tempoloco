@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tempoloco/controller/user_controller.dart';
+import 'package:tempoloco/presentation/common/widget/loading.dart';
 import 'package:tempoloco/presentation/screen/home/home_state.dart';
 
 class Home extends StatelessWidget {
@@ -8,16 +10,22 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GetBuilder<HomeState>(
-          init: HomeState(),
-          builder: (state) {
-            return Center(
-              child: RawMaterialButton(
+      body: GetX<HomeState>(
+        init: HomeState(),
+        builder: (state) {
+          if (!state.isLoaded.value) return const Loading();
+
+          return Column(
+            children: [
+              Text(state.userCtrl.user.name),
+              RawMaterialButton(
                 onPressed: state.signOut,
                 child: const Text("Sign Out"),
               ),
-            );
-          }),
+            ],
+          );
+        },
+      ),
     );
   }
 }

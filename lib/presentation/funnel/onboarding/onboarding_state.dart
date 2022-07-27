@@ -20,6 +20,7 @@ enum AuthType { login, register }
 class OnboardingState extends GetxController {
   final steps = <Widget>[const OnboardingIntroStep()].obs;
 
+  String uid = "";
   String name = "";
   String email = "";
   String password = "";
@@ -107,7 +108,12 @@ class OnboardingState extends GetxController {
 
     final res = await Auth.register(email, password);
 
-    debugPrint("[Auth] register ${res ? "succesful" : "failed"}");
+    debugPrint("[Auth] register ${res != null ? "succesful" : "failed"}");
+
+    if (res == null) {
+      isLoading.value = false;
+      return;
+    }
 
     await Future.wait([
       Auth.updateDisplayName(name),
@@ -115,7 +121,8 @@ class OnboardingState extends GetxController {
       Storage.writeData("credentials", "password", password),
     ]);
 
-    if (res) stepIndex.value++;
+    uid = res;
+    stepIndex.value++;
 
     isLoading.value = false;
   }
@@ -194,7 +201,7 @@ class OnboardingState extends GetxController {
     final library = createLibrary(tracks);
 
     User newUser = User(
-      uid: DateTime.now().microsecondsSinceEpoch.toString(),
+      uid: uid,
       name: name,
       email: email,
       createdDate: DateTime.now(),
