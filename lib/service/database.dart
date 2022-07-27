@@ -29,9 +29,15 @@ class DB {
     }
   }
 
-  static Stream<User> get userStream =>
+  static Stream<User?> get userStream =>
       FirestoreService.instance.documentStream(
-        builder: (data, documentId) => User.fromJson(data!, documentId),
+        builder: (data, documentId) {
+          if (data == null) return null;
+          return User.fromJson(data, documentId);
+        },
         path: 'user/$uid',
       );
+
+  static Future<bool> checkIfDocExists() => FirestoreService.instance
+      .checkIfDocExists(collectionPath: 'user', docId: Auth.uid!);
 }

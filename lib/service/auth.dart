@@ -79,8 +79,13 @@ class Auth {
     Get.offAllNamed('/onboarding');
   }
 
-  static Future<void> deleteUserAuth() async =>
-      await FirebaseAuth.instance.currentUser?.delete();
+  static Future<void> deleteUserAuth() async {
+    await Storage.writeData("credentials", "password", "");
+    await FirebaseAuth.instance.currentUser?.delete();
+
+    debugPrint("[Auth] delete auth and sign out");
+    Get.offAllNamed('/onboarding');
+  }
 
   static Future<void> updateDisplayName(String name) async {
     if (FirebaseAuth.instance.currentUser != null) {
