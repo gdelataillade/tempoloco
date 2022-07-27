@@ -31,7 +31,7 @@ class _OnboardingState extends State<OnboardingFunnel> {
                         ? const Loading()
                         : state.steps[index],
                   ),
-                  if (index > 0)
+                  if (index > 0 && index < 3)
                     Align(
                       alignment: Alignment.topLeft,
                       child: GestureDetector(

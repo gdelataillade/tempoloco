@@ -1,13 +1,20 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:tempoloco/service/storage.dart';
 import 'package:tempoloco/theme.dart';
 
 class Helper {
-  static void setup() {
+  static Future<void> setup() async {
     if (kReleaseMode) {
       debugPrint = (String? message, {int? wrapWidth}) {};
     }
+
+    await Future.wait([
+      Storage.init(),
+      SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]),
+    ]);
   }
 
   static void snack(String title, String content,
