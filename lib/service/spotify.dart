@@ -17,4 +17,10 @@ class Spotify {
 
     return artist;
   }
+
+  Future<Track> getTrackById(String trackId) async {
+    final track = await spotify.tracks.get(trackId);
+
+    return track;
+  }
 }

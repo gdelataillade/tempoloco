@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/instance_manager.dart';
+import 'package:spotify/spotify.dart' as spotify;
+import 'package:tempoloco/controller/user_controller.dart';
 import 'package:tempoloco/model/user.dart';
 import 'package:tempoloco/service/auth.dart';
 import 'package:tempoloco/service/firestore.dart';
+import 'package:tempoloco/service/locator.dart';
 import 'package:tempoloco/utils/helper.dart';
 
 class DB {
@@ -40,4 +44,16 @@ class DB {
 
   static Future<bool> checkIfDocExists() => FirestoreService.instance
       .checkIfDocExists(collectionPath: 'user', docId: Auth.uid!);
+
+  static Future<List<spotify.Track>> getTrackListFromLibary() async {
+    final tracks = <spotify.Track>[];
+    final userCtrl = Get.find<UserController>();
+
+    for (final trackId in userCtrl.user.library) {
+      final res = await spotifyLct.getTrackById(trackId);
+      tracks.add(res);
+    }
+
+    return tracks;
+  }
 }

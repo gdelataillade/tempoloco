@@ -97,7 +97,7 @@ class OnboardingState extends GetxController {
     } else {
       Storage.writeData("credentials", "email", email);
       Storage.writeData("credentials", "password", password);
-      Get.offAllNamed('/home');
+      Get.offAllNamed('/tabview');
     }
   }
 
