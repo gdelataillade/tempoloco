@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
+import 'package:tempoloco/presentation/common/widget/loading.dart';
 import 'package:tempoloco/presentation/screen/home/home.dart';
 import 'package:tempoloco/presentation/screen/library/library.dart';
 import 'package:tempoloco/presentation/screen/search/search.dart';
@@ -30,61 +31,83 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<TabViewState>(
+    return GetX<TabViewState>(
       init: TabViewState(),
-      builder: (state) => Scaffold(
-        backgroundColor: ktempoPurple,
-        body: TabBarView(
-          controller: tabController,
-          physics: const NeverScrollableScrollPhysics(),
-          children: const [
-            SearchScreen(),
-            HomeScreen(),
-            LibraryScreen(),
-          ],
-        ),
-        bottomNavigationBar: Padding(
-          padding: const EdgeInsets.all(12),
-          child: CustomNavigationBar(
-            iconSize: 30,
-            selectedColor: ktempoYellow,
-            strokeColor: ktempoYellow,
-            unSelectedColor: ktempoWhite,
-            backgroundColor: ktempoPurple,
-            scaleCurve: Curves.easeInOut,
-            currentIndex: selectedIndex,
-            isFloating: true,
-            borderRadius: const Radius.circular(15),
-            onTap: (index) {
-              HapticFeedback.selectionClick();
-              setState(() {
-                tabController.animateTo(index);
-                selectedIndex = index;
-              });
-            },
-            items: [
-              CustomNavigationBarItem(
-                icon: Icon(
-                  FeatherIcons.search,
-                  size: selectedIndex == 0 ? 32 : 28,
+      builder: (state) => !state.isLoaded.value
+          ? const Scaffold(
+              backgroundColor: ktempoPurple,
+              body: Loading(),
+            )
+          : Scaffold(
+              backgroundColor: ktempoPurple,
+              appBar: AppBar(
+                elevation: 0,
+                backgroundColor: ktempoPurple,
+                leading: IconButton(
+                  splashColor: Colors.transparent,
+                  icon: const Icon(FeatherIcons.settings),
+                  onPressed: () {
+                    HapticFeedback.selectionClick();
+                  },
+                ),
+                actions: [
+                  Row(
+                    children: [
+                      Text(state.userCtrl.user.nbStars.toString()),
+                      IconButton(
+                        splashColor: Colors.transparent,
+                        icon: const Icon(FeatherIcons.user),
+                        onPressed: () {
+                          HapticFeedback.selectionClick();
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              body: TabBarView(
+                controller: tabController,
+                physics: const NeverScrollableScrollPhysics(),
+                children: const [
+                  SearchScreen(),
+                  HomeScreen(),
+                  LibraryScreen(),
+                ],
+              ),
+              bottomNavigationBar: Container(
+                color: ktempoPurple,
+                height: 80,
+                child: CustomNavigationBar(
+                  iconSize: 30,
+                  elevation: 1,
+                  opacity: 1,
+                  selectedColor: ktempoYellow,
+                  strokeColor: ktempoYellow,
+                  unSelectedColor: ktempoWhite,
+                  backgroundColor: ktempoPurple,
+                  scaleCurve: Curves.easeInOut,
+                  currentIndex: selectedIndex,
+                  onTap: (index) {
+                    HapticFeedback.selectionClick();
+                    setState(() {
+                      tabController.animateTo(index);
+                      selectedIndex = index;
+                    });
+                  },
+                  items: [
+                    CustomNavigationBarItem(
+                      icon: const Icon(FeatherIcons.search),
+                    ),
+                    CustomNavigationBarItem(
+                      icon: const Icon(FeatherIcons.home),
+                    ),
+                    CustomNavigationBarItem(
+                      icon: const Icon(FeatherIcons.music),
+                    ),
+                  ],
                 ),
               ),
-              CustomNavigationBarItem(
-                icon: Icon(
-                  FeatherIcons.home,
-                  size: selectedIndex == 1 ? 32 : 28,
-                ),
-              ),
-              CustomNavigationBarItem(
-                icon: Icon(
-                  FeatherIcons.music,
-                  size: selectedIndex == 2 ? 32 : 28,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+            ),
     );
   }
 

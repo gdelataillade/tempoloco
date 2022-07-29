@@ -8,13 +8,15 @@ import 'package:tempoloco/utils/helper.dart';
 class TabViewState extends GetxController {
   RxBool isLoaded = false.obs;
   final library = <Track>[].obs;
+  final favorite = <String>[];
+
+  // TODO: Use streams / ever
 
   late UserController userCtrl;
 
   @override
   Future<void> onInit() async {
     await initUserController();
-
     await loadLibrary();
 
     isLoaded.value = true;

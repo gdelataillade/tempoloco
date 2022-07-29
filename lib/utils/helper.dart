@@ -46,4 +46,9 @@ class Helper {
       borderWidth: 2,
     );
   }
+
+  static String formatTrackTitle(String title) {
+    final splitted = title.split("-");
+    return splitted[0];
+  }
 }
