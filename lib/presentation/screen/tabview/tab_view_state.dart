@@ -1,18 +1,20 @@
 import 'package:get/get.dart';
-import 'package:spotify/spotify.dart';
+import 'package:spotify/spotify.dart' as spotify;
 import 'package:tempoloco/controller/user_controller.dart';
+import 'package:tempoloco/model/user.dart';
 import 'package:tempoloco/service/auth.dart';
 import 'package:tempoloco/service/database.dart';
 import 'package:tempoloco/utils/helper.dart';
 
 class TabViewState extends GetxController {
   RxBool isLoaded = false.obs;
-  final library = <Track>[].obs;
-  final favorite = <String>[];
-
-  // TODO: Use streams / ever
+  final library = <spotify.Track>[].obs;
 
   late UserController userCtrl;
+
+  User get user => userCtrl.user.value;
+
+  bool isFavorite(String trackId) => user.favorites.contains(trackId);
 
   @override
   Future<void> onInit() async {
@@ -21,6 +23,14 @@ class TabViewState extends GetxController {
 
     isLoaded.value = true;
     super.onInit();
+  }
+
+  @override
+  void onReady() {
+    ever(userCtrl.user, (_) {
+      print("[TabViewState] update");
+    });
+    super.onReady();
   }
 
   Future<void> initUserController() async {
@@ -33,12 +43,7 @@ class TabViewState extends GetxController {
     }
 
     final user = await DB.userStream.first;
-    if (user == null) {
-      Helper.snack("Error with your account",
-          "Could not find your account in Firestore");
-      return;
-    }
-    Get.put<UserController>(UserController(user), permanent: true);
+    Get.put<UserController>(UserController(user.obs), permanent: true);
     userCtrl = Get.find<UserController>();
   }
 
@@ -46,5 +51,16 @@ class TabViewState extends GetxController {
     final tracks = await DB.getTrackListFromLibary();
 
     library.value = tracks;
+  }
+
+  Future<void> likeTrack(String trackId) async {
+    List<String> favorites = userCtrl.user.value.favorites;
+
+    if (favorites.contains(trackId)) {
+      favorites.remove(trackId);
+    } else {
+      favorites.add(trackId);
+    }
+    await DB.updateUser(user.copyWith(favorites: favorites).toJson());
   }
 }

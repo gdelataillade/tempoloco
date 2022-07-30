@@ -170,9 +170,16 @@ packages:
     source: hosted
     version: "3.0.2"
   copy_with_extension:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: copy_with_extension
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.2"
+  copy_with_extension_gen:
+    dependency: "direct dev"
+    description:
+      name: copy_with_extension_gen
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.2"

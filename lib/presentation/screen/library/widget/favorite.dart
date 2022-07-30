@@ -15,27 +15,28 @@ class LibraryFavorite extends StatelessWidget {
     return Obx(() {
       if (state.library.isEmpty) return const Loading();
 
-      final favorites = state.library
-          .where((track) => state.userCtrl.user.favorites.contains(track.id))
-          .toList();
+      final favorites =
+          state.library.where((track) => state.isFavorite(track.id!)).toList();
 
       return Container(
         color: ktempoPurple,
         padding: const EdgeInsets.symmetric(horizontal: 5),
-        child: ListView.builder(
-          itemCount: favorites.length,
-          itemBuilder: (context, index) {
-            final item = favorites[index];
-            return TrackCard(
-              title: item.name!,
-              artist: item.artists!.first.name!,
-              imgUrl: item.album!.images!.first.url!,
-              isFavorite: true,
-              onPress: () {},
-              onLike: () {},
-            );
-          },
-        ),
+        child: favorites.isEmpty
+            ? const Center(child: Text("Empty"))
+            : ListView.builder(
+                itemCount: favorites.length,
+                itemBuilder: (context, index) {
+                  final item = favorites[index];
+                  return TrackCard(
+                    title: item.name!,
+                    artist: item.artists!.first.name!,
+                    imgUrl: item.album!.images!.first.url!,
+                    trackId: item.id!,
+                    onPress: () {},
+                    onLike: () => state.likeTrack(item.id!),
+                  );
+                },
+              ),
       );
     });
   }

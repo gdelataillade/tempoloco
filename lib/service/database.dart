@@ -33,13 +33,10 @@ class DB {
     }
   }
 
-  static Stream<User?> get userStream =>
+  static Stream<User> get userStream =>
       FirestoreService.instance.documentStream(
-        builder: (data, documentId) {
-          if (data == null) return null;
-          return User.fromJson(data, documentId);
-        },
         path: 'user/$uid',
+        builder: (data, documentId) => User.fromJson(data!, documentId),
       );
 
   static Future<bool> checkIfDocExists() => FirestoreService.instance
@@ -49,7 +46,7 @@ class DB {
     final tracks = <spotify.Track>[];
     final userCtrl = Get.find<UserController>();
 
-    for (final trackId in userCtrl.user.library) {
+    for (final trackId in userCtrl.user.value.library) {
       final res = await spotifyLct.getTrackById(trackId);
       tracks.add(res);
     }

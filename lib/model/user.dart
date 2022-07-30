@@ -9,9 +9,11 @@ part 'user.g.dart';
 @CopyWith()
 @JsonSerializable()
 class User {
+  @CopyWithField(immutable: true)
   String uid;
   String name;
   String email;
+  @CopyWithField(immutable: true)
   @JsonKey(toJson: dateTimetoJson, fromJson: dateTimefromJson)
   DateTime createdDate;
   int nbStars;

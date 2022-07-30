@@ -53,7 +53,7 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
                 actions: [
                   Row(
                     children: [
-                      Text(state.userCtrl.user.nbStars.toString()),
+                      Text(state.user.nbStars.toString()),
                       IconButton(
                         splashColor: Colors.transparent,
                         icon: const Icon(FeatherIcons.user),

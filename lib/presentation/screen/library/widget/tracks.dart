@@ -25,9 +25,9 @@ class LibraryTracks extends StatelessWidget {
               title: item.name!,
               artist: item.artists!.first.name!,
               imgUrl: item.album!.images!.first.url!,
-              isFavorite: true,
+              trackId: item.id!,
               onPress: () {},
-              onLike: () {},
+              onLike: () => state.likeTrack(item.id!),
             );
           },
         ),

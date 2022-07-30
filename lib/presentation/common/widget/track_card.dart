@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:tempoloco/presentation/screen/tabview/tab_view_state.dart';
 import 'package:tempoloco/theme.dart';
 import 'package:tempoloco/utils/helper.dart';
 
@@ -7,7 +9,7 @@ class TrackCard extends StatelessWidget {
   final String title;
   final String artist;
   final String imgUrl;
-  final bool isFavorite;
+  final String trackId;
   final Function() onPress;
   final Function() onLike;
 
@@ -16,7 +18,7 @@ class TrackCard extends StatelessWidget {
     required this.title,
     required this.artist,
     required this.imgUrl,
-    required this.isFavorite,
+    required this.trackId,
     required this.onPress,
     required this.onLike,
   }) : super(key: key);
@@ -25,6 +27,7 @@ class TrackCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final textStyle =
         Theme.of(context).textTheme.bodyMedium!.copyWith(color: ktempoDark);
+    final state = Get.find<TabViewState>();
 
     return GestureDetector(
       onTap: () {
@@ -73,16 +76,21 @@ class TrackCard extends StatelessWidget {
                 ),
               ],
             ),
-            IconButton(
-              splashColor: Colors.transparent,
-              onPressed: () {
-                HapticFeedback.mediumImpact();
-                onPress();
+            Obx(
+              () {
+                final isLiked = state.isFavorite(trackId);
+                return IconButton(
+                  splashColor: Colors.transparent,
+                  onPressed: () {
+                    HapticFeedback.mediumImpact();
+                    onLike();
+                  },
+                  icon: Icon(
+                    isLiked ? Icons.favorite : Icons.favorite_border_rounded,
+                    color: Colors.red,
+                  ),
+                );
               },
-              icon: Icon(
-                isFavorite ? Icons.favorite : Icons.favorite_border_rounded,
-                color: Colors.red,
-              ),
             ),
           ],
         ),
