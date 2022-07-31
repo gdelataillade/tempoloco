@@ -48,7 +48,11 @@ class Helper {
   }
 
   static String formatTrackTitle(String title) {
-    final splitted = title.split("-");
+    List<String> splitted = title.split("-");
+    splitted = splitted.first.split("(");
+    splitted = splitted.first.split(":");
+    splitted = splitted.first.split("-");
+    splitted = splitted.first.split("/");
     return splitted[0];
   }
 }

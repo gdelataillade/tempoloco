@@ -41,7 +41,7 @@ class LibraryArtists extends StatelessWidget {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(50),
-                    child: Image.network(artist.images!.last.url!),
+                    child: Image.network(artist.images![1].url!),
                   ),
                 ),
                 Text(

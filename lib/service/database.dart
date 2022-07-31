@@ -50,7 +50,7 @@ class DB {
       final res = await spotifyLct.getTrackById(trackId);
       tracks.add(res);
     }
-    debugPrint('===> [Spotify] Fetched ${tracks.length} tracks');
+    debugPrint('===> [Spotify] Loaded ${tracks.length} tracks');
     return tracks;
   }
 
@@ -68,7 +68,21 @@ class DB {
       final res = await spotifyLct.getArtistById(id);
       artists.add(res);
     }
-    debugPrint('===> [Spotify] Fetched ${artists.length} artists');
+    debugPrint('===> [Spotify] Loaded ${artists.length} artists');
+    return artists;
+  }
+
+  static Future<List<spotify.Track>> searchTrack(String input) async {
+    final tracks = await spotifyLct.searchTrack(input);
+
+    debugPrint('===> [Spotify] Search found ${tracks.length} tracks');
+    return tracks;
+  }
+
+  static Future<List<spotify.Artist>> searchArtist(String input) async {
+    final artists = await spotifyLct.searchArtist(input);
+
+    debugPrint('===> [Spotify] Search found ${artists.length} artists');
     return artists;
   }
 }

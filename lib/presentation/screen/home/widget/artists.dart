@@ -23,7 +23,7 @@ class HomeArtists extends StatelessWidget {
             final artist = state.artists[index];
             return ArtistCard(
               name: artist.name!,
-              imgUrl: artist.images!.last.url!,
+              imgUrl: artist.images![1].url!,
             );
           },
         ),

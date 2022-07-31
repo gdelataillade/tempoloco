@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tempoloco/presentation/screen/search/widget/results.dart';
+import 'package:tempoloco/presentation/screen/search/widget/search_bar.dart';
 import 'package:tempoloco/theme.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -7,8 +9,16 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       color: ktempoPurple,
-      child: const Center(child: Text('Search')),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const [
+          Text("Search"),
+          SearchBar(),
+          Expanded(child: SearchResults()),
+        ],
+      ),
     );
   }
 }

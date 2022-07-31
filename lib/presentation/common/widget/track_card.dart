@@ -36,7 +36,7 @@ class TrackCard extends StatelessWidget {
       },
       child: Container(
         height: 65,
-        margin: const EdgeInsets.only(top: 12, left: 10, right: 10),
+        margin: const EdgeInsets.only(top: 12),
         decoration: const BoxDecoration(
           color: ktempoWhite,
           borderRadius: BorderRadius.all(Radius.circular(15)),

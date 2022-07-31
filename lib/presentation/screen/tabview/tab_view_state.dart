@@ -6,10 +6,19 @@ import 'package:tempoloco/service/auth.dart';
 import 'package:tempoloco/service/database.dart';
 import 'package:tempoloco/utils/helper.dart';
 
+enum SearchType {
+  tracks,
+  artists,
+}
+
 class TabViewState extends GetxController {
-  RxBool isLoaded = false.obs;
   final library = <spotify.Track>[].obs;
   final artists = <spotify.Artist>[].obs;
+  final results = <spotify.Track>[].obs;
+
+  final searchType = SearchType.tracks;
+
+  RxBool isLoaded = false.obs;
 
   late UserController userCtrl;
 
@@ -62,5 +71,13 @@ class TabViewState extends GetxController {
       favorites.add(trackId);
     }
     await DB.updateUser(user.copyWith(favorites: favorites).toJson());
+  }
+
+  Future<void> search(String input) async {
+    if (searchType == SearchType.tracks) {
+      results.value = await DB.searchTrack(input);
+    } else {
+      // res = await DB.getArtistListFromLibary();
+    }
   }
 }

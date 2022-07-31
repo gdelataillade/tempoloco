@@ -23,4 +23,34 @@ class Spotify {
 
     return track;
   }
+
+  Future<List<Track>> searchTrack(String input) async {
+    final tracks = <Track>[];
+    final res =
+        await spotify.search.get(input, types: [SearchType.track]).first(15);
+
+    for (final page in res) {
+      if (page.items!.isEmpty) continue;
+      for (final item in page.items!) {
+        if (item is Track) tracks.add(item);
+      }
+    }
+
+    return tracks;
+  }
+
+  Future<List<Artist>> searchArtist(String input) async {
+    final artists = <Artist>[];
+    final res =
+        await spotify.search.get(input, types: [SearchType.artist]).first(10);
+
+    for (final page in res) {
+      if (page.items!.isEmpty) continue;
+      for (final item in page.items!) {
+        if (item is Artist) artists.add(item);
+      }
+    }
+
+    return artists;
+  }
 }
