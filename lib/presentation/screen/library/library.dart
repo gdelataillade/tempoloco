@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:tempoloco/presentation/screen/library/widget/artists.dart';
 import 'package:tempoloco/presentation/screen/library/widget/favorite.dart';
 import 'package:tempoloco/presentation/screen/library/widget/tracks.dart';
 import 'package:tempoloco/theme.dart';
@@ -81,7 +82,7 @@ class _LibraryScreenState extends State<LibraryScreen>
           controller: tabController,
           children: const [
             LibraryTracks(),
-            Center(child: Text("Artists")),
+            LibraryArtists(),
             LibraryFavorite(),
           ],
         ),

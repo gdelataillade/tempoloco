@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tempoloco/presentation/screen/home/widget/artists.dart';
+import 'package:tempoloco/presentation/screen/home/widget/quick_play.dart';
 import 'package:tempoloco/theme.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -8,7 +10,28 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: ktempoPurple,
-      child: const Center(child: Text('Home')),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: Text("Tempoloco",
+                style: Theme.of(context).textTheme.titleLarge),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child:
+                Text("Artists", style: Theme.of(context).textTheme.titleLarge),
+          ),
+          const HomeArtists(),
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: Text("Quick play",
+                style: Theme.of(context).textTheme.titleLarge),
+          ),
+          const HomeQuickPlay(),
+        ],
+      ),
     );
   }
 }

@@ -50,7 +50,25 @@ class DB {
       final res = await spotifyLct.getTrackById(trackId);
       tracks.add(res);
     }
-
+    debugPrint('===> [Spotify] Fetched ${tracks.length} tracks');
     return tracks;
+  }
+
+  static Future<List<spotify.Artist>> getArtistListFromLibary() async {
+    final artists = <spotify.Artist>[];
+    final userCtrl = Get.find<UserController>();
+    final artistsId = <String>[];
+
+    for (int i = 0; i < userCtrl.user.value.artists.length; i++) {
+      final id = userCtrl.user.value.artists[i]["artist"];
+      if (!artistsId.contains(id)) artistsId.add(id!);
+    }
+
+    for (final id in artistsId) {
+      final res = await spotifyLct.getArtistById(id);
+      artists.add(res);
+    }
+    debugPrint('===> [Spotify] Fetched ${artists.length} artists');
+    return artists;
   }
 }

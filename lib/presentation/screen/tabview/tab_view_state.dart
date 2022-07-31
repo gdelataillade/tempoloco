@@ -9,6 +9,7 @@ import 'package:tempoloco/utils/helper.dart';
 class TabViewState extends GetxController {
   RxBool isLoaded = false.obs;
   final library = <spotify.Track>[].obs;
+  final artists = <spotify.Artist>[].obs;
 
   late UserController userCtrl;
 
@@ -20,17 +21,10 @@ class TabViewState extends GetxController {
   Future<void> onInit() async {
     await initUserController();
     await loadLibrary();
+    await loadArtists();
 
     isLoaded.value = true;
     super.onInit();
-  }
-
-  @override
-  void onReady() {
-    ever(userCtrl.user, (_) {
-      print("[TabViewState] update");
-    });
-    super.onReady();
   }
 
   Future<void> initUserController() async {
@@ -48,9 +42,15 @@ class TabViewState extends GetxController {
   }
 
   Future<void> loadLibrary() async {
-    final tracks = await DB.getTrackListFromLibary();
+    final res = await DB.getTrackListFromLibary();
 
-    library.value = tracks;
+    library.value = res;
+  }
+
+  Future<void> loadArtists() async {
+    final res = await DB.getArtistListFromLibary();
+
+    artists.value = res;
   }
 
   Future<void> likeTrack(String trackId) async {

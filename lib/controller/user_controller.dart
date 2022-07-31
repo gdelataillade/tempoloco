@@ -15,10 +15,4 @@ class UserController extends GetxController {
     user.bindStream(DB.userStream);
     super.onInit();
   }
-
-  @override
-  void onReady() {
-    // ever(user, (_) => update());
-    super.onReady();
-  }
 }

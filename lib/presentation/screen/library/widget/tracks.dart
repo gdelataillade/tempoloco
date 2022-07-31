@@ -18,13 +18,14 @@ class LibraryTracks extends StatelessWidget {
         color: ktempoPurple,
         padding: const EdgeInsets.symmetric(horizontal: 5),
         child: ListView.builder(
+          physics: const BouncingScrollPhysics(),
           itemCount: state.library.length,
           itemBuilder: (context, index) {
             final item = state.library[index];
             return TrackCard(
               title: item.name!,
               artist: item.artists!.first.name!,
-              imgUrl: item.album!.images!.first.url!,
+              imgUrl: item.album!.images!.last.url!,
               trackId: item.id!,
               onPress: () {},
               onLike: () => state.likeTrack(item.id!),

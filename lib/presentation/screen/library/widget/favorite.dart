@@ -30,7 +30,7 @@ class LibraryFavorite extends StatelessWidget {
                   return TrackCard(
                     title: item.name!,
                     artist: item.artists!.first.name!,
-                    imgUrl: item.album!.images!.first.url!,
+                    imgUrl: item.album!.images!.last.url!,
                     trackId: item.id!,
                     onPress: () {},
                     onLike: () => state.likeTrack(item.id!),
