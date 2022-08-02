@@ -34,35 +34,36 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
     return GetX<TabViewState>(
       init: TabViewState(),
       builder: (state) => !state.isLoaded.value
-          ? const Scaffold(
-              backgroundColor: ktempoPurple,
-              body: Loading(),
-            )
+          ? const Scaffold(body: Loading())
           : Scaffold(
-              backgroundColor: ktempoPurple,
               appBar: AppBar(
-                elevation: 0,
-                backgroundColor: ktempoPurple,
                 leading: IconButton(
                   splashColor: Colors.transparent,
                   icon: const Icon(FeatherIcons.settings),
                   onPressed: () {
                     HapticFeedback.selectionClick();
+                    Get.toNamed('/settings');
                   },
                 ),
                 actions: [
-                  Row(
-                    children: [
-                      Text(state.user.nbStars.toString()),
-                      const Icon(Icons.star_rounded, color: ktempoYellow),
-                      IconButton(
-                        splashColor: Colors.transparent,
-                        icon: const Icon(FeatherIcons.user),
-                        onPressed: () {
-                          HapticFeedback.selectionClick();
-                        },
-                      ),
-                    ],
+                  GestureDetector(
+                    onTap: () {
+                      HapticFeedback.selectionClick();
+                      Get.toNamed('/profile');
+                    },
+                    child: Row(
+                      children: [
+                        Text(state.user.nbStars.toString()),
+                        const Icon(Icons.star_rounded, color: ktempoYellow),
+                        IconButton(
+                          splashColor: Colors.transparent,
+                          icon: const Icon(FeatherIcons.user),
+                          onPressed: () {
+                            HapticFeedback.selectionClick();
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),

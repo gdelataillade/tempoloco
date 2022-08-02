@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
@@ -14,14 +16,18 @@ class SearchBar extends StatefulWidget {
 class _SearchBarState extends State<SearchBar> {
   final state = Get.find<TabViewState>();
 
+  Timer? debounce;
+
   late TextEditingController controller;
 
   void onType() {
     final input = controller.text.trim();
 
-    if (input.length > 2) {
-      state.search(input);
-    }
+    if (debounce?.isActive ?? false) debounce?.cancel();
+
+    debounce = Timer(const Duration(milliseconds: 500), () {
+      if (input.length > 2) state.search(input);
+    });
   }
 
   @override
@@ -66,6 +72,7 @@ class _SearchBarState extends State<SearchBar> {
   @override
   void dispose() {
     controller.dispose();
+    debounce?.cancel();
     super.dispose();
   }
 }

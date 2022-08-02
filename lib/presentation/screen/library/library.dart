@@ -35,11 +35,9 @@ class _LibraryScreenState extends State<LibraryScreen>
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        backgroundColor: ktempoPurple,
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(kToolbarHeight),
           child: AppBar(
-            elevation: 0,
             backgroundColor: Colors.transparent,
             bottom: TabBar(
               indicatorWeight: 1,

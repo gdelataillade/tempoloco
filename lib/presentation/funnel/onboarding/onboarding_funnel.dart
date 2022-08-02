@@ -15,7 +15,6 @@ class _OnboardingState extends State<OnboardingFunnel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ktempoPurple,
       body: GetBuilder<OnboardingState>(
         init: OnboardingState(),
         builder: (state) => SafeArea(

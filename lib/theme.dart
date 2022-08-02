@@ -10,7 +10,9 @@ const Color ktempoWhite = Color(0xffF5EEFC);
 final ThemeData themeData = ThemeData(
   brightness: Brightness.dark,
   backgroundColor: ktempoPurple,
-  primaryColor: ktempoIndigo,
-  focusColor: ktempoDark,
+  scaffoldBackgroundColor: ktempoPurple,
+  appBarTheme: const AppBarTheme(color: ktempoPurple, elevation: 0),
+  primaryColor: ktempoPurple,
+  focusColor: ktempoPurple,
   fontFamily: 'SF-Pro-Display',
 );
