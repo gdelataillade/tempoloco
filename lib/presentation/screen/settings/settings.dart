@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:tempoloco/controller/user_controller.dart';
+import 'package:tempoloco/presentation/screen/settings/widgets/volume_slider.dart';
 import 'package:tempoloco/theme.dart';
 
 class Settings extends StatelessWidget {
@@ -41,7 +42,13 @@ class Settings extends StatelessWidget {
         ],
       ),
       body: Column(
-        children: const [],
+        children: [
+          Text(
+            "Settings",
+            style: Theme.of(context).textTheme.headline3,
+          ),
+          const SettingsVolumeSlider(),
+        ],
       ),
     );
   }

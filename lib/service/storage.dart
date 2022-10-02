@@ -5,6 +5,7 @@ import 'package:path_provider/path_provider.dart' as path_provider;
 
 const hiveBoxes = <String>[
   "credentials", // email, password
+  "settings", // volume
 ];
 
 class Storage {
@@ -19,7 +20,7 @@ class Storage {
     }
   }
 
-  static Future<void> writeData(String box, String key, String value) async {
+  static Future<void> writeData(String box, String key, dynamic value) async {
     assert(hiveBoxes.contains(box),
         "Storage:writeData => Box $box do not exists.");
     Hive.box(box).put(key, value);
