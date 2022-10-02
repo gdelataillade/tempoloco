@@ -37,42 +37,45 @@ class _LibraryScreenState extends State<LibraryScreen>
       child: Scaffold(
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(kToolbarHeight),
-          child: AppBar(
-            backgroundColor: Colors.transparent,
-            bottom: TabBar(
-              indicatorWeight: 1,
-              controller: tabController,
-              indicatorColor: ktempoPurple,
-              onTap: (index) {
-                HapticFeedback.selectionClick();
-                setState(() => selectedIndex = index);
-              },
-              tabs: [
-                Text(
-                  "Songs",
-                  style: Theme.of(context).textTheme.headline5!.copyWith(
-                        fontWeight: selectedIndex == 0
-                            ? FontWeight.w700
-                            : FontWeight.w400,
-                      ),
-                ),
-                Text(
-                  "Artists",
-                  style: Theme.of(context).textTheme.headline5!.copyWith(
-                        fontWeight: selectedIndex == 1
-                            ? FontWeight.w700
-                            : FontWeight.w400,
-                      ),
-                ),
-                Text(
-                  "Favorite",
-                  style: Theme.of(context).textTheme.headline5!.copyWith(
-                        fontWeight: selectedIndex == 2
-                            ? FontWeight.w700
-                            : FontWeight.w400,
-                      ),
-                ),
-              ],
+          child: SizedBox(
+            height: 30,
+            child: AppBar(
+              backgroundColor: Colors.transparent,
+              bottom: TabBar(
+                indicatorWeight: 1,
+                controller: tabController,
+                indicatorColor: ktempoPurple,
+                onTap: (index) {
+                  HapticFeedback.selectionClick();
+                  setState(() => selectedIndex = index);
+                },
+                tabs: [
+                  Text(
+                    "Songs",
+                    style: Theme.of(context).textTheme.headline5!.copyWith(
+                          fontWeight: selectedIndex == 0
+                              ? FontWeight.w700
+                              : FontWeight.w400,
+                        ),
+                  ),
+                  Text(
+                    "Artists",
+                    style: Theme.of(context).textTheme.headline5!.copyWith(
+                          fontWeight: selectedIndex == 1
+                              ? FontWeight.w700
+                              : FontWeight.w400,
+                        ),
+                  ),
+                  Text(
+                    "Favorite",
+                    style: Theme.of(context).textTheme.headline5!.copyWith(
+                          fontWeight: selectedIndex == 2
+                              ? FontWeight.w700
+                              : FontWeight.w400,
+                        ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

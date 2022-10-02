@@ -26,13 +26,14 @@ class _SearchBarState extends State<SearchBar> {
     if (debounce?.isActive ?? false) debounce?.cancel();
 
     debounce = Timer(const Duration(milliseconds: 500), () {
-      if (input.length > 2) state.search(input);
+      state.searchParams.input = input;
+      if (input.length > 2) state.search(input, clear: true);
     });
   }
 
   @override
   void initState() {
-    controller = TextEditingController(text: '');
+    controller = TextEditingController(text: state.searchParams.input);
     controller.addListener(onType);
     super.initState();
   }
@@ -40,7 +41,7 @@ class _SearchBarState extends State<SearchBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 10),
+      margin: const EdgeInsets.symmetric(vertical: 10),
       height: 38,
       decoration: BoxDecoration(
         color: Colors.white,

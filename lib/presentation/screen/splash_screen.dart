@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tempoloco/presentation/common/widget/loading.dart';
-import 'package:tempoloco/theme.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -23,13 +22,13 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   @override
-  void dispose() {
-    timer.cancel();
-    super.dispose();
+  Widget build(BuildContext context) {
+    return const Scaffold(body: Loading());
   }
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(body: Loading());
+  void dispose() {
+    timer.cancel();
+    super.dispose();
   }
 }

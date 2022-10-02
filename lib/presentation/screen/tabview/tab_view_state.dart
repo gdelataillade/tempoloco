@@ -11,12 +11,18 @@ enum SearchType {
   artists,
 }
 
+class SearchParams {
+  SearchType type = SearchType.tracks;
+  String input = '';
+  int page = 0;
+}
+
 class TabViewState extends GetxController {
   final library = <spotify.Track>[].obs;
   final artists = <spotify.Artist>[].obs;
   final results = <spotify.Track>[].obs;
 
-  final searchType = SearchType.tracks;
+  final searchParams = SearchParams();
 
   RxBool isLoaded = false.obs;
 
@@ -73,9 +79,13 @@ class TabViewState extends GetxController {
     await DB.updateUser(user.copyWith(favorites: favorites).toJson());
   }
 
-  Future<void> search(String input) async {
-    if (searchType == SearchType.tracks) {
-      results.value = await DB.searchTrack(input);
+  Future<void> search(String input, {bool clear = false}) async {
+    if (searchParams.type == SearchType.tracks) {
+      if (clear) searchParams.page = 0;
+
+      final res = await DB.searchTrack(input, searchParams.page);
+      if (clear) results.clear();
+      results.addAll(res);
     } else {
       // res = await DB.getArtistListFromLibary();
     }

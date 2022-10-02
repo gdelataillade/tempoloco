@@ -24,10 +24,10 @@ class Spotify {
     return track;
   }
 
-  Future<List<Track>> searchTrack(String input) async {
+  Future<List<Track>> searchTrack(String input, int page) async {
     final tracks = <Track>[];
-    final res =
-        await spotify.search.get(input, types: [SearchType.track]).first(15);
+    final res = await spotify.search
+        .get(input, types: [SearchType.track]).getPage(15, 15 * page);
 
     for (final page in res) {
       if (page.items!.isEmpty) continue;

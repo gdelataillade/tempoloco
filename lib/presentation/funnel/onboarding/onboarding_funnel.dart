@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tempoloco/presentation/common/widget/loading.dart';
 import 'package:tempoloco/presentation/funnel/onboarding/onboarding_state.dart';
-import 'package:tempoloco/theme.dart';
 
 class OnboardingFunnel extends StatefulWidget {
   const OnboardingFunnel({Key? key}) : super(key: key);

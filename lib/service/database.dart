@@ -72,10 +72,11 @@ class DB {
     return artists;
   }
 
-  static Future<List<spotify.Track>> searchTrack(String input) async {
-    final tracks = await spotifyLct.searchTrack(input);
+  static Future<List<spotify.Track>> searchTrack(String input, int page) async {
+    final tracks = await spotifyLct.searchTrack(input, page);
 
-    debugPrint('===> [Spotify] Search found ${tracks.length} tracks');
+    debugPrint(
+        '===> [Spotify] Search found ${tracks.length} tracks on page $page');
     return tracks;
   }
 

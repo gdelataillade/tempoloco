@@ -18,7 +18,7 @@ class _FadeInState extends State<FadeIn> {
   @override
   void initState() {
     timer = Timer(const Duration(milliseconds: 1), () {
-      setState(() => opacity = 1);
+      if (mounted) setState(() => opacity = 1);
     });
     super.initState();
   }
@@ -30,5 +30,11 @@ class _FadeInState extends State<FadeIn> {
       duration: const Duration(milliseconds: 500),
       child: widget.child,
     );
+  }
+
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
   }
 }
