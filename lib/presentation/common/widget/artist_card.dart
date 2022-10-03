@@ -32,8 +32,8 @@ class ArtistCard extends StatelessWidget {
             ],
           ),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(50),
-            child: Image.network(imgUrl),
+            borderRadius: BorderRadius.circular(60 / 2),
+            child: Image.network(imgUrl, fit: BoxFit.cover),
           ),
         ),
         Text(

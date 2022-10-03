@@ -34,7 +34,7 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
     return GetX<TabViewState>(
       init: TabViewState(),
       builder: (state) => !state.isLoaded.value
-          ? const Scaffold(body: Loading())
+          ? const Scaffold(body: Loading(debugLabel: 'Tab View'))
           : Scaffold(
               appBar: AppBar(
                 leading: IconButton(
@@ -60,6 +60,7 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
                           icon: const Icon(FeatherIcons.user),
                           onPressed: () {
                             HapticFeedback.selectionClick();
+                            Get.toNamed('/profile');
                           },
                         ),
                       ],

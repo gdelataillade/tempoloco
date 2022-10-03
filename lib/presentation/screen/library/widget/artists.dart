@@ -12,7 +12,9 @@ class LibraryArtists extends StatelessWidget {
     final state = Get.find<TabViewState>();
 
     return Obx(() {
-      if (state.artists.isEmpty) return const Loading();
+      if (state.artists.isEmpty) {
+        return const Loading(debugLabel: 'Library Artists');
+      }
       return Padding(
         padding: const EdgeInsets.only(top: 15, left: 10),
         child: ListView.builder(

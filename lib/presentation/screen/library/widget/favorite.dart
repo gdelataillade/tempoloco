@@ -13,7 +13,9 @@ class LibraryFavorite extends StatelessWidget {
     final state = Get.find<TabViewState>();
 
     return Obx(() {
-      if (state.library.isEmpty) return const Loading();
+      if (state.library.isEmpty) {
+        return const Loading(debugLabel: 'Library Favorite');
+      }
 
       final favorites =
           state.library.where((track) => state.isFavorite(track.id!)).toList();

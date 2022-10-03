@@ -1,8 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 class Loading extends StatelessWidget {
-  const Loading({Key? key}) : super(key: key);
+  final String debugLabel;
+
+  const Loading({Key? key, this.debugLabel = ''}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +17,11 @@ class Loading extends StatelessWidget {
           "Tempoloco",
           style: Theme.of(context).textTheme.titleLarge,
         ),
+        if (debugLabel.isNotEmpty && kDebugMode)
+          Text(
+            debugLabel,
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
       ],
     );
   }

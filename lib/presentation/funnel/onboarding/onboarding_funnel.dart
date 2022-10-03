@@ -26,7 +26,7 @@ class _OnboardingState extends State<OnboardingFunnel> {
                 children: [
                   Center(
                     child: state.isLoading.value
-                        ? const Loading()
+                        ? const Loading(debugLabel: 'On Boarding')
                         : state.steps[index],
                   ),
                   if (index > 0 && index < 3)

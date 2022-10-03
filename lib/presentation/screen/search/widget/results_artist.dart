@@ -23,15 +23,9 @@ class SearchResultsArtist extends StatelessWidget {
           itemCount: state.artistResults.length,
           itemBuilder: (context, index) {
             final artist = state.artistResults[index];
-            return Column(
-              children: [
-                ArtistCard(
-                  name: artist.name!,
-                  imgUrl: artist.images!.first.url!,
-                ),
-                if (index == state.artistResults.length - 1)
-                  const Center(child: Text("Loading...")),
-              ],
+            return ArtistCard(
+              name: artist.name!,
+              imgUrl: artist.images!.first.url!,
             );
           },
         ),

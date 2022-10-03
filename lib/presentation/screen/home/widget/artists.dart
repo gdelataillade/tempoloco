@@ -12,7 +12,9 @@ class HomeArtists extends StatelessWidget {
     final state = Get.find<TabViewState>();
 
     return Obx(() {
-      if (state.artists.isEmpty) return const Loading();
+      if (state.artists.isEmpty) {
+        return const Loading(debugLabel: 'Home Artists');
+      }
       return SizedBox(
         height: 120,
         child: ListView.builder(

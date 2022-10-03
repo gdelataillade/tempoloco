@@ -13,8 +13,9 @@ class HomeQuickPlay extends StatelessWidget {
 
     return Expanded(
       child: Obx(() {
-        if (state.library.isEmpty) return const Loading();
-        // TODO: Put favorites tracks first
+        if (state.library.isEmpty) {
+          return const Loading(debugLabel: 'Quick Play');
+        }
         return ListView.builder(
           physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
