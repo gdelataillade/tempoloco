@@ -52,7 +52,7 @@ class _SearchResultsTrackState extends State<SearchResultsTrack> {
                   artist: item.artists!.first.name!,
                   imgUrl: item.album!.images![1].url!,
                   trackId: item.id!,
-                  onPress: () {},
+                  onPress: () => Get.toNamed('/game', arguments: item),
                   onLike: () => state.likeTrack(item.id!),
                 ),
                 if (index == state.trackResults.length - 1)

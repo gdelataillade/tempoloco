@@ -24,35 +24,38 @@ class HomeQuickPlay extends StatelessWidget {
             final item = state.library[index];
             final size = Get.size.width * 0.75;
 
-            return Column(
-              children: [
-                Container(
-                  width: size,
-                  height: size,
-                  margin: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: ktempoDark,
-                    borderRadius: const BorderRadius.all(Radius.circular(20)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.5),
-                        spreadRadius: 0.2,
-                        blurRadius: 2,
-                        offset: const Offset(1, 1),
+            return RawMaterialButton(
+              onPressed: () => Get.toNamed('/game', arguments: item),
+              child: Column(
+                children: [
+                  Container(
+                    width: size,
+                    height: size,
+                    margin: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: ktempoDark,
+                      borderRadius: const BorderRadius.all(Radius.circular(20)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.5),
+                          spreadRadius: 0.2,
+                          blurRadius: 2,
+                          offset: const Offset(1, 1),
+                        ),
+                      ],
+                    ),
+                    child: ClipRRect(
+                      borderRadius: const BorderRadius.all(Radius.circular(20)),
+                      child: Image.network(
+                        item.album!.images!.first.url!,
+                        fit: BoxFit.cover,
                       ),
-                    ],
-                  ),
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.all(Radius.circular(20)),
-                    child: Image.network(
-                      item.album!.images!.first.url!,
-                      fit: BoxFit.cover,
                     ),
                   ),
-                ),
-                Text(item.name!),
-                Text(item.artists!.first.name!),
-              ],
+                  Text(item.name!),
+                  Text(item.artists!.first.name!),
+                ],
+              ),
             );
           },
         );

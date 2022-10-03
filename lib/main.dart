@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:get/route_manager.dart';
 
 import 'package:tempoloco/presentation/funnel/onboarding/onboarding_funnel.dart';
+import 'package:tempoloco/presentation/screen/game/game.dart';
 import 'package:tempoloco/presentation/screen/profile/profile.dart';
 import 'package:tempoloco/presentation/screen/settings/settings.dart';
 import 'package:tempoloco/presentation/screen/splash_screen.dart';
@@ -61,6 +62,12 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/profile',
           page: () => const Profile(),
+          transition: Transition.fadeIn,
+          transitionDuration: const Duration(milliseconds: 200),
+        ),
+        GetPage(
+          name: '/game',
+          page: () => const Game(),
           transition: Transition.fadeIn,
           transitionDuration: const Duration(milliseconds: 200),
         ),
