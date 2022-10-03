@@ -72,6 +72,18 @@ class DB {
     return artists;
   }
 
+  static Future<List<spotify.Track>> getHistory() async {
+    final tracks = <spotify.Track>[];
+    final userCtrl = Get.find<UserController>();
+
+    for (final trackId in userCtrl.user.value.history) {
+      final res = await spotifyLct.getTrackById(trackId);
+      tracks.add(res);
+    }
+    debugPrint('===> [Spotify] Loaded ${tracks.length} history');
+    return tracks;
+  }
+
   static Future<List<spotify.Track>> searchTrack(String input, int page) async {
     final tracks = await spotifyLct.searchTrack(input, page);
 

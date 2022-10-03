@@ -21,6 +21,7 @@ class SearchParams {
 class TabViewState extends GetxController {
   final library = <spotify.Track>[].obs;
   final artists = <spotify.Artist>[].obs;
+  final history = <spotify.Track>[].obs;
 
   final trackResults = <spotify.Track>[].obs;
   final artistResults = <spotify.Artist>[].obs;
@@ -38,8 +39,11 @@ class TabViewState extends GetxController {
   @override
   Future<void> onInit() async {
     await initUserController();
-    await loadLibrary();
-    await loadArtists();
+    await Future.wait([
+      loadLibrary(),
+      loadArtists(),
+    ]);
+    loadHistory();
 
     isLoaded.value = true;
     super.onInit();
@@ -71,6 +75,12 @@ class TabViewState extends GetxController {
     artists.value = res;
   }
 
+  Future<void> loadHistory() async {
+    final res = await DB.getHistory();
+
+    history.value = res;
+  }
+
   Future<void> likeTrack(String trackId) async {
     List<String> favorites = userCtrl.user.value.favorites;
 
@@ -93,5 +103,25 @@ class TabViewState extends GetxController {
       final res = await DB.searchArtist(input);
       artistResults.assignAll(res);
     }
+  }
+
+  // TODO: MOVE LATER
+  Future<void> addTrackToHistory(spotify.Track track) async {
+    if (history.where((t) => t.id == track.id).isNotEmpty) {
+      history.removeWhere((t) => t.id == track.id);
+    }
+
+    if (history.length >= 15) history.removeLast();
+    history.assignAll([track, ...history]);
+
+    final historyIds = history.map((t) => t.id!).toList();
+
+    await DB.updateUser(
+      Get.find<UserController>()
+          .user
+          .value
+          .copyWith(history: historyIds)
+          .toJson(),
+    );
   }
 }

@@ -6,14 +6,14 @@ import 'package:tempoloco/presentation/screen/search/widget/results_track.dart';
 import 'package:tempoloco/presentation/screen/tabview/tab_view_state.dart';
 import 'package:tempoloco/theme.dart';
 
-class SearchTabBar extends StatefulWidget {
-  const SearchTabBar({Key? key}) : super(key: key);
+class SearchResultsTabBar extends StatefulWidget {
+  const SearchResultsTabBar({Key? key}) : super(key: key);
 
   @override
-  State<SearchTabBar> createState() => _SearchTabBarState();
+  State<SearchResultsTabBar> createState() => _SearchResultsTabBarState();
 }
 
-class _SearchTabBarState extends State<SearchTabBar>
+class _SearchResultsTabBarState extends State<SearchResultsTabBar>
     with SingleTickerProviderStateMixin {
   final state = Get.find<TabViewState>();
   int selectedIndex = 0;

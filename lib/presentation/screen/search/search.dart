@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tempoloco/presentation/screen/search/widget/history.dart';
 import 'package:tempoloco/presentation/screen/search/widget/search_bar.dart';
 import 'package:tempoloco/presentation/screen/search/widget/tab_bar.dart';
 import 'package:tempoloco/theme.dart';
@@ -16,7 +17,8 @@ class SearchScreen extends StatelessWidget {
         children: const [
           Text("Search"),
           SearchBar(),
-          Expanded(child: SearchTabBar()),
+          // Expanded(child: SearchResultsTabBar()),
+          Expanded(child: History()),
         ],
       ),
     );

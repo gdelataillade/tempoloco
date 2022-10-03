@@ -14,7 +14,7 @@ class LibraryScreen extends StatefulWidget {
 
 class _LibraryScreenState extends State<LibraryScreen>
     with SingleTickerProviderStateMixin {
-  int selectedIndex = 0;
+  static int selectedIndex = 0;
   late TabController tabController;
 
   void onSwipe() {
@@ -25,7 +25,8 @@ class _LibraryScreenState extends State<LibraryScreen>
 
   @override
   void initState() {
-    tabController = TabController(vsync: this, length: 3);
+    tabController =
+        TabController(initialIndex: selectedIndex, vsync: this, length: 3);
     tabController.addListener(onSwipe);
     super.initState();
   }
