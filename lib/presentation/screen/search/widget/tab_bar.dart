@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:tempoloco/presentation/screen/search/widget/history.dart';
 import 'package:tempoloco/presentation/screen/search/widget/results_artist.dart';
 import 'package:tempoloco/presentation/screen/search/widget/results_track.dart';
 import 'package:tempoloco/presentation/screen/tabview/tab_view_state.dart';
@@ -44,51 +45,55 @@ class _SearchResultsTabBarState extends State<SearchResultsTabBar>
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
-      child: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(kToolbarHeight),
-          child: SizedBox(
-            height: 30,
-            child: AppBar(
-              backgroundColor: Colors.transparent,
-              bottom: TabBar(
-                indicatorWeight: 1,
+      child: Obx(() => state.trackResults.isEmpty
+          ? const History()
+          : Scaffold(
+              appBar: PreferredSize(
+                preferredSize: const Size.fromHeight(kToolbarHeight),
+                child: SizedBox(
+                  height: 30,
+                  child: AppBar(
+                    backgroundColor: Colors.transparent,
+                    bottom: TabBar(
+                      indicatorWeight: 1,
+                      controller: tabController,
+                      indicatorColor: ktempoPurple,
+                      onTap: (index) {
+                        HapticFeedback.selectionClick();
+                        setState(() => selectedIndex = index);
+                      },
+                      tabs: [
+                        Text(
+                          "Songs",
+                          style:
+                              Theme.of(context).textTheme.headline5!.copyWith(
+                                    fontWeight: selectedIndex == 0
+                                        ? FontWeight.w700
+                                        : FontWeight.w400,
+                                  ),
+                        ),
+                        Text(
+                          "Artists",
+                          style:
+                              Theme.of(context).textTheme.headline5!.copyWith(
+                                    fontWeight: selectedIndex == 1
+                                        ? FontWeight.w700
+                                        : FontWeight.w400,
+                                  ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              body: TabBarView(
                 controller: tabController,
-                indicatorColor: ktempoPurple,
-                onTap: (index) {
-                  HapticFeedback.selectionClick();
-                  setState(() => selectedIndex = index);
-                },
-                tabs: [
-                  Text(
-                    "Songs",
-                    style: Theme.of(context).textTheme.headline5!.copyWith(
-                          fontWeight: selectedIndex == 0
-                              ? FontWeight.w700
-                              : FontWeight.w400,
-                        ),
-                  ),
-                  Text(
-                    "Artists",
-                    style: Theme.of(context).textTheme.headline5!.copyWith(
-                          fontWeight: selectedIndex == 1
-                              ? FontWeight.w700
-                              : FontWeight.w400,
-                        ),
-                  ),
+                children: const [
+                  SearchResultsTrack(),
+                  SearchResultsArtist(),
                 ],
               ),
-            ),
-          ),
-        ),
-        body: TabBarView(
-          controller: tabController,
-          children: const [
-            SearchResultsTrack(),
-            SearchResultsArtist(),
-          ],
-        ),
-      ),
+            )),
     );
   }
 
