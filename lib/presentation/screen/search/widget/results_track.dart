@@ -4,21 +4,21 @@ import 'package:tempoloco/presentation/common/widget/track_card.dart';
 import 'package:tempoloco/presentation/screen/tabview/tab_view_state.dart';
 import 'package:tempoloco/theme.dart';
 
-class SearchResults extends StatefulWidget {
-  const SearchResults({Key? key}) : super(key: key);
+class SearchResultsTrack extends StatefulWidget {
+  const SearchResultsTrack({Key? key}) : super(key: key);
 
   @override
-  State<SearchResults> createState() => _SearchResultsState();
+  State<SearchResultsTrack> createState() => _SearchResultsTrackState();
 }
 
-class _SearchResultsState extends State<SearchResults> {
+class _SearchResultsTrackState extends State<SearchResultsTrack> {
   final controller = ScrollController();
   final state = Get.find<TabViewState>();
 
   void detectEnd() {
     if (controller.position.atEdge) {
       if (controller.position.pixels != 0) {
-        state.searchParams.page += 1;
+        state.searchParams.tracksPage += 1;
         state.search(state.searchParams.input);
       }
     }
@@ -33,16 +33,18 @@ class _SearchResultsState extends State<SearchResults> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      if (state.results.isEmpty) return const Center(child: Text("No results"));
+      if (state.trackResults.isEmpty) {
+        return const Center(child: Text("No results"));
+      }
       return Container(
         color: ktempoPurple,
         padding: const EdgeInsets.symmetric(horizontal: 5),
         child: ListView.builder(
           physics: const BouncingScrollPhysics(),
-          itemCount: state.results.length,
+          itemCount: state.trackResults.length,
           controller: controller,
           itemBuilder: (context, index) {
-            final item = state.results[index];
+            final item = state.trackResults[index];
             return Column(
               children: [
                 TrackCard(
@@ -53,7 +55,7 @@ class _SearchResultsState extends State<SearchResults> {
                   onPress: () {},
                   onLike: () => state.likeTrack(item.id!),
                 ),
-                if (index == state.results.length - 1)
+                if (index == state.trackResults.length - 1)
                   const Center(child: Text("Loading...")),
               ],
             );

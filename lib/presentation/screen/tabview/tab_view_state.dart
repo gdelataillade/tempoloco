@@ -14,13 +14,16 @@ enum SearchType {
 class SearchParams {
   SearchType type = SearchType.tracks;
   String input = '';
-  int page = 0;
+  String lastInputOnOtherTab = '';
+  int tracksPage = 0;
 }
 
 class TabViewState extends GetxController {
   final library = <spotify.Track>[].obs;
   final artists = <spotify.Artist>[].obs;
-  final results = <spotify.Track>[].obs;
+
+  final trackResults = <spotify.Track>[].obs;
+  final artistResults = <spotify.Artist>[].obs;
 
   final searchParams = SearchParams();
 
@@ -81,13 +84,14 @@ class TabViewState extends GetxController {
 
   Future<void> search(String input, {bool clear = false}) async {
     if (searchParams.type == SearchType.tracks) {
-      if (clear) searchParams.page = 0;
+      if (clear) searchParams.tracksPage = 0;
 
-      final res = await DB.searchTrack(input, searchParams.page);
-      if (clear) results.clear();
-      results.addAll(res);
+      final res = await DB.searchTrack(input, searchParams.tracksPage);
+      if (clear) trackResults.clear();
+      trackResults.addAll(res);
     } else {
-      // res = await DB.getArtistListFromLibary();
+      final res = await DB.searchArtist(input);
+      artistResults.assignAll(res);
     }
   }
 }

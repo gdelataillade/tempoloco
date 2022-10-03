@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tempoloco/presentation/common/widget/artist_card.dart';
+import 'package:tempoloco/presentation/screen/home/widget/artist_item.dart';
 import 'package:tempoloco/presentation/common/widget/loading.dart';
 import 'package:tempoloco/presentation/screen/tabview/tab_view_state.dart';
 
@@ -21,7 +21,7 @@ class HomeArtists extends StatelessWidget {
           itemCount: state.artists.length,
           itemBuilder: (context, index) {
             final artist = state.artists[index];
-            return ArtistCard(
+            return HomeArtistItem(
               name: artist.name!,
               imgUrl: artist.images![1].url!,
             );

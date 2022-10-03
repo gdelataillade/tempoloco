@@ -14,7 +14,7 @@ class HomeQuickPlay extends StatelessWidget {
     return Expanded(
       child: Obx(() {
         if (state.library.isEmpty) return const Loading();
-        // TODO: Put favorites tracks first && max 15 tracks
+        // TODO: Put favorites tracks first
         return ListView.builder(
           physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,

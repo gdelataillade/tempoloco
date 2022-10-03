@@ -75,6 +75,8 @@ class DB {
   static Future<List<spotify.Track>> searchTrack(String input, int page) async {
     final tracks = await spotifyLct.searchTrack(input, page);
 
+    tracks.removeWhere((t) =>
+        t.album == null || t.album!.images == null || t.album!.images!.isEmpty);
     debugPrint(
         '===> [Spotify] Search found ${tracks.length} tracks on page $page');
     return tracks;
@@ -83,6 +85,7 @@ class DB {
   static Future<List<spotify.Artist>> searchArtist(String input) async {
     final artists = await spotifyLct.searchArtist(input);
 
+    artists.removeWhere((a) => a.images == null || a.images!.isEmpty);
     debugPrint('===> [Spotify] Search found ${artists.length} artists');
     return artists;
   }
