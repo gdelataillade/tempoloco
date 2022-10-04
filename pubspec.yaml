@@ -29,6 +29,7 @@ dependencies:
   custom_navigation_bar: ^0.8.2
   flutter_feather_icons: ^2.0.0+1
   copy_with_extension: ^4.0.2
+  just_audio: ^0.9.29
 
 dev_dependencies:
   flutter_lints: ^2.0.1

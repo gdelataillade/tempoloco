@@ -104,24 +104,4 @@ class TabViewState extends GetxController {
       artistResults.assignAll(res);
     }
   }
-
-  // TODO: MOVE LATER
-  Future<void> addTrackToHistory(spotify.Track track) async {
-    if (history.where((t) => t.id == track.id).isNotEmpty) {
-      history.removeWhere((t) => t.id == track.id);
-    }
-
-    if (history.length >= 15) history.removeLast();
-    history.assignAll([track, ...history]);
-
-    final historyIds = history.map((t) => t.id!).toList();
-
-    await DB.updateUser(
-      Get.find<UserController>()
-          .user
-          .value
-          .copyWith(history: historyIds)
-          .toJson(),
-    );
-  }
 }

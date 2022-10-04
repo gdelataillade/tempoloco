@@ -44,7 +44,6 @@ class GameHeader extends StatelessWidget {
           trackName,
           style: Theme.of(context).textTheme.headline2,
         ),
-        const SizedBox(height: 10),
         Text(
           artistName,
           style: Theme.of(context).textTheme.headline4,
