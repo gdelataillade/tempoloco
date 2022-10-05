@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:tempoloco/presentation/common/widget/track_card.dart';
 import 'package:tempoloco/presentation/screen/tabview/tab_view_state.dart';
 import 'package:tempoloco/theme.dart';
+import 'package:tempoloco/utils/modal.dart';
 
 class SearchResultsTrack extends StatefulWidget {
   const SearchResultsTrack({Key? key}) : super(key: key);
@@ -33,7 +34,7 @@ class _SearchResultsTrackState extends State<SearchResultsTrack> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      if (state.trackResults.isEmpty) {
+      if (state.library.isEmpty || state.trackResults.isEmpty) {
         return const Center(child: Text("No results"));
       }
       return Container(
@@ -45,6 +46,8 @@ class _SearchResultsTrackState extends State<SearchResultsTrack> {
           controller: controller,
           itemBuilder: (context, index) {
             final item = state.trackResults[index];
+            final isPurchased = state.isPurchased(item.id!);
+            final price = state.getPrice(item.popularity!);
             return Column(
               children: [
                 TrackCard(
@@ -52,7 +55,13 @@ class _SearchResultsTrackState extends State<SearchResultsTrack> {
                   artist: item.artists!.first.name!,
                   imgUrl: item.album!.images![1].url!,
                   trackId: item.id!,
-                  onPress: () => Get.toNamed('/game', arguments: item),
+                  isPurchased: isPurchased,
+                  price: price,
+                  onPress: () {
+                    isPurchased
+                        ? Get.toNamed('/game', arguments: item)
+                        : Modal.showDialogModal(context, item, price);
+                  },
                   onLike: () => state.likeTrack(item.id!),
                 ),
                 if (index == state.trackResults.length - 1)

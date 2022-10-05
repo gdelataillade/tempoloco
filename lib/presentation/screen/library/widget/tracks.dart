@@ -29,6 +29,7 @@ class LibraryTracks extends StatelessWidget {
               artist: item.artists!.first.name!,
               imgUrl: item.album!.images![1].url!,
               trackId: item.id!,
+              isPurchased: true,
               onPress: () => Get.toNamed('/game', arguments: item),
               onLike: () => state.likeTrack(item.id!),
             );

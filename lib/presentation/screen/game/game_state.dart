@@ -53,6 +53,7 @@ class GameState extends GetxController {
   }
 
   // TODO: Find a way to reload home history
+  // Hint: Bind stream history with DB.getHistory as a Stream
   Future<void> addTrackToHistory() async {
     final userCtrl = Get.find<UserController>();
     final history = userCtrl.user.value.history;

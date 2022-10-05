@@ -10,6 +10,8 @@ class TrackCard extends StatelessWidget {
   final String artist;
   final String imgUrl;
   final String trackId;
+  final bool isPurchased;
+  final int? price;
   final Function() onPress;
   final Function() onLike;
 
@@ -19,9 +21,13 @@ class TrackCard extends StatelessWidget {
     required this.artist,
     required this.imgUrl,
     required this.trackId,
+    required this.isPurchased,
+    this.price,
     required this.onPress,
     required this.onLike,
-  }) : super(key: key);
+  })  : assert(isPurchased || price != null,
+            "[TrackCard] if not purchased, track has to have a price"),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -76,21 +82,43 @@ class TrackCard extends StatelessWidget {
                 ),
               ],
             ),
-            Obx(
-              () {
-                final isLiked = state.isFavorite(trackId);
-                return IconButton(
-                  splashColor: Colors.transparent,
-                  onPressed: () {
-                    HapticFeedback.mediumImpact();
-                    onLike();
-                  },
-                  icon: Icon(
-                    isLiked ? Icons.favorite : Icons.favorite_border_rounded,
-                    color: Colors.red,
-                  ),
-                );
-              },
+            SizedBox(
+              width: 60,
+              child: Obx(
+                () {
+                  final isLiked = state.isFavorite(trackId);
+                  return IconButton(
+                    splashColor: Colors.transparent,
+                    onPressed: () {
+                      HapticFeedback.mediumImpact();
+                      if (isPurchased) onLike();
+                    },
+                    icon: isPurchased
+                        ? Icon(
+                            isLiked
+                                ? Icons.favorite
+                                : Icons.favorite_border_rounded,
+                            color: Colors.red,
+                          )
+                        : Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "$price",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1!
+                                    .copyWith(color: ktempoDark),
+                              ),
+                              const Icon(
+                                Icons.star_rounded,
+                                color: ktempoYellow,
+                              ),
+                            ],
+                          ),
+                  );
+                },
+              ),
             ),
           ],
         ),

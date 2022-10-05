@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spotify/spotify.dart' as spotify;
 import 'package:tempoloco/controller/user_controller.dart';
@@ -35,6 +36,15 @@ class TabViewState extends GetxController {
   User get user => userCtrl.user.value;
 
   bool isFavorite(String trackId) => user.favorites.contains(trackId);
+  bool isPurchased(String trackId) => user.library.contains(trackId);
+  bool enoughStars(int price) => user.nbStars < price;
+
+  int getPrice(int popularity) {
+    debugPrint('===> [Price] getPrice');
+
+    double price = (popularity + 1) / 5;
+    return price.toInt() + 1;
+  }
 
   @override
   Future<void> onInit() async {
@@ -103,5 +113,25 @@ class TabViewState extends GetxController {
       final res = await DB.searchArtist(input);
       artistResults.assignAll(res);
     }
+  }
+
+  Future<void> purchaseTrack(String trackId, String artistId, int price) async {
+    final library = userCtrl.user.value.library;
+    final artists = userCtrl.user.value.artists;
+    final nbStars = userCtrl.user.value.nbStars;
+
+    await DB.updateUser(user.copyWith(
+      library: [trackId, ...library],
+      artists: [
+        {"title": trackId, "artist": artistId},
+        ...artists,
+      ],
+      nbStars: nbStars - price,
+    ).toJson());
+
+    await Future.wait([
+      loadLibrary(),
+      loadArtists(),
+    ]);
   }
 }

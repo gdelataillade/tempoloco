@@ -36,6 +36,7 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
       builder: (state) => !state.isLoaded.value
           ? const Scaffold(body: Loading(debugLabel: 'Tab View'))
           : Scaffold(
+              backgroundColor: ktempoPurple,
               appBar: AppBar(
                 leading: IconButton(
                   splashColor: Colors.transparent,
@@ -83,7 +84,7 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
                 child: CustomNavigationBar(
                   iconSize: 30,
                   elevation: 1,
-                  opacity: 1,
+                  opacity: 0.1,
                   selectedColor: ktempoYellow,
                   strokeColor: ktempoYellow,
                   unSelectedColor: ktempoWhite,
