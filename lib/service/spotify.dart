@@ -29,8 +29,7 @@ class Spotify {
   Future<List<Track>> searchTrack(String input, int page) async {
     final tracks = <Track>[];
     final res = await spotify.search
-        .get(input, types: [SearchType.track], market: 'fr')
-        .getPage(15, 15 * page);
+        .get(input, types: [SearchType.track]).getPage(15, 15 * page);
 
     for (final page in res) {
       if (page.items!.isEmpty) continue;
@@ -44,9 +43,8 @@ class Spotify {
 
   Future<List<Artist>> searchArtist(String input) async {
     final artists = <Artist>[];
-    final res = await spotify.search
-        .get(input, types: [SearchType.artist], market: 'fr')
-        .first(10);
+    final res =
+        await spotify.search.get(input, types: [SearchType.artist]).first(10);
 
     for (final page in res) {
       if (page.items!.isEmpty) continue;
