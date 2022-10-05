@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tempoloco/presentation/common/widget/shader_mask.dart';
 import 'package:tempoloco/presentation/common/widget/track_card.dart';
 import 'package:tempoloco/presentation/screen/tabview/tab_view_state.dart';
 import 'package:tempoloco/theme.dart';
@@ -40,43 +41,45 @@ class _SearchResultsTrackState extends State<SearchResultsTrack> {
       return Container(
         color: ktempoPurple,
         padding: const EdgeInsets.symmetric(horizontal: 5),
-        child: ListView.builder(
-          physics: const BouncingScrollPhysics(),
-          itemCount: state.trackResults.length,
-          controller: controller,
-          itemBuilder: (context, index) {
-            final item = state.trackResults[index];
-            final isPurchased = state.isPurchased(item.id!);
-            final price = state.getPrice(item.popularity!);
-            return Column(
-              children: [
-                TrackCard(
-                  title: item.name!,
-                  artist: item.artists!.first.name!,
-                  imgUrl: item.album!.images![1].url!,
-                  trackId: item.id!,
-                  isPurchased: isPurchased,
-                  isProtected: item.previewUrl == null,
-                  price: price,
-                  onPress: () {
-                    if (isPurchased) {
-                      state.addTrackToHistory(item.id!);
-                      Get.toNamed('/game', arguments: item);
-                    } else {
-                      Modal.showDialogModal(context, item, price);
-                    }
-                  },
-                  onLike: () => state.likeTrack(item.id!),
-                ),
-                if (index == state.trackResults.length - 1)
-                  const Padding(
-                    padding: EdgeInsets.all(20),
-                    child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(ktempoWhite)),
+        child: BottomShaderMask(
+          child: ListView.builder(
+            physics: const BouncingScrollPhysics(),
+            itemCount: state.trackResults.length,
+            controller: controller,
+            itemBuilder: (context, index) {
+              final item = state.trackResults[index];
+              final isPurchased = state.isPurchased(item.id!);
+              final price = state.getPrice(item.popularity!);
+              return Column(
+                children: [
+                  TrackCard(
+                    title: item.name!,
+                    artist: item.artists!.first.name!,
+                    imgUrl: item.album!.images![1].url!,
+                    trackId: item.id!,
+                    isPurchased: isPurchased,
+                    price: price,
+                    onPress: () {
+                      if (isPurchased) {
+                        state.addTrackToHistory(item.id!);
+                        Get.toNamed('/game', arguments: item);
+                      } else {
+                        Modal.showDialogModal(context, item, price);
+                      }
+                    },
+                    onLike: () => state.likeTrack(item.id!),
                   ),
-              ],
-            );
-          },
+                  if (index == state.trackResults.length - 1)
+                    const Padding(
+                      padding: EdgeInsets.all(20),
+                      child: CircularProgressIndicator(
+                          valueColor:
+                              AlwaysStoppedAnimation<Color>(ktempoWhite)),
+                    ),
+                ],
+              );
+            },
+          ),
         ),
       );
     });

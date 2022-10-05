@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tempoloco/presentation/common/widget/artist_card.dart';
 import 'package:tempoloco/presentation/common/widget/loading.dart';
+import 'package:tempoloco/presentation/common/widget/shader_mask.dart';
 import 'package:tempoloco/presentation/screen/tabview/tab_view_state.dart';
 import 'package:tempoloco/theme.dart';
 
@@ -19,16 +20,18 @@ class LibraryArtists extends StatelessWidget {
       return Container(
         color: ktempoPurple,
         padding: const EdgeInsets.only(top: 15, left: 10),
-        child: ListView.builder(
-          physics: const BouncingScrollPhysics(),
-          itemCount: state.artists.length,
-          itemBuilder: (context, index) {
-            final artist = state.artists[index];
-            return ArtistCard(
-              name: artist.name!,
-              imgUrl: artist.images!.first.url!,
-            );
-          },
+        child: BottomShaderMask(
+          child: ListView.builder(
+            physics: const BouncingScrollPhysics(),
+            itemCount: state.artists.length,
+            itemBuilder: (context, index) {
+              final artist = state.artists[index];
+              return ArtistCard(
+                name: artist.name!,
+                imgUrl: artist.images!.first.url!,
+              );
+            },
+          ),
         ),
       );
     });

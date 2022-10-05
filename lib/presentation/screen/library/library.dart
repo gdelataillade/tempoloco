@@ -33,7 +33,6 @@ class _LibraryScreenState extends State<LibraryScreen>
 
   @override
   Widget build(BuildContext context) {
-    // TODO: AppBar height + bottom gradient fade effect
     return DefaultTabController(
       length: 3,
       child: Scaffold(
