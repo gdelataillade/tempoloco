@@ -11,6 +11,7 @@ class TrackCard extends StatelessWidget {
   final String imgUrl;
   final String trackId;
   final bool isPurchased;
+  final bool isProtected;
   final int? price;
   final Function() onPress;
   final Function() onLike;
@@ -22,6 +23,7 @@ class TrackCard extends StatelessWidget {
     required this.imgUrl,
     required this.trackId,
     required this.isPurchased,
+    this.isProtected = false,
     this.price,
     required this.onPress,
     required this.onLike,
@@ -93,29 +95,31 @@ class TrackCard extends StatelessWidget {
                       HapticFeedback.mediumImpact();
                       if (isPurchased) onLike();
                     },
-                    icon: isPurchased
-                        ? Icon(
-                            isLiked
-                                ? Icons.favorite
-                                : Icons.favorite_border_rounded,
-                            color: Colors.red,
-                          )
-                        : Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "$price",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText1!
-                                    .copyWith(color: ktempoDark),
+                    icon: isProtected
+                        ? const Icon(Icons.copyright)
+                        : isPurchased
+                            ? Icon(
+                                isLiked
+                                    ? Icons.favorite
+                                    : Icons.favorite_border_rounded,
+                                color: Colors.red,
+                              )
+                            : Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "$price",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText1!
+                                        .copyWith(color: ktempoDark),
+                                  ),
+                                  const Icon(
+                                    Icons.star_rounded,
+                                    color: ktempoYellow,
+                                  ),
+                                ],
                               ),
-                              const Icon(
-                                Icons.star_rounded,
-                                color: ktempoYellow,
-                              ),
-                            ],
-                          ),
                   );
                 },
               ),

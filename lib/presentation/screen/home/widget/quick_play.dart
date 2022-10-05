@@ -25,7 +25,10 @@ class HomeQuickPlay extends StatelessWidget {
             final size = Get.size.width * 0.75;
 
             return RawMaterialButton(
-              onPressed: () => Get.toNamed('/game', arguments: item),
+              onPressed: () {
+                state.addTrackToHistory(item.id!);
+                Get.toNamed('/game', arguments: item);
+              },
               child: Column(
                 children: [
                   Container(

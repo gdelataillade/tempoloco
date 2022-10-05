@@ -1,6 +1,8 @@
 import 'package:spotify/spotify.dart';
 import 'package:tempoloco/config.dart';
 
+// TODO: Error 429 => Spotify API rate limit exceeded
+// Hint: Retry-After header
 class Spotify {
   late SpotifyApi spotify;
 

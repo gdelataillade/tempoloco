@@ -25,7 +25,7 @@ class PurchaseTrackModal extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             RawMaterialButton(
-              onPressed: () {},
+              onPressed: Get.back,
               child: const Text("Close"),
             ),
             RawMaterialButton(

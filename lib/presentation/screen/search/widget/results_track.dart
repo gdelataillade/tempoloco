@@ -56,16 +56,24 @@ class _SearchResultsTrackState extends State<SearchResultsTrack> {
                   imgUrl: item.album!.images![1].url!,
                   trackId: item.id!,
                   isPurchased: isPurchased,
+                  isProtected: item.previewUrl == null,
                   price: price,
                   onPress: () {
-                    isPurchased
-                        ? Get.toNamed('/game', arguments: item)
-                        : Modal.showDialogModal(context, item, price);
+                    if (isPurchased) {
+                      state.addTrackToHistory(item.id!);
+                      Get.toNamed('/game', arguments: item);
+                    } else {
+                      Modal.showDialogModal(context, item, price);
+                    }
                   },
                   onLike: () => state.likeTrack(item.id!),
                 ),
                 if (index == state.trackResults.length - 1)
-                  const Center(child: Text("Loading...")),
+                  const Padding(
+                    padding: EdgeInsets.all(20),
+                    child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(ktempoWhite)),
+                  ),
               ],
             );
           },

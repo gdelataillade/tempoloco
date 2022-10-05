@@ -99,6 +99,7 @@ class TabViewState extends GetxController {
     } else {
       favorites.add(trackId);
     }
+    debugPrint('===> [TabViewState] Liking track $trackId');
     await DB.updateUser(user.copyWith(favorites: favorites).toJson());
   }
 
@@ -120,6 +121,7 @@ class TabViewState extends GetxController {
     final artists = userCtrl.user.value.artists;
     final nbStars = userCtrl.user.value.nbStars;
 
+    debugPrint('===> [TabViewState] Purchasing track $trackId');
     await DB.updateUser(user.copyWith(
       library: [trackId, ...library],
       artists: [
@@ -133,5 +135,24 @@ class TabViewState extends GetxController {
       loadLibrary(),
       loadArtists(),
     ]);
+  }
+
+  Future<void> addTrackToHistory(String trackId) async {
+    final historyIds = user.history;
+
+    if (historyIds.where((id) => id == trackId).isNotEmpty) {
+      historyIds.removeWhere((id) => id == trackId);
+    }
+
+    if (historyIds.length >= 15) history.removeLast();
+
+    debugPrint('===> [TabViewState] Adding track to history: $trackId');
+    await DB.updateUser(
+      Get.find<UserController>()
+          .user
+          .value
+          .copyWith(history: historyIds)
+          .toJson(),
+    );
   }
 }

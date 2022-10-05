@@ -7,6 +7,15 @@ class GameTapArea extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text("Tap"));
+    return MaterialButton(
+      onPressed: onTap,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(35)),
+      child: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        alignment: Alignment.center,
+        child: const Text("Tap"),
+      ),
+    );
   }
 }

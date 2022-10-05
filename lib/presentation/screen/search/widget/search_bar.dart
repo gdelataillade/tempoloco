@@ -25,7 +25,7 @@ class _SearchBarState extends State<SearchBar> {
 
     if (debounce?.isActive ?? false) debounce?.cancel();
 
-    debounce = Timer(const Duration(milliseconds: 500), () {
+    debounce = Timer(const Duration(milliseconds: 400), () {
       state.searchParams.input = input;
       if (input.length > 2) state.search(input, clear: true);
       if (input.isEmpty) state.trackResults.clear();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tempoloco/theme.dart';
+import 'package:tempoloco/utils/helper.dart';
 
 class GameHeader extends StatelessWidget {
   final String trackName;
@@ -41,12 +42,12 @@ class GameHeader extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         Text(
-          trackName,
-          style: Theme.of(context).textTheme.headline2,
+          Helper.formatTrackTitle(trackName),
+          style: Theme.of(context).textTheme.headline4,
         ),
         Text(
           artistName,
-          style: Theme.of(context).textTheme.headline4,
+          style: Theme.of(context).textTheme.headline5,
         ),
       ],
     );
