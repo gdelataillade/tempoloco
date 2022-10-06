@@ -2,27 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tempoloco/presentation/common/widget/shader_mask.dart';
 import 'package:tempoloco/presentation/common/widget/track_card.dart';
-import 'package:tempoloco/presentation/screen/tabview/tab_view_state.dart';
+import 'package:tempoloco/presentation/screen/artist/artist_screen_state.dart';
 import 'package:tempoloco/theme.dart';
 import 'package:tempoloco/utils/helper.dart';
-import 'package:tempoloco/utils/modal.dart';
 
-class SearchResultsTrack extends StatefulWidget {
-  const SearchResultsTrack({Key? key}) : super(key: key);
+// TODO: Reload tracks
+class ArtistScreenTracks extends StatefulWidget {
+  const ArtistScreenTracks({Key? key}) : super(key: key);
 
   @override
-  State<SearchResultsTrack> createState() => _SearchResultsTrackState();
+  State<ArtistScreenTracks> createState() => _ArtistScreenTracksState();
 }
 
-class _SearchResultsTrackState extends State<SearchResultsTrack> {
+class _ArtistScreenTracksState extends State<ArtistScreenTracks> {
+  final state = Get.find<ArtistScreenState>();
   final controller = ScrollController();
-  final state = Get.find<TabViewState>();
 
   void detectEnd() {
     if (controller.position.atEdge) {
       if (controller.position.pixels != 0) {
-        state.searchParams.tracksPage += 1;
-        state.search(state.searchParams.input);
+        state.page += 1;
+        state.loadTracks();
       }
     }
   }
@@ -36,21 +36,16 @@ class _SearchResultsTrackState extends State<SearchResultsTrack> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      if (state.library.isEmpty || state.trackResults.isEmpty) {
-        return const Center(child: Text("No results"));
-      }
+      if (state.tracks.isEmpty) return const SizedBox();
       return Container(
         color: ktempoPurple,
-        padding: const EdgeInsets.symmetric(horizontal: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         child: BottomShaderMask(
           child: ListView.builder(
             physics: const BouncingScrollPhysics(),
-            itemCount: state.trackResults.length,
-            controller: controller,
+            itemCount: state.tracks.length,
             itemBuilder: (context, index) {
-              final item = state.trackResults[index];
-              final isPurchased = state.isPurchased(item.id!);
-              final price = Helper.getPrice(item.popularity!);
+              final item = state.tracks[index];
               return Column(
                 children: [
                   TrackCard(
@@ -58,19 +53,16 @@ class _SearchResultsTrackState extends State<SearchResultsTrack> {
                     artist: item.artists!.first.name!,
                     imgUrl: item.album!.images![1].url!,
                     trackId: item.id!,
-                    isPurchased: isPurchased,
-                    price: price,
+                    isPurchased: state.isPurchased(item.id!),
+                    price: Helper.getPrice(item.popularity!),
                     onPress: () {
-                      if (isPurchased) {
-                        state.addTrackToHistory(item.id!);
-                        Get.toNamed('/game', arguments: item);
-                      } else {
-                        Modal.showDialogModal(context, item, price);
-                      }
+                      // state.addTrackToHistory(item.id!);
+                      // Get.toNamed('/game', arguments: item);
                     },
-                    onLike: () => state.likeTrack(item.id!),
+                    onLike: () {},
+                    // onLike: () => state.likeTrack(item.id!),
                   ),
-                  if (index == state.trackResults.length - 1)
+                  if (index == state.tracks.length - 1)
                     const Padding(
                       padding: EdgeInsets.all(20),
                       child: CircularProgressIndicator(

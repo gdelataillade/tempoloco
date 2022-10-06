@@ -102,4 +102,21 @@ class DB {
     debugPrint('===> [Spotify] Search found ${artists.length} artists');
     return artists;
   }
+
+  static Future<List<spotify.Track>> searchTracksByArtist(
+      String artistName, int page) async {
+    final tracks = await spotifyLct.searchTracksByArtist(artistName, page);
+
+    tracks.removeWhere((t) =>
+        t.album == null || t.album!.images == null || t.album!.images!.isEmpty);
+    return tracks;
+  }
+
+  static Future<List<spotify.Track>> getArtistTopTracks(String artistId) async {
+    final tracks = await spotifyLct.getArtistTopTracks(artistId);
+
+    tracks.removeWhere((t) =>
+        t.album == null || t.album!.images == null || t.album!.images!.isEmpty);
+    return tracks;
+  }
 }

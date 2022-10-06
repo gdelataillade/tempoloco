@@ -15,6 +15,7 @@ class TrackCard extends StatelessWidget {
   final Function() onPress;
   final Function() onLike;
 
+  // TODO: Action button callback
   const TrackCard({
     Key? key,
     required this.title,

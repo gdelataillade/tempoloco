@@ -13,14 +13,26 @@ class Helper {
       debugPrint = (String? message, {int? wrapWidth}) {};
     }
 
+    hideBottomOverlay();
+
     await Future.wait([
       Storage.init(),
       SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]),
     ]);
   }
 
+  static void hideBottomOverlay() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: [SystemUiOverlay.top]);
+  }
+
   static String getLanguage() =>
       Storage.readData('settings', 'language') ?? Platform.localeName;
+
+  static int getPrice(int popularity) {
+    double price = (popularity + 1) / 5;
+    return price.toInt() + 1;
+  }
 
   static void snack(
     String title,

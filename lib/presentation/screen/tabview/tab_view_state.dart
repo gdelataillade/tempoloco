@@ -40,13 +40,6 @@ class TabViewState extends GetxController {
   bool isPurchased(String trackId) => user.library.contains(trackId);
   bool enoughStars(int price) => user.nbStars < price;
 
-  int getPrice(int popularity) {
-    debugPrint('===> [Price] getPrice');
-
-    double price = (popularity + 1) / 5;
-    return price.toInt() + 1;
-  }
-
   @override
   Future<void> onInit() async {
     await initUserController();

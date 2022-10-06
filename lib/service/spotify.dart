@@ -1,5 +1,6 @@
 import 'package:spotify/spotify.dart';
 import 'package:tempoloco/config.dart';
+import 'package:tempoloco/utils/helper.dart';
 
 class Spotify {
   late SpotifyApi spotify;
@@ -52,5 +53,30 @@ class Spotify {
     }
 
     return artists;
+  }
+
+  Future<List<Track>> searchTracksByArtist(String artistName, int page) async {
+    final tracks = <Track>[];
+    final res = await spotify.search
+        .get(artistName, types: [SearchType.track]).getPage(10, 10 * page);
+
+    for (final page in res) {
+      if (page.items!.isEmpty) continue;
+      for (final item in page.items!) {
+        if (item is Track && item.artists!.first.name! == artistName) {
+          tracks.add(item);
+        }
+      }
+    }
+
+    return tracks;
+  }
+
+  Future<List<Track>> getArtistTopTracks(String artistId) async {
+    final res =
+        await spotify.artists.getTopTracks(artistId, Helper.getLanguage());
+    List<Track> tracks = res.toList();
+
+    return tracks;
   }
 }
