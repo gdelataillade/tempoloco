@@ -5,7 +5,7 @@ import 'package:path_provider/path_provider.dart' as path_provider;
 
 const hiveBoxes = <String>[
   "credentials", // email, password
-  "settings", // volume
+  "settings", // volume, language
 ];
 
 class Storage {

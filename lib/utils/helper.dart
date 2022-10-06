@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -17,8 +19,14 @@ class Helper {
     ]);
   }
 
-  static void snack(String title, String content,
-      {Duration duration = const Duration(seconds: 4)}) {
+  static String getLanguage() =>
+      Storage.readData('settings', 'language') ?? Platform.localeName;
+
+  static void snack(
+    String title,
+    String content, {
+    Duration duration = const Duration(seconds: 4),
+  }) {
     Get.snackbar(
       title,
       content,

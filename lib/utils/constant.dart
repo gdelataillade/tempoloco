@@ -1,3 +1,9 @@
+const List<String> supportedLanguages = [
+  "en",
+  "fr",
+  "es",
+];
+
 const List<String> stupidPasswords = [
   "password",
   "123456",

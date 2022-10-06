@@ -1,9 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:tempoloco/presentation/screen/settings/settings_state.dart';
 import 'package:tempoloco/service/storage.dart';
 import 'package:tempoloco/theme.dart';
 
+// TODO: Add animated volume icon
 class SettingsVolumeSlider extends StatefulWidget {
   const SettingsVolumeSlider({Key? key}) : super(key: key);
 
@@ -12,6 +15,7 @@ class SettingsVolumeSlider extends StatefulWidget {
 }
 
 class _SettingsVolumeSliderState extends State<SettingsVolumeSlider> {
+  final state = Get.find<SettingsState>();
   late double volume;
 
   Timer? debounce;
@@ -21,9 +25,8 @@ class _SettingsVolumeSliderState extends State<SettingsVolumeSlider> {
 
     if (debounce?.isActive ?? false) debounce?.cancel();
 
-    debounce = Timer(const Duration(milliseconds: 1000), () {
-      Storage.writeData('settings', 'volume', volume);
-    });
+    debounce = Timer(
+        const Duration(milliseconds: 1000), () => state.saveVolume(volume));
   }
 
   @override

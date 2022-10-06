@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:spotify/spotify.dart';
 import 'package:tempoloco/service/database.dart';
+import 'package:tempoloco/utils/helper.dart';
 
 class GameState extends GetxController {
   late AudioPlayer audioPlayer;
@@ -13,6 +14,7 @@ class GameState extends GetxController {
 
   Track track = Get.arguments as Track;
 
+  final language = Helper.getLanguage();
   RxBool isOver = false.obs;
 
   StreamSubscription<PlayerState>? playerStateSub;
@@ -63,6 +65,7 @@ class GameState extends GetxController {
   @override
   void onClose() {
     debugPrint("[Game] dispose player");
+    playerStateSub?.cancel();
     audioPlayer.dispose();
     super.onClose();
   }

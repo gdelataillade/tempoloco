@@ -18,6 +18,7 @@ import 'package:tempoloco/utils/helper.dart';
 enum AuthType { login, register }
 
 class OnboardingState extends GetxController {
+  final language = Helper.getLanguage();
   final steps = <Widget>[const OnboardingIntroStep()].obs;
 
   String uid = "";
