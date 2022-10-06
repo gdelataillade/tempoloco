@@ -148,11 +148,10 @@ class TabViewState extends GetxController {
 
     debugPrint('===> [TabViewState] Adding track to history: $trackId');
     await DB.updateUser(
-      Get.find<UserController>()
-          .user
-          .value
-          .copyWith(history: historyIds)
-          .toJson(),
+      Get.find<UserController>().user.value.copyWith(
+        history: [trackId, ...historyIds],
+      ).toJson(),
     );
+    loadHistory();
   }
 }

@@ -5,6 +5,7 @@ import 'package:tempoloco/presentation/common/widget/track_card.dart';
 import 'package:tempoloco/presentation/screen/tabview/tab_view_state.dart';
 import 'package:tempoloco/theme.dart';
 
+// TODO: Reload list when updated
 class History extends StatelessWidget {
   const History({Key? key}) : super(key: key);
 

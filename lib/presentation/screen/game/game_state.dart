@@ -8,6 +8,7 @@ import 'package:tempoloco/service/database.dart';
 
 class GameState extends GetxController {
   late AudioPlayer audioPlayer;
+  late String previewUrl;
   late double score;
 
   Track track = Get.arguments as Track;
@@ -18,15 +19,18 @@ class GameState extends GetxController {
 
   Future<void> addMissingPreviewUrl() async {
     final res = await DB.searchTrack(track.name!, 0);
-    track.previewUrl = res.first.previewUrl;
+    previewUrl = res.first.previewUrl!;
   }
 
   Future<void> initAudioPlayer() async {
-    if (track.previewUrl == null) addMissingPreviewUrl();
+    if (track.previewUrl == null) {
+      await addMissingPreviewUrl();
+    } else {
+      previewUrl = track.previewUrl!;
+    }
 
     audioPlayer = AudioPlayer();
-    await audioPlayer
-        .setAudioSource(AudioSource.uri(Uri.parse(track.previewUrl!)));
+    await audioPlayer.setAudioSource(AudioSource.uri(Uri.parse(previewUrl)));
 
     playerStateSub = audioPlayer.playerStateStream.listen((event) {
       if (event.processingState == ProcessingState.loading) {}
