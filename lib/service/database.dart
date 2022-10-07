@@ -27,7 +27,6 @@ class DB {
   static Future<void> updateUser(Map<String, dynamic> data) async {
     try {
       await FirestoreService.instance.updateData(path: 'user/$uid', data: data);
-      // debugPrint('===> [Firestore] Updated user $uid: $data');
       debugPrint('===> [Firestore] User updated');
     } catch (e) {
       debugPrint("===> [Firestore] Error updating user: $e");

@@ -35,7 +35,6 @@ class ArtistScreenTracks extends StatelessWidget {
                     // Get.toNamed('/game', arguments: item);
                   },
                   onLike: () => state.likeTrack(item.id!),
-                  // onLike: () => state.likeTrack(item.id!),
                 ),
                 if (index == state.tracks.length - 1)
                   const Padding(

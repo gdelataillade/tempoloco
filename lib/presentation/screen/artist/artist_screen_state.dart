@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:spotify/spotify.dart';
 import 'package:tempoloco/controller/user_controller.dart';
-import 'package:tempoloco/model/user.dart';
 import 'package:tempoloco/service/database.dart';
 
 class ArtistScreenState extends GetxController {
@@ -13,6 +12,7 @@ class ArtistScreenState extends GetxController {
   int page = 0;
 
   final tracks = <Track>[].obs;
+  final userCtrl = Get.find<UserController>();
 
   final imageSize = Get.size.width - 60;
   final nameSize = 44.0;
@@ -28,21 +28,8 @@ class ArtistScreenState extends GetxController {
     tracks.addAll(res);
   }
 
-  Future<void> likeTrack(String trackId) async {
-    final userCtrl = Get.find<UserController>();
-    List<String> favorites = userCtrl.user.value.favorites;
-
-    if (favorites.contains(trackId)) {
-      favorites.remove(trackId);
-    } else {
-      favorites.add(trackId);
-    }
-
-    HapticFeedback.mediumImpact();
-    debugPrint('===> [TabViewState] Liking track $trackId');
-    await DB.updateUser(
-        userCtrl.user.value.copyWith(favorites: favorites).toJson());
-  }
+  Future<void> likeTrack(String trackId) async =>
+      await userCtrl.likeTrack(trackId);
 
   @override
   void onInit() {
