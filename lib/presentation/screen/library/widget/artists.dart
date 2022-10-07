@@ -4,7 +4,6 @@ import 'package:tempoloco/presentation/common/widget/artist_card.dart';
 import 'package:tempoloco/presentation/common/widget/loading.dart';
 import 'package:tempoloco/presentation/common/widget/shader_mask.dart';
 import 'package:tempoloco/presentation/screen/tabview/tab_view_state.dart';
-import 'package:tempoloco/theme.dart';
 
 class LibraryArtists extends StatelessWidget {
   const LibraryArtists({Key? key}) : super(key: key);
@@ -17,8 +16,7 @@ class LibraryArtists extends StatelessWidget {
       if (state.artists.isEmpty) {
         return const Loading(debugLabel: 'Library Artists');
       }
-      return Container(
-        color: ktempoPurple,
+      return Padding(
         padding: const EdgeInsets.only(top: 15, left: 10),
         child: BottomShaderMask(
           child: ListView.builder(

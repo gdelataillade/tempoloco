@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:tempoloco/service/storage.dart';
@@ -17,10 +15,5 @@ class SettingsState extends GetxController {
     debugPrint("[Settings] Setting language to $value");
     await Storage.writeData('settings', 'language', value);
     language.value = value;
-  }
-
-  @override
-  void onInit() {
-    super.onInit();
   }
 }

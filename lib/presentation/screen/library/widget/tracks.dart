@@ -19,24 +19,30 @@ class LibraryTracks extends StatelessWidget {
       }
       return Container(
         color: ktempoPurple,
-        padding: const EdgeInsets.symmetric(horizontal: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 25),
         child: BottomShaderMask(
           child: ListView.builder(
             physics: const BouncingScrollPhysics(),
             itemCount: state.library.length,
             itemBuilder: (context, index) {
               final item = state.library[index];
-              return TrackCard(
-                title: item.name!,
-                artist: item.artists!.first.name!,
-                imgUrl: item.album!.images![1].url!,
-                trackId: item.id!,
-                isPurchased: true,
-                onPress: () {
-                  state.addTrackToHistory(item.id!);
-                  Get.toNamed('/game', arguments: item);
-                },
-                onLike: () => state.likeTrack(item.id!),
+              return Column(
+                children: [
+                  TrackCard(
+                    title: item.name!,
+                    artist: item.artists!.first.name!,
+                    imgUrl: item.album!.images![1].url!,
+                    trackId: item.id!,
+                    isPurchased: true,
+                    onPress: () {
+                      state.addTrackToHistory(item.id!);
+                      Get.toNamed('/game', arguments: item);
+                    },
+                    onLike: () => state.likeTrack(item.id!),
+                  ),
+                  if (index == state.library.length - 1)
+                    const SizedBox(height: 25)
+                ],
               );
             },
           ),

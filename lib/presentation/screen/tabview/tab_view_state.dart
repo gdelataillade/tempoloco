@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:spotify/spotify.dart' as spotify;
 import 'package:tempoloco/controller/user_controller.dart';
@@ -93,6 +94,8 @@ class TabViewState extends GetxController {
     } else {
       favorites.add(trackId);
     }
+
+    HapticFeedback.mediumImpact();
     debugPrint('===> [TabViewState] Liking track $trackId');
     await DB.updateUser(user.copyWith(favorites: favorites).toJson());
   }

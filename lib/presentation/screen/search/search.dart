@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:tempoloco/presentation/screen/search/widget/search_bar.dart';
 import 'package:tempoloco/presentation/screen/search/widget/tab_bar.dart';
-import 'package:tempoloco/theme.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
-      color: ktempoPurple,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          Text("Search"),
-          SearchBar(),
-          Expanded(child: SearchResultsTabBar()),
+        children: [
+          Text(
+            "Search",
+            style: Theme.of(context).textTheme.headline3,
+          ),
+          const SearchBar(),
+          const Expanded(child: SearchResultsTabBar()),
         ],
       ),
     );

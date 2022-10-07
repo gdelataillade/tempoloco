@@ -78,8 +78,7 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
                   LibraryScreen(),
                 ],
               ),
-              bottomNavigationBar: Container(
-                color: ktempoPurple,
+              bottomNavigationBar: SizedBox(
                 height: 80,
                 child: CustomNavigationBar(
                   iconSize: 30,

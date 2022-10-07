@@ -27,7 +27,9 @@ class Helper {
   }
 
   static String getLanguage() =>
-      Storage.readData('settings', 'language') ?? Platform.localeName;
+      Storage.readData('settings', 'language') ??
+      Platform.localeName.split('_').first ??
+      'en';
 
   static int getPrice(int popularity) {
     double price = (popularity + 1) / 5;

@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:tempoloco/presentation/common/widget/shader_mask.dart';
 import 'package:tempoloco/presentation/common/widget/track_card.dart';
 import 'package:tempoloco/presentation/screen/tabview/tab_view_state.dart';
-import 'package:tempoloco/theme.dart';
 
 class History extends StatelessWidget {
   const History({Key? key}) : super(key: key);
@@ -12,16 +11,13 @@ class History extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = Get.find<TabViewState>();
 
-    return Container(
-      color: ktempoPurple,
-      padding: const EdgeInsets.symmetric(horizontal: 15),
-      height: double.infinity,
-      width: double.infinity,
+    return Padding(
+      padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
       child: Column(
         children: [
           Text(
             "History",
-            style: Theme.of(context).textTheme.headline3,
+            style: Theme.of(context).textTheme.titleLarge,
           ),
           Obx(() {
             if (state.history.isEmpty) {

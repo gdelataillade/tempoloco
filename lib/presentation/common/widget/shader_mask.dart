@@ -19,7 +19,7 @@ class BottomShaderMask extends StatelessWidget {
             Colors.transparent,
             ktempoPurple,
           ],
-          stops: [0.0, 0.9, 1.0],
+          stops: [0.0, 0.95, 1.0],
         ).createShader(rect);
       },
       child: child,

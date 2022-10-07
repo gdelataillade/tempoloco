@@ -11,14 +11,13 @@ class ArtistScreenHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = Get.find<ArtistScreenState>();
-    final size = MediaQuery.of(context).size.width - 60;
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          height: size,
-          width: size,
+          height: state.imageSize,
+          width: state.imageSize,
           decoration: BoxDecoration(
             color: ktempoDark,
             borderRadius: const BorderRadius.all(Radius.circular(20)),
@@ -36,10 +35,13 @@ class ArtistScreenHeader extends StatelessWidget {
             child: Image.network(state.artist.images!.first.url!),
           ),
         ),
-        const SizedBox(height: 20),
-        Text(
-          state.artist.name!,
-          style: Theme.of(context).textTheme.headline5,
+        Container(
+          height: state.nameSize,
+          alignment: Alignment.bottomCenter,
+          child: Text(
+            state.artist.name!,
+            style: Theme.of(context).textTheme.headline5,
+          ),
         ),
       ],
     );

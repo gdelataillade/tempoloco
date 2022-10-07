@@ -39,9 +39,8 @@ class _SearchResultsTrackState extends State<SearchResultsTrack> {
       if (state.library.isEmpty || state.trackResults.isEmpty) {
         return const Center(child: Text("No results"));
       }
-      return Container(
-        color: ktempoPurple,
-        padding: const EdgeInsets.symmetric(horizontal: 5),
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         child: BottomShaderMask(
           child: ListView.builder(
             physics: const BouncingScrollPhysics(),
@@ -84,5 +83,11 @@ class _SearchResultsTrackState extends State<SearchResultsTrack> {
         ),
       );
     });
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 }

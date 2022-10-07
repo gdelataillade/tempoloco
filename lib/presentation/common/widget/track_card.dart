@@ -15,7 +15,6 @@ class TrackCard extends StatelessWidget {
   final Function() onPress;
   final Function() onLike;
 
-  // TODO: Action button callback
   const TrackCard({
     Key? key,
     required this.title,
@@ -32,6 +31,8 @@ class TrackCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final titleStyle =
+        Theme.of(context).textTheme.titleLarge!.copyWith(color: ktempoDark);
     final textStyle =
         Theme.of(context).textTheme.bodyMedium!.copyWith(color: ktempoDark);
     final state = Get.find<TabViewState>();
@@ -71,7 +72,7 @@ class TrackCard extends StatelessWidget {
                   child: Text(
                     Helper.formatTrackTitle(title),
                     maxLines: 1,
-                    style: textStyle,
+                    style: titleStyle,
                     overflow: TextOverflow.fade,
                   ),
                 ),
@@ -88,36 +89,32 @@ class TrackCard extends StatelessWidget {
               child: Obx(
                 () {
                   final isLiked = state.isFavorite(trackId);
-                  return IconButton(
-                    splashColor: Colors.transparent,
-                    onPressed: () {
-                      HapticFeedback.mediumImpact();
-                      if (isPurchased) onLike();
-                    },
-                    icon: isPurchased
-                        ? Icon(
+
+                  return isPurchased
+                      ? IconButton(
+                          onPressed: onLike,
+                          icon: Icon(
                             isLiked
                                 ? Icons.favorite
                                 : Icons.favorite_border_rounded,
                             color: Colors.red,
-                          )
-                        : Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "$price",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText1!
-                                    .copyWith(color: ktempoDark),
-                              ),
-                              const Icon(
-                                Icons.star_rounded,
-                                color: ktempoYellow,
-                              ),
-                            ],
                           ),
-                  );
+                        )
+                      : Row(
+                          children: [
+                            Text(
+                              "$price",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText1!
+                                  .copyWith(color: ktempoDark),
+                            ),
+                            const Icon(
+                              Icons.star_rounded,
+                              color: ktempoYellow,
+                            ),
+                          ],
+                        );
                 },
               ),
             ),

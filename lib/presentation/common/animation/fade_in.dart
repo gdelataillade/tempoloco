@@ -4,8 +4,13 @@ import 'package:flutter/material.dart';
 
 class FadeIn extends StatefulWidget {
   final Widget child;
+  final Duration duration;
 
-  const FadeIn({Key? key, required this.child}) : super(key: key);
+  const FadeIn({
+    Key? key,
+    required this.child,
+    this.duration = const Duration(milliseconds: 500),
+  }) : super(key: key);
 
   @override
   State<FadeIn> createState() => _FadeInState();
@@ -27,7 +32,7 @@ class _FadeInState extends State<FadeIn> {
   Widget build(BuildContext context) {
     return AnimatedOpacity(
       opacity: opacity,
-      duration: const Duration(milliseconds: 500),
+      duration: widget.duration,
       child: widget.child,
     );
   }

@@ -4,7 +4,6 @@ import 'package:tempoloco/presentation/common/widget/loading.dart';
 import 'package:tempoloco/presentation/common/widget/shader_mask.dart';
 import 'package:tempoloco/presentation/common/widget/track_card.dart';
 import 'package:tempoloco/presentation/screen/tabview/tab_view_state.dart';
-import 'package:tempoloco/theme.dart';
 
 class LibraryFavorite extends StatelessWidget {
   const LibraryFavorite({Key? key}) : super(key: key);
@@ -21,14 +20,14 @@ class LibraryFavorite extends StatelessWidget {
       final favorites =
           state.library.where((track) => state.isFavorite(track.id!)).toList();
 
-      return Container(
-        color: ktempoPurple,
-        padding: const EdgeInsets.symmetric(horizontal: 5),
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 25),
         child: favorites.isEmpty
             ? const Center(child: Text("Empty"))
             : BottomShaderMask(
                 child: ListView.builder(
                   itemCount: favorites.length,
+                  physics: const BouncingScrollPhysics(),
                   itemBuilder: (context, index) {
                     final item = favorites[index];
                     return TrackCard(
