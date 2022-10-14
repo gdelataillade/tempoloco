@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:spotify/spotify.dart';
 import 'package:tempoloco/controller/user_controller.dart';
@@ -30,6 +28,9 @@ class ArtistScreenState extends GetxController {
 
   Future<void> likeTrack(String trackId) async =>
       await userCtrl.likeTrack(trackId);
+
+  Future<void> addTrackToHistory(String trackId) async =>
+      await userCtrl.addTrackToHistory(trackId);
 
   @override
   void onInit() {

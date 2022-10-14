@@ -31,8 +31,8 @@ class ArtistScreenTracks extends StatelessWidget {
                   isPurchased: state.isPurchased(item.id!),
                   price: Helper.getPrice(item.popularity!),
                   onPress: () {
-                    // state.addTrackToHistory(item.id!);
-                    // Get.toNamed('/game', arguments: item);
+                    state.addTrackToHistory(item.id!);
+                    Get.toNamed('/game', arguments: item);
                   },
                   onLike: () => state.likeTrack(item.id!),
                 ),

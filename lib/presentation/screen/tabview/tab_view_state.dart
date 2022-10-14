@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spotify/spotify.dart' as spotify;
 import 'package:tempoloco/controller/user_controller.dart';
@@ -22,7 +21,6 @@ class SearchParams {
 class TabViewState extends GetxController {
   final library = <spotify.Track>[].obs;
   final artists = <spotify.Artist>[].obs;
-  final history = <spotify.Track>[].obs;
 
   final trackResults = <spotify.Track>[].obs;
   final artistResults = <spotify.Artist>[].obs;
@@ -47,7 +45,10 @@ class TabViewState extends GetxController {
       loadLibrary(),
       loadArtists(),
     ]);
-    loadHistory();
+
+    ever<User>(userCtrl.user, (_) {
+      print("[TabViewState] user is changed");
+    });
 
     isLoaded.value = true;
     super.onInit();
@@ -79,12 +80,6 @@ class TabViewState extends GetxController {
     artists.value = res;
   }
 
-  Future<void> loadHistory() async {
-    final res = await DB.getHistory();
-
-    history.value = res;
-  }
-
   Future<void> likeTrack(String trackId) async =>
       await userCtrl.likeTrack(trackId);
 
@@ -102,41 +97,17 @@ class TabViewState extends GetxController {
   }
 
   Future<void> purchaseTrack(String trackId, String artistId, int price) async {
-    final library = userCtrl.user.value.library;
-    final artists = userCtrl.user.value.artists;
-    final nbStars = userCtrl.user.value.nbStars;
+    await userCtrl.purchaseTrack(trackId, artistId, price);
 
-    debugPrint('===> [TabViewState] Purchasing track $trackId');
-    await DB.updateUser(user.copyWith(
-      library: [trackId, ...library],
-      artists: [
-        {"title": trackId, "artist": artistId},
-        ...artists,
-      ],
-      nbStars: nbStars - price,
-    ).toJson());
-
-    await Future.wait([
-      loadLibrary(),
-      loadArtists(),
-    ]);
+    // await Future.wait([
+    //   loadLibrary(),
+    //   loadArtists(),
+    // ]);
   }
 
   Future<void> addTrackToHistory(String trackId) async {
-    final historyIds = user.history;
+    await userCtrl.addTrackToHistory(trackId);
 
-    if (historyIds.where((id) => id == trackId).isNotEmpty) {
-      historyIds.removeWhere((id) => id == trackId);
-    }
-
-    if (historyIds.length >= 15) history.removeLast();
-
-    debugPrint('===> [TabViewState] Adding track to history: $trackId');
-    await DB.updateUser(
-      Get.find<UserController>().user.value.copyWith(
-        history: [trackId, ...historyIds],
-      ).toJson(),
-    );
-    loadHistory();
+    // loadHistory();
   }
 }

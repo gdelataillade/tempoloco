@@ -20,7 +20,7 @@ class Game extends StatelessWidget {
             GameHeader(
               trackName: state.track.name!,
               artistName: state.track.artists!.first.name!,
-              imgUrl: state.track.album!.images!.first.url!,
+              imgUrl: state.track.album!.images![1].url!,
             ),
             Expanded(
               child: state.isOver.value

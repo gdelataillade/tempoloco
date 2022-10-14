@@ -24,14 +24,43 @@ class UserController extends GetxController {
 
     if (favorites.contains(trackId)) {
       favorites.remove(trackId);
-      debugPrint('===> [User] Unliking track $trackId');
+      debugPrint('===> [User] Unliking track: $trackId');
     } else {
       favorites.add(trackId);
-      debugPrint('===> [User] Liking track $trackId');
+      debugPrint('===> [User] Liking track: $trackId');
     }
 
     await DB.updateUser(user.value.copyWith(favorites: favorites).toJson());
   }
 
-  // TODO: Implement addToHistory and purchaseTrack here
+  Future<void> addTrackToHistory(String trackId) async {
+    final history = user.value.history;
+
+    if (history.where((id) => id == trackId).isNotEmpty) {
+      history.removeWhere((id) => id == trackId);
+    }
+
+    if (history.length >= 15) history.removeLast();
+
+    debugPrint('===> [User] Adding track to history: $trackId');
+    await DB.updateUser(
+      user.value.copyWith(history: [trackId, ...history]).toJson(),
+    );
+  }
+
+  Future<void> purchaseTrack(String trackId, String artistId, int price) async {
+    final library = user.value.library;
+    final artists = user.value.artists;
+    final nbStars = user.value.nbStars;
+
+    debugPrint('===> [TabViewState] Purchasing track $trackId');
+    await DB.updateUser(user.value.copyWith(
+      library: [trackId, ...library],
+      artists: [
+        {"title": trackId, "artist": artistId},
+        ...artists,
+      ],
+      nbStars: nbStars - price,
+    ).toJson());
+  }
 }

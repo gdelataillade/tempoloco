@@ -25,7 +25,7 @@ class HomeArtists extends StatelessWidget {
             final artist = state.artists[index];
             return HomeArtistItem(
               name: artist.name!,
-              imgUrl: artist.images![1].url!,
+              imgUrl: artist.images!.first.url!,
               onTap: () => Get.toNamed('artist', arguments: artist),
             );
           },

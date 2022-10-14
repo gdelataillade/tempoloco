@@ -1,11 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:spotify/spotify.dart';
 import 'package:tempoloco/presentation/common/widget/shader_mask.dart';
 import 'package:tempoloco/presentation/common/widget/track_card.dart';
 import 'package:tempoloco/presentation/screen/tabview/tab_view_state.dart';
 
 class History extends StatelessWidget {
   const History({Key? key}) : super(key: key);
+
+  List<Track> buildHistoryTracks(TabViewState state) {
+    final List<String> historyIds = state.user.history;
+
+    List<Track> tracks = [];
+
+    for (int i = 0; i < historyIds.length; i++) {
+      tracks.add(state.library.firstWhere((t) => t.id == historyIds[i]));
+    }
+    return tracks;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +32,9 @@ class History extends StatelessWidget {
             style: Theme.of(context).textTheme.titleLarge,
           ),
           Obx(() {
-            if (state.history.isEmpty) {
+            final List<Track> history = buildHistoryTracks(state);
+
+            if (history.isEmpty) {
               return const Center(child: Text("No history"));
             }
 
@@ -28,9 +42,9 @@ class History extends StatelessWidget {
               child: BottomShaderMask(
                 child: ListView.builder(
                   physics: const BouncingScrollPhysics(),
-                  itemCount: state.history.length,
+                  itemCount: history.length,
                   itemBuilder: (context, index) {
-                    final item = state.history[index];
+                    final item = history[index];
                     return TrackCard(
                       title: item.name!,
                       artist: item.artists!.first.name!,

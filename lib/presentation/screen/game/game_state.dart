@@ -42,8 +42,9 @@ class GameState extends GetxController {
         onFinish();
       }
     });
-    await audioPlayer.play();
-    // Future.delayed(const Duration(seconds: 3), () => onFinish());
+
+    // await audioPlayer.play();
+    Future.delayed(const Duration(seconds: 3), () => onFinish());
   }
 
   @override

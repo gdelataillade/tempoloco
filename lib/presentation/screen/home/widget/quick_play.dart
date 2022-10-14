@@ -24,8 +24,8 @@ class HomeQuickPlay extends StatelessWidget {
             final item = state.library[index];
             final size = Get.size.width * 0.75;
 
-            return RawMaterialButton(
-              onPressed: () {
+            return GestureDetector(
+              onTap: () {
                 state.addTrackToHistory(item.id!);
                 Get.toNamed('/game', arguments: item);
               },
@@ -50,7 +50,7 @@ class HomeQuickPlay extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
                       child: Image.network(
-                        item.album!.images!.first.url!,
+                        item.album!.images![1].url!,
                         fit: BoxFit.cover,
                       ),
                     ),
