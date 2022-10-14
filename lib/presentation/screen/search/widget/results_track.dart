@@ -69,6 +69,7 @@ class _SearchResultsTrackState extends State<SearchResultsTrack> {
                     },
                     onLike: () => state.likeTrack(item.id!),
                   ),
+                  // TODO: Hide when no more results
                   if (index == state.trackResults.length - 1)
                     const Padding(
                       padding: EdgeInsets.all(20),

@@ -40,9 +40,11 @@ class ArtistCard extends StatelessWidget {
               child: Image.network(imgUrl, fit: BoxFit.cover),
             ),
           ),
-          Text(
-            name,
-            style: Theme.of(context).textTheme.headline5,
+          Expanded(
+            child: Text(
+              name,
+              style: Theme.of(context).textTheme.headline5,
+            ),
           ),
         ],
       ),

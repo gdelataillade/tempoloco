@@ -6,7 +6,6 @@ import 'package:tempoloco/presentation/screen/settings/settings_state.dart';
 import 'package:tempoloco/service/storage.dart';
 import 'package:tempoloco/theme.dart';
 
-// TODO: Add animated volume icon
 class SettingsVolumeSlider extends StatefulWidget {
   const SettingsVolumeSlider({Key? key}) : super(key: key);
 

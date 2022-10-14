@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:tempoloco/presentation/screen/tabview/tab_view_state.dart';
 import 'package:tempoloco/theme.dart';
-import 'package:tempoloco/utils/helper.dart';
 
 class TrackCard extends StatelessWidget {
   final String title;
@@ -64,28 +63,32 @@ class TrackCard extends StatelessWidget {
                 child: Image.network(imgUrl, fit: BoxFit.cover),
               ),
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Center(
-                  child: Text(
-                    Helper.formatTrackTitle(title),
-                    maxLines: 1,
-                    style: titleStyle,
-                    overflow: TextOverflow.fade,
-                  ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      title,
+                      maxLines: 1,
+                      style: titleStyle,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      artist,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: textStyle,
+                    ),
+                  ],
                 ),
-                Text(
-                  artist,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: textStyle,
-                ),
-              ],
+              ),
             ),
             SizedBox(
-              width: 60,
+              width: 50,
               child: Obx(
                 () {
                   final isLiked = state.isFavorite(trackId);
