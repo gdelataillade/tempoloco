@@ -47,11 +47,21 @@ class TabViewState extends GetxController {
     ]);
 
     ever<User>(userCtrl.user, (_) {
-      print("[TabViewState] user is changed");
+      if (library.length != user.library.length) updateLibrary();
     });
 
     isLoaded.value = true;
     super.onInit();
+  }
+
+  Future<void> updateLibrary() async {
+    for (int i = 0; i < user.library.length; i++) {
+      if (library.where((t) => t.id == user.library[i]).isEmpty) {
+        final track = await DB.getTrackById(user.library[i]);
+
+        library.assignAll([track, ...library]);
+      }
+    }
   }
 
   Future<void> initUserController() async {

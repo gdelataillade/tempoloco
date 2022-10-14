@@ -42,6 +42,13 @@ class DB {
   static Future<bool> checkIfDocExists() => FirestoreService.instance
       .checkIfDocExists(collectionPath: 'user', docId: Auth.uid!);
 
+  static Future<spotify.Track> getTrackById(String trackId) async {
+    final track = await spotifyLct.getTrackById(trackId);
+
+    debugPrint('===> [Spotify] Loaded track with id: $trackId');
+    return track;
+  }
+
   static Future<List<spotify.Track>> getTrackListFromLibary() async {
     final tracks = <spotify.Track>[];
     final userCtrl = Get.find<UserController>();
