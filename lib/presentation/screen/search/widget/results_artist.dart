@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:tempoloco/presentation/common/widget/artist_card.dart';
 import 'package:tempoloco/presentation/common/widget/shader_mask.dart';
 import 'package:tempoloco/presentation/screen/tabview/tab_view_state.dart';
+import 'package:tempoloco/utils/helper.dart';
 
 class SearchResultsArtist extends StatelessWidget {
   const SearchResultsArtist({Key? key}) : super(key: key);
@@ -25,7 +26,7 @@ class SearchResultsArtist extends StatelessWidget {
               final artist = state.artistResults[index];
               return ArtistCard(
                 name: artist.name!,
-                imgUrl: artist.images!.first.url!,
+                imgUrl: Helper.getMinResImage(artist.images!),
                 onTap: () => Get.toNamed('artist', arguments: artist),
               );
             },

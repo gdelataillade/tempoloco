@@ -4,6 +4,7 @@ import 'package:tempoloco/presentation/common/widget/artist_card.dart';
 import 'package:tempoloco/presentation/common/widget/loading.dart';
 import 'package:tempoloco/presentation/common/widget/shader_mask.dart';
 import 'package:tempoloco/presentation/screen/tabview/tab_view_state.dart';
+import 'package:tempoloco/utils/helper.dart';
 
 class LibraryArtists extends StatelessWidget {
   const LibraryArtists({Key? key}) : super(key: key);
@@ -26,7 +27,7 @@ class LibraryArtists extends StatelessWidget {
               final artist = state.artists[index];
               return ArtistCard(
                 name: artist.name!,
-                imgUrl: artist.images!.first.url!,
+                imgUrl: Helper.getMinResImage(artist.images!),
                 onTap: () => Get.toNamed('artist', arguments: artist),
               );
             },

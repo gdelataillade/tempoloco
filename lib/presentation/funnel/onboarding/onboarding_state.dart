@@ -149,6 +149,12 @@ class OnboardingState extends GetxController {
         "It should be at least 2 characters",
       );
       return;
+    } else if (value.contains('@') || value.contains('.')) {
+      Helper.snack(
+        "Your name contains weird characters",
+        "Please enter a valid name",
+      );
+      return;
     }
     name = value.capitalizeFirst!;
     stepIndex.value++;
@@ -211,7 +217,7 @@ class OnboardingState extends GetxController {
     );
 
     final res = await DB.createUser(newUser);
-    if (res) Get.offAllNamed('/home');
+    if (res) Get.offAllNamed('/tabview');
   }
 
   List<Map<String, String>> generateTracks() {

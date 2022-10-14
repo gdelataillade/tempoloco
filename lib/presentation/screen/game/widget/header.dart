@@ -37,7 +37,7 @@ class GameHeader extends StatelessWidget {
           ),
           child: ClipRRect(
             borderRadius: const BorderRadius.all(Radius.circular(20)),
-            child: Image.network(imgUrl),
+            child: Image.network(imgUrl, fit: BoxFit.cover),
           ),
         ),
         const SizedBox(height: 20),

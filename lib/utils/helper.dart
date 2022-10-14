@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:tempoloco/service/storage.dart';
 import 'package:tempoloco/theme.dart';
+import 'package:spotify/spotify.dart' as spotify;
 
 class Helper {
   static Future<void> setup() async {
@@ -34,6 +35,24 @@ class Helper {
   static int getPrice(int popularity) {
     double price = (popularity + 1) / 5;
     return price.toInt() + 1;
+  }
+
+  static String getMaxResImage(List<spotify.Image> images) {
+    spotify.Image img = images.first;
+
+    for (int i = 1; i < images.length; i++) {
+      if (images[i].height! > img.height!) img = images[i];
+    }
+    return img.url!;
+  }
+
+  static String getMinResImage(List<spotify.Image> images) {
+    spotify.Image img = images.first;
+
+    for (int i = 1; i < images.length; i++) {
+      if (images[i].height! < img.height!) img = images[i];
+    }
+    return img.url!;
   }
 
   static void snack(

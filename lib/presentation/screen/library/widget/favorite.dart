@@ -4,6 +4,7 @@ import 'package:tempoloco/presentation/common/widget/loading.dart';
 import 'package:tempoloco/presentation/common/widget/shader_mask.dart';
 import 'package:tempoloco/presentation/common/widget/track_card.dart';
 import 'package:tempoloco/presentation/screen/tabview/tab_view_state.dart';
+import 'package:tempoloco/utils/helper.dart';
 
 class LibraryFavorite extends StatelessWidget {
   const LibraryFavorite({Key? key}) : super(key: key);
@@ -33,7 +34,7 @@ class LibraryFavorite extends StatelessWidget {
                     return TrackCard(
                       title: item.name!,
                       artist: item.artists!.first.name!,
-                      imgUrl: item.album!.images![1].url!,
+                      imgUrl: Helper.getMinResImage(item.album!.images!),
                       trackId: item.id!,
                       isPurchased: true,
                       onPress: () {

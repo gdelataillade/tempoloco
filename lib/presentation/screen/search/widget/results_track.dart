@@ -55,7 +55,7 @@ class _SearchResultsTrackState extends State<SearchResultsTrack> {
                   TrackCard(
                     title: item.name!,
                     artist: item.artists!.first.name!,
-                    imgUrl: item.album!.images![1].url!,
+                    imgUrl: Helper.getMinResImage(item.album!.images!),
                     trackId: item.id!,
                     isPurchased: isPurchased,
                     price: price,

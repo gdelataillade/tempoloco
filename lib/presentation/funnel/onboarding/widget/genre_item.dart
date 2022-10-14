@@ -33,7 +33,7 @@ class OnBoardingMusicStepGenreItem extends StatelessWidget {
                     height: 100,
                     width: 100,
                     color: ktempoDark,
-                    child: Image.network(artistPictureUrl),
+                    child: Image.network(artistPictureUrl, fit: BoxFit.cover),
                   ),
                 ),
                 if (isSelected)

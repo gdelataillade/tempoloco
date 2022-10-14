@@ -4,6 +4,7 @@ import 'package:tempoloco/presentation/screen/game/game_state.dart';
 import 'package:tempoloco/presentation/screen/game/widget/game_over.dart';
 import 'package:tempoloco/presentation/screen/game/widget/header.dart';
 import 'package:tempoloco/presentation/screen/game/widget/tap_area.dart';
+import 'package:tempoloco/utils/helper.dart';
 
 class Game extends StatelessWidget {
   const Game({Key? key}) : super(key: key);
@@ -20,7 +21,7 @@ class Game extends StatelessWidget {
             GameHeader(
               trackName: state.track.name!,
               artistName: state.track.artists!.first.name!,
-              imgUrl: state.track.album!.images![1].url!,
+              imgUrl: Helper.getMaxResImage(state.track.album!.images!),
             ),
             Expanded(
               child: state.isOver.value

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:tempoloco/presentation/common/widget/loading.dart';
 import 'package:tempoloco/presentation/screen/tabview/tab_view_state.dart';
 import 'package:tempoloco/theme.dart';
+import 'package:tempoloco/utils/helper.dart';
 
 class HomeQuickPlay extends StatelessWidget {
   const HomeQuickPlay({Key? key}) : super(key: key);
@@ -50,7 +51,7 @@ class HomeQuickPlay extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
                       child: Image.network(
-                        item.album!.images![1].url!,
+                        Helper.getMaxResImage(item.album!.images!),
                         fit: BoxFit.cover,
                       ),
                     ),

@@ -61,7 +61,7 @@ class TrackCard extends StatelessWidget {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(15),
-                child: Image.network(imgUrl, width: 65, height: 65),
+                child: Image.network(imgUrl, fit: BoxFit.cover),
               ),
             ),
             Column(
@@ -89,7 +89,6 @@ class TrackCard extends StatelessWidget {
               child: Obx(
                 () {
                   final isLiked = state.isFavorite(trackId);
-
                   return isPurchased
                       ? IconButton(
                           onPressed: onLike,

@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tempoloco/presentation/screen/artist/artist_screen_state.dart';
 import 'package:tempoloco/theme.dart';
+import 'package:tempoloco/utils/helper.dart';
 
 class ArtistScreenHeader extends StatelessWidget {
-  const ArtistScreenHeader({
-    Key? key,
-  }) : super(key: key);
+  const ArtistScreenHeader({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +31,10 @@ class ArtistScreenHeader extends StatelessWidget {
           ),
           child: ClipRRect(
             borderRadius: const BorderRadius.all(Radius.circular(20)),
-            child: Image.network(state.artist.images!.first.url!),
+            child: Image.network(
+              Helper.getMaxResImage(state.artist.images!),
+              fit: BoxFit.cover,
+            ),
           ),
         ),
         Container(
