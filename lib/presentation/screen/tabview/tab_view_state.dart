@@ -29,6 +29,7 @@ class TabViewState extends GetxController {
   final language = Helper.getLanguage();
 
   RxBool isLoaded = false.obs;
+  RxBool noMoreResults = false.obs;
 
   late UserController userCtrl;
 
@@ -90,9 +91,6 @@ class TabViewState extends GetxController {
     artists.value = res;
   }
 
-  Future<void> likeTrack(String trackId) async =>
-      await userCtrl.likeTrack(trackId);
-
   Future<void> search(String input, {bool clear = false}) async {
     if (searchParams.type == SearchType.tracks) {
       if (clear) searchParams.tracksPage = 0;
@@ -100,24 +98,19 @@ class TabViewState extends GetxController {
       final res = await DB.searchTrack(input, searchParams.tracksPage);
       if (clear) trackResults.clear();
       trackResults.addAll(res);
+      if (res.length < 15) noMoreResults.value = true;
     } else {
       final res = await DB.searchArtist(input);
       artistResults.assignAll(res);
+      if (res.length < 15) noMoreResults.value = true;
     }
   }
 
-  Future<void> purchaseTrack(String trackId, String artistId, int price) async {
-    await userCtrl.purchaseTrack(trackId, artistId, price);
+  Future<void> likeTrack(String trackId) => userCtrl.likeTrack(trackId);
 
-    // await Future.wait([
-    //   loadLibrary(),
-    //   loadArtists(),
-    // ]);
-  }
+  Future<void> purchaseTrack(String trackId, String artistId, int price) =>
+      userCtrl.purchaseTrack(trackId, artistId, price);
 
-  Future<void> addTrackToHistory(String trackId) async {
-    await userCtrl.addTrackToHistory(trackId);
-
-    // loadHistory();
-  }
+  Future<void> addTrackToHistory(String trackId) =>
+      userCtrl.addTrackToHistory(trackId);
 }

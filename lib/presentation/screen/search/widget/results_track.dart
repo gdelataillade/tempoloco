@@ -69,13 +69,17 @@ class _SearchResultsTrackState extends State<SearchResultsTrack> {
                     },
                     onLike: () => state.likeTrack(item.id!),
                   ),
-                  // TODO: Hide when no more results
                   if (index == state.trackResults.length - 1)
-                    const Padding(
-                      padding: EdgeInsets.all(20),
-                      child: CircularProgressIndicator(
-                          valueColor:
-                              AlwaysStoppedAnimation<Color>(ktempoWhite)),
+                    Padding(
+                      padding: const EdgeInsets.all(22),
+                      child: Obx(
+                        () => state.noMoreResults.value
+                            ? const Text('No more results')
+                            : const CircularProgressIndicator(
+                                valueColor:
+                                    AlwaysStoppedAnimation<Color>(ktempoWhite),
+                              ),
+                      ),
                     ),
                 ],
               );

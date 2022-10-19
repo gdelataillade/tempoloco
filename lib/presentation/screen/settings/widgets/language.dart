@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tempoloco/presentation/screen/settings/settings_state.dart';
+import 'package:tempoloco/theme.dart';
 import 'package:tempoloco/utils/constant.dart';
 
 class SettingsLanguage extends StatelessWidget {
@@ -60,10 +61,11 @@ class SettingsLanguageFlag extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 5),
         decoration: BoxDecoration(
+          color: ktempoDark,
           borderRadius: BorderRadius.circular(40),
           border: Border.all(
-            color: isSelected ? Colors.white : Colors.transparent,
-            width: 2,
+            color: isSelected ? ktempoWhite : Colors.transparent,
+            width: isSelected ? 3 : 0.5,
           ),
         ),
         child: Image.asset("assets/images/$language.png", width: 40),
