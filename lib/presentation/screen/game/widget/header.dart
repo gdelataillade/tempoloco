@@ -15,7 +15,7 @@ class GameHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size.width - 60;
+    final size = MediaQuery.of(context).size.width * 0.7;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

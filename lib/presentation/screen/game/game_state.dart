@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:spotify/spotify.dart';
+import 'package:tempoloco/controller/user_controller.dart';
 import 'package:tempoloco/service/database.dart';
 import 'package:tempoloco/utils/helper.dart';
 
@@ -11,13 +12,18 @@ class GameState extends GetxController {
   late AudioPlayer audioPlayer;
   late String previewUrl;
   late double score;
+  late RxBool liked;
 
   Track track = Get.arguments as Track;
 
   final language = Helper.getLanguage();
   RxBool isOver = false.obs;
 
+  final userCtrl = Get.find<UserController>();
+
   StreamSubscription<PlayerState>? playerStateSub;
+
+  bool get isLiked => userCtrl.user.value.favorites.contains(track.id!);
 
   Future<void> addMissingPreviewUrl() async {
     final res = await DB.searchTrack(track.name!, 0);
@@ -51,6 +57,14 @@ class GameState extends GetxController {
   void onInit() {
     super.onInit();
     initAudioPlayer();
+    liked = isLiked.obs;
+  }
+
+  void restartGame() {}
+
+  void likeTrack() {
+    userCtrl.likeTrack(track.id!);
+    liked.toggle();
   }
 
   void onTap() async {
