@@ -38,7 +38,17 @@ class GameState extends GetxController {
     }
 
     audioPlayer = AudioPlayer();
-    await audioPlayer.setAudioSource(AudioSource.uri(Uri.parse(previewUrl)));
+
+    try {
+      await audioPlayer.setAudioSource(AudioSource.uri(Uri.parse(previewUrl)));
+    } catch (e) {
+      debugPrint('[GameState] setAudioSource Error => $e ');
+      Get.back();
+      Helper.snack(
+        "An error has occurred...",
+        "The song could not be loaded. Please try again later.",
+      );
+    }
 
     playerStateSub = audioPlayer.playerStateStream.listen((event) {
       if (event.processingState == ProcessingState.loading) {}
@@ -49,8 +59,8 @@ class GameState extends GetxController {
       }
     });
 
-    // await audioPlayer.play();
-    Future.delayed(const Duration(seconds: 3), () => onFinish());
+    await audioPlayer.play();
+    Future.delayed(const Duration(seconds: 33), () => onFinish());
   }
 
   @override

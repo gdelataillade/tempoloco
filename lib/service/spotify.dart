@@ -2,6 +2,7 @@ import 'package:spotify/spotify.dart';
 import 'package:tempoloco/config.dart';
 import 'package:tempoloco/utils/helper.dart';
 
+// TODO: Catch exceptions
 class Spotify {
   late SpotifyApi spotify;
 
