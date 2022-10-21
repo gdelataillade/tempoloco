@@ -80,4 +80,10 @@ class Spotify {
 
     return tracks;
   }
+
+  Future<double> getTrackTempo(String trackId) async {
+    final res = await spotify.audioFeatures.get(trackId);
+
+    return res.tempo ?? 0;
+  }
 }

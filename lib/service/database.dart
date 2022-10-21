@@ -125,4 +125,11 @@ class DB {
         t.album == null || t.album!.images == null || t.album!.images!.isEmpty);
     return tracks;
   }
+
+  static Future<double> getTrackTempo(String trackId) async {
+    final tempo = await spotifyLct.getTrackTempo(trackId);
+
+    debugPrint('===> [Spotify] Tempo found: $tempo');
+    return tempo;
+  }
 }

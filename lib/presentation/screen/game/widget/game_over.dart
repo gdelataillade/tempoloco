@@ -10,8 +10,10 @@ class GameOver extends StatelessWidget {
     final state = Get.find<GameState>();
 
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IconButton(
               onPressed: state.likeTrack,
@@ -31,6 +33,13 @@ class GameOver extends StatelessWidget {
           ],
         ),
         const Center(child: Text("Game Over")),
+        Center(child: Text("Player BPM: ${state.playerTempo}")),
+        Center(child: Text("Real BPM: ${state.trackTempo}")),
+        Center(
+          child: Text(
+            "Precision: ${state.precision.toStringAsFixed(state.precision.truncateToDouble() == state.precision ? 0 : 1)}%",
+          ),
+        ),
       ],
     );
   }

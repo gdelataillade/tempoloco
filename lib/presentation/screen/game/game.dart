@@ -26,7 +26,10 @@ class Game extends StatelessWidget {
             Expanded(
               child: state.isOver.value
                   ? const GameOver()
-                  : GameTapArea(onTap: state.onTap),
+                  : Align(
+                      alignment: Alignment.center,
+                      child: GameTapArea(onTap: state.onTap),
+                    ),
             ),
           ],
         ),
