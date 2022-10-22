@@ -17,6 +17,8 @@ class UserController extends GetxController {
     super.onInit();
   }
 
+  bool enoughStars(int price) => user.value.nbStars >= price;
+
   Future<void> likeTrack(String trackId) async {
     HapticFeedback.mediumImpact();
 

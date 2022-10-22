@@ -42,7 +42,11 @@ class LibraryTracks extends StatelessWidget {
                     onLike: () => state.likeTrack(item.id!),
                   ),
                   if (index == state.library.length - 1)
-                    const SizedBox(height: 25)
+                    SizedBox(
+                      height: 70,
+                      child:
+                          Center(child: Text("${state.library.length} songs")),
+                    ),
                 ],
               );
             },

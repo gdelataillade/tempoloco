@@ -37,7 +37,6 @@ class TabViewState extends GetxController {
 
   bool isFavorite(String trackId) => user.favorites.contains(trackId);
   bool isPurchased(String trackId) => user.library.contains(trackId);
-  bool enoughStars(int price) => user.nbStars < price;
 
   @override
   Future<void> onInit() async {

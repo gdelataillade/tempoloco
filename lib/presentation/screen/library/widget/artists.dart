@@ -25,10 +25,19 @@ class LibraryArtists extends StatelessWidget {
             itemCount: state.artists.length,
             itemBuilder: (context, index) {
               final artist = state.artists[index];
-              return ArtistCard(
-                name: artist.name!,
-                imgUrl: Helper.getMinResImage(artist.images!),
-                onTap: () => Get.toNamed('artist', arguments: artist),
+              return Column(
+                children: [
+                  ArtistCard(
+                    name: artist.name!,
+                    imgUrl: Helper.getMinResImage(artist.images!),
+                    onTap: () => Get.toNamed('artist', arguments: artist),
+                  ),
+                  if (index == state.artists.length - 1)
+                    SizedBox(
+                        height: 70,
+                        child: Center(
+                            child: Text("${state.artists.length} artists"))),
+                ],
               );
             },
           ),

@@ -58,6 +58,13 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
                         const Icon(Icons.star_rounded, color: ktempoYellow),
                         IconButton(
                           splashColor: Colors.transparent,
+                          icon: const Icon(Icons.emoji_events_outlined),
+                          onPressed: () {
+                            HapticFeedback.selectionClick();
+                          },
+                        ),
+                        IconButton(
+                          splashColor: Colors.transparent,
                           icon: const Icon(FeatherIcons.user),
                           onPressed: () {
                             HapticFeedback.selectionClick();

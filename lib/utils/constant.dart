@@ -163,3 +163,12 @@ List<Map<String, dynamic>> onboardingGenres = [
     ],
   },
 ];
+
+// Copy a famous Spotify playlist
+// Get id and add it here
+const List<Map<String, String>> playlists = [
+  {
+    "name": "Best of Rock: 1970",
+    "id": "37i9dQZF1DXe9Gx5fVy1RT",
+  },
+];

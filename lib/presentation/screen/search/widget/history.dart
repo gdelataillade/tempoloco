@@ -9,6 +9,7 @@ import 'package:tempoloco/utils/helper.dart';
 class History extends StatelessWidget {
   const History({Key? key}) : super(key: key);
 
+  // TODO: Fix uncaught exception - bad state element
   List<Track> buildHistoryTracks(TabViewState state) {
     final List<String> historyIds = state.user.history;
 

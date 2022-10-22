@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spotify/spotify.dart';
+import 'package:tempoloco/controller/user_controller.dart';
 import 'package:tempoloco/presentation/screen/tabview/tab_view_state.dart';
 import 'package:tempoloco/theme.dart';
 
@@ -14,6 +15,8 @@ class PurchaseTrackModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = Get.find<TabViewState>();
+    final userCtrl = Get.find<UserController>();
+    final enoughStars = userCtrl.enoughStars(price);
 
     return AlertDialog(
       elevation: 5.0,
@@ -31,14 +34,21 @@ class PurchaseTrackModal extends StatelessWidget {
             // TODO: Disable if not enough stars
             RawMaterialButton(
               onPressed: () {
-                state.purchaseTrack(
-                  track.id!,
-                  track.artists!.first.id!,
-                  price,
-                );
-                Get.back();
+                if (enoughStars) {
+                  state.purchaseTrack(
+                    track.id!,
+                    track.artists!.first.id!,
+                    price,
+                  );
+                  Get.back();
+                }
               },
-              child: const Text("Purchase"),
+              child: Text(
+                "Purchase",
+                style: TextStyle(
+                  color: enoughStars ? Colors.green : Colors.red,
+                ),
+              ),
             ),
           ],
         ),
