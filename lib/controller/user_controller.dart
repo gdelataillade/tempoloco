@@ -65,4 +65,12 @@ class UserController extends GetxController {
       nbStars: nbStars - price,
     ).toJson());
   }
+
+  // TODO: Implement this feature
+  Future<void> addFriend(String friendId) async {
+    debugPrint('===> [TabViewState] Adding friend $friendId');
+    await DB.updateUser(user.value.copyWith(
+      friends: [friendId, ...user.value.friends],
+    ).toJson());
+  }
 }

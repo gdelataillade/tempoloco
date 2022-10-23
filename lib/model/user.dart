@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-// ignore: depend_on_referenced_packages
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:tempoloco/utils/model.dart';
@@ -24,6 +23,7 @@ class User {
   List<String> library;
   List<Map<String, int>> highscores;
   List<Map<String, String>> artists;
+  List<String> friends;
 
   User({
     required this.uid,
@@ -38,6 +38,7 @@ class User {
     this.library = const <String>[],
     this.highscores = const <Map<String, int>>[],
     this.artists = const <Map<String, String>>[],
+    this.friends = const <String>[],
   });
 
   factory User.fromJson(Map<String, dynamic> data, String uid) =>

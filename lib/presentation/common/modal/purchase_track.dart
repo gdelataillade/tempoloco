@@ -31,7 +31,6 @@ class PurchaseTrackModal extends StatelessWidget {
               onPressed: Get.back,
               child: const Text("Close"),
             ),
-            // TODO: Disable if not enough stars
             RawMaterialButton(
               onPressed: () {
                 if (enoughStars) {
