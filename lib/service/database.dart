@@ -33,6 +33,14 @@ class DB {
     }
   }
 
+  static Future<String> getFriendName(String friendId) async {
+    final res = await FirestoreService.instance.getDocument(
+      path: 'user/$friendId',
+      builder: (data, documentId) => data!['name'],
+    );
+    return res;
+  }
+
   static Stream<User> get userStream =>
       FirestoreService.instance.documentStream(
         path: 'user/$uid',
