@@ -51,6 +51,7 @@ class HomeArtistItem extends StatelessWidget {
               width: size + 20,
               child: Text(
                 name,
+                style: Theme.of(context).textTheme.titleMedium,
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,
               ),

@@ -32,6 +32,7 @@ dependencies:
   just_audio: ^0.9.29
   multiavatar: ^0.1.5
   flutter_svg: ^1.1.6
+  share_plus: ^6.0.1
 
 dev_dependencies:
   flutter_lints: ^2.0.1

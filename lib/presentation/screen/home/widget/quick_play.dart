@@ -29,35 +29,48 @@ class HomeQuickPlay extends StatelessWidget {
               onTap: () {
                 Get.toNamed('/game', arguments: item);
               },
-              child: Column(
-                children: [
-                  Container(
-                    width: size,
-                    height: size,
-                    margin: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: ktempoDark,
-                      borderRadius: const BorderRadius.all(Radius.circular(20)),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.5),
-                          spreadRadius: 0.2,
-                          blurRadius: 2,
-                          offset: const Offset(1, 1),
+              child: SizedBox(
+                width: size,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: size,
+                      margin: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: ktempoDark,
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20)),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.5),
+                            spreadRadius: 0.2,
+                            blurRadius: 2,
+                            offset: const Offset(1, 1),
+                          ),
+                        ],
+                      ),
+                      child: ClipRRect(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20)),
+                        child: Image.network(
+                          Helper.getMaxResImage(item.album!.images!),
+                          fit: BoxFit.cover,
                         ),
-                      ],
-                    ),
-                    child: ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(20)),
-                      child: Image.network(
-                        Helper.getMaxResImage(item.album!.images!),
-                        fit: BoxFit.cover,
                       ),
                     ),
-                  ),
-                  Text(item.name!),
-                  Text(item.artists!.first.name!),
-                ],
+                    Text(
+                      item.name!,
+                      style: Theme.of(context).textTheme.titleLarge,
+                      textAlign: TextAlign.center,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 5),
+                    Text(item.artists!.first.name!),
+                  ],
+                ),
               ),
             );
           },

@@ -1,6 +1,7 @@
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:multiavatar/multiavatar.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:tempoloco/controller/user_controller.dart';
 import 'package:tempoloco/service/database.dart';
 
@@ -47,7 +48,11 @@ class ProfileState extends GetxController {
     ]);
 
     loaded.value = true;
-
     super.onInit();
+  }
+
+  // TODO: Set shared link in remote config
+  Future<void> addFriend() async {
+    await Share.share("https://tempoloco.page.link/start");
   }
 }
