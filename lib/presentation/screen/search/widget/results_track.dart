@@ -61,7 +61,6 @@ class _SearchResultsTrackState extends State<SearchResultsTrack> {
                     price: price,
                     onPress: () {
                       if (isPurchased) {
-                        state.addTrackToHistory(item.id!);
                         Get.toNamed('/game', arguments: item);
                       } else {
                         Modal.showDialogModal(context, item, price);

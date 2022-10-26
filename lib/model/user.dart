@@ -18,10 +18,10 @@ class User {
   int nbStars;
   bool notification;
   bool reviewed;
-  List<String> history;
+  List<Map<String, dynamic>> history;
   List<String> favorites;
   List<String> library;
-  List<Map<String, int>> highscores;
+  List<Map<String, dynamic>> highscores;
   List<Map<String, String>> artists;
   List<String> friends;
 
@@ -33,10 +33,10 @@ class User {
     this.nbStars = 0,
     this.notification = true,
     this.reviewed = false,
-    this.history = const <String>[],
+    this.history = const <Map<String, dynamic>>[],
     this.favorites = const <String>[],
     this.library = const <String>[],
-    this.highscores = const <Map<String, int>>[],
+    this.highscores = const <Map<String, dynamic>>[],
     this.artists = const <Map<String, String>>[],
     this.friends = const <String>[],
   });

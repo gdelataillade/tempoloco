@@ -27,7 +27,6 @@ class HomeQuickPlay extends StatelessWidget {
 
             return GestureDetector(
               onTap: () {
-                state.addTrackToHistory(item.id!);
                 Get.toNamed('/game', arguments: item);
               },
               child: Column(

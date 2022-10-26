@@ -35,18 +35,24 @@ class UserController extends GetxController {
     await DB.updateUser(user.value.copyWith(favorites: favorites).toJson());
   }
 
-  Future<void> addTrackToHistory(String trackId) async {
+  Future<void> addTrackToHistory(String trackId, double score) async {
     final history = user.value.history;
 
-    if (history.where((id) => id == trackId).isNotEmpty) {
-      history.removeWhere((id) => id == trackId);
+    if (history.where((item) => item['id'] == trackId).isNotEmpty) {
+      history.removeWhere((item) => item['id'] == trackId);
     }
 
-    if (history.length >= 15) history.removeLast();
+    if (history.length >= 20) history.removeLast();
 
     debugPrint('===> [User] Adding track to history: $trackId');
     await DB.updateUser(
-      user.value.copyWith(history: [trackId, ...history]).toJson(),
+      user.value.copyWith(history: [
+        {
+          'trackId': trackId,
+          'score': score,
+        },
+        ...history,
+      ]).toJson(),
     );
   }
 

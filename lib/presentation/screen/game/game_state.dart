@@ -47,6 +47,7 @@ class GameState extends GetxController {
     playerTempo = audioPlayer.duration!.inMilliseconds / frequency;
   }
 
+  // TODO: Improve correction: ex: precision = 51%. should be x2
   void setPrecision() {
     precision = playerTempo < trackTempo
         ? playerTempo / trackTempo
@@ -136,6 +137,7 @@ class GameState extends GetxController {
     audioPlayer.stop();
     setPlayerTempo();
     setPrecision();
+    userCtrl.addTrackToHistory(track.id!, precision);
     isOver.value = true;
   }
 

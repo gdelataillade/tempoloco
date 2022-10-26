@@ -83,8 +83,8 @@ class DB {
     final tracks = <spotify.Track>[];
     final userCtrl = Get.find<UserController>();
 
-    for (final trackId in userCtrl.user.value.history) {
-      final res = await spotifyLct.getTrackById(trackId);
+    for (final item in userCtrl.user.value.history) {
+      final res = await spotifyLct.getTrackById(item['trackId']);
       tracks.add(res);
     }
     debugPrint('===> [Spotify] Loaded ${tracks.length} history');

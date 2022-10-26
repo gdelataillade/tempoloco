@@ -36,7 +36,6 @@ class ArtistScreenTracks extends StatelessWidget {
                   price: price,
                   onPress: () {
                     if (isPurchased) {
-                      state.addTrackToHistory(item.id!);
                       Get.toNamed('/game', arguments: item);
                     } else {
                       Modal.showDialogModal(context, item, price);

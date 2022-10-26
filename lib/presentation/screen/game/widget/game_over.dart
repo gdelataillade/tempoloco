@@ -30,6 +30,10 @@ class GameOver extends StatelessWidget {
               onPressed: state.restartGame,
               icon: const Icon(Icons.restart_alt),
             ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.share),
+            ),
           ],
         ),
         const Center(child: Text("Game Over")),

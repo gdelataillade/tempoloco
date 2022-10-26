@@ -38,7 +38,6 @@ class LibraryFavorite extends StatelessWidget {
                       trackId: item.id!,
                       isPurchased: true,
                       onPress: () {
-                        state.addTrackToHistory(item.id!);
                         Get.toNamed('/game', arguments: item);
                       },
                       onLike: () => state.likeTrack(item.id!),

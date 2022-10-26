@@ -11,12 +11,20 @@ class History extends StatelessWidget {
 
   // TODO: Fix uncaught exception - bad state element
   List<Track> buildHistoryTracks(TabViewState state) {
-    final List<String> historyIds = state.user.history;
+    final List<String> historyIds =
+        state.user.history.map((e) => e['trackId'] as String).toList();
 
     List<Track> tracks = [];
 
+    debugPrint("[History] user history ${state.user.history}");
+    debugPrint("[History] ${state.user.library}");
+
     for (int i = 0; i < historyIds.length; i++) {
-      tracks.add(state.library.firstWhere((t) => t.id == historyIds[i]));
+      try {
+        tracks.add(state.library.firstWhere((t) => t.id == historyIds[i]));
+      } catch (e) {
+        debugPrint("[History] Error adding history: $e");
+      }
     }
     return tracks;
   }
@@ -54,7 +62,6 @@ class History extends StatelessWidget {
                       trackId: item.id!,
                       isPurchased: true,
                       onPress: () {
-                        state.addTrackToHistory(item.id!);
                         Get.toNamed('/game', arguments: item);
                       },
                       onLike: () => state.likeTrack(item.id!),

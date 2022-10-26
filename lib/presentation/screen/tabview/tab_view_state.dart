@@ -109,7 +109,4 @@ class TabViewState extends GetxController {
 
   Future<void> purchaseTrack(String trackId, String artistId, int price) =>
       userCtrl.purchaseTrack(trackId, artistId, price);
-
-  Future<void> addTrackToHistory(String trackId) =>
-      userCtrl.addTrackToHistory(trackId);
 }

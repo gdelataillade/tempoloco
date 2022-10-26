@@ -29,9 +29,6 @@ class ArtistScreenState extends GetxController {
   Future<void> likeTrack(String trackId) async =>
       await userCtrl.likeTrack(trackId);
 
-  Future<void> addTrackToHistory(String trackId) async =>
-      await userCtrl.addTrackToHistory(trackId);
-
   @override
   void onInit() {
     loadTracks();
