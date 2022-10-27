@@ -15,9 +15,6 @@ class History extends StatelessWidget {
 
     List<Track> tracks = [];
 
-    debugPrint("[History] user history ${state.user.history}");
-    debugPrint("[History] ${state.user.library}");
-
     for (int i = 0; i < historyIds.length; i++) {
       try {
         tracks.add(state.library.firstWhere((t) => t.id == historyIds[i]));
@@ -25,6 +22,7 @@ class History extends StatelessWidget {
         debugPrint("[History] Error adding history: $e");
       }
     }
+    debugPrint("[History] Loaded history items ${tracks.length}");
     return tracks;
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// TODO: Checkout Material 3
 const Color ktempoPurple = Color.fromARGB(255, 98, 33, 164);
 const Color ktempoIndigo = Color(0xff49129A);
 const Color ktempoYellow = Color(0xffFFC65C);

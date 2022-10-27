@@ -61,6 +61,8 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
                           icon: const Icon(Icons.emoji_events_outlined),
                           onPressed: () {
                             Helper.hapticFeedback();
+                            // TODO: Pass tracks as arguments for highscores list
+                            Get.toNamed('/achievements');
                           },
                         ),
                         IconButton(

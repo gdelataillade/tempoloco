@@ -16,6 +16,7 @@ class GameState extends GetxController {
   late double trackTempo;
   late double playerTempo;
   late double precision;
+  late bool isHighscore;
 
   Track track = Get.arguments as Track;
 
@@ -91,11 +92,13 @@ class GameState extends GetxController {
         loading.value = false;
       }
       if (event.processingState == ProcessingState.completed) {
-        // onFinish();
+        debugPrint("[Game] audio finished");
+        playerStateSub!.cancel();
+        onFinish();
       }
     });
 
-    Future.delayed(const Duration(seconds: 10), () => onFinish());
+    // Future.delayed(const Duration(seconds: 10), () => onFinish());
   }
 
   Future<void> getTrackTempo() async {
@@ -132,12 +135,12 @@ class GameState extends GetxController {
     taps.add(audioPlayer.position);
   }
 
-  void onFinish() {
-    debugPrint("[Game] audio finished");
+  Future<void> onFinish() async {
     audioPlayer.stop();
     setPlayerTempo();
     setPrecision();
     userCtrl.addTrackToHistory(track.id!, precision);
+    isHighscore = await userCtrl.compareHighscore(track.id!, precision);
     isOver.value = true;
   }
 

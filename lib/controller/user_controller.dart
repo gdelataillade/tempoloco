@@ -61,7 +61,7 @@ class UserController extends GetxController {
     final artists = user.value.artists;
     final nbStars = user.value.nbStars;
 
-    debugPrint('===> [TabViewState] Purchasing track $trackId');
+    debugPrint('===> [User] Purchasing track $trackId');
     await DB.updateUser(user.value.copyWith(
       library: [trackId, ...library],
       artists: [
@@ -72,8 +72,40 @@ class UserController extends GetxController {
     ).toJson());
   }
 
+  Future<bool> compareHighscore(String trackId, double score) async {
+    final highscores = user.value.highscores;
+    final index = highscores.indexWhere((e) => e['trackId'] == trackId);
+    bool update = false;
+
+    if (index == -1) {
+      debugPrint('===> [User] First highscore: $score');
+      update = true;
+    } else {
+      final highscore = user.value.highscores[index]['score'];
+
+      debugPrint('===> [User] Highscore: $highscore - Actual score: $score');
+
+      if (score > highscore) {
+        debugPrint('===> [User] New highscore');
+        highscores.removeWhere((e) => e['trackId'] == trackId);
+        update = true;
+      } else {
+        debugPrint('===> [User] Actual highscore not beaten');
+      }
+    }
+    if (update) {
+      await DB.updateUser(user.value.copyWith(
+        highscores: [
+          {'trackId': trackId, 'score': score},
+          ...highscores,
+        ],
+      ).toJson());
+    }
+    return update;
+  }
+
   Future<void> addFriend(String friendId) async {
-    debugPrint('===> [TabViewState] Adding friend $friendId');
+    debugPrint('===> [User] Adding friend $friendId');
     await DB.updateUser(user.value.copyWith(
       friends: [friendId, ...user.value.friends],
     ).toJson());

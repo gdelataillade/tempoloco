@@ -95,6 +95,7 @@ class TrackCard extends StatelessWidget {
                   return isPurchased
                       ? IconButton(
                           onPressed: onLike,
+                          splashRadius: 10,
                           icon: Icon(
                             isLiked
                                 ? Icons.favorite
