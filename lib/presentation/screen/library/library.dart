@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:tempoloco/presentation/screen/library/widget/artists.dart';
 import 'package:tempoloco/presentation/screen/library/widget/favorite.dart';
 import 'package:tempoloco/presentation/screen/library/widget/tracks.dart';
 import 'package:tempoloco/theme.dart';
+import 'package:tempoloco/utils/helper.dart';
 
 class LibraryScreen extends StatefulWidget {
   const LibraryScreen({Key? key}) : super(key: key);
@@ -47,7 +47,7 @@ class _LibraryScreenState extends State<LibraryScreen>
                 controller: tabController,
                 indicatorColor: ktempoPurple,
                 onTap: (index) {
-                  HapticFeedback.selectionClick();
+                  Helper.hapticFeedback();
                   setState(() => selectedIndex = index);
                 },
                 tabs: [

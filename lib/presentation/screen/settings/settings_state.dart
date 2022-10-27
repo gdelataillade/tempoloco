@@ -5,6 +5,7 @@ import 'package:tempoloco/utils/helper.dart';
 
 class SettingsState extends GetxController {
   Rx<String> language = Helper.getLanguage().obs;
+  Rx<bool> vibrations = Helper.hasVibrations().obs;
 
   void saveVolume(double volume) {
     debugPrint("[Settings] Setting volume to $volume");
@@ -15,5 +16,11 @@ class SettingsState extends GetxController {
     debugPrint("[Settings] Setting language to $value");
     await Storage.writeData('settings', 'language', value);
     language.value = value;
+  }
+
+  void toggleVibrations(bool value) {
+    debugPrint("[Settings] Setting vibrations to $value");
+    Storage.writeData('settings', 'vibrate', value);
+    vibrations.value = value;
   }
 }

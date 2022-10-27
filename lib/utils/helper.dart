@@ -32,6 +32,13 @@ class Helper {
       Platform.localeName.split('_').first ??
       'en';
 
+  static bool hasVibrations() =>
+      Storage.readData('settings', 'vibrate') ?? true;
+
+  static void hapticFeedback() {
+    if (hasVibrations()) HapticFeedback.selectionClick();
+  }
+
   static int getPrice(int popularity) {
     double price = (popularity + 1) / 5;
     return price.toInt() + 1;

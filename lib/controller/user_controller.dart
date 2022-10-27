@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:tempoloco/model/user.dart';
 import 'package:tempoloco/service/auth.dart';
 import 'package:tempoloco/service/database.dart';
+import 'package:tempoloco/utils/helper.dart';
 
 class UserController extends GetxController {
   final Rx<User> user;
@@ -20,7 +20,7 @@ class UserController extends GetxController {
   bool enoughStars(int price) => user.value.nbStars >= price;
 
   Future<void> likeTrack(String trackId) async {
-    HapticFeedback.mediumImpact();
+    Helper.hapticFeedback();
 
     final favorites = user.value.favorites;
 
@@ -72,7 +72,6 @@ class UserController extends GetxController {
     ).toJson());
   }
 
-  // TODO: Implement this feature
   Future<void> addFriend(String friendId) async {
     debugPrint('===> [TabViewState] Adding friend $friendId');
     await DB.updateUser(user.value.copyWith(

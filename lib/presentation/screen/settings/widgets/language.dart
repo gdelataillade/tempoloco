@@ -17,7 +17,7 @@ class SettingsLanguage extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Text("Language"),
+        Text("Language", style: Theme.of(context).textTheme.titleLarge),
         SizedBox(
           height: 45,
           width: supportedLanguages.length * (flagSize + 2 * margin),

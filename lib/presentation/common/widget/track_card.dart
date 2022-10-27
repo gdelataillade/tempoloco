@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:tempoloco/presentation/screen/tabview/tab_view_state.dart';
 import 'package:tempoloco/theme.dart';
+import 'package:tempoloco/utils/helper.dart';
 
 class TrackCard extends StatelessWidget {
   final String title;
@@ -38,7 +38,7 @@ class TrackCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        HapticFeedback.selectionClick();
+        Helper.hapticFeedback();
         onPress();
       },
       child: Container(

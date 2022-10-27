@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:tempoloco/utils/helper.dart';
 
 class HomeArtistItem extends StatelessWidget {
   final String name;
@@ -19,7 +19,7 @@ class HomeArtistItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        HapticFeedback.selectionClick();
+        Helper.hapticFeedback();
         onTap();
       },
       child: Column(

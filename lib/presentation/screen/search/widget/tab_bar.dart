@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:tempoloco/presentation/screen/search/widget/history.dart';
 import 'package:tempoloco/presentation/screen/search/widget/results_artist.dart';
 import 'package:tempoloco/presentation/screen/search/widget/results_track.dart';
 import 'package:tempoloco/presentation/screen/tabview/tab_view_state.dart';
 import 'package:tempoloco/theme.dart';
+import 'package:tempoloco/utils/helper.dart';
 
 class SearchResultsTabBar extends StatefulWidget {
   const SearchResultsTabBar({Key? key}) : super(key: key);
@@ -59,7 +59,7 @@ class _SearchResultsTabBarState extends State<SearchResultsTabBar>
                       controller: tabController,
                       indicatorColor: ktempoPurple,
                       onTap: (index) {
-                        HapticFeedback.selectionClick();
+                        Helper.hapticFeedback();
                         setState(() => selectedIndex = index);
                       },
                       tabs: [

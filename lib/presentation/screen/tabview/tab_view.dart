@@ -1,6 +1,5 @@
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:tempoloco/presentation/common/widget/loading.dart';
@@ -9,6 +8,7 @@ import 'package:tempoloco/presentation/screen/library/library.dart';
 import 'package:tempoloco/presentation/screen/search/search.dart';
 import 'package:tempoloco/presentation/screen/tabview/tab_view_state.dart';
 import 'package:tempoloco/theme.dart';
+import 'package:tempoloco/utils/helper.dart';
 
 class TabView extends StatefulWidget {
   const TabView({Key? key}) : super(key: key);
@@ -42,14 +42,14 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
                   splashColor: Colors.transparent,
                   icon: const Icon(FeatherIcons.settings),
                   onPressed: () {
-                    HapticFeedback.selectionClick();
+                    Helper.hapticFeedback();
                     Get.toNamed('/settings');
                   },
                 ),
                 actions: [
                   GestureDetector(
                     onTap: () {
-                      HapticFeedback.selectionClick();
+                      Helper.hapticFeedback();
                       Get.toNamed('/profile');
                     },
                     child: Row(
@@ -60,14 +60,14 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
                           splashColor: Colors.transparent,
                           icon: const Icon(Icons.emoji_events_outlined),
                           onPressed: () {
-                            HapticFeedback.selectionClick();
+                            Helper.hapticFeedback();
                           },
                         ),
                         IconButton(
                           splashColor: Colors.transparent,
                           icon: const Icon(FeatherIcons.user),
                           onPressed: () {
-                            HapticFeedback.selectionClick();
+                            Helper.hapticFeedback();
                             Get.toNamed('/profile');
                           },
                         ),
@@ -98,7 +98,7 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
                   scaleCurve: Curves.easeInOut,
                   currentIndex: selectedIndex,
                   onTap: (index) {
-                    HapticFeedback.selectionClick();
+                    Helper.hapticFeedback();
                     setState(() {
                       tabController.animateTo(index);
                       selectedIndex = index;
