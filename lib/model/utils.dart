@@ -7,15 +7,17 @@ DateTime dateTimefromJson(Timestamp? date) =>
 Timestamp dateTimetoJson(DateTime date) =>
     Timestamp.fromMillisecondsSinceEpoch(date.millisecondsSinceEpoch);
 
-DateTime? dateTimefromJsonWithNull(Timestamp? date) => date == null
-    ? null
-    : DateTime.fromMillisecondsSinceEpoch(date.millisecondsSinceEpoch);
+List<Timestamp> listDateTimetoJson(List<DateTime> listDate) => listDate
+    .map((e) => Timestamp.fromMillisecondsSinceEpoch(e.millisecondsSinceEpoch))
+    .toList();
 
-Timestamp? dateTimetoJsonWithNull(DateTime? date) => date == null
-    ? null
-    : Timestamp.fromMillisecondsSinceEpoch(date.millisecondsSinceEpoch);
+List<DateTime> listDateTimefromJson(List<dynamic> lists) => lists.map((e) {
+      if (e is Timestamp) {
+        return DateTime.fromMillisecondsSinceEpoch(e.millisecondsSinceEpoch);
+      }
+      return DateTime.fromMillisecondsSinceEpoch(0);
+    }).toList();
 
-// seconds = microseconds ÷ 1,000,000
 Duration durationfromJson(int duration) => duration < 100000
     ? Duration(seconds: duration)
     : Duration(microseconds: duration);

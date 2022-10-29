@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tempoloco/presentation/screen/achievements/achievements_state.dart';
 import 'package:tempoloco/presentation/screen/achievements/widget/highscores.dart';
+import 'package:tempoloco/presentation/screen/achievements/widget/strikes.dart';
 
 class Achievements extends StatelessWidget {
   const Achievements({Key? key}) : super(key: key);
@@ -17,6 +18,7 @@ class Achievements extends StatelessWidget {
             children: const [
               Center(child: Text("Achievements")),
               AchievementsHighscores(),
+              AchievementsStrikes(),
             ],
           );
         },

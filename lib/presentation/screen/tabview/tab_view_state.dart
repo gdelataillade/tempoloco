@@ -4,6 +4,7 @@ import 'package:tempoloco/controller/user_controller.dart';
 import 'package:tempoloco/model/user.dart';
 import 'package:tempoloco/service/auth.dart';
 import 'package:tempoloco/service/database.dart';
+import 'package:tempoloco/utils/extension/datetime.dart';
 import 'package:tempoloco/utils/helper.dart';
 
 enum SearchType {
@@ -51,6 +52,8 @@ class TabViewState extends GetxController {
     });
 
     isLoaded.value = true;
+
+    setStrikes();
     super.onInit();
   }
 
@@ -109,4 +112,21 @@ class TabViewState extends GetxController {
 
   Future<void> purchaseTrack(String trackId, String artistId, int price) =>
       userCtrl.purchaseTrack(trackId, artistId, price);
+
+  Future<void> setStrikes() async {
+    final strikes = user.strikes;
+
+    if (strikes.last.isYesterday) {
+      await DB.updateUser({
+        "strikes": [
+          ...strikes,
+          DateTime.now(),
+        ],
+      });
+    } else if (!strikes.last.isToday) {
+      await DB.updateUser({
+        "strikes": [DateTime.now()]
+      });
+    }
+  }
 }
