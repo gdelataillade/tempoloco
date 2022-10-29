@@ -71,6 +71,7 @@ class Auth {
     }
   }
 
+  // TODO: Fix exception cloud_firestore/permission-denied
   static Future<void> signOut() async {
     await Future.wait([
       Storage.writeData("credentials", "password", ""),
@@ -88,9 +89,28 @@ class Auth {
     Get.offAllNamed('/onboarding');
   }
 
-  static Future<void> updateDisplayName(String name) async {
+  static Future<void> updateUsername(String username) async {
     if (FirebaseAuth.instance.currentUser != null) {
-      FirebaseAuth.instance.currentUser!.updateDisplayName(name);
+      FirebaseAuth.instance.currentUser!.updateDisplayName(username);
+    }
+  }
+
+  static Future<bool> updateEmail(String email) async {
+    try {
+      await FirebaseAuth.instance.currentUser!.updateEmail(email);
+      debugPrint("[Auth] Update email: $email");
+      return true;
+    } catch (e) {
+      String msg = e.toString();
+      if (msg.contains("invalid-email")) {
+        msg = "Invalid email";
+      } else if (msg.contains("email-already-in-use")) {
+        msg = "Email is already taken";
+      } else if (msg.contains("requires-recent-login")) {
+        msg = "Try again later";
+      }
+      Helper.snack('Error updating email', msg);
+      return false;
     }
   }
 }

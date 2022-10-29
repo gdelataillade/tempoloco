@@ -33,10 +33,10 @@ class DB {
     }
   }
 
-  static Future<String> getFriendName(String friendId) async {
+  static Future<String> getFriendUsername(String friendId) async {
     final res = await FirestoreService.instance.getDocument(
       path: 'user/$friendId',
-      builder: (data, documentId) => data!['name'],
+      builder: (data, documentId) => data!['username'],
     );
     return res;
   }
@@ -46,6 +46,17 @@ class DB {
         path: 'user/$uid',
         builder: (data, documentId) => User.fromJson(data!, documentId),
       );
+
+  static Future<bool> usernameAlreadyExists(String username) async {
+    final res = await FirestoreService.instance.getCollection(
+      path: 'user/',
+      builder: (data, documentId) => data!['username'],
+      queryBuilder: (query) => query.where('username', isEqualTo: username),
+    );
+
+    debugPrint('===> [Firestore] usernameAlreadyExists: $res');
+    return res.isNotEmpty;
+  }
 
   static Future<bool> checkIfDocExists() => FirestoreService.instance
       .checkIfDocExists(collectionPath: 'user', docId: Auth.uid!);

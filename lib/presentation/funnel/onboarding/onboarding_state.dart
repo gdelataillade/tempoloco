@@ -22,7 +22,7 @@ class OnboardingState extends GetxController {
   final steps = <Widget>[const OnboardingIntroStep()].obs;
 
   String uid = "";
-  String name = "";
+  String username = "";
   String email = "";
   String password = "";
 
@@ -118,7 +118,7 @@ class OnboardingState extends GetxController {
     }
 
     await Future.wait([
-      Auth.updateDisplayName(name),
+      Auth.updateUsername(username),
       Storage.writeData(credentialsBox, "email", email),
       Storage.writeData(credentialsBox, "password", password),
     ]);
@@ -143,7 +143,7 @@ class OnboardingState extends GetxController {
     isLoading.value = false;
   }
 
-  void validateName(String value) {
+  void validateUsername(String value) {
     if (value.length < 2) {
       Helper.snack(
         "Password is too short",
@@ -157,7 +157,7 @@ class OnboardingState extends GetxController {
       );
       return;
     }
-    name = value.capitalizeFirst!;
+    username = value;
     stepIndex.value++;
   }
 
@@ -210,7 +210,7 @@ class OnboardingState extends GetxController {
 
     User newUser = User(
       uid: uid,
-      name: name,
+      username: username,
       email: email,
       createdDate: DateTime.now(),
       library: library,

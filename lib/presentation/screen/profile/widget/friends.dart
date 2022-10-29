@@ -41,7 +41,7 @@ class ProfileFriends extends StatelessWidget {
                             const SizedBox(height: 8),
                             AvatarCard(size: 80, svgRoot: friend.svgRoot),
                             const SizedBox(height: 8),
-                            Text(friend.name),
+                            Text(friend.username),
                           ],
                         );
                       },

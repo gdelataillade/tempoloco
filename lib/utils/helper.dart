@@ -88,7 +88,7 @@ class Helper {
       ),
       duration: duration,
       backgroundColor: ktempoDark,
-      margin: const EdgeInsets.all(25),
+      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
       snackPosition: SnackPosition.TOP,
       borderColor: ktempoDark,
       borderWidth: 2,

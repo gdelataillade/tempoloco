@@ -10,7 +10,7 @@ part 'user.g.dart';
 class User {
   @CopyWithField(immutable: true)
   String uid;
-  String name;
+  String username;
   String email;
   @CopyWithField(immutable: true)
   @JsonKey(toJson: dateTimetoJson, fromJson: dateTimefromJson)
@@ -27,7 +27,7 @@ class User {
 
   User({
     required this.uid,
-    required this.name,
+    required this.username,
     required this.email,
     required this.createdDate,
     this.nbStars = 0,

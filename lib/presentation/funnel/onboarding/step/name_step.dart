@@ -16,10 +16,15 @@ class OnboardingNameStep extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           const SizedBox(),
-          const Text("Name"),
+          Text(
+            "Username",
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
           OnboardingTextInput(
-            value: state.name,
-            onSubmit: (String name) => state.validateName(name.trim()),
+            value: state.username,
+            onSubmit: (String name) => state.validateUsername(
+              name.trim().toLowerCase(),
+            ),
           ),
         ],
       ),
