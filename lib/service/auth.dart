@@ -20,6 +20,7 @@ class Auth {
       String msg = e.toString();
       if (!msg.contains("The password is invalid")) {}
       if (msg.contains("user-not-found")) {
+        // TOOD: Go back to email input step
         msg = "No account created with\n$email";
       } else if (msg.contains("wrong-password")) {
         msg = "Wrong password";

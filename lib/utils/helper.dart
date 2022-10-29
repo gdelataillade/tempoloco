@@ -28,12 +28,12 @@ class Helper {
   }
 
   static String getLanguage() =>
-      Storage.readData('settings', 'language') ??
+      Storage.readData(settingsBox, 'language') ??
       Platform.localeName.split('_').first ??
       'en';
 
   static bool hasVibrations() =>
-      Storage.readData('settings', 'vibrate') ?? true;
+      Storage.readData(settingsBox, 'vibrate') ?? true;
 
   static void hapticFeedback() {
     if (hasVibrations()) HapticFeedback.selectionClick();

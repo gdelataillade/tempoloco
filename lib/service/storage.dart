@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 
+const credentialsBox = "credentials";
+const settingsBox = "settings";
+
 const hiveBoxes = <String>[
-  "credentials", // email, password
-  "settings", // volume, language
+  credentialsBox, // email, password
+  settingsBox, // volume, language
 ];
 
 class Storage {

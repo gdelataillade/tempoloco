@@ -9,18 +9,18 @@ class SettingsState extends GetxController {
 
   void saveVolume(double volume) {
     debugPrint("[Settings] Setting volume to $volume");
-    Storage.writeData('settings', 'volume', volume);
+    Storage.writeData(settingsBox, 'volume', volume);
   }
 
   Future<void> setLanguage(String value) async {
     debugPrint("[Settings] Setting language to $value");
-    await Storage.writeData('settings', 'language', value);
+    await Storage.writeData(settingsBox, 'language', value);
     language.value = value;
   }
 
   void toggleVibrations(bool value) {
     debugPrint("[Settings] Setting vibrations to $value");
-    Storage.writeData('settings', 'vibrate', value);
+    Storage.writeData(settingsBox, 'vibrate', value);
     vibrations.value = value;
   }
 }

@@ -4,6 +4,8 @@ import 'package:multiavatar/multiavatar.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:tempoloco/controller/user_controller.dart';
 import 'package:tempoloco/service/database.dart';
+import 'package:tempoloco/service/locator.dart';
+import 'package:tempoloco/service/remote.dart';
 
 class Friend {
   final String name;
@@ -51,8 +53,8 @@ class ProfileState extends GetxController {
     super.onInit();
   }
 
-  // TODO: Set shared link in remote config
   Future<void> addFriend() async {
-    await Share.share("https://tempoloco.page.link/start");
+    final link = remoteLct.getString(linkStore);
+    await Share.share(link);
   }
 }

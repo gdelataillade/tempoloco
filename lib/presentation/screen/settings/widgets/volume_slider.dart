@@ -31,7 +31,7 @@ class _SettingsVolumeSliderState extends State<SettingsVolumeSlider> {
   @override
   void initState() {
     super.initState();
-    volume = Storage.readData('settings', 'volume') ?? 1.0;
+    volume = Storage.readData(settingsBox, 'volume') ?? 1.0;
   }
 
   @override

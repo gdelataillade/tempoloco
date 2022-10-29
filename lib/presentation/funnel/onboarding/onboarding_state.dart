@@ -39,8 +39,8 @@ class OnboardingState extends GetxController {
   }
 
   Future<void> persistentLogin() async {
-    final String storedEmail = Storage.readData("credentials", "email") ?? "";
-    final String storedPwd = Storage.readData("credentials", "password") ?? "";
+    final String storedEmail = Storage.readData(credentialsBox, "email") ?? "";
+    final String storedPwd = Storage.readData(credentialsBox, "password") ?? "";
 
     if (storedEmail.isNotEmpty && storedPwd.isNotEmpty) {
       email = storedEmail;
@@ -93,11 +93,12 @@ class OnboardingState extends GetxController {
     debugPrint("[Auth] login ${res ? "succesful" : "failed"}");
 
     if (!res) {
-      Storage.writeData("credentials", "password", "");
+      // TODO: Don't erase password if network error
+      Storage.writeData(credentialsBox, "password", "");
       isLoading.value = false;
     } else {
-      Storage.writeData("credentials", "email", email);
-      Storage.writeData("credentials", "password", password);
+      Storage.writeData(credentialsBox, "email", email);
+      Storage.writeData(credentialsBox, "password", password);
       Get.offAllNamed('/tabview');
     }
   }
@@ -118,8 +119,8 @@ class OnboardingState extends GetxController {
 
     await Future.wait([
       Auth.updateDisplayName(name),
-      Storage.writeData("credentials", "email", email),
-      Storage.writeData("credentials", "password", password),
+      Storage.writeData(credentialsBox, "email", email),
+      Storage.writeData(credentialsBox, "password", password),
     ]);
 
     uid = res;

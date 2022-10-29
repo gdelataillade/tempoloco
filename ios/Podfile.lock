@@ -616,6 +616,9 @@ PODS:
   - Firebase/Firestore (9.6.0):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 9.6.0)
+  - Firebase/RemoteConfig (9.6.0):
+    - Firebase/CoreOnly
+    - FirebaseRemoteConfig (~> 9.6.0)
   - firebase_auth (3.11.1):
     - Firebase/Auth (= 9.6.0)
     - firebase_core
@@ -623,6 +626,12 @@ PODS:
   - firebase_core (1.24.0):
     - Firebase/CoreOnly (= 9.6.0)
     - Flutter
+  - firebase_remote_config (2.0.20):
+    - Firebase/RemoteConfig (= 9.6.0)
+    - firebase_core
+    - Flutter
+  - FirebaseABTesting (9.6.0):
+    - FirebaseCore (~> 9.0)
   - FirebaseAuth (9.6.0):
     - FirebaseCore (~> 9.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
@@ -653,6 +662,17 @@ PODS:
     - "gRPC-C++ (~> 1.44.0)"
     - leveldb-library (~> 1.22)
     - nanopb (< 2.30910.0, >= 2.30908.0)
+  - FirebaseInstallations (9.6.0):
+    - FirebaseCore (~> 9.0)
+    - GoogleUtilities/Environment (~> 7.7)
+    - GoogleUtilities/UserDefaults (~> 7.7)
+    - PromisesObjC (~> 2.1)
+  - FirebaseRemoteConfig (9.6.0):
+    - FirebaseABTesting (~> 9.0)
+    - FirebaseCore (~> 9.0)
+    - FirebaseInstallations (~> 9.0)
+    - GoogleUtilities/Environment (~> 7.7)
+    - "GoogleUtilities/NSData+zlib (~> 7.7)"
   - Flutter (1.0.0)
   - GoogleDataTransport (9.2.0):
     - GoogleUtilities/Environment (~> 7.7)
@@ -672,6 +692,8 @@ PODS:
     - GoogleUtilities/Reachability
   - "GoogleUtilities/NSData+zlib (7.8.0)"
   - GoogleUtilities/Reachability (7.8.0):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (7.8.0):
     - GoogleUtilities/Logger
   - "gRPC-C++ (1.44.0)":
     - "gRPC-C++/Implementation (= 1.44.0)"
@@ -752,6 +774,7 @@ DEPENDENCIES:
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
+  - firebase_remote_config (from `.symlinks/plugins/firebase_remote_config/ios`)
   - Flutter (from `Flutter`)
   - just_audio (from `.symlinks/plugins/just_audio/ios`)
   - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
@@ -763,11 +786,14 @@ SPEC REPOS:
     - abseil
     - BoringSSL-GRPC
     - Firebase
+    - FirebaseABTesting
     - FirebaseAuth
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseCoreInternal
     - FirebaseFirestore
+    - FirebaseInstallations
+    - FirebaseRemoteConfig
     - GoogleDataTransport
     - GoogleUtilities
     - "gRPC-C++"
@@ -787,6 +813,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_auth/ios"
   firebase_core:
     :path: ".symlinks/plugins/firebase_core/ios"
+  firebase_remote_config:
+    :path: ".symlinks/plugins/firebase_remote_config/ios"
   Flutter:
     :path: Flutter
   just_audio:
@@ -806,11 +834,15 @@ SPEC CHECKSUMS:
   Firebase: 5ae8b7cf8efce559a653aef0ad95bab3f427c351
   firebase_auth: bb406baf3e15b89102e5963eb2147452d1072fd5
   firebase_core: 7c28ecc1e5dd74e03829ac3e9ff5ba3314e737a9
+  firebase_remote_config: df81462997f4d1582113c543e5a39ef832cebb92
+  FirebaseABTesting: 61826730ce9eee8781ba99a2b3420e9bce148dc9
   FirebaseAuth: e4a5d3c36e778e41141b91cc861103a441d80bcc
   FirebaseCore: 2082fffcd855f95f883c0a1641133eb9bbe76d40
   FirebaseCoreDiagnostics: 99a495094b10a57eeb3ae8efa1665700ad0bdaa6
   FirebaseCoreInternal: bca76517fe1ed381e989f5e7d8abb0da8d85bed3
   FirebaseFirestore: c09ce6d050745a45fb75ebd901005ed3279c3caf
+  FirebaseInstallations: 0a115432c4e223c5ab20b0dbbe4cbefa793a0e8e
+  FirebaseRemoteConfig: ee09d77a7d7c7e31da6a0d1cf956cd611c85609c
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f
   GoogleUtilities: 1d20a6ad97ef46f67bbdec158ce00563a671ebb7

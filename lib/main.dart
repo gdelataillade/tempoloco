@@ -17,8 +17,8 @@ import 'package:tempoloco/utils/helper.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  await Firebase.initializeApp();
   await Future.wait([
-    Firebase.initializeApp(),
     Helper.setup(),
     setupLocator(),
   ]);
@@ -85,6 +85,7 @@ class MyApp extends StatelessWidget {
           transition: Transition.fadeIn,
           transitionDuration: const Duration(milliseconds: 200),
         ),
+        // TODO: Add Network error landing page
       ],
     );
   }
