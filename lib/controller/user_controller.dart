@@ -38,8 +38,8 @@ class UserController extends GetxController {
   Future<void> addTrackToHistory(String trackId, double score) async {
     final history = user.value.history;
 
-    if (history.where((item) => item['id'] == trackId).isNotEmpty) {
-      history.removeWhere((item) => item['id'] == trackId);
+    if (history.where((item) => item['trackId'] == trackId).isNotEmpty) {
+      history.removeWhere((item) => item['trackId'] == trackId);
     }
 
     if (history.length >= 20) history.removeLast();

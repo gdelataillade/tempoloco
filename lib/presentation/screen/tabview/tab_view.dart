@@ -47,34 +47,29 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
                   },
                 ),
                 actions: [
-                  GestureDetector(
-                    onTap: () {
+                  Padding(
+                    padding: const EdgeInsets.only(top: 21),
+                    child: Text(state.user.nbStars.toString()),
+                  ),
+                  const Icon(Icons.star_rounded, color: ktempoYellow),
+                  IconButton(
+                    splashColor: Colors.transparent,
+                    icon: const Icon(Icons.emoji_events_outlined),
+                    onPressed: () {
+                      Helper.hapticFeedback();
+                      Get.toNamed(
+                        '/achievements',
+                        arguments: state.library,
+                      );
+                    },
+                  ),
+                  IconButton(
+                    splashColor: Colors.transparent,
+                    icon: const Icon(FeatherIcons.user),
+                    onPressed: () {
                       Helper.hapticFeedback();
                       Get.toNamed('/profile');
                     },
-                    child: Row(
-                      children: [
-                        Text(state.user.nbStars.toString()),
-                        const Icon(Icons.star_rounded, color: ktempoYellow),
-                        IconButton(
-                          splashColor: Colors.transparent,
-                          icon: const Icon(Icons.emoji_events_outlined),
-                          onPressed: () {
-                            Helper.hapticFeedback();
-                            // TODO: Pass tracks as arguments for highscores list
-                            Get.toNamed('/achievements');
-                          },
-                        ),
-                        IconButton(
-                          splashColor: Colors.transparent,
-                          icon: const Icon(FeatherIcons.user),
-                          onPressed: () {
-                            Helper.hapticFeedback();
-                            Get.toNamed('/profile');
-                          },
-                        ),
-                      ],
-                    ),
                   ),
                 ],
               ),
