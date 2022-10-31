@@ -11,8 +11,8 @@ import 'package:tempoloco/utils/helper.dart';
 class GameState extends GetxController {
   late AudioPlayer audioPlayer;
   late String previewUrl;
-  late double score;
   late RxBool liked;
+  late double score;
   late double trackTempo;
   late double playerTempo;
   late double precision;
@@ -48,16 +48,12 @@ class GameState extends GetxController {
     playerTempo = audioPlayer.duration!.inMilliseconds / frequency;
   }
 
-  // TODO: Improve correction: ex: precision = 51%. should be x2
   void setPrecision() {
     precision = playerTempo < trackTempo
         ? playerTempo / trackTempo
         : trackTempo / playerTempo;
 
     precision *= 100;
-
-    if (precision < 50) precision *= 2;
-    if (precision < 25) precision *= 4;
   }
 
   Future<void> addMissingPreviewUrl() async {
@@ -72,12 +68,11 @@ class GameState extends GetxController {
       previewUrl = track.previewUrl!;
     }
 
-    audioPlayer = AudioPlayer();
-
     try {
+      audioPlayer = AudioPlayer();
       await audioPlayer.setAudioSource(AudioSource.uri(Uri.parse(previewUrl)));
     } catch (e) {
-      debugPrint('[GameState] setAudioSource Error => $e ');
+      debugPrint('[GameState] AudioPlayer error => $e ');
       Get.back();
       Helper.snack(
         "An error has occurred...",

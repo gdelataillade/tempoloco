@@ -1,9 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:get/instance_manager.dart';
+import 'package:get/get.dart';
 import 'package:tempoloco/presentation/screen/game/game_state.dart';
-import 'package:tempoloco/theme.dart';
 
 class GameHeader extends StatelessWidget {
   final String trackName;
@@ -25,41 +24,44 @@ class GameHeader extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        StreamBuilder<Duration>(
-          stream: state.audioPlayer.positionStream,
-          builder: (context, snapshot) {
-            Duration? duration;
-            bool hasError = false;
+        Obx(() {
+          if (state.loading.value) return SizedBox(height: size);
+          return StreamBuilder<Duration>(
+            stream: state.audioPlayer.positionStream,
+            builder: (context, snapshot) {
+              Duration? duration;
+              bool hasError = false;
 
-            if (snapshot.hasError) hasError = true;
-            if (snapshot.connectionState == ConnectionState.active) {
-              duration = snapshot.data;
-            }
+              if (snapshot.hasError) hasError = true;
+              if (snapshot.connectionState == ConnectionState.active) {
+                duration = snapshot.data;
+              }
 
-            return CustomPaint(
-              foregroundPainter: duration != null && !hasError
-                  ? GameHeaderProgressionPainter(
-                      height: size,
-                      progression: 100 * duration.inMilliseconds / 30000)
-                  : null,
-              child: Container(
-                height: size,
-                width: size,
-                decoration: BoxDecoration(
-                  color: ktempoDark,
-                  borderRadius: BorderRadius.all(Radius.circular(size)),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(2),
-                  child: ClipRRect(
+              return CustomPaint(
+                foregroundPainter: duration != null && !hasError
+                    ? GameHeaderProgressionPainter(
+                        height: size,
+                        progression: 100 * duration.inMilliseconds / 30000)
+                    : null,
+                child: Container(
+                  height: size,
+                  width: size,
+                  decoration: BoxDecoration(
+                    // color: ktem,
                     borderRadius: BorderRadius.all(Radius.circular(size)),
-                    child: Image.network(imgUrl, fit: BoxFit.cover),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(2),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(size)),
+                      child: Image.network(imgUrl, fit: BoxFit.cover),
+                    ),
                   ),
                 ),
-              ),
-            );
-          },
-        ),
+              );
+            },
+          );
+        }),
         const SizedBox(height: 20),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
