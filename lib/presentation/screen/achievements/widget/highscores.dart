@@ -15,12 +15,20 @@ class AchievementsHighscores extends StatelessWidget {
         itemCount: state.highscores.length,
         itemBuilder: (context, index) {
           final item = state.highscores[index];
-          // final highscore =
-          return Row(
-            children: [
-              Text(item.name),
-              Text(item.score.toString()),
-            ],
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  item.name,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Text(item.score.toStringAsFixed(2)),
+              ],
+            ),
           );
         },
       ),

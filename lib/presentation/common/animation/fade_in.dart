@@ -19,7 +19,7 @@ class FadeIn extends StatefulWidget {
 }
 
 class _FadeInState extends State<FadeIn> {
-  late Timer timer;
+  Timer? timer;
   double opacity = 0;
 
   Future<void> initTimer() async {
@@ -48,7 +48,7 @@ class _FadeInState extends State<FadeIn> {
 
   @override
   void dispose() {
-    timer.cancel();
+    timer?.cancel();
     super.dispose();
   }
 }

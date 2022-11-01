@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
@@ -10,6 +11,7 @@ import 'package:tempoloco/utils/helper.dart';
 
 class GameState extends GetxController {
   late AudioPlayer audioPlayer;
+  late Timer metronome;
   late String previewUrl;
   late RxBool liked;
   late double score;
@@ -31,6 +33,7 @@ class GameState extends GetxController {
 
   bool get isLiked => userCtrl.user.value.favorites.contains(track.id!);
 
+  // TODO: Improve algo with standard deviation (delete weird taps)
   void setPlayerTempo() {
     if (taps.isEmpty) {
       playerTempo = 0;
@@ -45,7 +48,7 @@ class GameState extends GetxController {
     final frequency =
         timeBetweenTwoTaps.reduce((a, b) => a + b) / timeBetweenTwoTaps.length;
 
-    playerTempo = audioPlayer.duration!.inMilliseconds / frequency;
+    playerTempo = 1000 * 60 / frequency;
   }
 
   void setPrecision() {
@@ -57,8 +60,28 @@ class GameState extends GetxController {
   }
 
   Future<void> addMissingPreviewUrl() async {
-    final res = await DB.searchTrack(track.name!, 0);
-    previewUrl = res.first.previewUrl!;
+    final res =
+        await DB.searchTrack("${track.name!} ${track.artists!.first.name}", 0);
+    try {
+      previewUrl = res.firstWhere((e) => e.id == track.id).previewUrl!;
+    } catch (e) {
+      debugPrint("[GameState] addMissingPreviewUrl - firstWhere error: $e");
+      Get.back();
+      Helper.snack(
+        "An error has occurred...",
+        "The song could not be loaded. Please try again later.",
+      );
+    }
+  }
+
+  Future<void> playMetronome() async {
+    final duration = Duration(milliseconds: 1000 ~/ (trackTempo / 60));
+
+    metronome = Timer.periodic(duration, (timer) {
+      SystemSound.play(SystemSoundType.click);
+
+      if (!timer.isActive || audioPlayer.playing) timer.cancel();
+    });
   }
 
   Future<void> initAudioPlayer() async {
@@ -105,18 +128,25 @@ class GameState extends GetxController {
         "An error has occurred...",
         "The song could not be loaded. Please try again later.",
       );
+    } else {
+      playMetronome();
     }
   }
 
   @override
   void onInit() {
     super.onInit();
-    initAudioPlayer();
     getTrackTempo();
+    initAudioPlayer();
     liked = isLiked.obs;
   }
 
-  void restartGame() {}
+  void restartGame() {
+    audioPlayer.seek(Duration.zero);
+    taps.clear();
+    isOver.value = false;
+    // playMetronome();
+  }
 
   void likeTrack() {
     userCtrl.likeTrack(track.id!);
@@ -141,9 +171,10 @@ class GameState extends GetxController {
 
   @override
   void onClose() {
-    debugPrint("[Game] dispose player");
+    debugPrint("[Game] onClose");
     playerStateSub?.cancel();
     audioPlayer.dispose();
+    metronome.cancel();
     super.onClose();
   }
 }

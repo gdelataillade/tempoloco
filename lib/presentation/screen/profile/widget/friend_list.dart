@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:tempoloco/presentation/common/widget/avatar_card.dart';
 import 'package:tempoloco/presentation/screen/profile/profile_state.dart';
 
-class ProfileFriends extends StatelessWidget {
-  const ProfileFriends({Key? key}) : super(key: key);
+class ProfileFriendList extends StatelessWidget {
+  const ProfileFriendList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

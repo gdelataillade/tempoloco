@@ -122,6 +122,7 @@ class TabViewState extends GetxController {
           ...strikes,
           DateTime.now(),
         ],
+        "hasCollectedStrikes": false,
       });
     } else if (!strikes.last.isToday) {
       await DB.updateUser({

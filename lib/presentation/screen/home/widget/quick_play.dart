@@ -23,7 +23,7 @@ class HomeQuickPlay extends StatelessWidget {
           itemCount: state.library.length,
           itemBuilder: (context, index) {
             final item = state.library[index];
-            final size = Get.size.width * 0.75;
+            final size = Get.size.width * 0.7;
 
             return GestureDetector(
               onTap: () {

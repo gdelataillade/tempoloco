@@ -4,7 +4,7 @@ import 'package:tempoloco/presentation/common/widget/avatar_card.dart';
 import 'package:tempoloco/presentation/common/widget/main_button.dart';
 import 'package:tempoloco/presentation/screen/profile/profile_state.dart';
 import 'package:tempoloco/presentation/screen/profile/widget/edit_infos.dart';
-import 'package:tempoloco/presentation/screen/profile/widget/friends.dart';
+import 'package:tempoloco/presentation/screen/profile/widget/friend_list.dart';
 import 'package:tempoloco/service/auth.dart';
 
 class Profile extends StatelessWidget {
@@ -29,7 +29,7 @@ class Profile extends StatelessWidget {
               const SizedBox(height: 20),
               const Padding(
                 padding: EdgeInsets.all(10),
-                child: ProfileFriends(),
+                child: ProfileFriendList(),
               ),
               const SizedBox(height: 10),
               const Spacer(),

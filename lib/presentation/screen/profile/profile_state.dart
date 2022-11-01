@@ -48,6 +48,7 @@ class ProfileState extends GetxController {
     super.onInit();
   }
 
+  // TODO: Avoid spaces ; also in onboarding
   Future<bool> updateUsername(String username) async {
     if (username == userCtrl.user.value.username) return false;
 
