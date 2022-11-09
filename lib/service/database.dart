@@ -33,12 +33,14 @@ class DB {
     }
   }
 
-  static Future<String> getFriendUsername(String friendId) async {
-    final res = await FirestoreService.instance.getDocument(
-      path: 'user/$friendId',
-      builder: (data, documentId) => data!['username'],
+  static Future<User> getFriend(String friendUsername) async {
+    final res = await FirestoreService.instance.getCollection(
+      path: 'user/',
+      builder: (data, documentId) => User.fromJson(data!, documentId),
+      queryBuilder: (query) =>
+          query.where('username', isEqualTo: friendUsername),
     );
-    return res;
+    return res.first;
   }
 
   static Stream<User> get userStream =>
@@ -61,10 +63,11 @@ class DB {
   static Future<bool> checkIfDocExists() => FirestoreService.instance
       .checkIfDocExists(collectionPath: 'user', docId: Auth.uid!);
 
-  static Future<spotify.Track> getTrackById(String trackId) async {
+  static Future<spotify.Track> getTrackById(String trackId,
+      [bool showLog = true]) async {
     final track = await spotifyLct.getTrackById(trackId);
 
-    debugPrint('===> [Spotify] Loaded track with id: $trackId');
+    if (showLog) debugPrint('===> [Spotify] Loaded track with id: $trackId');
     return track;
   }
 

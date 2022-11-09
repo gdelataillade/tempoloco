@@ -104,10 +104,10 @@ class UserController extends GetxController {
     return update;
   }
 
-  Future<void> addFriend(String friendId) async {
-    debugPrint('===> [User] Adding friend $friendId');
+  Future<void> addFriend(String username) async {
+    debugPrint('===> [User] Adding friend $username');
     await DB.updateUser(user.value.copyWith(
-      friends: [friendId, ...user.value.friends],
+      friends: [username, ...user.value.friends],
     ).toJson());
   }
 }

@@ -2,15 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:spotify/spotify.dart' as spotify;
 import 'package:tempoloco/controller/user_controller.dart';
+import 'package:tempoloco/model/highscore.dart';
 import 'package:tempoloco/model/user.dart';
 import 'package:tempoloco/service/database.dart';
-
-class HighscoreItem {
-  final String name;
-  final double score;
-
-  const HighscoreItem({required this.name, required this.score});
-}
 
 class AchievementsState extends GetxController {
   List<HighscoreItem> highscores = [];

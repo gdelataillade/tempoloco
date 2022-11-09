@@ -35,6 +35,7 @@ class _OnboardingTextInputState extends State<OnboardingTextInput> {
       padding: const EdgeInsets.all(15),
       child: TextField(
         autofocus: true,
+        autocorrect: false,
         obscureText: widget.isPassword && !hidePassword,
         textInputAction:
             widget.isPassword ? TextInputAction.done : TextInputAction.next,

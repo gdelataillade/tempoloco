@@ -54,7 +54,7 @@ class OnboardingState extends GetxController {
 
     steps.addAll(
       const [
-        OnboardingNameStep(),
+        OnboardingUsernameStep(),
         OnboardingEmailStep(),
         OnboardingPasswordStep(),
         OnboardingMusicStep(),

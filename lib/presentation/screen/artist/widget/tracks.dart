@@ -38,7 +38,7 @@ class ArtistScreenTracks extends StatelessWidget {
                     if (isPurchased) {
                       Get.toNamed('/game', arguments: item);
                     } else {
-                      Modal.showDialogModal(context, item, price);
+                      Modal.showPurchaseModal(context, item, price);
                     }
                   },
                   onLike: () => state.likeTrack(item.id!),

@@ -63,7 +63,7 @@ class _SearchResultsTrackState extends State<SearchResultsTrack> {
                       if (isPurchased) {
                         Get.toNamed('/game', arguments: item);
                       } else {
-                        Modal.showDialogModal(context, item, price);
+                        Modal.showPurchaseModal(context, item, price);
                       }
                     },
                     onLike: () => state.likeTrack(item.id!),

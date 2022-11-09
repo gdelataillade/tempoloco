@@ -22,7 +22,7 @@ class Settings extends StatelessWidget {
           GestureDetector(
             onTap: () {
               Helper.hapticFeedback();
-              Get.offAllNamed('/profile');
+              Get.toNamed('/profile');
             },
             child: Row(
               children: <Widget>[

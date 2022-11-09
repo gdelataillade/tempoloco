@@ -4,8 +4,8 @@ import 'package:tempoloco/presentation/common/animation/fade_in.dart';
 import 'package:tempoloco/presentation/funnel/onboarding/onboarding_state.dart';
 import 'package:tempoloco/presentation/funnel/onboarding/widget/text_input.dart';
 
-class OnboardingNameStep extends StatelessWidget {
-  const OnboardingNameStep({Key? key}) : super(key: key);
+class OnboardingUsernameStep extends StatelessWidget {
+  const OnboardingUsernameStep({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

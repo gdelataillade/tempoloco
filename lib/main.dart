@@ -5,6 +5,7 @@ import 'package:get/route_manager.dart';
 import 'package:tempoloco/presentation/funnel/onboarding/onboarding_funnel.dart';
 import 'package:tempoloco/presentation/screen/achievements/achievements_screen.dart';
 import 'package:tempoloco/presentation/screen/artist/artist_screen.dart';
+import 'package:tempoloco/presentation/screen/friend/friend_screen.dart';
 import 'package:tempoloco/presentation/screen/game/game.dart';
 import 'package:tempoloco/presentation/screen/profile/profile.dart';
 import 'package:tempoloco/presentation/screen/settings/settings.dart';
@@ -82,6 +83,12 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/artist',
           page: () => const ArtistScreen(),
+          transition: Transition.fadeIn,
+          transitionDuration: const Duration(milliseconds: 200),
+        ),
+        GetPage(
+          name: '/friend',
+          page: () => const FriendScreen(),
           transition: Transition.fadeIn,
           transitionDuration: const Duration(milliseconds: 200),
         ),

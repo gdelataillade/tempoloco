@@ -116,7 +116,7 @@ class TabViewState extends GetxController {
   Future<void> setStrikes() async {
     final strikes = user.strikes;
 
-    if (strikes.last.isYesterday) {
+    if (strikes.isEmpty || strikes.last.isYesterday) {
       await DB.updateUser({
         "strikes": [
           ...strikes,
