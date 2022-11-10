@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:tempoloco/presentation/common/widget/main_button.dart';
 import 'package:tempoloco/presentation/screen/profile/profile_state.dart';

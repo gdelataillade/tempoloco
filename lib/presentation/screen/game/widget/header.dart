@@ -47,7 +47,6 @@ class GameHeader extends StatelessWidget {
                   height: size,
                   width: size,
                   decoration: BoxDecoration(
-                    // color: ktem,
                     borderRadius: BorderRadius.all(Radius.circular(size)),
                   ),
                   child: Padding(
