@@ -17,12 +17,6 @@ class AddFriendModal extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       backgroundColor: ktempoDark,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-      actions: [
-        RawMaterialButton(
-          onPressed: Get.back,
-          child: const Text("Close"),
-        ),
-      ],
       content: SizedBox(
         height: MediaQuery.of(context).size.height / 4,
         child: Column(
@@ -30,7 +24,7 @@ class AddFriendModal extends StatelessWidget {
           children: [
             Text("Add friend", style: Theme.of(context).textTheme.titleLarge),
             Container(
-              margin: const EdgeInsets.symmetric(vertical: 20),
+              margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
               padding: const EdgeInsets.only(left: 10),
               height: 38,
               decoration: BoxDecoration(
@@ -52,16 +46,22 @@ class AddFriendModal extends StatelessWidget {
                 cursorColor: ktempoPink,
                 style: const TextStyle(color: ktempoDark),
                 decoration: InputDecoration(
-                  hintText: "Enter your friend's username",
+                  hintText: "Type username",
                   hintStyle: TextStyle(color: ktempoDark.withOpacity(0.8)),
                   border: InputBorder.none,
                 ),
                 onSubmitted: state.addFriendWithUsername,
               ),
             ),
-            MainButton(
-              onTap: state.addFriendWithLink,
-              label: 'Or send link',
+            const Spacer(),
+            Column(
+              children: [
+                const Text("Or if your friend doesn't have tempoloco"),
+                MainButton(
+                  onTap: state.addFriendWithLink,
+                  label: 'Or send link',
+                ),
+              ],
             ),
           ],
         ),

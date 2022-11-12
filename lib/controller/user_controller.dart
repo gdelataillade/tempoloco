@@ -104,10 +104,42 @@ class UserController extends GetxController {
     return update;
   }
 
-  Future<void> addFriend(String username) async {
-    debugPrint('===> [User] Adding friend $username');
-    await DB.updateUser(user.value.copyWith(
-      friends: [username, ...user.value.friends],
-    ).toJson());
+  Future<void> sendFriendRequest(String username) async {
+    debugPrint('===> [User] Sending friend request $username');
+    final friend = await DB.getFriend(username);
+
+    await DB.updateUser(
+      friend.copyWith(
+        friendRequests: [
+          user.value.username,
+          ...friend.friendRequests,
+        ],
+      ).toJson(),
+      id: friend.uid,
+    );
+  }
+
+  Future<void> handleFriendRequest(String username, bool accept) async {
+    debugPrint('===> [User] ${accept ? 'Adding' : 'Denying'} $username');
+
+    await DB.updateUser(
+      user.value
+          .copyWith(
+            friends:
+                accept ? [...user.value.friends, username] : user.value.friends,
+            friendRequests: user.value.friendRequests..remove(username),
+          )
+          .toJson(),
+    );
+
+    if (accept) {
+      final friend = await DB.getFriend(username);
+      await DB.updateUser(
+        friend.copyWith(
+          friends: [...friend.friends, user.value.username],
+        ).toJson(),
+        id: friend.uid,
+      );
+    }
   }
 }

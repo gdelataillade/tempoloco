@@ -141,6 +141,7 @@ class GameState extends GetxController {
     liked = isLiked.obs;
   }
 
+  // TODO: Fix restarted game over
   void restartGame() {
     audioPlayer.seek(Duration.zero);
     taps.clear();
@@ -164,7 +165,7 @@ class GameState extends GetxController {
     audioPlayer.stop();
     setPlayerTempo();
     setPrecision();
-    userCtrl.addTrackToHistory(track.id!, precision);
+    if (precision > 0.0) userCtrl.addTrackToHistory(track.id!, precision);
     isHighscore = await userCtrl.compareHighscore(track.id!, precision);
     isOver.value = true;
   }

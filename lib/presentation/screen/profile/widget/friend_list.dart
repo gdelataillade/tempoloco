@@ -14,7 +14,7 @@ class ProfileFriendList extends StatelessWidget {
     final state = Get.find<ProfileState>();
 
     return Obx(
-      () => state.loaded.value
+      () => state.friendsLoaded.value
           ? SizedBox(
               height: 120,
               child: Row(
@@ -36,29 +36,33 @@ class ProfileFriendList extends StatelessWidget {
                     ],
                   ),
                   Expanded(
-                    child: ListView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      scrollDirection: Axis.horizontal,
-                      itemCount: state.friends.length,
-                      itemBuilder: (context, index) {
-                        final friend = state.friends[index];
+                    child: state.friends.isEmpty
+                        ? const Center(
+                            child: Text("Checkout your friend's highscores"))
+                        : ListView.builder(
+                            physics: const BouncingScrollPhysics(),
+                            scrollDirection: Axis.horizontal,
+                            itemCount: state.friends.length,
+                            itemBuilder: (context, index) {
+                              final friend = state.friends[index];
 
-                        return RawMaterialButton(
-                          onPressed: () => Get.toNamed(
-                            '/friend',
-                            arguments: friend.username,
+                              return RawMaterialButton(
+                                onPressed: () => Get.toNamed(
+                                  '/friend',
+                                  arguments: friend.username,
+                                ),
+                                child: Column(
+                                  children: [
+                                    const SizedBox(height: 8),
+                                    AvatarCard(
+                                        size: 80, svgRoot: friend.svgRoot),
+                                    const SizedBox(height: 8),
+                                    Text(friend.username),
+                                  ],
+                                ),
+                              );
+                            },
                           ),
-                          child: Column(
-                            children: [
-                              const SizedBox(height: 8),
-                              AvatarCard(size: 80, svgRoot: friend.svgRoot),
-                              const SizedBox(height: 8),
-                              Text(friend.username),
-                            ],
-                          ),
-                        );
-                      },
-                    ),
                   ),
                 ],
               ),

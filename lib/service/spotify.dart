@@ -2,7 +2,6 @@ import 'package:spotify/spotify.dart';
 import 'package:tempoloco/config.dart';
 import 'package:tempoloco/utils/helper.dart';
 
-// TODO: Catch exceptions
 class Spotify {
   late SpotifyApi spotify;
 
@@ -20,6 +19,7 @@ class Spotify {
     return artist;
   }
 
+  // TODO: Fix expired credentials (just repeat request)
   Future<Track> getTrackById(String trackId) async {
     final track = await spotify.tracks.get(trackId);
 

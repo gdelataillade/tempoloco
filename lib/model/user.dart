@@ -16,6 +16,7 @@ class User {
   @JsonKey(toJson: dateTimetoJson, fromJson: dateTimefromJson)
   DateTime createdDate;
   int nbStars;
+  int nbGames;
   bool notification;
   bool reviewed;
   bool hasCollectedStrikes;
@@ -27,6 +28,7 @@ class User {
   List<Map<String, dynamic>> highscores;
   List<Map<String, String>> artists;
   List<String> friends;
+  List<String> friendRequests;
 
   User({
     required this.uid,
@@ -34,6 +36,7 @@ class User {
     required this.email,
     required this.createdDate,
     this.nbStars = 10,
+    this.nbGames = 0,
     this.notification = true,
     this.reviewed = false,
     this.hasCollectedStrikes = false,
@@ -44,6 +47,7 @@ class User {
     this.highscores = const <Map<String, dynamic>>[],
     this.artists = const <Map<String, String>>[],
     this.friends = const <String>[],
+    this.friendRequests = const <String>[],
   });
 
   factory User.fromJson(Map<String, dynamic> data, String uid) =>

@@ -3,6 +3,7 @@ import 'package:get/instance_manager.dart';
 import 'package:tempoloco/model/user.dart';
 import 'package:tempoloco/presentation/screen/profile/profile_state.dart';
 import 'package:tempoloco/theme.dart';
+import 'package:tempoloco/utils/extension/string.dart';
 
 class ProfileEditInfos extends StatefulWidget {
   const ProfileEditInfos({Key? key}) : super(key: key);
@@ -34,6 +35,7 @@ class _ProfileEditInfosState extends State<ProfileEditInfos> {
         Padding(
           padding: const EdgeInsets.all(10),
           child: TextField(
+            autocorrect: false,
             controller: usernameCtrl,
             cursorColor: ktempoWhite,
             textInputAction: TextInputAction.done,
@@ -43,8 +45,8 @@ class _ProfileEditInfosState extends State<ProfileEditInfos> {
                 .titleLarge!
                 .copyWith(fontWeight: FontWeight.w600),
             onSubmitted: (input) async {
-              final res =
-                  await state.updateUsername(input.trim().toLowerCase());
+              final res = await state
+                  .updateUsername(input.trim().toLowerCase().removeSpaces);
               if (!res) usernameCtrl.text = user.username;
             },
             decoration: const InputDecoration(
@@ -58,13 +60,14 @@ class _ProfileEditInfosState extends State<ProfileEditInfos> {
         Padding(
           padding: const EdgeInsets.all(10),
           child: TextField(
+            autocorrect: false,
             controller: emailCtrl,
             cursorColor: ktempoWhite,
             textInputAction: TextInputAction.done,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.titleLarge,
             onSubmitted: (input) async {
-              final res = await state.updateEmail(input.trim());
+              final res = await state.updateEmail(input.trim().removeSpaces);
               if (!res) emailCtrl.text = user.email;
             },
             decoration: const InputDecoration(

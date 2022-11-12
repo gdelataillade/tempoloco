@@ -13,10 +13,7 @@ class AvatarCard extends StatelessWidget {
     return Container(
       height: size,
       width: size,
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        shape: BoxShape.circle,
-      ),
+      decoration: const BoxDecoration(shape: BoxShape.circle),
       child: svgRoot == null
           ? const SizedBox.shrink()
           : CustomPaint(

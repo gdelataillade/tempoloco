@@ -5,6 +5,7 @@ import 'package:tempoloco/presentation/common/widget/main_button.dart';
 import 'package:tempoloco/presentation/screen/profile/profile_state.dart';
 import 'package:tempoloco/presentation/screen/profile/widget/edit_infos.dart';
 import 'package:tempoloco/presentation/screen/profile/widget/friend_list.dart';
+import 'package:tempoloco/presentation/screen/profile/widget/friend_requests.dart';
 import 'package:tempoloco/service/auth.dart';
 
 class Profile extends StatelessWidget {
@@ -22,7 +23,7 @@ class Profile extends StatelessWidget {
             children: [
               AvatarCard(
                 size: 150,
-                svgRoot: state.loaded.value ? state.svgRoot : null,
+                svgRoot: state.avatarLoaded.value ? state.svgRoot : null,
               ),
               const SizedBox(height: 20),
               const ProfileEditInfos(),
@@ -31,6 +32,7 @@ class Profile extends StatelessWidget {
                 padding: EdgeInsets.all(10),
                 child: ProfileFriendList(),
               ),
+              const ProfileFriendRequests(),
               const SizedBox(height: 10),
               const Spacer(),
               const MainButton(

@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:tempoloco/model/user.dart';
 import 'package:tempoloco/presentation/funnel/onboarding/step/intro_step.dart';
 import 'package:tempoloco/presentation/funnel/onboarding/step/music_step.dart';
-import 'package:tempoloco/presentation/funnel/onboarding/step/name_step.dart';
+import 'package:tempoloco/presentation/funnel/onboarding/step/username_step.dart';
 import 'package:tempoloco/presentation/funnel/onboarding/step/email_step.dart';
 import 'package:tempoloco/presentation/funnel/onboarding/step/password_step.dart';
 import 'package:tempoloco/service/auth.dart';

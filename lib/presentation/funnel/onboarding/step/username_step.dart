@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:tempoloco/presentation/common/animation/fade_in.dart';
 import 'package:tempoloco/presentation/funnel/onboarding/onboarding_state.dart';
 import 'package:tempoloco/presentation/funnel/onboarding/widget/text_input.dart';
+import 'package:tempoloco/utils/extension/string.dart';
 
 class OnboardingUsernameStep extends StatelessWidget {
   const OnboardingUsernameStep({Key? key}) : super(key: key);
@@ -23,7 +24,7 @@ class OnboardingUsernameStep extends StatelessWidget {
           OnboardingTextInput(
             value: state.username,
             onSubmit: (String name) => state.validateUsername(
-              name.trim().toLowerCase(),
+              name.trim().toLowerCase().removeSpaces,
             ),
           ),
         ],

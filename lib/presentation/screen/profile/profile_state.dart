@@ -15,40 +15,45 @@ class ProfileState extends GetxController {
 
   List<Friend> friends = [];
 
-  RxBool loaded = false.obs;
+  RxList friendRequests = [].obs;
+
+  RxBool avatarLoaded = false.obs;
+  RxBool friendsLoaded = false.obs;
 
   final userCtrl = Get.find<UserController>();
 
   Future<void> loadUserAvatar() async {
     final username = userCtrl.user.value.username;
-    final svgCode = multiavatar(username);
+    final svgCode = multiavatar(username, trBackground: true);
 
     svgRoot = await svg.fromSvgString(svgCode, username);
+    avatarLoaded.value = true;
   }
 
   Future<void> loadFriendsAvatar() async {
     final userFriends = userCtrl.user.value.friends;
 
     for (int i = 0; i < userFriends.length; i++) {
-      final svgCode = multiavatar(userFriends[i]);
+      final svgCode = multiavatar(userFriends[i], trBackground: true);
       final root = await svg.fromSvgString(svgCode, userFriends[i]);
 
-      friends.add(Friend(username: userFriends[i], svgRoot: root));
+      friends.add(
+        Friend(id: userFriends[i], username: userFriends[i], svgRoot: root),
+      );
     }
+    friendsLoaded.value = true;
   }
 
   @override
-  Future<void> onInit() async {
+  Future<void> onReady() async {
     await Future.wait([
       loadUserAvatar(),
       loadFriendsAvatar(),
     ]);
-
-    loaded.value = true;
-    super.onInit();
+    friendRequests.value = userCtrl.user.value.friendRequests;
+    super.onReady();
   }
 
-  // TODO: Avoid spaces ; also in onboarding
   Future<bool> updateUsername(String username) async {
     if (username == userCtrl.user.value.username) return false;
 
@@ -57,13 +62,17 @@ class ProfileState extends GetxController {
     if (!res) {
       await Auth.updateUsername(username);
       await DB.updateUser({"username": username});
+
+      avatarLoaded.value = false;
+      await loadUserAvatar();
+      avatarLoaded.value = true;
+
       Helper.snack('Username updated', 'Your username is now $username');
-      return true;
     } else {
       Helper.snack(
           'Error updating username', 'This username is already taken.');
-      return false;
     }
+    return !res;
   }
 
   Future<bool> updateEmail(String email) async {
@@ -89,13 +98,17 @@ class ProfileState extends GetxController {
 
     if (username == userCtrl.user.value.uid) {
       errorMessage = 'This is your username';
+    } else if (userCtrl.user.value.friends.contains(username)) {
+      errorMessage = '$username is already your friend';
     }
 
     final res = await DB.usernameAlreadyExists(username);
 
     if (res) {
-      await userCtrl.addFriend(username);
+      await userCtrl.sendFriendRequest(username);
       Get.back();
+      await loadFriendsAvatar();
+      Helper.snack("Invitation sent", "$username received your invite");
       return;
     } else {
       errorMessage = 'Username not found';
@@ -106,6 +119,17 @@ class ProfileState extends GetxController {
         'Error adding friend with username',
         errorMessage,
       );
+    }
+  }
+
+  Future<void> friendRequest(String username, bool accept) async {
+    await userCtrl.handleFriendRequest(username, accept);
+    friendRequests.value = userCtrl.user.value.friendRequests;
+
+    if (accept) {
+      friendsLoaded.value = false;
+      await loadFriendsAvatar();
+      friendsLoaded.value = true;
     }
   }
 }
