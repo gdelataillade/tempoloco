@@ -20,7 +20,7 @@ class Auth {
       String msg = e.toString();
       if (!msg.contains("The password is invalid")) {}
       if (msg.contains("user-not-found")) {
-        // TOOD: Go back to email input step
+        // TODO: Go back to email input step
         msg = "No account created with\n$email";
       } else if (msg.contains("wrong-password")) {
         msg = "Wrong password";
@@ -71,14 +71,16 @@ class Auth {
     }
   }
 
-  // TODO: Fix exception cloud_firestore/permission-denied
   static Future<void> signOut() async {
+    await Get.deleteAll();
+
     await Future.wait([
       Storage.writeData("credentials", "password", ""),
       FirebaseAuth.instance.signOut(),
     ]);
-    debugPrint("[Auth] sign out");
+
     Get.offAllNamed('/onboarding');
+    debugPrint("[Auth] sign out");
   }
 
   static Future<void> deleteUserAuth() async {
