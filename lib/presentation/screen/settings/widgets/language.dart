@@ -59,16 +59,23 @@ class SettingsLanguageFlag extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 5),
+        margin: const EdgeInsets.symmetric(horizontal: 3),
+        padding: EdgeInsets.all(isSelected ? 0.5 : 3),
         decoration: BoxDecoration(
-          color: ktempoDark,
+          // color: ktempoDark,
           borderRadius: BorderRadius.circular(40),
           border: Border.all(
             color: isSelected ? ktempoWhite : Colors.transparent,
             width: isSelected ? 3 : 0.5,
           ),
         ),
-        child: Image.asset("assets/images/$language.png", width: 40),
+        child: Center(
+          child: Image.asset(
+            "assets/images/$language.png",
+            width: 40,
+            height: 40,
+          ),
+        ),
       ),
     );
   }

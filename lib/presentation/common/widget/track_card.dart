@@ -60,7 +60,10 @@ class TrackCard extends StatelessWidget {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(15),
-                child: Image.network(imgUrl, fit: BoxFit.cover),
+                child: Hero(
+                  tag: Text(title),
+                  child: Image.network(imgUrl, fit: BoxFit.cover),
+                ),
               ),
             ),
             Expanded(

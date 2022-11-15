@@ -21,6 +21,7 @@ class LibraryTracks extends StatelessWidget {
       return Container(
         color: ktempoPurple,
         padding: const EdgeInsets.symmetric(horizontal: 25),
+        margin: const EdgeInsets.only(top: 10),
         child: BottomShaderMask(
           child: ListView.builder(
             physics: const BouncingScrollPhysics(),

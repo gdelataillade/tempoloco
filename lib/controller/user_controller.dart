@@ -104,6 +104,15 @@ class UserController extends GetxController {
     return update;
   }
 
+  Future<void> addEarnedStars(int starsEarned) async {
+    debugPrint('===> [User] Add $starsEarned stars to user');
+    await DB.updateUser(user.value
+        .copyWith(
+          nbStars: user.value.nbStars + starsEarned,
+        )
+        .toJson());
+  }
+
   Future<void> sendFriendRequest(String username) async {
     debugPrint('===> [User] Sending friend request $username');
     final friend = await DB.getFriend(username);

@@ -21,6 +21,7 @@ class GameState extends GetxController {
   late bool isHighscore;
 
   Track track = Get.arguments as Track;
+  int starsEarned = 0;
 
   final language = Helper.getLanguage();
   final userCtrl = Get.find<UserController>();
@@ -57,6 +58,12 @@ class GameState extends GetxController {
         : trackTempo / playerTempo;
 
     precision *= 100;
+  }
+
+  void setStarsEarned() {
+    if (precision >= 90) starsEarned++;
+    if (precision >= 97) starsEarned++;
+    if (precision >= 99) starsEarned++;
   }
 
   Future<void> addMissingPreviewUrl() async {
@@ -145,6 +152,7 @@ class GameState extends GetxController {
   void restartGame() {
     audioPlayer.seek(Duration.zero);
     taps.clear();
+    starsEarned = 0;
     isOver.value = false;
     // playMetronome();
   }
@@ -163,10 +171,15 @@ class GameState extends GetxController {
 
   Future<void> onFinish() async {
     audioPlayer.stop();
+    HapticFeedback.heavyImpact();
     setPlayerTempo();
     setPrecision();
+    setStarsEarned();
+
+    // TODO: Merge 3 requests to 1
     if (precision > 0.0) userCtrl.addTrackToHistory(track.id!, precision);
     isHighscore = await userCtrl.compareHighscore(track.id!, precision);
+    if (starsEarned > 0) userCtrl.addEarnedStars(starsEarned);
     isOver.value = true;
   }
 

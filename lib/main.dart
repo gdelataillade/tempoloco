@@ -36,6 +36,7 @@ class MyApp extends StatelessWidget {
       title: 'Tempoloco',
       initialRoute: '/splashscreen',
       debugShowCheckedModeBanner: false,
+      showPerformanceOverlay: false,
       theme: themeData,
       getPages: [
         GetPage(

@@ -41,7 +41,10 @@ class GameHeader extends StatelessWidget {
                 foregroundPainter: duration != null && !hasError
                     ? GameHeaderProgressionPainter(
                         height: size,
-                        progression: 100 * duration.inMilliseconds / 30000)
+                        progression: 100 *
+                            duration.inMilliseconds /
+                            state.audioPlayer.duration!.inMilliseconds,
+                      )
                     : null,
                 child: Container(
                   height: size,
@@ -53,7 +56,10 @@ class GameHeader extends StatelessWidget {
                     padding: const EdgeInsets.all(2),
                     child: ClipRRect(
                       borderRadius: BorderRadius.all(Radius.circular(size)),
-                      child: Image.network(imgUrl, fit: BoxFit.cover),
+                      child: Hero(
+                        tag: Text(trackName),
+                        child: Image.network(imgUrl, fit: BoxFit.cover),
+                      ),
                     ),
                   ),
                 ),

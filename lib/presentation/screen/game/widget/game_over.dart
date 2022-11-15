@@ -1,7 +1,11 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tempoloco/presentation/common/animation/fade_in.dart';
 import 'package:tempoloco/presentation/screen/game/game_state.dart';
+import 'package:tempoloco/presentation/screen/game/widget/stars.dart';
 
 class GameOver extends StatelessWidget {
   const GameOver({Key? key}) : super(key: key);
@@ -14,7 +18,7 @@ class GameOver extends StatelessWidget {
       duration: const Duration(seconds: 1),
       delay: const Duration(milliseconds: 500),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -29,25 +33,39 @@ class GameOver extends StatelessWidget {
                     color: Colors.red,
                   ),
                 ),
+                iconSize: 40,
               ),
               IconButton(
                 onPressed: state.restartGame,
                 icon: const Icon(Icons.restart_alt),
+                iconSize: 40,
               ),
               IconButton(
                 onPressed: () {},
-                icon: const Icon(Icons.share),
+                icon: Icon(
+                    Platform.isAndroid ? Icons.share : CupertinoIcons.share),
+                iconSize: 40,
               ),
             ],
           ),
-          const Center(child: Text("Game Over")),
-          Center(child: Text("Player BPM: ${state.playerTempo}")),
-          Center(child: Text("Real BPM: ${state.trackTempo}")),
+          const GameOverStars(),
           Center(
             child: Text(
-              "Precision: ${state.precision.toStringAsFixed(state.precision.truncateToDouble() == state.precision ? 0 : 1)}%",
+              "Awesome !",
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge!
+                  .copyWith(fontSize: 50),
             ),
           ),
+          const SizedBox(),
+          // Center(child: Text("Player BPM: ${state.playerTempo}")),
+          // Center(child: Text("Real BPM: ${state.trackTempo}")),
+          // Center(
+          //   child: Text(
+          //     "Precision: ${state.precision.toStringAsFixed(state.precision.truncateToDouble() == state.precision ? 0 : 1)}%",
+          //   ),
+          // ),
         ],
       ),
     );
