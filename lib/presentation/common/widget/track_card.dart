@@ -51,17 +51,17 @@ class TrackCard extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
-              height: 65,
-              width: 65,
-              decoration: const BoxDecoration(
-                color: ktempoDark,
-                borderRadius: BorderRadius.all(Radius.circular(15)),
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(15),
-                child: Hero(
-                  tag: Text(title),
+            Hero(
+              tag: trackId,
+              child: Container(
+                height: 65,
+                width: 65,
+                decoration: const BoxDecoration(
+                  color: ktempoDark,
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
                   child: Image.network(imgUrl, fit: BoxFit.cover),
                 ),
               ),

@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:spotify/spotify.dart';
 import 'package:tempoloco/controller/user_controller.dart';
+import 'package:tempoloco/model/chart_item.dart';
 import 'package:tempoloco/service/database.dart';
 import 'package:tempoloco/utils/helper.dart';
 
@@ -26,6 +27,7 @@ class GameState extends GetxController {
   final language = Helper.getLanguage();
   final userCtrl = Get.find<UserController>();
   final taps = <Duration>[];
+  final accuracyList = <ChartItem>[];
 
   RxBool loading = true.obs;
   RxBool isOver = false.obs;
@@ -81,6 +83,7 @@ class GameState extends GetxController {
     }
   }
 
+  // TODO: Use real sound (soudpool)
   Future<void> playMetronome() async {
     final duration = Duration(milliseconds: 1000 ~/ (trackTempo / 60));
 
@@ -167,6 +170,17 @@ class GameState extends GetxController {
 
     debugPrint("[Game] onTap");
     taps.add(audioPlayer.position);
+
+    if (taps.isNotEmpty) {
+      setPlayerTempo();
+      setPrecision();
+      accuracyList.add(
+        ChartItem(
+          accuracy: precision.toPrecision(2),
+          position: audioPlayer.position,
+        ),
+      );
+    }
   }
 
   Future<void> onFinish() async {
@@ -179,7 +193,7 @@ class GameState extends GetxController {
     // TODO: Merge 3 requests to 1
     if (precision > 0.0) userCtrl.addTrackToHistory(track.id!, precision);
     isHighscore = await userCtrl.compareHighscore(track.id!, precision);
-    if (starsEarned > 0) userCtrl.addEarnedStars(starsEarned);
+    if (starsEarned > 2) userCtrl.addEarnedStars(starsEarned);
     isOver.value = true;
   }
 

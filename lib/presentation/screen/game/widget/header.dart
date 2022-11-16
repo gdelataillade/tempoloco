@@ -25,7 +25,22 @@ class GameHeader extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Obx(() {
-          if (state.loading.value) return SizedBox(height: size);
+          if (state.loading.value) {
+            return Container(
+              height: size,
+              width: size,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(size)),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(2),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(size)),
+                  child: Image.network(imgUrl, fit: BoxFit.cover),
+                ),
+              ),
+            );
+          }
           return StreamBuilder<Duration>(
             stream: state.audioPlayer.positionStream,
             builder: (context, snapshot) {
@@ -56,10 +71,7 @@ class GameHeader extends StatelessWidget {
                     padding: const EdgeInsets.all(2),
                     child: ClipRRect(
                       borderRadius: BorderRadius.all(Radius.circular(size)),
-                      child: Hero(
-                        tag: Text(trackName),
-                        child: Image.network(imgUrl, fit: BoxFit.cover),
-                      ),
+                      child: Image.network(imgUrl, fit: BoxFit.cover),
                     ),
                   ),
                 ),

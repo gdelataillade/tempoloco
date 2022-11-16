@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tempoloco/presentation/screen/game/game_state.dart';
-import 'package:tempoloco/presentation/screen/game/widget/game_over.dart';
+import 'package:tempoloco/presentation/screen/game/widget/game_over/game_over.dart';
 import 'package:tempoloco/presentation/screen/game/widget/header.dart';
 import 'package:tempoloco/presentation/screen/game/widget/tap_area.dart';
 import 'package:tempoloco/utils/helper.dart';
@@ -18,10 +18,13 @@ class Game extends StatelessWidget {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            GameHeader(
-              trackName: state.track.name!,
-              artistName: state.track.artists!.first.name!,
-              imgUrl: Helper.getMaxResImage(state.track.album!.images!),
+            Hero(
+              tag: state.track.id!,
+              child: GameHeader(
+                trackName: state.track.name!,
+                artistName: state.track.artists!.first.name!,
+                imgUrl: Helper.getMaxResImage(state.track.album!.images!),
+              ),
             ),
             Expanded(
               child: state.isOver.value
