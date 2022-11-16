@@ -37,6 +37,7 @@ dependencies:
   fl_chart: ^0.55.2
   cupertino_icons: ^1.0.5
   smooth_page_indicator: ^1.0.0+2
+  soundpool: ^2.3.0
 
 dev_dependencies:
   flutter_lints: ^2.0.1

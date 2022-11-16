@@ -14,46 +14,63 @@ class Achievements extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userCtrl = Get.find<UserController>();
-    return Scaffold(
-      appBar: AppBar(
-        actions: <Widget>[
-          GestureDetector(
-            onTap: () {
-              Helper.hapticFeedback();
-              Get.toNamed('/profile');
-            },
-            child: Row(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(top: 4),
-                  child: Row(
-                    children: <Widget>[
-                      Text(userCtrl.user.value.nbStars.toString()),
-                      const Icon(Icons.star, color: ktempoYellow),
-                    ],
+    return GetX<AchievementsState>(
+      init: AchievementsState(),
+      builder: (state) {
+        return Scaffold(
+          appBar: AppBar(
+            actions: <Widget>[
+              GestureDetector(
+                onTap: () {
+                  Helper.hapticFeedback();
+                  Get.toNamed('/profile');
+                },
+                child: Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(top: 4),
+                      child: Row(
+                        children: <Widget>[
+                          Text(
+                            userCtrl.user.value.nbStars.toString(),
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                          const Icon(
+                            Icons.star_rounded,
+                            color: ktempoYellow,
+                            size: 30,
+                          ),
+                        ],
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(right: 10),
+                      child: Icon(FeatherIcons.user, color: ktempoWhite),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Column(
+              children: [
+                Center(
+                  child: Text(
+                    "Achievements",
+                    style: Theme.of(context).textTheme.headline5,
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(right: 10),
-                  child: Icon(FeatherIcons.user, color: ktempoWhite),
-                ),
+                const SizedBox(height: 30),
+                const AchievementsHighscores(),
+                const SizedBox(height: 10),
+                const AchievementsStrikes(),
               ],
             ),
           ),
-        ],
-      ),
-      body: GetBuilder<AchievementsState>(
-        init: AchievementsState(),
-        builder: (state) {
-          return Column(
-            children: const [
-              Center(child: Text("Achievements")),
-              AchievementsHighscores(),
-              AchievementsStrikes(),
-            ],
-          );
-        },
-      ),
+        );
+      },
     );
   }
 }

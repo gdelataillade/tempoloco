@@ -34,9 +34,14 @@ class LibraryArtists extends StatelessWidget {
                   ),
                   if (index == state.artists.length - 1)
                     SizedBox(
-                        height: 70,
-                        child: Center(
-                            child: Text("${state.artists.length} artists"))),
+                      height: 70,
+                      child: Center(
+                        child: Text(
+                          "${state.artists.length} artists",
+                          style: Theme.of(context).textTheme.headline4,
+                        ),
+                      ),
+                    ),
                 ],
               );
             },

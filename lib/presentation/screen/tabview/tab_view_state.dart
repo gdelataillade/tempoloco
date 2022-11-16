@@ -90,6 +90,7 @@ class TabViewState extends GetxController {
   Future<void> loadArtists() async {
     final res = await DB.getArtistListFromLibary();
 
+    res.sort((a, b) => a.name!.compareTo(b.name!));
     artists.value = res;
   }
 

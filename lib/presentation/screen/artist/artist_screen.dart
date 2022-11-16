@@ -69,9 +69,12 @@ class _ArtistScreenState extends State<ArtistScreen> {
                 physics: const BouncingScrollPhysics(),
                 controller: controller,
                 child: Column(
-                  children: const [
-                    ArtistScreenHeader(),
-                    ArtistScreenTracks(),
+                  children: [
+                    Hero(
+                      tag: state.artist.id!,
+                      child: const ArtistScreenHeader(),
+                    ),
+                    const ArtistScreenTracks(),
                   ],
                 ),
               ),

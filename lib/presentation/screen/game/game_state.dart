@@ -185,7 +185,7 @@ class GameState extends GetxController {
 
   Future<void> onFinish() async {
     audioPlayer.stop();
-    HapticFeedback.heavyImpact();
+    if (Helper.hasVibrations()) HapticFeedback.heavyImpact();
     setPlayerTempo();
     setPrecision();
     setStarsEarned();

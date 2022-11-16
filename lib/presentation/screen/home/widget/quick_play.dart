@@ -35,28 +35,31 @@ class HomeQuickPlay extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(
-                      height: size,
-                      margin: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: ktempoDark,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(20)),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.5),
-                            spreadRadius: 0.2,
-                            blurRadius: 2,
-                            offset: const Offset(1, 1),
+                    Hero(
+                      tag: item.id!,
+                      child: Container(
+                        height: size,
+                        margin: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: ktempoDark,
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(20)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.5),
+                              spreadRadius: 0.2,
+                              blurRadius: 2,
+                              offset: const Offset(1, 1),
+                            ),
+                          ],
+                        ),
+                        child: ClipRRect(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(20)),
+                          child: Image.network(
+                            Helper.getMaxResImage(item.album!.images!),
+                            fit: BoxFit.cover,
                           ),
-                        ],
-                      ),
-                      child: ClipRRect(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(20)),
-                        child: Image.network(
-                          Helper.getMaxResImage(item.album!.images!),
-                          fit: BoxFit.cover,
                         ),
                       ),
                     ),

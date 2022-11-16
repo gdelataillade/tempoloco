@@ -25,6 +25,7 @@ class HomeArtists extends StatelessWidget {
           itemBuilder: (context, index) {
             final artist = state.artists[index];
             return HomeArtistItem(
+              id: artist.id!,
               name: artist.name!,
               imgUrl: Helper.getMinResImage(artist.images!),
               onTap: () => Get.toNamed('artist', arguments: artist),

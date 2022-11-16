@@ -21,7 +21,7 @@ class ArtistCard extends StatelessWidget {
           Container(
             width: 60,
             height: 60,
-            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             decoration: BoxDecoration(
               border: Border.all(color: Colors.white),
               color: Colors.white,
@@ -43,7 +43,8 @@ class ArtistCard extends StatelessWidget {
           Expanded(
             child: Text(
               name,
-              style: Theme.of(context).textTheme.headline5,
+              style:
+                  Theme.of(context).textTheme.headline5!.copyWith(fontSize: 28),
             ),
           ),
         ],

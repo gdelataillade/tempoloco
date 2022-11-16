@@ -39,7 +39,7 @@ class _LibraryScreenState extends State<LibraryScreen>
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(kToolbarHeight),
           child: SizedBox(
-            height: 30,
+            height: 40,
             child: AppBar(
               backgroundColor: Colors.transparent,
               bottom: TabBar(
@@ -56,7 +56,8 @@ class _LibraryScreenState extends State<LibraryScreen>
                     style: Theme.of(context).textTheme.headline5!.copyWith(
                           fontWeight: selectedIndex == 0
                               ? FontWeight.w700
-                              : FontWeight.w400,
+                              : FontWeight.w200,
+                          fontSize: selectedIndex == 0 ? 28 : 24,
                         ),
                   ),
                   Text(
@@ -64,7 +65,8 @@ class _LibraryScreenState extends State<LibraryScreen>
                     style: Theme.of(context).textTheme.headline5!.copyWith(
                           fontWeight: selectedIndex == 1
                               ? FontWeight.w700
-                              : FontWeight.w400,
+                              : FontWeight.w200,
+                          fontSize: selectedIndex == 1 ? 28 : 24,
                         ),
                   ),
                   Text(
@@ -72,7 +74,8 @@ class _LibraryScreenState extends State<LibraryScreen>
                     style: Theme.of(context).textTheme.headline5!.copyWith(
                           fontWeight: selectedIndex == 2
                               ? FontWeight.w700
-                              : FontWeight.w400,
+                              : FontWeight.w200,
+                          fontSize: selectedIndex == 2 ? 28 : 24,
                         ),
                   ),
                 ],

@@ -6,6 +6,7 @@ import 'package:tempoloco/presentation/screen/game/widget/header.dart';
 import 'package:tempoloco/presentation/screen/game/widget/tap_area.dart';
 import 'package:tempoloco/utils/helper.dart';
 
+// TODO: Fix Hero animation overflow
 class Game extends StatelessWidget {
   const Game({Key? key}) : super(key: key);
 
