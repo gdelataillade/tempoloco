@@ -171,7 +171,7 @@ class GameState extends GetxController {
     debugPrint("[Game] onTap");
     taps.add(audioPlayer.position);
 
-    if (taps.isNotEmpty) {
+    if (taps.length > 1) {
       setPlayerTempo();
       setPrecision();
       accuracyList.add(
@@ -190,10 +190,8 @@ class GameState extends GetxController {
     setPrecision();
     setStarsEarned();
 
-    // TODO: Merge 3 requests to 1
-    if (precision > 0.0) userCtrl.addTrackToHistory(track.id!, precision);
-    isHighscore = await userCtrl.compareHighscore(track.id!, precision);
-    if (starsEarned > 2) userCtrl.addEarnedStars(starsEarned);
+    isHighscore =
+        await userCtrl.updateUserGameOver(track.id!, precision, starsEarned);
     isOver.value = true;
   }
 
