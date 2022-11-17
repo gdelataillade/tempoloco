@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:tempoloco/model/user.dart';
 import 'package:tempoloco/service/auth.dart';
 import 'package:tempoloco/service/database.dart';
+import 'package:tempoloco/service/locator.dart';
 import 'package:tempoloco/utils/helper.dart';
 
 class UserController extends GetxController {
@@ -78,6 +79,14 @@ class UserController extends GetxController {
     final nbStars = user.value.nbStars;
 
     debugPrint('===> [User] Purchasing track $trackId');
+    analyticsLct.eventWithParams(
+      "Track purchased",
+      {
+        "trackId": trackId,
+        "price": price,
+      },
+    );
+
     await DB.updateUser(user.value.copyWith(
       library: [trackId, ...library],
       artists: [
