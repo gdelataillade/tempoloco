@@ -96,6 +96,7 @@ class ProfileState extends GetxController {
   Future<void> addFriendWithUsername(String username) async {
     String errorMessage = '';
 
+    if (username.isEmpty) return;
     if (username == userCtrl.user.value.uid) {
       errorMessage = 'This is your username';
     } else if (userCtrl.user.value.friends.contains(username)) {

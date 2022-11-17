@@ -13,8 +13,13 @@ class HomeScreen extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.all(10),
-          child:
-              Text("Tempoloco", style: Theme.of(context).textTheme.headline2),
+          child: Text(
+            "Tempoloco",
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  fontSize: 50,
+                  fontWeight: FontWeight.w600,
+                ),
+          ),
         ),
         Padding(
           padding: const EdgeInsets.all(10),

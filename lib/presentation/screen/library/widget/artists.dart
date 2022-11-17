@@ -28,6 +28,7 @@ class LibraryArtists extends StatelessWidget {
               return Column(
                 children: [
                   ArtistCard(
+                    id: artist.id!,
                     name: artist.name!,
                     imgUrl: Helper.getMinResImage(artist.images!),
                     onTap: () => Get.toNamed('artist', arguments: artist),
@@ -38,7 +39,7 @@ class LibraryArtists extends StatelessWidget {
                       child: Center(
                         child: Text(
                           "${state.artists.length} artists",
-                          style: Theme.of(context).textTheme.headline4,
+                          style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ),
                     ),

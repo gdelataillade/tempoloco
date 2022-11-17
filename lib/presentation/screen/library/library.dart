@@ -57,7 +57,7 @@ class _LibraryScreenState extends State<LibraryScreen>
                           fontWeight: selectedIndex == 0
                               ? FontWeight.w700
                               : FontWeight.w200,
-                          fontSize: selectedIndex == 0 ? 28 : 24,
+                          fontSize: selectedIndex == 0 ? 26 : 24,
                         ),
                   ),
                   Text(
@@ -66,7 +66,7 @@ class _LibraryScreenState extends State<LibraryScreen>
                           fontWeight: selectedIndex == 1
                               ? FontWeight.w700
                               : FontWeight.w200,
-                          fontSize: selectedIndex == 1 ? 28 : 24,
+                          fontSize: selectedIndex == 1 ? 26 : 24,
                         ),
                   ),
                   Text(
@@ -75,7 +75,7 @@ class _LibraryScreenState extends State<LibraryScreen>
                           fontWeight: selectedIndex == 2
                               ? FontWeight.w700
                               : FontWeight.w200,
-                          fontSize: selectedIndex == 2 ? 28 : 24,
+                          fontSize: selectedIndex == 2 ? 26 : 24,
                         ),
                   ),
                 ],

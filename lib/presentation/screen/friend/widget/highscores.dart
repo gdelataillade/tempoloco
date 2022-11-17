@@ -8,29 +8,35 @@ class FriendScreenHighscores extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = Get.find<FriendState>();
+    final scrollCtrl = ScrollController();
 
     return Expanded(
-      child: ListView.builder(
-        physics: const BouncingScrollPhysics(),
-        itemCount: state.highscores.length,
-        itemBuilder: (context, index) {
-          final item = state.highscores[index];
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  item.name,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                Text(item.score.toStringAsFixed(2)),
-              ],
-            ),
-          );
-        },
+      child: Scrollbar(
+        thumbVisibility: true,
+        controller: scrollCtrl,
+        child: ListView.builder(
+          physics: const BouncingScrollPhysics(),
+          itemCount: state.highscores.length,
+          controller: scrollCtrl,
+          itemBuilder: (context, index) {
+            final item = state.highscores[index];
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    item.name,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  Text(item.score.toStringAsFixed(2)),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }

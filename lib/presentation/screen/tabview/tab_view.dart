@@ -40,21 +40,23 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
               appBar: AppBar(
                 leading: IconButton(
                   splashColor: Colors.transparent,
-                  icon: const Icon(FeatherIcons.settings),
+                  icon: const Icon(FeatherIcons.settings, size: 30),
                   onPressed: () {
                     Helper.hapticFeedback();
                     Get.toNamed('/settings');
                   },
                 ),
                 actions: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 21),
-                    child: Text(state.user.nbStars.toString()),
+                  Center(
+                    child: Text(
+                      state.user.nbStars.toString(),
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
                   ),
-                  const Icon(Icons.star_rounded, color: ktempoYellow),
+                  const Icon(Icons.star_rounded, color: ktempoYellow, size: 30),
                   IconButton(
                     splashColor: Colors.transparent,
-                    icon: const Icon(Icons.emoji_events_outlined),
+                    icon: const Icon(Icons.emoji_events_outlined, size: 30),
                     onPressed: () {
                       Helper.hapticFeedback();
                       Get.toNamed(
@@ -65,7 +67,7 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
                   ),
                   IconButton(
                     splashColor: Colors.transparent,
-                    icon: const Icon(FeatherIcons.user),
+                    icon: const Icon(FeatherIcons.user, size: 30),
                     onPressed: () {
                       Helper.hapticFeedback();
                       Get.toNamed('/profile');

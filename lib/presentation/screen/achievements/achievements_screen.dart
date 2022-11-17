@@ -27,25 +27,22 @@ class Achievements extends StatelessWidget {
                 },
                 child: Row(
                   children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(top: 4),
-                      child: Row(
-                        children: <Widget>[
-                          Text(
-                            userCtrl.user.value.nbStars.toString(),
-                            style: Theme.of(context).textTheme.titleLarge,
-                          ),
-                          const Icon(
-                            Icons.star_rounded,
-                            color: ktempoYellow,
-                            size: 30,
-                          ),
-                        ],
-                      ),
+                    Text(
+                      userCtrl.user.value.nbStars.toString(),
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    const Icon(
+                      Icons.star_rounded,
+                      color: ktempoYellow,
+                      size: 30,
                     ),
                     const Padding(
                       padding: EdgeInsets.only(right: 10),
-                      child: Icon(FeatherIcons.user, color: ktempoWhite),
+                      child: Icon(
+                        FeatherIcons.user,
+                        color: ktempoWhite,
+                        size: 30,
+                      ),
                     ),
                   ],
                 ),
