@@ -2,19 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spotify/spotify.dart';
 import 'package:tempoloco/controller/user_controller.dart';
-import 'package:tempoloco/presentation/screen/tabview/tab_view_state.dart';
 import 'package:tempoloco/theme.dart';
 
 class PurchaseTrackModal extends StatelessWidget {
   final Track track;
   final int price;
+  final void Function() onPurchase;
 
-  const PurchaseTrackModal({Key? key, required this.track, required this.price})
-      : super(key: key);
+  const PurchaseTrackModal({
+    Key? key,
+    required this.track,
+    required this.price,
+    required this.onPurchase,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final state = Get.find<TabViewState>();
     final userCtrl = Get.find<UserController>();
     final enoughStars = userCtrl.enoughStars(price);
 
@@ -34,11 +37,7 @@ class PurchaseTrackModal extends StatelessWidget {
             RawMaterialButton(
               onPressed: () {
                 if (enoughStars) {
-                  state.purchaseTrack(
-                    track.id!,
-                    track.artists!.first.id!,
-                    price,
-                  );
+                  onPurchase();
                   Get.back();
                 }
               },

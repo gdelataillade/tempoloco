@@ -22,23 +22,27 @@ class ArtistScreenTracks extends StatelessWidget {
           itemCount: state.tracks.length,
           itemBuilder: (context, index) {
             final item = state.tracks[index];
-            final isPurchased = state.isPurchased(item.id!);
             final price = Helper.getPrice(item.popularity!);
 
             return Column(
               children: [
                 TrackCard(
+                  id: item.id!,
                   title: item.name!,
                   artist: item.artists!.first.name!,
                   imgUrl: Helper.getMinResImage(item.album!.images!),
-                  trackId: item.id!,
-                  isPurchased: isPurchased,
                   price: price,
                   onPress: () {
-                    if (isPurchased) {
+                    if (state.userCtrl.isPurchased(item.id!)) {
                       Get.toNamed('/game', arguments: item);
                     } else {
-                      Modal.showPurchaseModal(context, item, price);
+                      Modal.showPurchaseModal(
+                        context,
+                        item,
+                        price,
+                        () => state.purchaseTrack(item.id!, price),
+                      );
+                      state.tracks.refresh();
                     }
                   },
                   onLike: () => state.likeTrack(item.id!),

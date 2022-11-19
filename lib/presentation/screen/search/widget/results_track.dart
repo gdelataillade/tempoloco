@@ -48,22 +48,26 @@ class _SearchResultsTrackState extends State<SearchResultsTrack> {
             controller: controller,
             itemBuilder: (context, index) {
               final item = state.trackResults[index];
-              final isPurchased = state.isPurchased(item.id!);
               final price = Helper.getPrice(item.popularity!);
               return Column(
                 children: [
                   TrackCard(
+                    id: item.id!,
                     title: item.name!,
                     artist: item.artists!.first.name!,
                     imgUrl: Helper.getMinResImage(item.album!.images!),
-                    trackId: item.id!,
-                    isPurchased: isPurchased,
                     price: price,
                     onPress: () {
-                      if (isPurchased) {
+                      if (state.userCtrl.isPurchased(item.id!)) {
                         Get.toNamed('/game', arguments: item);
                       } else {
-                        Modal.showPurchaseModal(context, item, price);
+                        Modal.showPurchaseModal(
+                          context,
+                          item,
+                          price,
+                          () => state.purchaseTrack(
+                              item.id!, item.artists!.first.id!, price),
+                        );
                       }
                     },
                     onLike: () => state.likeTrack(item.id!),

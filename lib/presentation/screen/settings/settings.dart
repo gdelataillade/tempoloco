@@ -30,8 +30,11 @@ class Settings extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 4),
                   child: Row(
                     children: <Widget>[
-                      Text(userCtrl.user.value.nbStars.toString()),
-                      const Icon(Icons.star, color: ktempoYellow),
+                      Text(
+                        userCtrl.user.value.nbStars.toString(),
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      const Icon(Icons.star, color: ktempoYellow, size: 30),
                     ],
                   ),
                 ),

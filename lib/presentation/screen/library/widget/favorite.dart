@@ -18,8 +18,9 @@ class LibraryFavorite extends StatelessWidget {
         return const Loading(debugLabel: 'Library Favorite');
       }
 
-      final favorites =
-          state.library.where((track) => state.isFavorite(track.id!)).toList();
+      final favorites = state.library
+          .where((track) => state.userCtrl.isFavorite(track.id!))
+          .toList();
 
       return Padding(
         padding: const EdgeInsets.only(left: 25, right: 25, top: 10),
@@ -32,11 +33,10 @@ class LibraryFavorite extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final item = favorites[index];
                     return TrackCard(
+                      id: item.id!,
                       title: item.name!,
                       artist: item.artists!.first.name!,
                       imgUrl: Helper.getMinResImage(item.album!.images!),
-                      trackId: item.id!,
-                      isPurchased: true,
                       onPress: () {
                         Get.toNamed('/game', arguments: item);
                       },

@@ -1,40 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tempoloco/presentation/screen/tabview/tab_view_state.dart';
+import 'package:tempoloco/controller/user_controller.dart';
 import 'package:tempoloco/theme.dart';
 import 'package:tempoloco/utils/helper.dart';
 
 class TrackCard extends StatelessWidget {
+  final String id;
   final String title;
   final String artist;
   final String imgUrl;
-  final String trackId;
-  final bool isPurchased;
   final int? price;
   final Function() onPress;
   final Function() onLike;
 
   const TrackCard({
     Key? key,
+    required this.id,
     required this.title,
     required this.artist,
     required this.imgUrl,
-    required this.trackId,
-    required this.isPurchased,
     this.price,
     required this.onPress,
     required this.onLike,
-  })  : assert(isPurchased || price != null,
-            "[TrackCard] if not purchased, track has to have a price"),
-        super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final userCtrl = Get.find<UserController>();
     final titleStyle =
         Theme.of(context).textTheme.titleLarge!.copyWith(color: ktempoDark);
     final textStyle =
         Theme.of(context).textTheme.bodyMedium!.copyWith(color: ktempoDark);
-    final state = Get.find<TabViewState>();
 
     return GestureDetector(
       onTap: () {
@@ -52,7 +48,7 @@ class TrackCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Hero(
-              tag: trackId,
+              tag: id,
               child: Container(
                 height: 65,
                 width: 65,
@@ -94,13 +90,12 @@ class TrackCard extends StatelessWidget {
               width: 50,
               child: Obx(
                 () {
-                  final isLiked = state.isFavorite(trackId);
-                  return isPurchased
+                  return userCtrl.isPurchased(id)
                       ? IconButton(
                           onPressed: onLike,
                           splashRadius: 10,
                           icon: Icon(
-                            isLiked
+                            userCtrl.isFavorite(id)
                                 ? Icons.favorite
                                 : Icons.favorite_border_rounded,
                             color: Colors.red,

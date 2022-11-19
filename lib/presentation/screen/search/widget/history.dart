@@ -53,11 +53,10 @@ class History extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final item = history[index];
                     return TrackCard(
+                      id: item.id!,
                       title: item.name!,
                       artist: item.artists!.first.name!,
                       imgUrl: Helper.getMinResImage(item.album!.images!),
-                      trackId: item.id!,
-                      isPurchased: true,
                       onPress: () {
                         Get.toNamed('/game', arguments: item);
                       },

@@ -36,9 +36,6 @@ class TabViewState extends GetxController {
 
   User get user => userCtrl.user.value;
 
-  bool isFavorite(String trackId) => user.favorites.contains(trackId);
-  bool isPurchased(String trackId) => user.library.contains(trackId);
-
   @override
   Future<void> onInit() async {
     await initUserController();

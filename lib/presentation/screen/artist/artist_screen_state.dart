@@ -34,4 +34,8 @@ class ArtistScreenState extends GetxController {
     loadTracks();
     super.onInit();
   }
+
+  Future<void> purchaseTrack(String trackId, int price) async {
+    await userCtrl.purchaseTrack(trackId, artist.id!, price);
+  }
 }

@@ -19,6 +19,8 @@ class UserController extends GetxController {
   }
 
   bool enoughStars(int price) => user.value.nbStars >= price;
+  bool isFavorite(String trackId) => user.value.favorites.contains(trackId);
+  bool isPurchased(String trackId) => user.value.library.contains(trackId);
 
   Future<void> likeTrack(String trackId) async {
     Helper.hapticFeedback();

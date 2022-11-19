@@ -34,7 +34,7 @@ class GameState extends GetxController {
 
   StreamSubscription<PlayerState>? playerStateSub;
 
-  bool get isLiked => userCtrl.user.value.favorites.contains(track.id!);
+  bool get isLiked => userCtrl.isFavorite(track.id!);
 
   // TODO: Improve algo with standard deviation (delete weird taps)
   void setPlayerTempo() {
@@ -83,7 +83,7 @@ class GameState extends GetxController {
     }
   }
 
-  // TODO: Use real sound (soudpool)
+  // TODO: Use real sound (soundpool)
   Future<void> playMetronome() async {
     final duration = Duration(milliseconds: 1000 ~/ (trackTempo / 60));
 

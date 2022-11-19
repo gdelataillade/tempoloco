@@ -55,6 +55,7 @@ class _ArtistScreenState extends State<ArtistScreen> {
         builder: (_) {
           state = _;
           return Scaffold(
+            // TODO: Use Stack instead
             appBar: AppBar(
               elevation: 0,
               title: state.showArtistNameInAppBar.value
