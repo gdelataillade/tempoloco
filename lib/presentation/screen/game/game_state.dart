@@ -15,7 +15,6 @@ class GameState extends GetxController {
   late Timer metronome;
   late String previewUrl;
   late RxBool liked;
-  late double score;
   late double trackTempo;
   late double playerTempo;
   late double precision;
@@ -113,9 +112,11 @@ class GameState extends GetxController {
       );
     }
 
+    // Future.delayed(const Duration(seconds: 10), () => onFinish());
+  }
+
+  void listenPlayerState() {
     playerStateSub = audioPlayer.playerStateStream.listen((event) {
-      if (event.processingState == ProcessingState.loading) {}
-      if (event.processingState == ProcessingState.buffering) {}
       if (event.processingState == ProcessingState.ready) {
         loading.value = false;
       }
@@ -125,8 +126,6 @@ class GameState extends GetxController {
         onFinish();
       }
     });
-
-    // Future.delayed(const Duration(seconds: 10), () => onFinish());
   }
 
   Future<void> getTrackTempo() async {
@@ -148,16 +147,19 @@ class GameState extends GetxController {
     super.onInit();
     getTrackTempo();
     initAudioPlayer();
+    listenPlayerState();
     liked = isLiked.obs;
   }
 
   // TODO: Fix restarted game over
   void restartGame() {
+    playMetronome();
     audioPlayer.seek(Duration.zero);
     taps.clear();
+    accuracyList.clear();
     starsEarned = 0;
+    listenPlayerState();
     isOver.value = false;
-    // playMetronome();
   }
 
   void likeTrack() {
