@@ -47,6 +47,15 @@ class UserController extends GetxController {
     final highscores = compareHighscore(trackId, score);
     final isHighscore = highscores.length == user.value.highscores.length;
 
+    analyticsLct.eventWithParams(
+      "Game done",
+      {
+        "trackId": trackId,
+        "score": score,
+        "starsEarned": starsEarned,
+      },
+    );
+
     await DB.updateUser(user.value
         .copyWith(
           history: history,
@@ -83,10 +92,7 @@ class UserController extends GetxController {
     debugPrint('===> [User] Purchasing track $trackId');
     analyticsLct.eventWithParams(
       "Track purchased",
-      {
-        "trackId": trackId,
-        "price": price,
-      },
+      {"trackId": trackId, "price": price},
     );
 
     await DB.updateUser(user.value.copyWith(
@@ -124,8 +130,13 @@ class UserController extends GetxController {
   }
 
   Future<void> sendFriendRequest(String username) async {
-    debugPrint('===> [c xtgfUser] Sending friend request $username');
+    debugPrint('===> [User] Sending friend request $username');
     final friend = await DB.getFriend(username);
+
+    analyticsLct.eventWithParams(
+      "Send friend request",
+      {"friend": username},
+    );
 
     await DB.updateUser(
       friend.copyWith(
@@ -140,6 +151,11 @@ class UserController extends GetxController {
 
   Future<void> handleFriendRequest(String username, bool accept) async {
     debugPrint('===> [User] ${accept ? 'Adding' : 'Denying'} $username');
+
+    analyticsLct.eventWithParams(
+      "${accept ? 'Accept' : 'Deny'} friend request",
+      {"friend": username},
+    );
 
     await DB.updateUser(
       user.value

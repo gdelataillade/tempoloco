@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tempoloco/service/locator.dart';
 import 'package:tempoloco/service/storage.dart';
 import 'package:tempoloco/utils/helper.dart';
 
@@ -72,6 +73,7 @@ class Auth {
   }
 
   static Future<void> signOut() async {
+    analyticsLct.event("Sign Out");
     await Get.deleteAll();
 
     await Future.wait([

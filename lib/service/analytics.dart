@@ -12,4 +12,7 @@ class Analytics {
 
   void eventWithParams(String name, Map<String, dynamic> params) =>
       mixpanel.track(name, properties: params);
+
+  void error(String name, Map<String, dynamic> params) =>
+      mixpanel.track("Error: $name", properties: params);
 }

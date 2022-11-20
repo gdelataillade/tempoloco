@@ -11,6 +11,7 @@ import 'package:tempoloco/presentation/funnel/onboarding/step/email_step.dart';
 import 'package:tempoloco/presentation/funnel/onboarding/step/password_step.dart';
 import 'package:tempoloco/service/auth.dart';
 import 'package:tempoloco/service/database.dart';
+import 'package:tempoloco/service/locator.dart';
 import 'package:tempoloco/service/storage.dart';
 import 'package:tempoloco/utils/constant.dart';
 import 'package:tempoloco/utils/helper.dart';
@@ -99,6 +100,7 @@ class OnboardingState extends GetxController {
     } else {
       Storage.writeData(credentialsBox, "email", email);
       Storage.writeData(credentialsBox, "password", password);
+      analyticsLct.event("Login");
       Get.offAllNamed('/tabview');
     }
   }
@@ -122,6 +124,8 @@ class OnboardingState extends GetxController {
       Storage.writeData(credentialsBox, "email", email),
       Storage.writeData(credentialsBox, "password", password),
     ]);
+
+    analyticsLct.event("Register");
 
     uid = res;
     stepIndex.value++;
@@ -204,6 +208,9 @@ class OnboardingState extends GetxController {
 
   Future<void> saveSelectedGenre() async {
     isLoading.value = true;
+
+    analyticsLct
+        .eventWithParams("Genres selected", {"selectedGenres": selectedGenres});
 
     final tracks = generateTracks();
     final library = createLibrary(tracks);
