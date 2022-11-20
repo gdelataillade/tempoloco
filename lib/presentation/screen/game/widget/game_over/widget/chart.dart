@@ -26,9 +26,7 @@ class _GameOverScoreChartState extends State<GameOverScoreChart> {
           aspectRatio: 2,
           child: DecoratedBox(
             decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(
-                Radius.circular(18),
-              ),
+              borderRadius: BorderRadius.all(Radius.circular(18)),
               color: Color(0xff232d37),
             ),
             child: Padding(
@@ -88,10 +86,10 @@ class _GameOverScoreChartState extends State<GameOverScoreChart> {
       case 0:
         text = '0%';
         break;
-      case 5:
+      case 50:
         text = '50%';
         break;
-      case 10:
+      case 100:
         text = '100%';
         break;
       default:
@@ -108,7 +106,7 @@ class _GameOverScoreChartState extends State<GameOverScoreChart> {
       list.add(
         FlSpot(
           widget.items[i].position.inMilliseconds / 1000,
-          widget.items[i].accuracy / 10,
+          widget.items[i].accuracy,
         ),
       );
     }
@@ -120,7 +118,7 @@ class _GameOverScoreChartState extends State<GameOverScoreChart> {
       gridData: FlGridData(
         show: true,
         drawVerticalLine: true,
-        horizontalInterval: 1,
+        horizontalInterval: 10,
         verticalInterval: 1,
         getDrawingHorizontalLine: (value) {
           return FlLine(
@@ -167,7 +165,7 @@ class _GameOverScoreChartState extends State<GameOverScoreChart> {
       minX: 0,
       maxX: 30,
       minY: 0,
-      maxY: 10,
+      maxY: 100,
       lineBarsData: [
         LineChartBarData(
           spots: getFlSpotList(),
@@ -192,101 +190,4 @@ class _GameOverScoreChartState extends State<GameOverScoreChart> {
       ],
     );
   }
-
-  // LineChartData avgData() {
-  //   return LineChartData(
-  //     lineTouchData: LineTouchData(enabled: false),
-  //     gridData: FlGridData(
-  //       show: true,
-  //       drawHorizontalLine: true,
-  //       verticalInterval: 1,
-  //       horizontalInterval: 1,
-  //       getDrawingVerticalLine: (value) {
-  //         return FlLine(
-  //           color: const Color(0xff37434d),
-  //           strokeWidth: 1,
-  //         );
-  //       },
-  //       getDrawingHorizontalLine: (value) {
-  //         return FlLine(
-  //           color: const Color(0xff37434d),
-  //           strokeWidth: 1,
-  //         );
-  //       },
-  //     ),
-  //     titlesData: FlTitlesData(
-  //       show: true,
-  //       bottomTitles: AxisTitles(
-  //         sideTitles: SideTitles(
-  //           showTitles: true,
-  //           reservedSize: 30,
-  //           getTitlesWidget: bottomTitleWidgets,
-  //           interval: 1,
-  //         ),
-  //       ),
-  //       leftTitles: AxisTitles(
-  //         sideTitles: SideTitles(
-  //           showTitles: true,
-  //           getTitlesWidget: leftTitleWidgets,
-  //           reservedSize: 42,
-  //           interval: 1,
-  //         ),
-  //       ),
-  //       topTitles: AxisTitles(
-  //         sideTitles: SideTitles(showTitles: false),
-  //       ),
-  //       rightTitles: AxisTitles(
-  //         sideTitles: SideTitles(showTitles: false),
-  //       ),
-  //     ),
-  //     borderData: FlBorderData(
-  //       show: true,
-  //       border: Border.all(color: const Color(0xff37434d)),
-  //     ),
-  //     minX: 0,
-  //     maxX: 11,
-  //     minY: 0,
-  //     maxY: 6,
-  //     lineBarsData: [
-  //       LineChartBarData(
-  //         spots: const [
-  //           FlSpot(0, 3.44),
-  //           FlSpot(2.6, 3.44),
-  //           FlSpot(4.9, 3.44),
-  //           FlSpot(6.8, 3.44),
-  //           FlSpot(8, 3.44),
-  //           FlSpot(9.5, 3.44),
-  //           FlSpot(11, 3.44),
-  //         ],
-  //         isCurved: true,
-  //         gradient: LinearGradient(
-  //           colors: [
-  //             ColorTween(begin: gradientColors[0], end: gradientColors[1])
-  //                 .lerp(0.2)!,
-  //             ColorTween(begin: gradientColors[0], end: gradientColors[1])
-  //                 .lerp(0.2)!,
-  //           ],
-  //         ),
-  //         barWidth: 5,
-  //         isStrokeCapRound: true,
-  //         dotData: FlDotData(
-  //           show: false,
-  //         ),
-  //         belowBarData: BarAreaData(
-  //           show: true,
-  //           gradient: LinearGradient(
-  //             colors: [
-  //               ColorTween(begin: gradientColors[0], end: gradientColors[1])
-  //                   .lerp(0.2)!
-  //                   .withOpacity(0.1),
-  //               ColorTween(begin: gradientColors[0], end: gradientColors[1])
-  //                   .lerp(0.2)!
-  //                   .withOpacity(0.1),
-  //             ],
-  //           ),
-  //         ),
-  //       ),
-  //     ],
-  //   );
-  // }
 }

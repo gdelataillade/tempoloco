@@ -15,27 +15,34 @@ class Game extends StatelessWidget {
     return GetX<GameState>(
       init: GameState(),
       builder: (state) => Scaffold(
-        appBar: AppBar(elevation: 0, backgroundColor: Colors.transparent),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Hero(
-              tag: state.track.id!,
-              child: GameHeader(
-                trackName: state.track.name!,
-                artistName: state.track.artists!.first.name!,
-                imgUrl: Helper.getMaxResImage(state.track.album!.images!),
-              ),
-            ),
-            Expanded(
-              child: state.isOver.value
-                  ? const GameOver()
-                  : Align(
-                      alignment: Alignment.center,
-                      child: GameTapArea(onTap: state.onTap),
+        // appBar: AppBar(elevation: 0, backgroundColor: Colors.transparent),
+        body: SafeArea(
+          child: Stack(
+            children: [
+              const BackButton(),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Hero(
+                    tag: state.track.id!,
+                    child: GameHeader(
+                      trackName: state.track.name!,
+                      artistName: state.track.artists!.first.name!,
+                      imgUrl: Helper.getMaxResImage(state.track.album!.images!),
                     ),
-            ),
-          ],
+                  ),
+                  Expanded(
+                    child: state.isOver.value
+                        ? const GameOver()
+                        : Align(
+                            alignment: Alignment.center,
+                            child: GameTapArea(onTap: state.onTap),
+                          ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

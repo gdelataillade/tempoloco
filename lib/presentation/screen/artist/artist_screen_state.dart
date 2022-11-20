@@ -12,10 +12,9 @@ class ArtistScreenState extends GetxController {
   final tracks = <Track>[].obs;
   final userCtrl = Get.find<UserController>();
 
-  final imageSize = Get.size.width - 60;
-  final nameSize = 44.0;
+  final imageSize = Get.size.width - 100;
 
-  double get headerSize => imageSize + nameSize;
+  double get headerSize => imageSize;
 
   bool isPurchased(String trackId) =>
       Get.find<UserController>().user.value.library.contains(trackId);

@@ -14,32 +14,38 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(elevation: 0),
       body: GetX<ProfileState>(
         init: ProfileState(),
         builder: (state) {
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              AvatarCard(
-                size: 150,
-                svgRoot: state.avatarLoaded.value ? state.svgRoot : null,
-              ),
-              const SizedBox(height: 20),
-              const ProfileEditInfos(),
-              const SizedBox(height: 20),
-              const Padding(
-                padding: EdgeInsets.all(10),
-                child: ProfileFriendList(),
-              ),
-              const ProfileFriendRequests(),
-              const SizedBox(height: 10),
-              const Spacer(),
-              const MainButton(
-                label: 'Sign out',
-                onTap: Auth.signOut,
-              ),
-            ],
+          return SafeArea(
+            child: Stack(
+              children: [
+                const BackButton(),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    AvatarCard(
+                      size: 150,
+                      svgRoot: state.avatarLoaded.value ? state.svgRoot : null,
+                    ),
+                    const SizedBox(height: 20),
+                    const ProfileEditInfos(),
+                    const SizedBox(height: 20),
+                    const Padding(
+                      padding: EdgeInsets.all(10),
+                      child: ProfileFriendList(),
+                    ),
+                    const ProfileFriendRequests(),
+                    const SizedBox(height: 10),
+                    const Spacer(),
+                    const MainButton(
+                      label: 'Sign out',
+                      onTap: Auth.signOut,
+                    ),
+                  ],
+                ),
+              ],
+            ),
           );
         },
       ),

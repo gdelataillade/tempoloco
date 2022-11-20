@@ -25,7 +25,7 @@ class Auth {
       } else if (msg.contains("wrong-password")) {
         msg = "Wrong password";
       } else if (msg.contains("network-request-failed")) {
-        msg = "Network request failed";
+        msg = "Network error. Check your internet connection ?";
       } else if (msg.contains("too-many-requests")) {
         msg = "Too many requests. Please try again later.";
       }

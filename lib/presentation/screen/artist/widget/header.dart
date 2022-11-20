@@ -11,41 +11,43 @@ class ArtistScreenHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = Get.find<ArtistScreenState>();
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          height: state.imageSize,
-          width: state.imageSize,
-          decoration: BoxDecoration(
-            color: ktempoDark,
-            borderRadius: const BorderRadius.all(Radius.circular(20)),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.5),
-                spreadRadius: 0.2,
-                blurRadius: 2,
-                offset: const Offset(1, 1),
+    return Obx(
+      () => Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            height: state.imageSize,
+            width: state.imageSize,
+            decoration: BoxDecoration(
+              color: ktempoDark,
+              borderRadius: const BorderRadius.all(Radius.circular(20)),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.5),
+                  spreadRadius: 0.2,
+                  blurRadius: 2,
+                  offset: const Offset(1, 1),
+                ),
+              ],
+            ),
+            child: ClipRRect(
+              borderRadius: const BorderRadius.all(Radius.circular(20)),
+              child: Image.network(
+                Helper.getMaxResImage(state.artist.images!),
+                fit: BoxFit.cover,
               ),
-            ],
-          ),
-          child: ClipRRect(
-            borderRadius: const BorderRadius.all(Radius.circular(20)),
-            child: Image.network(
-              Helper.getMaxResImage(state.artist.images!),
-              fit: BoxFit.cover,
             ),
           ),
-        ),
-        Container(
-          height: state.nameSize,
-          alignment: Alignment.bottomCenter,
-          child: Text(
-            state.artist.name!,
-            style: Theme.of(context).textTheme.headline5,
-          ),
-        ),
-      ],
+          if (!state.showArtistNameInAppBar.value)
+            Container(
+              padding: const EdgeInsets.only(top: 15, bottom: 8),
+              child: Text(
+                state.artist.name!,
+                style: Theme.of(context).textTheme.headline5,
+              ),
+            ),
+        ],
+      ),
     );
   }
 }

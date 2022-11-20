@@ -55,29 +55,45 @@ class _ArtistScreenState extends State<ArtistScreen> {
         builder: (_) {
           state = _;
           return Scaffold(
-            // TODO: Use Stack instead
-            appBar: AppBar(
-              elevation: 0,
-              title: state.showArtistNameInAppBar.value
-                  ? FadeIn(
-                      duration: const Duration(milliseconds: 200),
-                      child: Text(state.artist.name!),
-                    )
-                  : const SizedBox(),
-            ),
-            body: BottomShaderMask(
-              child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
-                controller: controller,
-                child: Column(
-                  children: [
-                    Hero(
-                      tag: state.artist.id!,
-                      child: const ArtistScreenHeader(),
+            appBar: state.showArtistNameInAppBar.value
+                ? AppBar(
+                    elevation: 0,
+                    backgroundColor: Colors.transparent,
+                    title: state.showArtistNameInAppBar.value
+                        ? FadeIn(
+                            duration: const Duration(milliseconds: 200),
+                            child: Text(
+                              state.artist.name!,
+                              style: Theme.of(context).textTheme.headline5,
+                            ),
+                          )
+                        : const SizedBox(),
+                  )
+                : null,
+            body: SafeArea(
+              child: Stack(
+                children: [
+                  BottomShaderMask(
+                    child: SingleChildScrollView(
+                      physics: const BouncingScrollPhysics(),
+                      controller: controller,
+                      child: Column(
+                        children: [
+                          Hero(
+                            tag: state.artist.id!,
+                            child: const ArtistScreenHeader(),
+                          ),
+                          const ArtistScreenTracks(),
+                        ],
+                      ),
                     ),
-                    const ArtistScreenTracks(),
-                  ],
-                ),
+                  ),
+                  if (!state.showArtistNameInAppBar.value)
+                    const Padding(
+                      padding: EdgeInsets.only(top: 4, left: 4),
+                      child: BackButton(),
+                    ),
+                ],
               ),
             ),
           );

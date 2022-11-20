@@ -112,6 +112,8 @@ class GameState extends GetxController {
       );
     }
 
+    listenPlayerState();
+
     // Future.delayed(const Duration(seconds: 10), () => onFinish());
   }
 
@@ -137,9 +139,10 @@ class GameState extends GetxController {
         "An error has occurred...",
         "The song could not be loaded. Please try again later.",
       );
-    } else {
-      playMetronome();
+      return;
     }
+
+    playMetronome();
   }
 
   @override
@@ -147,11 +150,9 @@ class GameState extends GetxController {
     super.onInit();
     getTrackTempo();
     initAudioPlayer();
-    listenPlayerState();
     liked = isLiked.obs;
   }
 
-  // TODO: Fix restarted game over
   void restartGame() {
     playMetronome();
     audioPlayer.seek(Duration.zero);

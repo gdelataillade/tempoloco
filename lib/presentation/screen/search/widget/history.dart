@@ -36,8 +36,9 @@ class History extends StatelessWidget {
         children: [
           Text(
             "History",
-            style: Theme.of(context).textTheme.titleLarge,
+            style: Theme.of(context).textTheme.headline5,
           ),
+          const SizedBox(height: 10),
           Obx(() {
             final List<Track> history = buildHistoryTracks(state);
 
