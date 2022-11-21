@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:tempoloco/config.dart';
 import 'package:tempoloco/presentation/screen/game/game_state.dart';
+import 'package:tempoloco/utils/helper.dart';
 import 'package:wiredash/wiredash.dart';
 
 class GameOverFeedback extends StatefulWidget {
@@ -13,48 +13,43 @@ class GameOverFeedback extends StatefulWidget {
 }
 
 class _GameOverFeedbackState extends State<GameOverFeedback> {
-  PackageInfo? packageInfo;
-  final state = Get.find<GameState>();
-
-  Future<void> getPackageInfo() async {
-    final info = await PackageInfo.fromPlatform();
-    setState(() => packageInfo = info);
-  }
-
-  @override
-  void initState() {
-    getPackageInfo();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
-    final user = state.userCtrl.user.value;
+    return FutureBuilder<PackageInfo>(
+        future: PackageInfo.fromPlatform(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            final state = Get.find<GameState>();
+            final user = state.userCtrl.user.value;
 
-    return packageInfo == null
-        ? const SizedBox()
-        : Wiredash(
-            projectId: 'tempoloco-5fd51p8',
-            secret: wiredashSecret,
-            feedbackOptions: WiredashFeedbackOptions(
-              collectMetaData: (metaData) => metaData
-                ..userEmail = user.email
-                ..userId = user.uid
-                ..buildVersion = packageInfo!.version
-                ..buildNumber = packageInfo!.buildNumber
+            Wiredash.of(context).setUserProperties(
+              userEmail: user.email,
+              userId: user.uid,
+            );
+            Wiredash.of(context).setBuildProperties(
+              buildNumber: snapshot.data!.buildNumber,
+              buildVersion: snapshot.data!.version,
+            );
+            Wiredash.of(context).modifyMetaData(
+              (metaData) => metaData
+                ..custom['Scope'] = "Game over"
                 ..custom['Track name'] = state.track.name
+                ..custom['Track artist'] = state.track.artists!.first.name
                 ..custom['Track id'] = state.track.id
                 ..custom['Score'] = state.precision
                 ..custom['Track tempo'] = state.trackTempo
                 ..custom['Player tempo'] = state.playerTempo
+                ..custom['Language'] = Helper.getLanguage()
                 ..custom['Nb games'] = user.nbGames,
-            ),
-            child: TextButton(
-              onPressed: () {
-                Wiredash.of(context).show(inheritMaterialTheme: true);
-              },
+            );
+
+            return TextButton(
+              onPressed: () =>
+                  Wiredash.of(context).show(inheritMaterialTheme: true),
               child: const Text("Give feedback"),
-            ),
-          );
+            );
+          }
+          return const SizedBox();
+        });
   }
 }
