@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:mixpanel_flutter/mixpanel_flutter.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:tempoloco/config.dart';
 
 class Analytics {
@@ -13,6 +15,10 @@ class Analytics {
   void eventWithParams(String name, Map<String, dynamic> params) =>
       mixpanel.track(name, properties: params);
 
-  void error(String name, Map<String, dynamic> params) =>
-      mixpanel.track("Error: $name", properties: params);
+  void error(String strClass, String strFunction, dynamic text,
+      {StackTrace? stack}) {
+    if (kDebugMode) return;
+    final message = "-> [$strClass] $strFunction : ${text.toString()}";
+    Sentry.captureException(message, stackTrace: stack);
+  }
 }

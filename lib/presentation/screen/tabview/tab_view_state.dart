@@ -27,7 +27,6 @@ class TabViewState extends GetxController {
   final artistResults = <spotify.Artist>[].obs;
 
   final searchParams = SearchParams();
-  final language = Helper.getLanguage();
 
   RxBool isLoaded = false.obs;
   RxBool noMoreResults = false.obs;

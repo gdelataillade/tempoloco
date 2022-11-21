@@ -23,7 +23,6 @@ class GameState extends GetxController {
   Track track = Get.arguments as Track;
   int starsEarned = 0;
 
-  final language = Helper.getLanguage();
   final userCtrl = Get.find<UserController>();
   final taps = <Duration>[];
   final accuracyList = <ChartItem>[];

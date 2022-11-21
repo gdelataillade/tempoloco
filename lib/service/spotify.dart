@@ -19,7 +19,6 @@ class Spotify {
     return artist;
   }
 
-  // TODO: Fix expired credentials (just repeat request)
   Future<Track> getTrackById(String trackId) async {
     final track = await spotify.tracks.get(trackId);
 

@@ -15,7 +15,6 @@ class Game extends StatelessWidget {
     return GetX<GameState>(
       init: GameState(),
       builder: (state) => Scaffold(
-        // appBar: AppBar(elevation: 0, backgroundColor: Colors.transparent),
         body: SafeArea(
           child: Stack(
             children: [

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/route_manager.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'package:tempoloco/presentation/funnel/onboarding/onboarding_funnel.dart';
 import 'package:tempoloco/presentation/screen/achievements/achievements_screen.dart';
@@ -24,7 +25,14 @@ Future<void> main() async {
     setupLocator(),
   ]);
 
-  runApp(const MyApp());
+  await SentryFlutter.init(
+    (options) {
+      options.dsn =
+          'https://962f851ae99e4a7db97ba71ec1d5a319@o4504194101542912.ingest.sentry.io/4504194103377920';
+      options.tracesSampleRate = 1.0;
+    },
+    appRunner: () => runApp(const MyApp()),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -93,7 +101,6 @@ class MyApp extends StatelessWidget {
           transition: Transition.fadeIn,
           transitionDuration: const Duration(milliseconds: 200),
         ),
-        // TODO: Add Network error landing page
       ],
     );
   }

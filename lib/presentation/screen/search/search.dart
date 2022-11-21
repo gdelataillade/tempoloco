@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:tempoloco/presentation/screen/search/widget/search_bar.dart';
 import 'package:tempoloco/presentation/screen/search/widget/tab_bar.dart';
 
-// TODO: Hide keyboard when scroll detected
 class SearchScreen extends StatelessWidget {
   const SearchScreen({Key? key}) : super(key: key);
 
