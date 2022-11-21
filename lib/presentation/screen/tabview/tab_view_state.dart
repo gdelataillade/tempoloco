@@ -38,6 +38,7 @@ class TabViewState extends GetxController {
   @override
   Future<void> onInit() async {
     await initUserController();
+
     await Future.wait([
       loadLibrary(),
       loadArtists(),
@@ -78,7 +79,7 @@ class TabViewState extends GetxController {
   }
 
   Future<void> loadLibrary() async {
-    final res = await DB.getTrackListFromLibary();
+    final res = await DB.getTrackListByIds(userCtrl.user.value.library);
 
     library.value = res;
   }

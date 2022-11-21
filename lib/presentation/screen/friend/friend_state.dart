@@ -26,12 +26,15 @@ class FriendState extends GetxController {
   }
 
   Future<void> loadHighscores() async {
+    final tracks = await DB.getTrackListByIds(
+      friend.value.highscores.map((e) => e['trackId'] as String).toList(),
+    );
+
     for (int i = 0; i < friend.value.highscores.length; i++) {
       final highscore = friend.value.highscores[i];
-      final track = await DB.getTrackById(highscore['trackId']);
 
       highscores.add(
-        HighscoreItem(name: track.name!, score: highscore['score']),
+        HighscoreItem(name: tracks[i].name!, score: highscore['score']),
       );
     }
   }

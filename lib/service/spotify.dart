@@ -19,10 +19,22 @@ class Spotify {
     return artist;
   }
 
+  Future<List<Artist>> getArtistListByIds(List<String> artistIds) async {
+    final artists = await spotify.artists.list(artistIds);
+
+    return artists.toList();
+  }
+
   Future<Track> getTrackById(String trackId) async {
     final track = await spotify.tracks.get(trackId);
 
     return track;
+  }
+
+  Future<List<Track>> getTrackListByIds(List<String> trackIds) async {
+    final tracks = await spotify.tracks.list(trackIds);
+
+    return tracks.toList();
   }
 
   Future<List<Track>> searchTrack(String input, int page) async {

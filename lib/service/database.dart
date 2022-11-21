@@ -73,44 +73,37 @@ class DB {
     return track;
   }
 
-  static Future<List<spotify.Track>> getTrackListFromLibary() async {
-    final tracks = <spotify.Track>[];
-    final userCtrl = Get.find<UserController>();
+  static Future<List<spotify.Track>> getTrackListByIds(
+      List<String> trackIds) async {
+    final tracks = await spotifyLct.getTrackListByIds(trackIds);
 
-    for (final trackId in userCtrl.user.value.library) {
-      final res = await spotifyLct.getTrackById(trackId);
-      tracks.add(res);
-    }
     debugPrint('===> [Spotify] Loaded ${tracks.length} tracks');
     return tracks;
   }
 
   static Future<List<spotify.Artist>> getArtistListFromLibary() async {
-    final artists = <spotify.Artist>[];
     final userCtrl = Get.find<UserController>();
-    final artistsId = <String>[];
+    final artistIds = <String>[];
 
     for (int i = 0; i < userCtrl.user.value.artists.length; i++) {
       final id = userCtrl.user.value.artists[i]["artist"];
-      if (!artistsId.contains(id)) artistsId.add(id!);
+      if (!artistIds.contains(id)) artistIds.add(id!);
     }
 
-    for (final id in artistsId) {
-      final res = await spotifyLct.getArtistById(id);
-      artists.add(res);
-    }
+    final artists = await spotifyLct.getArtistListByIds(artistIds);
+
     debugPrint('===> [Spotify] Loaded ${artists.length} artists');
     return artists;
   }
 
   static Future<List<spotify.Track>> getHistory() async {
-    final tracks = <spotify.Track>[];
     final userCtrl = Get.find<UserController>();
 
-    for (final item in userCtrl.user.value.history) {
-      final res = await spotifyLct.getTrackById(item['trackId']);
-      tracks.add(res);
-    }
+    final tracks = await spotifyLct.getTrackListByIds(userCtrl
+        .user.value.history
+        .map((e) => e['trackId'] as String)
+        .toList());
+
     debugPrint('===> [Spotify] Loaded ${tracks.length} history');
     return tracks;
   }
