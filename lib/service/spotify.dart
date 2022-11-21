@@ -7,7 +7,7 @@ class Spotify {
 
   Future<void> init() async {
     final credentials = SpotifyApiCredentials(
-      spotifyPublicKey,
+      '30646375fdb84441acccb3c1097a9af3',
       spotifyPrivateKey,
     );
     spotify = SpotifyApi(credentials);

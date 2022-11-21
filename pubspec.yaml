@@ -40,6 +40,8 @@ dependencies:
   soundpool: ^2.3.0
   mixpanel_flutter: ^2.0.0
   sentry_flutter: ^6.16.0
+  wiredash: ^1.5.0
+  package_info_plus: ^3.0.2
 
 dev_dependencies:
   flutter_lints: ^2.0.1

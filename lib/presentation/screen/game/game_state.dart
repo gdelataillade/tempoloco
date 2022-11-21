@@ -86,9 +86,12 @@ class GameState extends GetxController {
     final duration = Duration(milliseconds: 1000 ~/ (trackTempo / 60));
 
     metronome = Timer.periodic(duration, (timer) {
-      SystemSound.play(SystemSoundType.click);
+      if (!timer.isActive || audioPlayer.playing) {
+        timer.cancel();
+        return;
+      }
 
-      if (!timer.isActive || audioPlayer.playing) timer.cancel();
+      SystemSound.play(SystemSoundType.click);
     });
   }
 
@@ -155,9 +158,9 @@ class GameState extends GetxController {
   void restartGame() {
     playMetronome();
     audioPlayer.seek(Duration.zero);
+    starsEarned = 0;
     taps.clear();
     accuracyList.clear();
-    starsEarned = 0;
     listenPlayerState();
     isOver.value = false;
   }
@@ -200,9 +203,13 @@ class GameState extends GetxController {
   @override
   void onClose() {
     debugPrint("[Game] onClose");
+
     playerStateSub?.cancel();
-    audioPlayer.dispose();
-    metronome.cancel();
+
+    if (!loading.value) {
+      metronome.cancel();
+      audioPlayer.dispose();
+    }
     super.onClose();
   }
 }
