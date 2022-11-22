@@ -46,6 +46,7 @@ class UserController extends GetxController {
     final history = addTrackToHistory(trackId, score);
     final highscores = compareHighscore(trackId, score);
     final isHighscore = highscores.length == user.value.highscores.length;
+    final nbGames = user.value.nbGames + 1;
 
     analyticsLct.eventWithParams(
       "Game done",
@@ -53,6 +54,7 @@ class UserController extends GetxController {
         "trackId": trackId,
         "score": score,
         "starsEarned": starsEarned,
+        "nbGames": nbGames,
       },
     );
 
@@ -61,6 +63,7 @@ class UserController extends GetxController {
           history: history,
           highscores: highscores,
           nbStars: user.value.nbStars + starsEarned,
+          nbGames: nbGames,
         )
         .toJson());
 
@@ -176,5 +179,31 @@ class UserController extends GetxController {
         id: friend.uid,
       );
     }
+  }
+
+  Future<void> deleteFriend(String username) async {
+    debugPrint('===> [User] Delete friend $username');
+
+    analyticsLct.eventWithParams(
+      "Remove friend",
+      {"friend": username},
+    );
+
+    await DB.updateUser(
+      user.value
+          .copyWith(
+            friends: user.value.friends..remove(username),
+          )
+          .toJson(),
+    );
+
+    final friend = await DB.getFriend(username);
+
+    await DB.updateUser(
+      friend
+          .copyWith(friends: friend.friends..remove(user.value.username))
+          .toJson(),
+      id: friend.uid,
+    );
   }
 }

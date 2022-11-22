@@ -172,3 +172,32 @@ const List<Map<String, String>> playlists = [
     "id": "37i9dQZF1DXe9Gx5fVy1RT",
   },
 ];
+
+// TODO: Write more end phrases
+const List<Map<String, dynamic>> gameOverPhrase = [
+  {
+    "nbStars": 0,
+    "phrases": [
+      "You got it wrong",
+    ],
+  },
+  {
+    "nbStars": 1,
+    "phrases": [
+      "Could be better",
+    ],
+  },
+  {
+    "nbStars": 2,
+    "phrases": [
+      "You got it",
+    ],
+  },
+  {
+    "nbStars": 3,
+    "phrases": [
+      "Awesome !",
+      "Perfect",
+    ],
+  },
+];

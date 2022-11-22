@@ -115,8 +115,6 @@ class GameState extends GetxController {
     }
 
     listenPlayerState();
-
-    // Future.delayed(const Duration(seconds: 10), () => onFinish());
   }
 
   void listenPlayerState() {
@@ -205,11 +203,9 @@ class GameState extends GetxController {
     debugPrint("[Game] onClose");
 
     playerStateSub?.cancel();
+    metronome.cancel();
+    if (!loading.value) audioPlayer.dispose();
 
-    if (!loading.value) {
-      metronome.cancel();
-      audioPlayer.dispose();
-    }
     super.onClose();
   }
 }
