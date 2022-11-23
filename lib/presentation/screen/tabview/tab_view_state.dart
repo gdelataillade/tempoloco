@@ -4,6 +4,7 @@ import 'package:tempoloco/controller/user_controller.dart';
 import 'package:tempoloco/model/user.dart';
 import 'package:tempoloco/service/auth.dart';
 import 'package:tempoloco/service/database.dart';
+import 'package:tempoloco/service/locator.dart';
 import 'package:tempoloco/utils/extension/datetime.dart';
 import 'package:tempoloco/utils/helper.dart';
 
@@ -65,6 +66,8 @@ class TabViewState extends GetxController {
   }
 
   Future<void> initUserController() async {
+    analyticsLct.identifyUser(Auth.uid!);
+
     final exists = await DB.checkIfDocExists();
     if (!exists) {
       Helper.snack(

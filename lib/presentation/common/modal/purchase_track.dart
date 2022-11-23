@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:spotify/spotify.dart';
 import 'package:tempoloco/controller/user_controller.dart';
 import 'package:tempoloco/theme.dart';
+import 'package:tempoloco/utils/intl.dart';
 
 class PurchaseTrackModal extends StatelessWidget {
   final Track track;
@@ -32,7 +33,7 @@ class PurchaseTrackModal extends StatelessWidget {
           children: [
             RawMaterialButton(
               onPressed: Get.back,
-              child: const Text("Close"),
+              child: Text(Str.close),
             ),
             RawMaterialButton(
               onPressed: () {
@@ -42,7 +43,7 @@ class PurchaseTrackModal extends StatelessWidget {
                 }
               },
               child: Text(
-                "Purchase",
+                Str.purchase,
                 style: TextStyle(
                   color: enoughStars ? Colors.green : Colors.red,
                 ),
@@ -57,7 +58,7 @@ class PurchaseTrackModal extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text(track.name!),
-            Text("$price"),
+            Text(price.toString()),
           ],
         ),
       ),

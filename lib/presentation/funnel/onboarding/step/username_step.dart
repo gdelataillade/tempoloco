@@ -4,6 +4,7 @@ import 'package:tempoloco/presentation/common/animation/fade_in.dart';
 import 'package:tempoloco/presentation/funnel/onboarding/onboarding_state.dart';
 import 'package:tempoloco/presentation/funnel/onboarding/widget/text_input.dart';
 import 'package:tempoloco/utils/extension/string.dart';
+import 'package:tempoloco/utils/intl.dart';
 
 class OnboardingUsernameStep extends StatelessWidget {
   const OnboardingUsernameStep({Key? key}) : super(key: key);
@@ -18,7 +19,7 @@ class OnboardingUsernameStep extends StatelessWidget {
         children: [
           const SizedBox(),
           Text(
-            "Username",
+            Str.username,
             style: Theme.of(context).textTheme.titleLarge,
           ),
           OnboardingTextInput(

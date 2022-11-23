@@ -6,6 +6,7 @@ import 'package:tempoloco/presentation/funnel/onboarding/onboarding_state.dart';
 import 'package:tempoloco/presentation/funnel/onboarding/widget/genre_item.dart';
 import 'package:tempoloco/utils/constant.dart';
 import 'package:tempoloco/utils/helper.dart';
+import 'package:tempoloco/utils/intl.dart';
 
 class OnboardingMusicStep extends StatelessWidget {
   const OnboardingMusicStep({Key? key}) : super(key: key);
@@ -18,9 +19,9 @@ class OnboardingMusicStep extends StatelessWidget {
           const SizedBox(height: 80),
           Expanded(
             child: Column(
-              children: const [
-                Text("What kind of music do you like ?"),
-                Text("Pick at least two genres."),
+              children: [
+                Text(Str.kindOfMusic),
+                Text(Str.pick2Genres),
               ],
             ),
           ),
@@ -45,12 +46,12 @@ class OnboardingMusicStep extends StatelessWidget {
               final disable = state.selectedGenres.length < 2;
 
               return MainButton(
-                label: 'Finish',
+                label: Str.finish,
                 disable: disable,
                 onTap: () {
                   if (disable) {
                     Helper.snack(
-                      "Pick at least two genres",
+                      Str.pick2Genres,
                       "",
                       duration: const Duration(seconds: 2),
                     );

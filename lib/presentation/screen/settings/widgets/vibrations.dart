@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tempoloco/presentation/screen/settings/settings_state.dart';
 import 'package:tempoloco/theme.dart';
+import 'package:tempoloco/utils/intl.dart';
 
 class SettingsVibrations extends StatelessWidget {
   const SettingsVibrations({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class SettingsVibrations extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text("Vibrations", style: Theme.of(context).textTheme.titleLarge),
+        Text(Str.vibrations, style: Theme.of(context).textTheme.titleLarge),
         Obx(
           () => CupertinoSwitch(
             value: state.vibrations.value,

@@ -15,6 +15,7 @@ import 'package:tempoloco/service/locator.dart';
 import 'package:tempoloco/service/storage.dart';
 import 'package:tempoloco/utils/constant.dart';
 import 'package:tempoloco/utils/helper.dart';
+import 'package:tempoloco/utils/intl.dart';
 
 enum AuthType { login, register }
 
@@ -139,8 +140,8 @@ class OnboardingState extends GetxController {
 
     if (res) {
       Helper.snack(
-        "Password reset",
-        "An email has been sent to $email",
+        Str.pwdReset,
+        "${Str.pwdResetEmail} $email",
       );
     }
     isLoading.value = false;
@@ -148,16 +149,10 @@ class OnboardingState extends GetxController {
 
   void validateUsername(String value) {
     if (value.length < 2) {
-      Helper.snack(
-        "Password is too short",
-        "It should be at least 2 characters",
-      );
+      Helper.snack(Str.usernameTooShort, Str.usernameMinChar);
       return;
     } else if (value.contains('@') || value.contains('.')) {
-      Helper.snack(
-        "Your name contains weird characters",
-        "Please enter a valid name",
-      );
+      Helper.snack(Str.usernameWeird, Str.enterValidUsername);
       return;
     }
     username = value;
@@ -168,10 +163,7 @@ class OnboardingState extends GetxController {
     final bool isValid = EmailValidator.validate(value);
 
     if (!isValid) {
-      Helper.snack(
-        "Email is not valid",
-        "Please use a valid email address",
-      );
+      Helper.snack(Str.emailNotValid, Str.enterValidEmail);
       return;
     }
 
@@ -181,16 +173,13 @@ class OnboardingState extends GetxController {
 
   void validatePassword(String value) {
     if (value.length < 6) {
-      Helper.snack(
-        "Password is too short",
-        "It should be at least 6 characters",
-      );
+      Helper.snack(Str.pwdTooShort, Str.pwdMinChar);
       return;
     }
     if (stupidPasswords.contains(value.toLowerCase())) {
       Helper.snack(
-        "Password refused",
-        "Using $value as password is not a good idea",
+        Str.pwdRefused,
+        Str.pwdNotGoodIdea.replaceFirst('\$', value),
       );
       return;
     }

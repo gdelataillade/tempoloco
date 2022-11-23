@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tempoloco/presentation/screen/home/widget/artists.dart';
 import 'package:tempoloco/presentation/screen/home/widget/quick_play.dart';
+import 'package:tempoloco/utils/intl.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -23,13 +24,14 @@ class HomeScreen extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.all(10),
-          child: Text("Artists", style: Theme.of(context).textTheme.titleLarge),
+          child:
+              Text(Str.artists, style: Theme.of(context).textTheme.titleLarge),
         ),
         const HomeArtists(),
         Padding(
           padding: const EdgeInsets.all(10),
-          child:
-              Text("Quick play", style: Theme.of(context).textTheme.titleLarge),
+          child: Text(Str.quickPlay,
+              style: Theme.of(context).textTheme.titleLarge),
         ),
         const HomeQuickPlay(),
       ],

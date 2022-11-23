@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tempoloco/presentation/common/animation/fade_in.dart';
 import 'package:tempoloco/presentation/funnel/onboarding/onboarding_state.dart';
+import 'package:tempoloco/utils/intl.dart';
 
 class OnboardingIntroStep extends StatefulWidget {
   const OnboardingIntroStep({Key? key}) : super(key: key);
@@ -29,11 +30,11 @@ class _OnboardingIntroStepState extends State<OnboardingIntroStep> {
                     children: [
                       RawMaterialButton(
                         onPressed: state.startRegister,
-                        child: const Text("Sign up"),
+                        child: Text(Str.register),
                       ),
                       RawMaterialButton(
                         onPressed: state.startLogin,
-                        child: const Text("Already have an account? Log in"),
+                        child: Text(Str.login),
                       ),
                     ],
                   ),

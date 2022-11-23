@@ -136,11 +136,6 @@ class UserController extends GetxController {
     debugPrint('===> [User] Sending friend request $username');
     final friend = await DB.getFriend(username);
 
-    analyticsLct.eventWithParams(
-      "Send friend request",
-      {"friend": username},
-    );
-
     await DB.updateUser(
       friend.copyWith(
         friendRequests: [
@@ -150,15 +145,15 @@ class UserController extends GetxController {
       ).toJson(),
       id: friend.uid,
     );
+
+    analyticsLct.eventWithParams(
+      "Send friend request",
+      {"friend": username},
+    );
   }
 
   Future<void> handleFriendRequest(String username, bool accept) async {
     debugPrint('===> [User] ${accept ? 'Adding' : 'Denying'} $username');
-
-    analyticsLct.eventWithParams(
-      "${accept ? 'Accept' : 'Deny'} friend request",
-      {"friend": username},
-    );
 
     await DB.updateUser(
       user.value
@@ -179,21 +174,19 @@ class UserController extends GetxController {
         id: friend.uid,
       );
     }
+
+    analyticsLct.eventWithParams(
+      "${accept ? 'Accept' : 'Deny'} friend request",
+      {"friend": username},
+    );
   }
 
   Future<void> deleteFriend(String username) async {
     debugPrint('===> [User] Delete friend $username');
 
-    analyticsLct.eventWithParams(
-      "Remove friend",
-      {"friend": username},
-    );
-
     await DB.updateUser(
       user.value
-          .copyWith(
-            friends: user.value.friends..remove(username),
-          )
+          .copyWith(friends: user.value.friends..remove(username))
           .toJson(),
     );
 
@@ -204,6 +197,11 @@ class UserController extends GetxController {
           .copyWith(friends: friend.friends..remove(user.value.username))
           .toJson(),
       id: friend.uid,
+    );
+
+    analyticsLct.eventWithParams(
+      "Remove friend",
+      {"friend": username},
     );
   }
 }

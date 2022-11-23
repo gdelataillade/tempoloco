@@ -48,6 +48,7 @@ class GameOver extends StatelessWidget {
                   iconSize: 40,
                 ),
                 const SizedBox(width: 10),
+                // TODO: Share method
                 IconButton(
                   onPressed: () {},
                   icon: Icon(

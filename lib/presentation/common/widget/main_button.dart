@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:tempoloco/theme.dart';
+import 'package:tempoloco/utils/intl.dart';
 
 class MainButton extends StatelessWidget {
-  final String label;
+  final String? label;
   final bool disable;
   final Function() onTap;
 
   const MainButton({
     Key? key,
-    this.label = 'Continue',
+    this.label,
     this.disable = false,
     required this.onTap,
   }) : super(key: key);
@@ -32,7 +33,7 @@ class MainButton extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  label,
+                  label ?? Str.continueStr,
                   style: Theme.of(context)
                       .textTheme
                       .titleLarge!

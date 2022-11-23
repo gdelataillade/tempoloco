@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:tempoloco/presentation/common/widget/avatar_card.dart';
 import 'package:tempoloco/presentation/screen/profile/profile_state.dart';
 import 'package:tempoloco/presentation/screen/profile/widget/add_friend_modal.dart';
+import 'package:tempoloco/utils/intl.dart';
 import 'package:tempoloco/utils/modal.dart';
 
 // TODO: Refresh list when friend added
@@ -32,13 +33,12 @@ class ProfileFriendList extends StatelessWidget {
                         splashRadius: 30,
                       ),
                       const SizedBox(height: 6),
-                      const Text("Add friend"),
+                      Text(Str.addFriend),
                     ],
                   ),
                   Expanded(
                     child: state.friends.isEmpty
-                        ? const Center(
-                            child: Text("Checkout your friend's highscores"))
+                        ? Center(child: Text(Str.checkFriendHighscores))
                         : ListView.builder(
                             physics: const BouncingScrollPhysics(),
                             scrollDirection: Axis.horizontal,

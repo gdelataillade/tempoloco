@@ -7,6 +7,7 @@ import 'package:tempoloco/presentation/screen/achievements/widget/highscores.dar
 import 'package:tempoloco/presentation/screen/achievements/widget/strikes.dart';
 import 'package:tempoloco/theme.dart';
 import 'package:tempoloco/utils/helper.dart';
+import 'package:tempoloco/utils/intl.dart';
 
 class Achievements extends StatelessWidget {
   const Achievements({Key? key}) : super(key: key);
@@ -55,7 +56,7 @@ class Achievements extends StatelessWidget {
               children: [
                 Center(
                   child: Text(
-                    "Achievements",
+                    Str.achievements,
                     style: Theme.of(context).textTheme.headline5,
                   ),
                 ),

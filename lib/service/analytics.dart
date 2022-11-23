@@ -10,6 +10,8 @@ class Analytics {
     mixpanel = await Mixpanel.init(mixpanelToken, trackAutomaticEvents: true);
   }
 
+  void identifyUser(String uid) => mixpanel.identify(uid);
+
   void event(String name) => mixpanel.track(name);
 
   void eventWithParams(String name, Map<String, dynamic> params) =>

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:tempoloco/presentation/common/widget/main_button.dart';
 import 'package:tempoloco/presentation/screen/profile/profile_state.dart';
 import 'package:tempoloco/theme.dart';
+import 'package:tempoloco/utils/intl.dart';
 
 class AddFriendModal extends StatelessWidget {
   const AddFriendModal({Key? key}) : super(key: key);
@@ -24,7 +25,10 @@ class AddFriendModal extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Text("Add friend", style: Theme.of(context).textTheme.titleLarge),
+              Text(
+                Str.addFriend,
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 20),
                 padding: const EdgeInsets.only(left: 10),
@@ -48,7 +52,7 @@ class AddFriendModal extends StatelessWidget {
                   cursorColor: ktempoPink,
                   style: const TextStyle(color: ktempoDark),
                   decoration: InputDecoration(
-                    hintText: "Type username",
+                    hintText: Str.typeUsername,
                     hintStyle: TextStyle(color: ktempoDark.withOpacity(0.6)),
                     border: InputBorder.none,
                   ),
@@ -58,10 +62,10 @@ class AddFriendModal extends StatelessWidget {
               const Spacer(),
               Column(
                 children: [
-                  const Text("Or if your friend doesn't have tempoloco"),
+                  Text(Str.friendHasNotTempoloco),
                   MainButton(
                     onTap: state.addFriendWithLink,
-                    label: 'Or send link',
+                    label: Str.friendSendLink,
                   ),
                 ],
               ),

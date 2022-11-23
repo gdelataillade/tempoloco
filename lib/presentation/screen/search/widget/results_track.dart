@@ -5,6 +5,7 @@ import 'package:tempoloco/presentation/common/widget/track_card.dart';
 import 'package:tempoloco/presentation/screen/tabview/tab_view_state.dart';
 import 'package:tempoloco/theme.dart';
 import 'package:tempoloco/utils/helper.dart';
+import 'package:tempoloco/utils/intl.dart';
 import 'package:tempoloco/utils/modal.dart';
 
 class SearchResultsTrack extends StatefulWidget {
@@ -37,7 +38,7 @@ class _SearchResultsTrackState extends State<SearchResultsTrack> {
   Widget build(BuildContext context) {
     return Obx(() {
       if (state.library.isEmpty || state.trackResults.isEmpty) {
-        return const Center(child: Text("No results"));
+        return Center(child: Text(Str.noResults));
       }
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
