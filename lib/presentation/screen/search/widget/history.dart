@@ -5,7 +5,7 @@ import 'package:tempoloco/presentation/common/widget/shader_mask.dart';
 import 'package:tempoloco/presentation/common/widget/track_card.dart';
 import 'package:tempoloco/presentation/screen/tabview/tab_view_state.dart';
 import 'package:tempoloco/utils/helper.dart';
-import 'package:tempoloco/utils/intl.dart';
+import 'package:tempoloco/utils/translations.dart';
 
 class History extends StatelessWidget {
   const History({Key? key}) : super(key: key);
@@ -44,7 +44,7 @@ class History extends StatelessWidget {
             final List<Track> history = buildHistoryTracks(state);
 
             if (history.isEmpty) {
-              return Center(child: Text(Str.noHistory));
+              return Center(child: Text('noHistory'.tr));
             }
 
             return Expanded(

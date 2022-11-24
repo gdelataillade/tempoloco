@@ -6,7 +6,6 @@ import 'package:tempoloco/presentation/common/widget/track_card.dart';
 import 'package:tempoloco/presentation/screen/tabview/tab_view_state.dart';
 import 'package:tempoloco/theme.dart';
 import 'package:tempoloco/utils/helper.dart';
-import 'package:tempoloco/utils/intl.dart';
 
 class LibraryTracks extends StatelessWidget {
   const LibraryTracks({Key? key}) : super(key: key);
@@ -46,7 +45,7 @@ class LibraryTracks extends StatelessWidget {
                       height: 70,
                       child: Center(
                         child: Text(
-                          "${state.library.length} ${Str.songs.toLowerCase()}",
+                          "${state.library.length} ${'songs'.tr.toLowerCase()}",
                         ),
                       ),
                     ),

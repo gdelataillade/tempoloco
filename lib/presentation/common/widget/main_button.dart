@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tempoloco/theme.dart';
-import 'package:tempoloco/utils/intl.dart';
 
 class MainButton extends StatelessWidget {
   final String? label;
@@ -33,7 +33,7 @@ class MainButton extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  label ?? Str.continueStr,
+                  label ?? 'continueStr'.tr,
                   style: Theme.of(context)
                       .textTheme
                       .titleLarge!

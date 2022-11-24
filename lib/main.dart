@@ -16,6 +16,7 @@ import 'package:tempoloco/presentation/screen/tabview/tab_view.dart';
 import 'package:tempoloco/theme.dart';
 import 'package:tempoloco/service/locator.dart';
 import 'package:tempoloco/utils/helper.dart';
+import 'package:tempoloco/utils/translations.dart';
 import 'package:wiredash/wiredash.dart';
 
 Future<void> main() async {
@@ -51,6 +52,8 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         showPerformanceOverlay: false,
         theme: themeData,
+        translations: AppTranslations(),
+        locale: Helper.setDefaultLocale(),
         getPages: [
           GetPage(
             name: '/splashscreen',

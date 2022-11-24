@@ -4,7 +4,7 @@ import 'package:tempoloco/presentation/common/widget/artist_card.dart';
 import 'package:tempoloco/presentation/common/widget/shader_mask.dart';
 import 'package:tempoloco/presentation/screen/tabview/tab_view_state.dart';
 import 'package:tempoloco/utils/helper.dart';
-import 'package:tempoloco/utils/intl.dart';
+import 'package:tempoloco/utils/translations.dart';
 
 class SearchResultsArtist extends StatelessWidget {
   const SearchResultsArtist({Key? key}) : super(key: key);
@@ -14,7 +14,7 @@ class SearchResultsArtist extends StatelessWidget {
     final state = Get.find<TabViewState>();
     return Obx(() {
       if (state.artistResults.isEmpty) {
-        return Center(child: Text(Str.noResults));
+        return Center(child: Text('noResults'.tr));
       }
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 5),

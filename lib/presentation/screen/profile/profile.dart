@@ -7,7 +7,6 @@ import 'package:tempoloco/presentation/screen/profile/widget/edit_infos.dart';
 import 'package:tempoloco/presentation/screen/profile/widget/friend_list.dart';
 import 'package:tempoloco/presentation/screen/profile/widget/friend_requests.dart';
 import 'package:tempoloco/service/auth.dart';
-import 'package:tempoloco/utils/intl.dart';
 
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
@@ -40,7 +39,7 @@ class Profile extends StatelessWidget {
                     const SizedBox(height: 10),
                     const Spacer(),
                     MainButton(
-                      label: Str.signOut,
+                      label: 'signOut'.tr,
                       onTap: Auth.signOut,
                     ),
                   ],

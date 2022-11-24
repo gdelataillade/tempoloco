@@ -20,7 +20,7 @@ class GameOverScore extends StatelessWidget {
         ..custom['Score'] = state.precision
         ..custom['Track tempo'] = state.trackTempo
         ..custom['Player tempo'] = state.playerTempo
-        ..custom['Language'] = Helper.getLanguage()
+        ..custom['Language'] = Helper.language
         ..custom['Nb games'] = state.userCtrl.user.value.nbGames,
     );
   }

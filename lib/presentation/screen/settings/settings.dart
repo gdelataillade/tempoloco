@@ -9,7 +9,7 @@ import 'package:tempoloco/presentation/screen/settings/widgets/language.dart';
 import 'package:tempoloco/presentation/screen/settings/widgets/volume_slider.dart';
 import 'package:tempoloco/theme.dart';
 import 'package:tempoloco/utils/helper.dart';
-import 'package:tempoloco/utils/intl.dart';
+import 'package:tempoloco/utils/translations.dart';
 
 class Settings extends StatelessWidget {
   const Settings({Key? key}) : super(key: key);
@@ -58,7 +58,7 @@ class Settings extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    Str.settings,
+                    'settings'.tr,
                     style: Theme.of(context).textTheme.headline3,
                   ),
                   const SizedBox(height: 20),
@@ -68,7 +68,7 @@ class Settings extends StatelessWidget {
                   const SizedBox(height: 20),
                   const SettingsVibrations(),
                   const Spacer(),
-                  const WiredashFeedbackButton(),
+                  // const WiredashFeedbackButton(),
                 ],
               ),
             ),

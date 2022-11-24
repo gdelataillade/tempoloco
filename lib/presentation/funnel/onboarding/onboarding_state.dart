@@ -15,7 +15,6 @@ import 'package:tempoloco/service/locator.dart';
 import 'package:tempoloco/service/storage.dart';
 import 'package:tempoloco/utils/constant.dart';
 import 'package:tempoloco/utils/helper.dart';
-import 'package:tempoloco/utils/intl.dart';
 
 enum AuthType { login, register }
 
@@ -140,8 +139,8 @@ class OnboardingState extends GetxController {
 
     if (res) {
       Helper.snack(
-        Str.pwdReset,
-        "${Str.pwdResetEmail} $email",
+        'pwdReset'.tr,
+        "${'pwdResetEmail'.tr} $email",
       );
     }
     isLoading.value = false;
@@ -149,10 +148,10 @@ class OnboardingState extends GetxController {
 
   void validateUsername(String value) {
     if (value.length < 2) {
-      Helper.snack(Str.usernameTooShort, Str.usernameMinChar);
+      Helper.snack('usernameTooShort'.tr, 'usernameMinChar'.tr);
       return;
     } else if (value.contains('@') || value.contains('.')) {
-      Helper.snack(Str.usernameWeird, Str.enterValidUsername);
+      Helper.snack('usernameWeird'.tr, 'enterValidUsername'.tr);
       return;
     }
     username = value;
@@ -163,7 +162,7 @@ class OnboardingState extends GetxController {
     final bool isValid = EmailValidator.validate(value);
 
     if (!isValid) {
-      Helper.snack(Str.emailNotValid, Str.enterValidEmail);
+      Helper.snack('emailNotValid'.tr, 'enterValidEmail'.tr);
       return;
     }
 
@@ -173,13 +172,13 @@ class OnboardingState extends GetxController {
 
   void validatePassword(String value) {
     if (value.length < 6) {
-      Helper.snack(Str.pwdTooShort, Str.pwdMinChar);
+      Helper.snack('pwdTooShort'.tr, 'pwdMinChar'.tr);
       return;
     }
     if (stupidPasswords.contains(value.toLowerCase())) {
       Helper.snack(
-        Str.pwdRefused,
-        Str.pwdNotGoodIdea.replaceFirst('\$', value),
+        'pwdRefused'.tr,
+        'pwdNotGoodIdea'.tr.replaceFirst('\$', value),
       );
       return;
     }

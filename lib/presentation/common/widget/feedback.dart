@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:tempoloco/controller/user_controller.dart';
-import 'package:tempoloco/utils/intl.dart';
 import 'package:wiredash/wiredash.dart';
 
 class WiredashFeedbackButton extends StatefulWidget {
@@ -37,7 +36,7 @@ class _WiredashFeedbackStateButton extends State<WiredashFeedbackButton> {
           return TextButton(
             onPressed: () =>
                 Wiredash.of(context).show(inheritMaterialTheme: true),
-            child: Text(Str.giveFeedback),
+            child: Text('giveFeedback'.tr),
           );
         }
         return const SizedBox();

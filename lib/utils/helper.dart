@@ -27,10 +27,25 @@ class Helper {
         overlays: [SystemUiOverlay.top]);
   }
 
-  static String getLanguage() =>
-      Storage.readData(settingsBox, 'language') ??
-      Platform.localeName.split('_').first ??
-      'en';
+  // static String getLanguage() =>
+  //     Storage.readData(settingsBox, 'language') ??
+  //     systemLanguage.split('_').first ??
+  //     'en';
+
+  // static String get systemLanguage => Platform.localeName;
+
+  static String get language =>
+      Storage.readData(settingsBox, 'language') ?? 'en';
+
+  static Locale setDefaultLocale() {
+    final localLanguage = Platform.localeName.split('_').first;
+    if (localLanguage == 'fr' || localLanguage == 'es') {
+      Storage.writeData(settingsBox, 'language', localLanguage);
+      return Locale(localLanguage);
+    }
+    Storage.writeData(settingsBox, 'language', 'en');
+    return const Locale('en');
+  }
 
   static bool hasVibrations() =>
       Storage.readData(settingsBox, 'vibrate') ?? true;

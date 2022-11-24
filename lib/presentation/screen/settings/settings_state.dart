@@ -4,8 +4,8 @@ import 'package:tempoloco/service/storage.dart';
 import 'package:tempoloco/utils/helper.dart';
 
 class SettingsState extends GetxController {
-  Rx<String> language = Helper.getLanguage().obs;
   Rx<bool> vibrations = Helper.hasVibrations().obs;
+  Rx<String> language = Helper.language.obs;
 
   void saveVolume(double volume) {
     debugPrint("[Settings] Setting volume to $volume");
@@ -14,8 +14,8 @@ class SettingsState extends GetxController {
 
   Future<void> setLanguage(String value) async {
     debugPrint("[Settings] Setting language to $value");
-    await Storage.writeData(settingsBox, 'language', value);
     language.value = value;
+    Get.updateLocale(Locale(value));
   }
 
   void toggleVibrations(bool value) {

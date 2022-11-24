@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tempoloco/presentation/screen/achievements/achievements_state.dart';
 import 'package:tempoloco/theme.dart';
-import 'package:tempoloco/utils/intl.dart';
 
 class AchievementsStrikes extends StatelessWidget {
   const AchievementsStrikes({Key? key}) : super(key: key);
@@ -15,7 +14,7 @@ class AchievementsStrikes extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            Str.strikes.replaceAll('\$', state.user.strikes.length.toString()),
+            'strikes'.tr.replaceAll('\$', state.user.strikes.length.toString()),
           ),
           const SizedBox(height: 15),
           Obx(() {
@@ -36,7 +35,7 @@ class AchievementsStrikes extends StatelessWidget {
                 child: state.user.hasCollectedStrikes
                     ? Center(
                         child: Text(
-                          Str.comeBackTomorrow,
+                          'comeBackTomorrow'.tr,
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
                       )
@@ -45,7 +44,7 @@ class AchievementsStrikes extends StatelessWidget {
                         children: [
                           Text(
                             // "Collect ${state.user.strikes.length} stars",
-                            Str.strikesCollect.replaceAll(
+                            'strikesCollect'.tr.replaceAll(
                                 '\$', state.user.strikes.length.toString()),
 
                             style: const TextStyle(color: ktempoDark),

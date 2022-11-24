@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tempoloco/presentation/screen/library/widget/artists.dart';
 import 'package:tempoloco/presentation/screen/library/widget/favorite.dart';
 import 'package:tempoloco/presentation/screen/library/widget/tracks.dart';
 import 'package:tempoloco/theme.dart';
 import 'package:tempoloco/utils/helper.dart';
-import 'package:tempoloco/utils/intl.dart';
 
 class LibraryScreen extends StatefulWidget {
   const LibraryScreen({Key? key}) : super(key: key);
@@ -53,7 +53,7 @@ class _LibraryScreenState extends State<LibraryScreen>
                 },
                 tabs: [
                   Text(
-                    Str.songs,
+                    'songs'.tr,
                     style: Theme.of(context).textTheme.headline5!.copyWith(
                           fontWeight: selectedIndex == 0
                               ? FontWeight.w700
@@ -62,7 +62,7 @@ class _LibraryScreenState extends State<LibraryScreen>
                         ),
                   ),
                   Text(
-                    Str.artists,
+                    'artists'.tr,
                     style: Theme.of(context).textTheme.headline5!.copyWith(
                           fontWeight: selectedIndex == 1
                               ? FontWeight.w700
@@ -71,7 +71,7 @@ class _LibraryScreenState extends State<LibraryScreen>
                         ),
                   ),
                   Text(
-                    Str.favorite,
+                    'favorite'.tr,
                     style: Theme.of(context).textTheme.headline5!.copyWith(
                           fontWeight: selectedIndex == 2
                               ? FontWeight.w700

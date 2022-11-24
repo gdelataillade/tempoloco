@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:tempoloco/presentation/screen/settings/settings_state.dart';
 import 'package:tempoloco/theme.dart';
 import 'package:tempoloco/utils/constant.dart';
-import 'package:tempoloco/utils/intl.dart';
 
 class SettingsLanguage extends StatelessWidget {
   const SettingsLanguage({Key? key}) : super(key: key);
@@ -18,7 +17,7 @@ class SettingsLanguage extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(Str.language, style: Theme.of(context).textTheme.titleLarge),
+        Text('language'.tr, style: Theme.of(context).textTheme.titleLarge),
         SizedBox(
           height: 45,
           width: supportedLanguages.length * (flagSize + 2 * margin),

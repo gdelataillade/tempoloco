@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tempoloco/presentation/screen/profile/profile_state.dart';
-import 'package:tempoloco/utils/intl.dart';
 
 class ProfileFriendRequests extends StatelessWidget {
   const ProfileFriendRequests({Key? key}) : super(key: key);
@@ -29,14 +28,14 @@ class ProfileFriendRequests extends StatelessWidget {
                             state.friendRequests[index],
                             true,
                           ),
-                          child: Text(Str.accept),
+                          child: Text('accept'.tr),
                         ),
                         RawMaterialButton(
                           onPressed: () => state.friendRequest(
                             state.friendRequests[index],
                             false,
                           ),
-                          child: Text(Str.deny),
+                          child: Text('deny'.tr),
                         ),
                       ],
                     );
