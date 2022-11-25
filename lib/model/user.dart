@@ -28,6 +28,7 @@ class User {
   List<Map<String, dynamic>> highscores;
   List<Map<String, String>> artists;
   List<String> friends;
+  // TODO: Create another collection
   List<String> friendRequests;
 
   User({

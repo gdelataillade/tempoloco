@@ -19,18 +19,18 @@ class Auth {
       return res.user != null;
     } catch (e) {
       String msg = e.toString();
-      if (!msg.contains("The password is invalid")) {}
-      if (msg.contains("user-not-found")) {
+      if (!msg.contains('The password is invalid')) {}
+      if (msg.contains('user-not-found')) {
         // TODO: Go back to email input step
-        msg = "No account created with\n$email";
+        msg = 'account_do_not_exists'.trParams({'email': email});
       } else if (msg.contains("wrong-password")) {
-        msg = "Wrong password";
+        msg = 'wrong_password'.tr;
       } else if (msg.contains("network-request-failed")) {
-        msg = "Network error. Check your internet connection ?";
+        msg = 'network_error'.tr;
       } else if (msg.contains("too-many-requests")) {
-        msg = "Too many requests. Please try again later.";
+        msg = 'too_many_requests'.tr;
       }
-      Helper.snack('Login error', msg);
+      Helper.snack('login_error'.tr, msg);
       return false;
     }
   }
@@ -46,13 +46,12 @@ class Auth {
       return res.user!.uid;
     } catch (e) {
       String msg = e.toString();
-      if (msg.contains("email-already-in-use")) {
-        msg = "This email is already associated with an account.";
-      } else if (msg.contains("network-request-failed")) {
-        msg =
-            "Erreur de connexion avec le serveur.\nÊtes-vous connecté à internet?";
+      if (msg.contains('email-already-in-use')) {
+        msg = 'email_already_taken'.tr;
+      } else if (msg.contains('network-request-failed')) {
+        msg = 'network_error'.tr;
       }
-      Helper.snack('Register error', msg);
+      Helper.snack('register_error'.tr, msg);
       return null;
     }
   }
@@ -65,9 +64,9 @@ class Auth {
     } catch (e) {
       String msg = e.toString();
       if (msg.contains("invalid-email")) {
-        msg = "Email address do not exist";
+        msg = 'email_do_not_exists'.tr;
       }
-      Helper.snack("Reset password error", "Email address do not exist");
+      Helper.snack('reset_password_error'.tr, msg);
       return false;
     }
   }
@@ -107,13 +106,13 @@ class Auth {
     } catch (e) {
       String msg = e.toString();
       if (msg.contains("invalid-email")) {
-        msg = "Invalid email";
+        msg = 'emailNotValid'.tr;
       } else if (msg.contains("email-already-in-use")) {
-        msg = "Email is already taken";
+        msg = 'email_already_taken'.tr;
       } else if (msg.contains("requires-recent-login")) {
-        msg = "Try again later";
+        msg = 'try_again_later'.tr;
       }
-      Helper.snack('Error updating email', msg);
+      Helper.snack('update_email_error'.tr, msg);
       return false;
     }
   }

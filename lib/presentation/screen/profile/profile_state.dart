@@ -67,10 +67,12 @@ class ProfileState extends GetxController {
       await loadUserAvatar();
       avatarLoaded.value = true;
 
-      Helper.snack('Username updated', 'Your username is now $username');
-    } else {
       Helper.snack(
-          'Error updating username', 'This username is already taken.');
+        'username_updated'.tr,
+        'new_username'.trParams({'username': username}),
+      );
+    } else {
+      Helper.snack('username_update_error'.tr, 'username_already_taken'.tr);
     }
     return !res;
   }
@@ -82,7 +84,7 @@ class ProfileState extends GetxController {
 
     if (res) {
       await DB.updateUser({"email": email});
-      Helper.snack('Email updated', 'Your email is now $email');
+      Helper.snack('email_updated'.tr, 'new_email'.trParams({'email': email}));
       return true;
     }
     return false;
@@ -98,9 +100,9 @@ class ProfileState extends GetxController {
 
     if (username.isEmpty) return;
     if (username == userCtrl.user.value.uid) {
-      errorMessage = 'This is your username';
+      errorMessage = 'error_username_is_you'.tr;
     } else if (userCtrl.user.value.friends.contains(username)) {
-      errorMessage = '$username is already your friend';
+      errorMessage = 'error_already_friend'.trParams({'username': username});
     }
 
     final res = await DB.usernameAlreadyExists(username);
@@ -109,15 +111,18 @@ class ProfileState extends GetxController {
       await userCtrl.sendFriendRequest(username);
       Get.back();
       await loadFriendsAvatar();
-      Helper.snack("Invitation sent", "$username received your invite");
+      Helper.snack(
+        'invitation_sent'.tr,
+        'invitation_username'.trParams({'username': username}),
+      );
       return;
     } else {
-      errorMessage = 'Username not found';
+      errorMessage = 'username_not_found'.tr;
     }
 
     if (errorMessage.isNotEmpty) {
       Helper.snack(
-        'Error adding friend with username',
+        'error_adding_friend'.tr,
         errorMessage,
       );
     }

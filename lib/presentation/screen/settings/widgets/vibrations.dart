@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tempoloco/presentation/screen/settings/settings_state.dart';
 import 'package:tempoloco/theme.dart';
-import 'package:tempoloco/utils/translations.dart';
 
 class SettingsVibrations extends StatelessWidget {
   const SettingsVibrations({Key? key}) : super(key: key);

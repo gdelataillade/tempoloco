@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tempoloco/presentation/common/widget/shader_mask.dart';
@@ -78,7 +80,7 @@ class _SearchResultsTrackState extends State<SearchResultsTrack> {
                       padding: const EdgeInsets.all(22),
                       child: Obx(
                         () => state.noMoreResults.value
-                            ? const Text('No more results')
+                            ? Text('no_more_results'.tr)
                             : const CircularProgressIndicator(
                                 valueColor:
                                     AlwaysStoppedAnimation<Color>(ktempoWhite),

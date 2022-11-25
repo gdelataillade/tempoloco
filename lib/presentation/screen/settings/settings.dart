@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:tempoloco/controller/user_controller.dart';
-import 'package:tempoloco/presentation/common/widget/feedback.dart';
 import 'package:tempoloco/presentation/screen/settings/settings_state.dart';
 import 'package:tempoloco/presentation/screen/settings/widgets/vibrations.dart';
 import 'package:tempoloco/presentation/screen/settings/widgets/language.dart';
 import 'package:tempoloco/presentation/screen/settings/widgets/volume_slider.dart';
 import 'package:tempoloco/theme.dart';
 import 'package:tempoloco/utils/helper.dart';
-import 'package:tempoloco/utils/translations.dart';
 
 class Settings extends StatelessWidget {
   const Settings({Key? key}) : super(key: key);
@@ -68,6 +66,7 @@ class Settings extends StatelessWidget {
                   const SizedBox(height: 20),
                   const SettingsVibrations(),
                   const Spacer(),
+                  // TODO: Fix setState called during build
                   // const WiredashFeedbackButton(),
                 ],
               ),

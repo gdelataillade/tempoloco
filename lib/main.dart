@@ -54,6 +54,7 @@ class MyApp extends StatelessWidget {
         theme: themeData,
         translations: AppTranslations(),
         locale: Helper.setDefaultLocale(),
+        fallbackLocale: const Locale('en', 'FR'),
         getPages: [
           GetPage(
             name: '/splashscreen',

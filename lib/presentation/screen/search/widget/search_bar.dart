@@ -63,7 +63,7 @@ class _SearchBarState extends State<SearchBar> {
         style: const TextStyle(color: ktempoDark),
         decoration: InputDecoration(
           prefixIcon: const Icon(FeatherIcons.search, color: ktempoDark),
-          hintText: 'Search for song or artist...',
+          hintText: 'search_hint_text'.tr,
           hintStyle: TextStyle(color: ktempoDark.withOpacity(0.8)),
           border: InputBorder.none,
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tempoloco/presentation/screen/search/widget/search_bar.dart';
 import 'package:tempoloco/presentation/screen/search/widget/tab_bar.dart';
 
@@ -13,7 +14,7 @@ class SearchScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Search",
+            'search'.tr,
             style: Theme.of(context).textTheme.headline3,
           ),
           const SearchBar(),

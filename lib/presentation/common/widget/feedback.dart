@@ -27,7 +27,6 @@ class _WiredashFeedbackStateButton extends State<WiredashFeedbackButton> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Fix setState called during build
     return FutureBuilder<PackageInfo>(
       future: PackageInfo.fromPlatform(),
       builder: (context, snapshot) {

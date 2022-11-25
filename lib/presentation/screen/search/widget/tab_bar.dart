@@ -64,7 +64,7 @@ class _SearchResultsTabBarState extends State<SearchResultsTabBar>
                       },
                       tabs: [
                         Text(
-                          "Songs",
+                          'songs'.tr,
                           style:
                               Theme.of(context).textTheme.headline5!.copyWith(
                                     fontWeight: selectedIndex == 0
@@ -73,7 +73,7 @@ class _SearchResultsTabBarState extends State<SearchResultsTabBar>
                                   ),
                         ),
                         Text(
-                          "Artists",
+                          'artists'.tr,
                           style:
                               Theme.of(context).textTheme.headline5!.copyWith(
                                     fontWeight: selectedIndex == 1

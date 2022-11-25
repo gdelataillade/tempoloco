@@ -140,7 +140,7 @@ class OnboardingState extends GetxController {
     if (res) {
       Helper.snack(
         'pwdReset'.tr,
-        "${'pwdResetEmail'.tr} $email",
+        'pwdResetEmail'.trParams({'email': email}),
       );
     }
     isLoading.value = false;
@@ -178,7 +178,7 @@ class OnboardingState extends GetxController {
     if (stupidPasswords.contains(value.toLowerCase())) {
       Helper.snack(
         'pwdRefused'.tr,
-        'pwdNotGoodIdea'.tr.replaceFirst('\$', value),
+        'pwdNotGoodIdea'.trParams({'password': value}),
       );
       return;
     }

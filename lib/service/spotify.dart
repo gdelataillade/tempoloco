@@ -85,7 +85,10 @@ class Spotify {
   }
 
   Future<List<Track>> getArtistTopTracks(String artistId) async {
-    final res = await spotify.artists.getTopTracks(artistId, Helper.language);
+    final res = await spotify.artists.getTopTracks(
+      artistId,
+      Helper.countryCode,
+    );
     List<Track> tracks = res.toList();
 
     return tracks;

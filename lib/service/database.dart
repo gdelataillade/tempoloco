@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:spotify/spotify.dart' as spotify;
 import 'package:tempoloco/controller/user_controller.dart';
@@ -19,7 +20,7 @@ class DB {
       return true;
     } catch (e) {
       debugPrint("===> [Firestore] Error adding user: $e");
-      Helper.snack("Error saving user", e.toString());
+      Helper.snack('error_saving_user'.tr, e.toString());
       return false;
     }
   }

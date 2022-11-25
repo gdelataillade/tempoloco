@@ -75,8 +75,8 @@ class GameState extends GetxController {
       debugPrint("[GameState] addMissingPreviewUrl - firstWhere error: $e");
       Get.back();
       Helper.snack(
-        "An error has occurred...",
-        "The song could not be loaded. Please try again later.",
+        'error_occured'.tr,
+        'error_song_not_loaded'.tr,
       );
     }
   }
@@ -109,8 +109,8 @@ class GameState extends GetxController {
       debugPrint('[GameState] AudioPlayer error => $e ');
       Get.back();
       Helper.snack(
-        "An error has occurred...",
-        "The song could not be loaded. Please try again later.",
+        'error_occured'.tr,
+        'error_song_not_loaded'.tr,
       );
     }
 
@@ -136,8 +136,8 @@ class GameState extends GetxController {
     if (trackTempo == 0) {
       Get.back();
       Helper.snack(
-        "An error has occurred...",
-        "The song could not be loaded. Please try again later.",
+        'error_occured'.tr,
+        'error_song_not_loaded'.tr,
       );
       return;
     }

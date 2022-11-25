@@ -70,8 +70,7 @@ class TabViewState extends GetxController {
 
     final exists = await DB.checkIfDocExists();
     if (!exists) {
-      Helper.snack(
-          "Error with your account", "Please complete the registration");
+      Helper.snack('accound_error'.tr, 'complete_registration'.tr);
       await Auth.deleteUserAuth();
       return;
     }

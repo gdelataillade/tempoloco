@@ -14,7 +14,9 @@ class AchievementsStrikes extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            'strikes'.tr.replaceAll('\$', state.user.strikes.length.toString()),
+            'strikes'.trParams({
+              'nbDays': state.user.strikes.length.toString(),
+            }),
           ),
           const SizedBox(height: 15),
           Obx(() {
@@ -43,10 +45,9 @@ class AchievementsStrikes extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            // "Collect ${state.user.strikes.length} stars",
-                            'strikesCollect'.tr.replaceAll(
-                                '\$', state.user.strikes.length.toString()),
-
+                            'strikesCollect'.trParams({
+                              'nbDays': state.user.strikes.length.toString(),
+                            }),
                             style: const TextStyle(color: ktempoDark),
                           ),
                           const Icon(Icons.star_rounded, color: ktempoYellow),

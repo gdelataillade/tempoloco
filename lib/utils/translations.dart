@@ -42,6 +42,16 @@ const Map<String, Map<String, String>> translations = {
     "fr": "Vide",
     "es": "",
   },
+  "network_error": {
+    "en": "Network error. Check your internet connection ?",
+    "fr": "Erreur de connexion. Vérifier sa connexion internet.",
+    "es": "",
+  },
+  "emailNotValid": {
+    "en": "Email is not valid",
+    "fr": "Email non valide",
+    "es": "",
+  },
   // On boarding
   "register": {
     "en": "Register",
@@ -85,12 +95,12 @@ const Map<String, Map<String, String>> translations = {
   },
   "pwdReset": {
     "en": "Password reset",
-    "fr": "",
+    "fr": "Mot de passe réinitialisé",
     "es": "",
   },
   "pwdResetEmail": {
-    "en": "An email has been sent to",
-    "fr": "",
+    "en": "An email has been sent to @email",
+    "fr": "Un email a été envoyé à @email",
     "es": "",
   },
   "usernameTooShort": {
@@ -111,11 +121,6 @@ const Map<String, Map<String, String>> translations = {
   "enterValidUsername": {
     "en": "Please enter a valid username",
     "fr": "Entre un nom valide",
-    "es": "",
-  },
-  "emailNotValid": {
-    "en": "Email is not valid",
-    "fr": "Email non valide",
     "es": "",
   },
   "enterValidEmail": {
@@ -139,14 +144,14 @@ const Map<String, Map<String, String>> translations = {
     "es": "",
   },
   "pwdNotGoodIdea": {
-    "en": "Using \$ as password is not a good idea",
-    "fr": "\$ n'est pas un mot de passe valide",
+    "en": "Using @password as password is not a good idea",
+    "fr": "@password n'est pas un mot de passe valide",
     "es": "",
   },
   // TabView
   "songs": {
     "en": "Songs",
-    "fr": "Chansons",
+    "fr": "Musiques",
     "es": "",
   },
   "artists": {
@@ -174,6 +179,32 @@ const Map<String, Map<String, String>> translations = {
     "fr": "Aucun résultat",
     "es": "",
   },
+  "accound_error": {
+    "en": "Error with your account",
+    "fr": "Erreur avec votre compte",
+    "es": "",
+  },
+  "complete_registration": {
+    "en": "Please complete the registration",
+    "fr": "Veuillez compléter l'inscription",
+    "es": "",
+  },
+  // Search
+  "search": {
+    "en": "Search",
+    "fr": "Rechercher",
+    "es": "",
+  },
+  "search_hint_text": {
+    "en": "Search for song or artist...",
+    "fr": "Cherche une musique ou un artiste...",
+    "es": "",
+  },
+  "no_more_results": {
+    "en": "No more results",
+    "fr": "Pas d'autres résultats",
+    "es": "",
+  },
   // Settings
   "settings": {
     "en": "Settings",
@@ -198,12 +229,12 @@ const Map<String, Map<String, String>> translations = {
   },
   "checkFriendHighscores": {
     "en": "Checkout your friend's highscores",
-    "fr": "",
+    "fr": "Va voir le score de tes amis",
     "es": "",
   },
   "typeUsername": {
     "en": "Type username",
-    "fr": "",
+    "fr": "Nom d'utilisateur",
     "es": "",
   },
   "friendHasNotTempoloco": {
@@ -216,10 +247,70 @@ const Map<String, Map<String, String>> translations = {
     "fr": "Ou envoie un lien",
     "es": "",
   },
+  "username_updated": {
+    "en": "Username updated",
+    "fr": "Nom d'utilisateur mit à jour",
+    "es": "",
+  },
+  "new_username": {
+    "en": "Your username is now @username",
+    "fr": "Ton nouveau nom d'utilisateur est @username",
+    "es": "",
+  },
+  "username_update_error": {
+    "en": "Error updating username",
+    "fr": "Erreur lors de la mise à jour du nom",
+    "es": "",
+  },
+  "username_already_taken": {
+    "en": "This username is already taken",
+    "fr": "Ce nom est a déjà été choisi",
+    "es": "",
+  },
+  "email_updated": {
+    "en": "Email updated",
+    "fr": "Email mit à jour",
+    "es": "",
+  },
+  "new_email": {
+    "en": "Your email is now @email",
+    "fr": "Ton nouvel email est @email",
+    "es": "",
+  },
+  "invitation_sent": {
+    "en": "Invitation sent",
+    "fr": "Invitation envoyée",
+    "es": "",
+  },
+  "invitation_username": {
+    "en": "@username received your invite",
+    "fr": "@username a reçu l'invitation",
+    "es": "",
+  },
+  "error_adding_friend": {
+    "en": "Error adding friend with username",
+    "fr": "Erreur lors de l'ajout d'un ami",
+    "es": "",
+  },
+  "error_username_is_you": {
+    "en": "This is your username",
+    "fr": "C'est ton nom d'utilisateur",
+    "es": "",
+  },
+  "error_already_friend": {
+    "en": "@username is already your friend",
+    "fr": "@username est déjà ton ami",
+    "es": "",
+  },
+  "username_not_found": {
+    "en": "Username not found",
+    "fr": "Nom d'utilisateur introuvable",
+    "es": "",
+  },
   // Game
   "songBpm": {
     "en": "Song's bpm",
-    "fr": "Bpm de la chanson",
+    "fr": "Bpm de la musique",
     "es": "",
   },
   "playerBpm": {
@@ -232,6 +323,16 @@ const Map<String, Map<String, String>> translations = {
     "fr": "Précision",
     "es": "",
   },
+  "error_occured": {
+    "en": "An error has occurred...",
+    "fr": "Une erreur est survenue...",
+    "es": "",
+  },
+  "error_song_not_loaded": {
+    "en": "The song could not be loaded. Please try again later.",
+    "fr": "La musique n'a pas pu être chargée. Réessayer plus tard.",
+    "es": "",
+  },
   // Achievements
   "achievements": {
     "en": "Achievements",
@@ -239,8 +340,8 @@ const Map<String, Map<String, String>> translations = {
     "es": "",
   },
   "strikes": {
-    "en": "You played \$ day(s) in a row",
-    "fr": "Tu as joué \$ jour(s) à la suite",
+    "en": "You played @nbDays day(s) in a row",
+    "fr": "Tu as joué @nbDays jour(s) à la suite",
     "es": "",
   },
   "comeBackTomorrow": {
@@ -249,173 +350,82 @@ const Map<String, Map<String, String>> translations = {
     "es": "",
   },
   "strikesCollect": {
-    "en": "Collect \$ stars",
-    "fr": "Récupère \$ étoiles",
+    "en": "Collect @nbDays stars",
+    "fr": "Récupère @nbDays étoiles",
+    "es": "",
+  },
+  // Auth Service
+  "login_error": {
+    "en": "Login error",
+    "fr": "Erreur de connexion",
+    "es": "",
+  },
+  "register_error": {
+    "en": "Register error",
+    "fr": "Erreur d'inscription",
+    "es": "",
+  },
+  "account_do_not_exists": {
+    "en": "No account created with\n@email",
+    "fr": "Aucun compte lié à cet email\n@email",
+    "es": "",
+  },
+  "wrong_password": {
+    "en": "Wrong password",
+    "fr": "Mot de passe incorrect",
+    "es": "",
+  },
+  "too_many_requests": {
+    "en": "Too many requests. Please try again later.",
+    "fr": "Trop de requêtes. Réessayer plus tard.",
+    "es": "",
+  },
+  "email_already_taken": {
+    "en": "This email is already associated with an account",
+    "fr": "Cet email est déjà associé à un compte",
+    "es": "",
+  },
+  "email_do_not_exists": {
+    "en": "Email address do not exist",
+    "fr": "L'adresse email n'existe pas",
+    "es": "",
+  },
+  "reset_password_error": {
+    "en": "Reset password error",
+    "fr": "Erreur lors du changement de mot de passe",
+    "es": "",
+  },
+  "try_again_later": {
+    "en": "Try again later",
+    "fr": "Réessayer plus tard",
+    "es": "",
+  },
+  "update_email_error": {
+    "en": "Error updating email",
+    "fr": "Erreur lors de la mise à jour de l'email",
+    "es": "",
+  },
+  "error_saving_user": {
+    "en": "Error saving user",
+    "fr": "Erreur lors de la sauvegarde de l'utilisateur",
     "es": "",
   },
 };
 
 class AppTranslations extends Translations {
+  Map<String, String> getTranslations(String language) {
+    Map<String, String> map = {};
+
+    translations.forEach(
+      (key, value) => map.addAll({key: value[language] as String}),
+    );
+    return map;
+  }
+
   @override
   Map<String, Map<String, String>> get keys => {
-        "en": {
-          "giveFeedback": translations["giveFeedback"]!["en"]!,
-          "accept": translations["accept"]!["en"]!,
-          "deny": translations["deny"]!["en"]!,
-          "continue": translations["continue"]!["en"]!,
-          "addFriend": translations["addFriend"]!["en"]!,
-          "close": translations["close"]!["en"]!,
-          "purchase": translations["purchase"]!["en"]!,
-          "empty": translations["empty"]!["en"]!,
-          "register": translations["register"]!["en"]!,
-          "login": translations["login"]!["en"]!,
-          "username": translations["username"]!["en"]!,
-          "password": translations["password"]!["en"]!,
-          "forgotPwd": translations["forgotPwd"]!["en"]!,
-          "kindOfMusic": translations["kindOfMusic"]!["en"]!,
-          "pick2Genres": translations["pick2Genres"]!["en"]!,
-          "finish": translations["finish"]!["en"]!,
-          "pwdReset": translations["pwdReset"]!["en"]!,
-          "pwdResetEmail": translations["pwdResetEmail"]!["en"]!,
-          "usernameTooShort": translations["usernameTooShort"]!["en"]!,
-          "usernameMinChar": translations["usernameMinChar"]!["en"]!,
-          "usernameWeird": translations["usernameWeird"]!["en"]!,
-          "enterValidUsername": translations["enterValidUsername"]!["en"]!,
-          "emailNotValid": translations["emailNotValid"]!["en"]!,
-          "enterValidEmail": translations["enterValidEmail"]!["en"]!,
-          "pwdTooShort": translations["pwdTooShort"]!["en"]!,
-          "pwdMinChar": translations["pwdMinChar"]!["en"]!,
-          "pwdRefused": translations["pwdRefused"]!["en"]!,
-          "pwdNotGoodIdea": translations["pwdNotGoodIdea"]!["en"]!,
-          "songs": translations["songs"]!["en"]!,
-          "artists": translations["artists"]!["en"]!,
-          "favorite": translations["favorite"]!["en"]!,
-          "quickPlay": translations["quickPlay"]!["en"]!,
-          "noHistory": translations["noHistory"]!["en"]!,
-          "noResults": translations["noResults"]!["en"]!,
-          "settings": translations["settings"]!["en"]!,
-          "vibrations": translations["vibrations"]!["en"]!,
-          "language": translations["language"]!["en"]!,
-          "signOut": translations["signOut"]!["en"]!,
-          "checkFriendHighscores":
-              translations["checkFriendHighscores"]!["en"]!,
-          "typeUsername": translations["typeUsername"]!["en"]!,
-          "friendHasNotTempoloco":
-              translations["friendHasNotTempoloco"]!["en"]!,
-          "frsiendSendLink": translations["friendSendLink"]!["en"]!,
-          "songBpm": translations["songBpm"]!["en"]!,
-          "playerBpm": translations["playerBpm"]!["en"]!,
-          "precision": translations["precision"]!["en"]!,
-          "achievements": translations["achievements"]!["en"]!,
-          "strikes": translations["strikes"]!["en"]!,
-          "comeBackTomorrow": translations["comeBackTomorrow"]!["en"]!,
-          "strikesCollect": translations["strikesCollect"]!["en"]!,
-        },
-        'fr': {
-          "giveFeedback": translations["giveFeedback"]!["fr"]!,
-          "accept": translations["accept"]!["fr"]!,
-          "deny": translations["deny"]!["fr"]!,
-          "continue": translations["continue"]!["fr"]!,
-          "addFriend": translations["addFriend"]!["fr"]!,
-          "close": translations["close"]!["fr"]!,
-          "purchase": translations["purchase"]!["fr"]!,
-          "empty": translations["empty"]!["fr"]!,
-          "register": translations["register"]!["fr"]!,
-          "login": translations["login"]!["fr"]!,
-          "username": translations["username"]!["fr"]!,
-          "password": translations["password"]!["fr"]!,
-          "forgotPwd": translations["forgotPwd"]!["fr"]!,
-          "kindOfMusic": translations["kindOfMusic"]!["fr"]!,
-          "pick2Genres": translations["pick2Genres"]!["fr"]!,
-          "finish": translations["finish"]!["fr"]!,
-          "pwdReset": translations["pwdReset"]!["fr"]!,
-          "pwdResetEmail": translations["pwdResetEmail"]!["fr"]!,
-          "usernameTooShort": translations["usernameTooShort"]!["fr"]!,
-          "usernameMinChar": translations["usernameMinChar"]!["fr"]!,
-          "usernameWeird": translations["usernameWeird"]!["fr"]!,
-          "enterValidUsername": translations["enterValidUsername"]!["fr"]!,
-          "emailNotValid": translations["emailNotValid"]!["fr"]!,
-          "enterValidEmail": translations["enterValidEmail"]!["fr"]!,
-          "pwdTooShort": translations["pwdTooShort"]!["fr"]!,
-          "pwdMinChar": translations["pwdMinChar"]!["fr"]!,
-          "pwdRefused": translations["pwdRefused"]!["fr"]!,
-          "pwdNotGoodIdea": translations["pwdNotGoodIdea"]!["fr"]!,
-          "songs": translations["songs"]!["fr"]!,
-          "artists": translations["artists"]!["fr"]!,
-          "favorite": translations["favorite"]!["fr"]!,
-          "quickPlay": translations["quickPlay"]!["fr"]!,
-          "noHistory": translations["noHistory"]!["fr"]!,
-          "noResults": translations["noResults"]!["fr"]!,
-          "settings": translations["settings"]!["fr"]!,
-          "vibrations": translations["vibrations"]!["fr"]!,
-          "language": translations["language"]!["fr"]!,
-          "signOut": translations["signOut"]!["fr"]!,
-          "checkFriendHighscores":
-              translations["checkFriendHighscores"]!["fr"]!,
-          "typeUsername": translations["typeUsername"]!["fr"]!,
-          "friendHasNotTempoloco":
-              translations["friendHasNotTempoloco"]!["fr"]!,
-          "friendSendLink": translations["friendSendLink"]!["fr"]!,
-          "songBpm": translations["songBpm"]!["fr"]!,
-          "playerBpm": translations["playerBpm"]!["fr"]!,
-          "precision": translations["precision"]!["fr"]!,
-          "achievements": translations["achievements"]!["fr"]!,
-          "strikes": translations["strikes"]!["fr"]!,
-          "comeBackTomorrow": translations["comeBackTomorrow"]!["fr"]!,
-          "strikesCollect": translations["strikesCollect"]!["fr"]!,
-        },
-        'es': {
-          "giveFeedback": translations["giveFeedback"]!["es"]!,
-          "accept": translations["accept"]!["es"]!,
-          "deny": translations["deny"]!["es"]!,
-          "continue": translations["continue"]!["es"]!,
-          "addFriend": translations["addFriend"]!["es"]!,
-          "close": translations["close"]!["es"]!,
-          "purchase": translations["purchase"]!["es"]!,
-          "empty": translations["empty"]!["es"]!,
-          "register": translations["register"]!["es"]!,
-          "login": translations["login"]!["es"]!,
-          "username": translations["username"]!["es"]!,
-          "password": translations["password"]!["es"]!,
-          "forgotPwd": translations["forgotPwd"]!["es"]!,
-          "kindOfMusic": translations["kindOfMusic"]!["es"]!,
-          "pick2Genres": translations["pick2Genres"]!["es"]!,
-          "finish": translations["finish"]!["es"]!,
-          "pwdReset": translations["pwdReset"]!["es"]!,
-          "pwdResetEmail": translations["pwdResetEmail"]!["es"]!,
-          "usernameTooShort": translations["usernameTooShort"]!["es"]!,
-          "usernameMinChar": translations["usernameMinChar"]!["es"]!,
-          "usernameWeird": translations["usernameWeird"]!["es"]!,
-          "enterValidUsername": translations["enterValidUsername"]!["es"]!,
-          "emailNotValid": translations["emailNotValid"]!["es"]!,
-          "enterValidEmail": translations["enterValidEmail"]!["es"]!,
-          "pwdTooShort": translations["pwdTooShort"]!["es"]!,
-          "pwdMinChar": translations["pwdMinChar"]!["es"]!,
-          "pwdRefused": translations["pwdRefused"]!["es"]!,
-          "pwdNotGoodIdea": translations["pwdNotGoodIdea"]!["es"]!,
-          "songs": translations["songs"]!["es"]!,
-          "artists": translations["artists"]!["es"]!,
-          "favorite": translations["favorite"]!["es"]!,
-          "quickPlay": translations["quickPlay"]!["es"]!,
-          "noHistory": translations["noHistory"]!["es"]!,
-          "noResults": translations["noResults"]!["es"]!,
-          "settings": translations["settings"]!["es"]!,
-          "vibrations": translations["vibrations"]!["es"]!,
-          "language": translations["language"]!["es"]!,
-          "signOut": translations["signOut"]!["es"]!,
-          "checkFriendHighscores":
-              translations["checkFriendHighscores"]!["es"]!,
-          "typeUsername": translations["typeUsername"]!["es"]!,
-          "friendHasNotTempoloco":
-              translations["friendHasNotTempoloco"]!["es"]!,
-          "friendSendLink": translations["friendSendLink"]!["es"]!,
-          "songBpm": translations["songBpm"]!["es"]!,
-          "playerBpm": translations["playerBpm"]!["es"]!,
-          "precision": translations["precision"]!["es"]!,
-          "achievements": translations["achievements"]!["es"]!,
-          "strikes": translations["strikes"]!["es"]!,
-          "comeBackTomorrow": translations["comeBackTomorrow"]!["es"]!,
-          "strikesCollect": translations["strikesCollect"]!["es"]!,
-        }
+        'en': getTranslations('en'),
+        'fr': getTranslations('fr'),
+        'es': getTranslations('es'),
       };
 }

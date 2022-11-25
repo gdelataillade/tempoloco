@@ -27,15 +27,11 @@ class Helper {
         overlays: [SystemUiOverlay.top]);
   }
 
-  // static String getLanguage() =>
-  //     Storage.readData(settingsBox, 'language') ??
-  //     systemLanguage.split('_').first ??
-  //     'en';
-
-  // static String get systemLanguage => Platform.localeName;
-
   static String get language =>
       Storage.readData(settingsBox, 'language') ?? 'en';
+
+  static String get countryCode =>
+      Platform.localeName.split('_').last.toUpperCase();
 
   static Locale setDefaultLocale() {
     final localLanguage = Platform.localeName.split('_').first;
