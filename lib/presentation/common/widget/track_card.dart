@@ -104,7 +104,7 @@ class TrackCard extends StatelessWidget {
                       : Row(
                           children: [
                             Text(
-                              "$price",
+                              '$price',
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyText1!

@@ -33,8 +33,8 @@ class OnboardingMusicStep extends StatelessWidget {
               children: [
                 for (int i = 0; i < onboardingGenres.length; i++)
                   OnBoardingMusicStepGenreItem(
-                    genre: onboardingGenres[i]["genre"]!,
-                    artistPictureUrl: onboardingGenres[i]["artistPictureUrl"]!,
+                    genre: onboardingGenres[i]['genre']!,
+                    artistPictureUrl: onboardingGenres[i]['artistPictureUrl']!,
                   ),
               ],
             ),
@@ -51,7 +51,7 @@ class OnboardingMusicStep extends StatelessWidget {
                   if (disable) {
                     Helper.snack(
                       'pick2Genres'.tr,
-                      "",
+                      '',
                       duration: const Duration(seconds: 2),
                     );
                   } else {

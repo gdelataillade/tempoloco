@@ -13,7 +13,7 @@ class GameOverScore extends StatelessWidget {
   void setWiredashParams(BuildContext context, GameState state) {
     Wiredash.of(context).modifyMetaData(
       (metaData) => metaData
-        ..custom['Scope'] = "Game over"
+        ..custom['Scope'] = 'Game over'
         ..custom['Track name'] = state.track.name
         ..custom['Track artist'] = state.track.artists!.first.name
         ..custom['Track id'] = state.track.id

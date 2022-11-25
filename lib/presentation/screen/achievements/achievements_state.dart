@@ -15,10 +15,10 @@ class AchievementsState extends GetxController {
 
   Future<void> collectStrikeStars() async {
     debugPrint(
-        "[AchievementsState] Collect strikes: ${user.strikes.length} stars");
+        '[AchievementsState] Collect strikes: ${user.strikes.length} stars');
     await DB.updateUser({
-      "hasCollectedStrikes": true,
-      "nbStars": user.nbStars + user.strikes.length,
+      'hasCollectedStrikes': true,
+      'nbStars': user.nbStars + user.strikes.length,
     });
   }
 

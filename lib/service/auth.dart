@@ -23,11 +23,11 @@ class Auth {
       if (msg.contains('user-not-found')) {
         // TODO: Go back to email input step
         msg = 'account_do_not_exists'.trParams({'email': email});
-      } else if (msg.contains("wrong-password")) {
+      } else if (msg.contains('wrong-password')) {
         msg = 'wrong_password'.tr;
-      } else if (msg.contains("network-request-failed")) {
+      } else if (msg.contains('network-request-failed')) {
         msg = 'network_error'.tr;
-      } else if (msg.contains("too-many-requests")) {
+      } else if (msg.contains('too-many-requests')) {
         msg = 'too_many_requests'.tr;
       }
       Helper.snack('login_error'.tr, msg);
@@ -59,11 +59,11 @@ class Auth {
   static Future<bool> resetPassword(String email) async {
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
-      await Storage.writeData("credentials", "password", "");
+      await Storage.writeData('credentials', 'password', '');
       return true;
     } catch (e) {
       String msg = e.toString();
-      if (msg.contains("invalid-email")) {
+      if (msg.contains('invalid-email')) {
         msg = 'email_do_not_exists'.tr;
       }
       Helper.snack('reset_password_error'.tr, msg);
@@ -72,23 +72,23 @@ class Auth {
   }
 
   static Future<void> signOut() async {
-    analyticsLct.event("Sign Out");
+    analyticsLct.event('Sign Out');
     await Get.deleteAll();
 
     await Future.wait([
-      Storage.writeData("credentials", "password", ""),
+      Storage.writeData('credentials', 'password', ''),
       FirebaseAuth.instance.signOut(),
     ]);
 
     Get.offAllNamed('/onboarding');
-    debugPrint("[Auth] sign out");
+    debugPrint('[Auth] sign out');
   }
 
   static Future<void> deleteUserAuth() async {
-    await Storage.writeData("credentials", "password", "");
+    await Storage.writeData('credentials', 'password', '');
     await FirebaseAuth.instance.currentUser?.delete();
 
-    debugPrint("[Auth] delete auth and sign out");
+    debugPrint('[Auth] delete auth and sign out');
     Get.offAllNamed('/onboarding');
   }
 
@@ -101,15 +101,15 @@ class Auth {
   static Future<bool> updateEmail(String email) async {
     try {
       await FirebaseAuth.instance.currentUser!.updateEmail(email);
-      debugPrint("[Auth] Update email: $email");
+      debugPrint('[Auth] Update email: $email');
       return true;
     } catch (e) {
       String msg = e.toString();
-      if (msg.contains("invalid-email")) {
+      if (msg.contains('invalid-email')) {
         msg = 'emailNotValid'.tr;
-      } else if (msg.contains("email-already-in-use")) {
+      } else if (msg.contains('email-already-in-use')) {
         msg = 'email_already_taken'.tr;
-      } else if (msg.contains("requires-recent-login")) {
+      } else if (msg.contains('requires-recent-login')) {
         msg = 'try_again_later'.tr;
       }
       Helper.snack('update_email_error'.tr, msg);

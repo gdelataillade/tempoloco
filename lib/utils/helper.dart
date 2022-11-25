@@ -107,10 +107,10 @@ class Helper {
   }
 
   static String formatTrackTitle(String title) {
-    List<String> splitted = title.split(" - ");
-    splitted = splitted.first.split("(");
-    splitted = splitted.first.split(":");
-    splitted = splitted.first.split("/");
+    List<String> splitted = title.split(' - ');
+    splitted = splitted.first.split('(');
+    splitted = splitted.first.split(':');
+    splitted = splitted.first.split('/');
     return splitted[0];
   }
 }

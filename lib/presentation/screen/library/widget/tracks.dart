@@ -45,7 +45,7 @@ class LibraryTracks extends StatelessWidget {
                       height: 70,
                       child: Center(
                         child: Text(
-                          "${state.library.length} ${'songs'.tr.toLowerCase()}",
+                          '${state.library.length} ${'songs'.tr.toLowerCase()}',
                         ),
                       ),
                     ),

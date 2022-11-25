@@ -61,7 +61,7 @@ class ProfileState extends GetxController {
 
     if (!res) {
       await Auth.updateUsername(username);
-      await DB.updateUser({"username": username});
+      await DB.updateUser({'username': username});
 
       avatarLoaded.value = false;
       await loadUserAvatar();
@@ -83,7 +83,7 @@ class ProfileState extends GetxController {
     final res = await Auth.updateEmail(email);
 
     if (res) {
-      await DB.updateUser({"email": email});
+      await DB.updateUser({'email': email});
       Helper.snack('email_updated'.tr, 'new_email'.trParams({'email': email}));
       return true;
     }

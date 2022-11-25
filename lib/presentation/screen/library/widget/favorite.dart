@@ -25,7 +25,7 @@ class LibraryFavorite extends StatelessWidget {
       return Padding(
         padding: const EdgeInsets.only(left: 25, right: 25, top: 10),
         child: favorites.isEmpty
-            ? const Center(child: Text("Empty"))
+            ? const Center(child: Text('Empty'))
             : BottomShaderMask(
                 child: ListView.builder(
                   itemCount: favorites.length,

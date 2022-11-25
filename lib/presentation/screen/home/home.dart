@@ -15,7 +15,7 @@ class HomeScreen extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(10),
           child: Text(
-            "Tempoloco",
+            'Tempoloco',
             style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                   fontSize: 50,
                   fontWeight: FontWeight.w600,

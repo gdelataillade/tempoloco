@@ -15,19 +15,19 @@ class GameOverDetails extends StatelessWidget {
       children: [
         Center(
           child: Text(
-            "${'songBpm'.tr}: ${state.trackTempo.toPrecision(2)}",
+            '${'songBpm'.tr}: ${state.trackTempo.toPrecision(2)}',
             style: Theme.of(context).textTheme.titleLarge,
           ),
         ),
         Center(
           child: Text(
-            "${'playerBpm'.tr}: ${state.playerTempo.toPrecision(2)}",
+            '${'playerBpm'.tr}: ${state.playerTempo.toPrecision(2)}',
             style: Theme.of(context).textTheme.titleLarge,
           ),
         ),
         Center(
           child: Text(
-            "${'precision'.tr}: ${state.precision.toStringAsFixed(state.precision.truncateToDouble() == state.precision ? 0 : 1)}%",
+            '${'precision'.tr}: ${state.precision.toStringAsFixed(state.precision.truncateToDouble() == state.precision ? 0 : 1)}%',
             style: Theme.of(context).textTheme.titleLarge,
           ),
         ),

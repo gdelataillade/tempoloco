@@ -14,7 +14,7 @@ class Loading extends StatelessWidget {
       children: [
         Lottie.asset('assets/lottie/metronome.json'),
         Text(
-          "Tempoloco",
+          'Tempoloco',
           style: Theme.of(context).textTheme.titleLarge,
         ),
         if (debugLabel.isNotEmpty && kDebugMode)

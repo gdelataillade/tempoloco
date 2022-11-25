@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
 import 'package:spotify/spotify.dart' as spotify;
 import 'package:tempoloco/controller/user_controller.dart';
 import 'package:tempoloco/model/user.dart';
@@ -16,10 +15,10 @@ class DB {
     try {
       await FirestoreService.instance
           .setData(path: 'user/$uid', data: user.toJson());
-      debugPrint("===> [Firestore] Create user: ${user.uid}");
+      debugPrint('===> [Firestore] Create user: ${user.uid}');
       return true;
     } catch (e) {
-      debugPrint("===> [Firestore] Error adding user: $e");
+      debugPrint('===> [Firestore] Error adding user: $e');
       Helper.snack('error_saving_user'.tr, e.toString());
       return false;
     }
@@ -32,7 +31,7 @@ class DB {
           .updateData(path: 'user/${id ?? uid}', data: data);
       debugPrint('===> [Firestore] User updated');
     } catch (e) {
-      debugPrint("===> [Firestore] Error updating user: $e");
+      debugPrint('===> [Firestore] Error updating user: $e');
     }
   }
 
@@ -87,7 +86,7 @@ class DB {
     final artistIds = <String>[];
 
     for (int i = 0; i < userCtrl.user.value.artists.length; i++) {
-      final id = userCtrl.user.value.artists[i]["artist"];
+      final id = userCtrl.user.value.artists[i]['artist'];
       if (!artistIds.contains(id)) artistIds.add(id!);
     }
 

@@ -24,7 +24,7 @@ class GameTapArea extends StatelessWidget {
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             alignment: Alignment.center,
-            child: const Text("Tap"),
+            child: const Text('Tap'),
           ),
         ),
       ),

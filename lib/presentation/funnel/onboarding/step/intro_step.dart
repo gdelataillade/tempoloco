@@ -20,7 +20,7 @@ class _OnboardingIntroStepState extends State<OnboardingIntroStep> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Text("Tempoloco", style: Theme.of(context).textTheme.titleLarge),
+          Text('Tempoloco', style: Theme.of(context).textTheme.titleLarge),
           isTapped
               ? AnimatedOpacity(
                   opacity: isTapped ? 1 : 0,
@@ -44,7 +44,7 @@ class _OnboardingIntroStepState extends State<OnboardingIntroStep> {
                       isTapped = true;
                     });
                   },
-                  child: const Text("Tap"),
+                  child: const Text('Tap'),
                 ),
         ],
       ),

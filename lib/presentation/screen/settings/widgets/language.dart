@@ -71,7 +71,7 @@ class SettingsLanguageFlag extends StatelessWidget {
         ),
         child: Center(
           child: Image.asset(
-            "assets/images/$language.png",
+            'assets/images/$language.png',
             width: 40,
             height: 40,
           ),

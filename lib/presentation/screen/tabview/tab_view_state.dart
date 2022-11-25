@@ -118,16 +118,16 @@ class TabViewState extends GetxController {
 
     if (strikes.isEmpty || strikes.last.isYesterday) {
       await DB.updateUser({
-        "strikes": [
+        'strikes': [
           ...strikes,
           DateTime.now(),
         ],
-        "hasCollectedStrikes": false,
+        'hasCollectedStrikes': false,
       });
     } else if (!strikes.last.isToday) {
       await DB.updateUser({
-        "strikes": [DateTime.now()],
-        "hasCollectedStrikes": false,
+        'strikes': [DateTime.now()],
+        'hasCollectedStrikes': false,
       });
     }
   }

@@ -15,28 +15,28 @@ class Remote {
     );
     await remote.setDefaults(
       const {
-        linkStore: "https://tempo-dingo-db.web.app",
+        linkStore: 'https://tempo-dingo-db.web.app',
       },
     );
     await remote.fetchAndActivate();
-    debugPrint("===> [RemoteConfig] Initialized");
+    debugPrint('===> [RemoteConfig] Initialized');
   }
 
   int getInt(String str) {
     final res = remote.getInt(str);
-    debugPrint("===> [RemoteConfig] getInt $str: $res");
+    debugPrint('===> [RemoteConfig] getInt $str: $res');
     return res;
   }
 
   bool getBool(String str) {
     final res = remote.getBool(str);
-    debugPrint("===> [RemoteConfig] getBool $str: $res");
+    debugPrint('===> [RemoteConfig] getBool $str: $res');
     return res;
   }
 
   String getString(String str) {
     final res = remote.getString(str);
-    debugPrint("===> [RemoteConfig] getString $str: $res");
+    debugPrint('===> [RemoteConfig] getString $str: $res');
     return res;
   }
 }

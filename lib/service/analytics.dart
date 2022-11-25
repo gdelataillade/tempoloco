@@ -20,7 +20,7 @@ class Analytics {
   void error(String strClass, String strFunction, dynamic text,
       {StackTrace? stack}) {
     if (kDebugMode) return;
-    final message = "-> [$strClass] $strFunction : ${text.toString()}";
+    final message = '-> [$strClass] $strFunction : ${text.toString()}';
     Sentry.captureException(message, stackTrace: stack);
   }
 }

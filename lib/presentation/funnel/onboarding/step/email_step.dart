@@ -15,7 +15,7 @@ class OnboardingEmailStep extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         const SizedBox(),
-        const FadeIn(child: Text("Email")),
+        const FadeIn(child: Text('Email')),
         OnboardingTextInput(
           value: state.email,
           onSubmit: (String email) => state.validateEmail(email.trim()),

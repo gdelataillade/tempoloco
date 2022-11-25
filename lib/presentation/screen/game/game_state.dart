@@ -68,11 +68,11 @@ class GameState extends GetxController {
 
   Future<void> addMissingPreviewUrl() async {
     final res =
-        await DB.searchTrack("${track.name!} ${track.artists!.first.name}", 0);
+        await DB.searchTrack('${track.name!} ${track.artists!.first.name}', 0);
     try {
       previewUrl = res.firstWhere((e) => e.id == track.id).previewUrl!;
     } catch (e) {
-      debugPrint("[GameState] addMissingPreviewUrl - firstWhere error: $e");
+      debugPrint('[GameState] addMissingPreviewUrl - firstWhere error: $e');
       Get.back();
       Helper.snack(
         'error_occured'.tr,
@@ -123,7 +123,7 @@ class GameState extends GetxController {
         loading.value = false;
       }
       if (event.processingState == ProcessingState.completed) {
-        debugPrint("[Game] audio finished");
+        debugPrint('[Game] audio finished');
         playerStateSub!.cancel();
         onFinish();
       }
@@ -171,7 +171,7 @@ class GameState extends GetxController {
   Future<void> onTap() async {
     if (!audioPlayer.playing) await audioPlayer.play();
 
-    debugPrint("[Game] onTap");
+    debugPrint('[Game] onTap');
     taps.add(audioPlayer.position);
 
     if (taps.length > 1) {
@@ -200,7 +200,7 @@ class GameState extends GetxController {
 
   @override
   void onClose() {
-    debugPrint("[Game] onClose");
+    debugPrint('[Game] onClose');
 
     playerStateSub?.cancel();
     metronome.cancel();

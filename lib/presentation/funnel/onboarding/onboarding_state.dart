@@ -21,10 +21,10 @@ enum AuthType { login, register }
 class OnboardingState extends GetxController {
   final steps = <Widget>[const OnboardingIntroStep()].obs;
 
-  String uid = "";
-  String username = "";
-  String email = "";
-  String password = "";
+  String uid = '';
+  String username = '';
+  String email = '';
+  String password = '';
 
   RxInt stepIndex = 0.obs;
   RxBool isLoading = false.obs;
@@ -39,8 +39,8 @@ class OnboardingState extends GetxController {
   }
 
   Future<void> persistentLogin() async {
-    final String storedEmail = Storage.readData(credentialsBox, "email") ?? "";
-    final String storedPwd = Storage.readData(credentialsBox, "password") ?? "";
+    final String storedEmail = Storage.readData(credentialsBox, 'email') ?? '';
+    final String storedPwd = Storage.readData(credentialsBox, 'password') ?? '';
 
     if (storedEmail.isNotEmpty && storedPwd.isNotEmpty) {
       email = storedEmail;
@@ -86,20 +86,20 @@ class OnboardingState extends GetxController {
   Future<void> login() async {
     isLoading.value = true;
 
-    debugPrint("[Auth] login with: $email:$password");
+    debugPrint('[Auth] login with: $email:$password');
 
     final res = await Auth.login(email, password);
 
-    debugPrint("[Auth] login ${res ? "succesful" : "failed"}");
+    debugPrint('[Auth] login ${res ? 'succesful' : 'failed'}');
 
     if (!res) {
       // TODO: Don't erase password if network error
-      Storage.writeData(credentialsBox, "password", "");
+      Storage.writeData(credentialsBox, 'password', '');
       isLoading.value = false;
     } else {
-      Storage.writeData(credentialsBox, "email", email);
-      Storage.writeData(credentialsBox, "password", password);
-      analyticsLct.event("Login");
+      Storage.writeData(credentialsBox, 'email', email);
+      Storage.writeData(credentialsBox, 'password', password);
+      analyticsLct.event('Login');
       Get.offAllNamed('/tabview');
     }
   }
@@ -107,11 +107,11 @@ class OnboardingState extends GetxController {
   Future<void> register() async {
     isLoading.value = true;
 
-    debugPrint("[Auth] register with: $email:$password");
+    debugPrint('[Auth] register with: $email:$password');
 
     final res = await Auth.register(email, password);
 
-    debugPrint("[Auth] register ${res != null ? "succesful" : "failed"}");
+    debugPrint('[Auth] register ${res != null ? 'succesful' : 'failed'}');
 
     if (res == null) {
       isLoading.value = false;
@@ -120,11 +120,11 @@ class OnboardingState extends GetxController {
 
     await Future.wait([
       Auth.updateUsername(username),
-      Storage.writeData(credentialsBox, "email", email),
-      Storage.writeData(credentialsBox, "password", password),
+      Storage.writeData(credentialsBox, 'email', email),
+      Storage.writeData(credentialsBox, 'password', password),
     ]);
 
-    analyticsLct.event("Register");
+    analyticsLct.event('Register');
 
     uid = res;
     stepIndex.value++;
@@ -197,7 +197,7 @@ class OnboardingState extends GetxController {
     isLoading.value = true;
 
     analyticsLct
-        .eventWithParams("Genres selected", {"selectedGenres": selectedGenres});
+        .eventWithParams('Genres selected', {'selectedGenres': selectedGenres});
 
     final tracks = generateTracks();
     final library = createLibrary(tracks);
@@ -221,9 +221,9 @@ class OnboardingState extends GetxController {
 
     for (int i = 0; i < selectedGenres.length; i++) {
       final genre =
-          onboardingGenres.where((e) => e["genre"] == selectedGenres[i]).first;
+          onboardingGenres.where((e) => e['genre'] == selectedGenres[i]).first;
 
-      final List tracks = genre["tracks"];
+      final List tracks = genre['tracks'];
 
       for (int j = 0; j < tracks.length; j++) {
         res.add(tracks[j]);
@@ -242,7 +242,7 @@ class OnboardingState extends GetxController {
     List<String> res = [];
 
     for (int i = 0; i < tracks.length; i++) {
-      res.add(tracks[i]["title"]!);
+      res.add(tracks[i]['title']!);
     }
 
     return res;

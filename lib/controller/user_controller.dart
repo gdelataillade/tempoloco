@@ -13,7 +13,7 @@ class UserController extends GetxController {
 
   @override
   Future<void> onInit() async {
-    debugPrint("[UserController] init userId: ${Auth.uid}");
+    debugPrint('[UserController] init userId: ${Auth.uid}');
     user.bindStream(DB.userStream);
     super.onInit();
   }
@@ -49,12 +49,12 @@ class UserController extends GetxController {
     final nbGames = user.value.nbGames + 1;
 
     analyticsLct.eventWithParams(
-      "Game done",
+      'Game done',
       {
-        "trackId": trackId,
-        "score": score,
-        "starsEarned": starsEarned,
-        "nbGames": nbGames,
+        'trackId': trackId,
+        'score': score,
+        'starsEarned': starsEarned,
+        'nbGames': nbGames,
       },
     );
 
@@ -94,14 +94,14 @@ class UserController extends GetxController {
 
     debugPrint('===> [User] Purchasing track $trackId');
     analyticsLct.eventWithParams(
-      "Track purchased",
-      {"trackId": trackId, "price": price},
+      'Track purchased',
+      {'trackId': trackId, 'price': price},
     );
 
     await DB.updateUser(user.value.copyWith(
       library: [trackId, ...library],
       artists: [
-        {"title": trackId, "artist": artistId},
+        {'title': trackId, 'artist': artistId},
         ...artists,
       ],
       nbStars: nbStars - price,
@@ -147,8 +147,8 @@ class UserController extends GetxController {
     );
 
     analyticsLct.eventWithParams(
-      "Send friend request",
-      {"friend": username},
+      'Send friend request',
+      {'friend': username},
     );
   }
 
@@ -176,8 +176,8 @@ class UserController extends GetxController {
     }
 
     analyticsLct.eventWithParams(
-      "${accept ? 'Accept' : 'Deny'} friend request",
-      {"friend": username},
+      '${accept ? 'Accept' : 'Deny'} friend request',
+      {'friend': username},
     );
   }
 
@@ -200,8 +200,8 @@ class UserController extends GetxController {
     );
 
     analyticsLct.eventWithParams(
-      "Remove friend",
-      {"friend": username},
+      'Remove friend',
+      {'friend': username},
     );
   }
 }

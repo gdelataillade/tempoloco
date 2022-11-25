@@ -19,10 +19,10 @@ class History extends StatelessWidget {
       try {
         tracks.add(state.library.firstWhere((t) => t.id == historyIds[i]));
       } catch (e) {
-        debugPrint("[History] Error adding history: $e");
+        debugPrint('[History] Error adding history: $e');
       }
     }
-    debugPrint("[History] Loaded history items ${tracks.length}");
+    debugPrint('[History] Loaded history items ${tracks.length}');
     return tracks;
   }
 
@@ -35,7 +35,7 @@ class History extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            "History",
+            'History',
             style: Theme.of(context).textTheme.headline5,
           ),
           const SizedBox(height: 10),

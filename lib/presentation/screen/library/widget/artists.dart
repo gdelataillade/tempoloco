@@ -38,7 +38,7 @@ class LibraryArtists extends StatelessWidget {
                       height: 70,
                       child: Center(
                         child: Text(
-                          "${state.artists.length} artists",
+                          '${state.artists.length} artists',
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ),
