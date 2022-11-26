@@ -8,6 +8,7 @@ import 'package:spotify/spotify.dart';
 import 'package:tempoloco/controller/user_controller.dart';
 import 'package:tempoloco/model/chart_item.dart';
 import 'package:tempoloco/service/database.dart';
+import 'package:tempoloco/service/locator.dart';
 import 'package:tempoloco/utils/helper.dart';
 
 class GameState extends GetxController {
@@ -73,6 +74,7 @@ class GameState extends GetxController {
       previewUrl = res.firstWhere((e) => e.id == track.id).previewUrl!;
     } catch (e) {
       debugPrint('[GameState] addMissingPreviewUrl - firstWhere error: $e');
+      analyticsLct.error('GameState', 'addMissingPreviewUrl', e);
       Get.back();
       Helper.snack(
         'error_occured'.tr,
@@ -107,6 +109,7 @@ class GameState extends GetxController {
       await audioPlayer.setAudioSource(AudioSource.uri(Uri.parse(previewUrl)));
     } catch (e) {
       debugPrint('[GameState] AudioPlayer error => $e ');
+      analyticsLct.error('GameState', 'initAudioPlayer', e);
       Get.back();
       Helper.snack(
         'error_occured'.tr,
@@ -135,6 +138,11 @@ class GameState extends GetxController {
 
     if (trackTempo == 0) {
       Get.back();
+      analyticsLct.error(
+        'GameState',
+        'getTrackTempo',
+        'trackTempo is 0. track id: ${track.id!}',
+      );
       Helper.snack(
         'error_occured'.tr,
         'error_song_not_loaded'.tr,

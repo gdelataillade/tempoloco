@@ -19,6 +19,7 @@ class DB {
       return true;
     } catch (e) {
       debugPrint('===> [Firestore] Error adding user: $e');
+      analyticsLct.error('Database', 'createUser', e);
       Helper.snack('error_saving_user'.tr, e.toString());
       return false;
     }
@@ -32,6 +33,7 @@ class DB {
       debugPrint('===> [Firestore] User updated');
     } catch (e) {
       debugPrint('===> [Firestore] Error updating user: $e');
+      analyticsLct.error('Database', 'updateUser', e);
     }
   }
 

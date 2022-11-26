@@ -17,10 +17,10 @@ class Analytics {
   void eventWithParams(String name, Map<String, dynamic> params) =>
       mixpanel.track(name, properties: params);
 
-  void error(String strClass, String strFunction, dynamic text,
-      {StackTrace? stack}) {
+  Future<void> error(String strClass, String strFunction, dynamic text,
+      {StackTrace? stack}) async {
     if (kDebugMode) return;
     final message = '-> [$strClass] $strFunction : ${text.toString()}';
-    Sentry.captureException(message, stackTrace: stack);
+    await Sentry.captureException(message, stackTrace: stack);
   }
 }

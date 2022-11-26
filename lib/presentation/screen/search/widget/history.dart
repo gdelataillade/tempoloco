@@ -4,6 +4,7 @@ import 'package:spotify/spotify.dart';
 import 'package:tempoloco/presentation/common/widget/shader_mask.dart';
 import 'package:tempoloco/presentation/common/widget/track_card.dart';
 import 'package:tempoloco/presentation/screen/tabview/tab_view_state.dart';
+import 'package:tempoloco/service/locator.dart';
 import 'package:tempoloco/utils/helper.dart';
 
 class History extends StatelessWidget {
@@ -20,6 +21,7 @@ class History extends StatelessWidget {
         tracks.add(state.library.firstWhere((t) => t.id == historyIds[i]));
       } catch (e) {
         debugPrint('[History] Error adding history: $e');
+        analyticsLct.error('History', 'buildHistoryTracks', e);
       }
     }
     debugPrint('[History] Loaded history items ${tracks.length}');

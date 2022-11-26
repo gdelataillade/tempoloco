@@ -27,7 +27,7 @@ class GameOverScore extends StatelessWidget {
 
   String getGameOverPhrase(int nbStars) => gameOverPhrase
       .firstWhere((e) => e['nbStars'] == nbStars)['phrases']
-      .onRandom;
+      .oneRandom;
 
   @override
   Widget build(BuildContext context) {
