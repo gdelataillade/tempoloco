@@ -27,8 +27,7 @@ class Helper {
         overlays: [SystemUiOverlay.top]);
   }
 
-  static String get language =>
-      Storage.readData(settingsBox, 'language') ?? 'en';
+  static String get language => Get.locale!.languageCode;
 
   static String get countryCode =>
       Platform.localeName.split('_').last.toUpperCase();

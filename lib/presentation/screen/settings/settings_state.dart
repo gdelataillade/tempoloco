@@ -14,8 +14,8 @@ class SettingsState extends GetxController {
 
   Future<void> setLanguage(String value) async {
     debugPrint('[Settings] Setting language to $value');
-    language.value = value;
     Get.updateLocale(Locale(value));
+    language.value = value;
   }
 
   void toggleVibrations(bool value) {
