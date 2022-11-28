@@ -58,7 +58,7 @@ class _SearchResultsTrackState extends State<SearchResultsTrack> {
                     id: item.id!,
                     title: item.name!,
                     artist: item.artists!.first.name!,
-                    imgUrl: Helper.getMinResImage(item.album!.images!),
+                    imgUrl: Helper.getLowResImage(item.album!.images!),
                     price: price,
                     onPress: () {
                       if (state.userCtrl.isPurchased(item.id!)) {

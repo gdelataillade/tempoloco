@@ -36,7 +36,7 @@ class LibraryFavorite extends StatelessWidget {
                       id: item.id!,
                       title: item.name!,
                       artist: item.artists!.first.name!,
-                      imgUrl: Helper.getMinResImage(item.album!.images!),
+                      imgUrl: Helper.getLowResImage(item.album!.images!),
                       onPress: () {
                         Get.toNamed('/game', arguments: item);
                       },

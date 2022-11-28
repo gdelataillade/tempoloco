@@ -64,12 +64,10 @@ class Helper {
     return img.url!;
   }
 
-  static String getMinResImage(List<spotify.Image> images) {
-    spotify.Image img = images.first;
+  static String getLowResImage(List<spotify.Image> images) {
+    spotify.Image img = images.last;
 
-    for (int i = 1; i < images.length; i++) {
-      if (images[i].height! < img.height!) img = images[i];
-    }
+    if (images.length == 3) img = images[1];
     return img.url!;
   }
 

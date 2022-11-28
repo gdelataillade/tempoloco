@@ -25,7 +25,7 @@ class GameOverScore extends StatelessWidget {
     );
   }
 
-  String getGameOverPhrase(int nbStars) => gameOverPhrase
+  String getGameOverPhrase(int nbStars) => gameOverPhrases
       .firstWhere((e) => e['nbStars'] == nbStars)['phrases']
       .oneRandom;
 

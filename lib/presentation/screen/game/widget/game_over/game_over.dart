@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -45,14 +42,6 @@ class GameOver extends StatelessWidget {
                 IconButton(
                   onPressed: state.restartGame,
                   icon: const Icon(Icons.restart_alt),
-                  iconSize: 40,
-                ),
-                const SizedBox(width: 10),
-                // TODO: Share method
-                IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                      Platform.isAndroid ? Icons.share : CupertinoIcons.share),
                   iconSize: 40,
                 ),
               ],

@@ -27,7 +27,7 @@ class SearchResultsArtist extends StatelessWidget {
               return ArtistCard(
                 id: artist.id!,
                 name: artist.name!,
-                imgUrl: Helper.getMinResImage(artist.images!),
+                imgUrl: Helper.getLowResImage(artist.images!),
                 onTap: () => Get.toNamed('artist', arguments: artist),
               );
             },

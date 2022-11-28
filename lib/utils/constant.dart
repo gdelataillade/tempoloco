@@ -174,30 +174,36 @@ const List<Map<String, String>> playlists = [
 ];
 
 // TODO: Write more end phrases
-const List<Map<String, dynamic>> gameOverPhrase = [
+const List<Map<String, dynamic>> gameOverPhrases = [
   {
     'nbStars': 0,
     'phrases': [
       'You got it wrong',
+      'Try again',
+      'Feel the tempo',
     ],
   },
   {
     'nbStars': 1,
     'phrases': [
       'Could be better',
+      'You can improve',
     ],
   },
   {
     'nbStars': 2,
     'phrases': [
       'You got it',
+      'Well done',
+      'Nice',
     ],
   },
   {
     'nbStars': 3,
     'phrases': [
-      'Awesome !',
-      'Perfect',
+      "You're wesome!",
+      'Perfect!',
+      '',
     ],
   },
 ];
