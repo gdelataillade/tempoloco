@@ -94,7 +94,7 @@ class GameState extends GetxController {
       }
 
       SystemSound.play(SystemSoundType.click);
-      Helper.hapticFeedback();
+      if (Helper.hasVibrations()) HapticFeedback.lightImpact();
     });
   }
 

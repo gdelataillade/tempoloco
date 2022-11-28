@@ -22,6 +22,7 @@ class GameHeader extends StatelessWidget {
       return Container(
         height: size,
         width: size,
+        margin: const EdgeInsets.only(top: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(size)),
         ),
@@ -65,6 +66,7 @@ class GameHeader extends StatelessWidget {
                   child: Container(
                     height: size,
                     width: size,
+                    margin: const EdgeInsets.only(top: 10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(size)),
                     ),

@@ -20,13 +20,17 @@ class FriendScreen extends StatelessWidget {
               init: FriendState(),
               builder: (state) => state.loading.value == true
                   ? const Loading()
-                  : Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        FriendScreenHeader(),
-                        FriendScreenHighscores(),
-                        FriendScreenDeleteButton(),
-                      ],
+                  : Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          FriendScreenHeader(),
+                          SizedBox(height: 10),
+                          FriendScreenHighscores(),
+                          FriendScreenDeleteButton(),
+                        ],
+                      ),
                     ),
             ),
           ],

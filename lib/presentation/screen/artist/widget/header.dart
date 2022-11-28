@@ -20,7 +20,7 @@ class ArtistScreenHeader extends StatelessWidget {
             child: Container(
               height: state.imageSize,
               width: state.imageSize,
-              padding: const EdgeInsets.only(top: 5),
+              margin: const EdgeInsets.only(top: 10),
               decoration: BoxDecoration(
                 color: ktempoDark,
                 borderRadius: const BorderRadius.all(Radius.circular(20)),

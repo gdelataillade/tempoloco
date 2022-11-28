@@ -4,6 +4,7 @@ import 'package:tempoloco/presentation/common/widget/feedback.dart';
 import 'package:tempoloco/presentation/screen/game/game_state.dart';
 import 'package:tempoloco/presentation/screen/game/widget/stars.dart';
 import 'package:tempoloco/utils/constant.dart';
+import 'package:tempoloco/utils/extension/list.dart';
 import 'package:tempoloco/utils/helper.dart';
 import 'package:wiredash/wiredash.dart';
 
@@ -25,9 +26,13 @@ class GameOverScore extends StatelessWidget {
     );
   }
 
-  String getGameOverPhrase(int nbStars) => gameOverPhrases
-      .firstWhere((e) => e['nbStars'] == nbStars)['phrases']
-      .oneRandom;
+  // TODO: Translate this
+  String getGameOverPhrase(int nbStars) {
+    final phrases = gameOverPhrases
+        .firstWhere((e) => e['nbStars'] == nbStars)['phrases'] as List<String>;
+
+    return phrases.oneRandom;
+  }
 
   @override
   Widget build(BuildContext context) {

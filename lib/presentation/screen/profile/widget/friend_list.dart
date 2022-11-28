@@ -20,6 +20,7 @@ class ProfileFriendList extends StatelessWidget {
               child: Row(
                 children: [
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       IconButton(
                         onPressed: () => Modal.showSimpleModal(

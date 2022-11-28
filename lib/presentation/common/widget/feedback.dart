@@ -35,7 +35,10 @@ class _WiredashFeedbackStateButton extends State<WiredashFeedbackButton> {
           return TextButton(
             onPressed: () =>
                 Wiredash.of(context).show(inheritMaterialTheme: true),
-            child: Text('giveFeedback'.tr),
+            child: Text(
+              'giveFeedback'.tr,
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
           );
         }
         return const SizedBox();

@@ -54,6 +54,7 @@ class ProfileState extends GetxController {
     super.onReady();
   }
 
+  // TODO: Update username in friend's model
   Future<bool> updateUsername(String username) async {
     if (username == userCtrl.user.value.username) return false;
 

@@ -21,7 +21,7 @@ class FriendState extends GetxController {
   }
 
   Future<void> loadAvatar() async {
-    final svgCode = multiavatar(username);
+    final svgCode = multiavatar(username, trBackground: true);
     svgRoot = await svg.fromSvgString(svgCode, username);
   }
 

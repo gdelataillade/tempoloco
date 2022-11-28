@@ -28,6 +28,7 @@ class FriendScreenHighscores extends StatelessWidget {
                 children: [
                   Text(
                     item.name,
+                    style: Theme.of(context).textTheme.titleLarge,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
