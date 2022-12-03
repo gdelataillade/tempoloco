@@ -50,7 +50,7 @@ class Achievements extends StatelessWidget {
             ],
           ),
           body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
                 Center(
@@ -60,8 +60,16 @@ class Achievements extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 30),
-                const AchievementsHighscores(),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'yourHighscores'.tr,
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
+                ),
                 const SizedBox(height: 10),
+                const AchievementsHighscores(),
+                const Spacer(),
                 const AchievementsStrikes(),
               ],
             ),

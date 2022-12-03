@@ -354,6 +354,11 @@ const Map<String, Map<String, String>> translations = {
     "fr": "Récupère @nbDays étoiles",
     "es": "",
   },
+  "yourHighscores": {
+    "en": "Your highscores:",
+    "fr": "Tes meilleurs scores:",
+    "es": "",
+  },
   // Auth Service
   "login_error": {
     "en": "Login error",

@@ -58,15 +58,9 @@ class AddFriendModal extends StatelessWidget {
                   onSubmitted: state.addFriendWithUsername,
                 ),
               ),
-              const Spacer(),
-              Column(
-                children: [
-                  Text('friendHasNotTempoloco'.tr),
-                  MainButton(
-                    onTap: state.addFriendWithLink,
-                    label: 'friendSendLink'.tr,
-                  ),
-                ],
+              MainButton(
+                label: 'Send invitation',
+                onTap: () => state.addFriendWithUsername(controller.text),
               ),
             ],
           ),

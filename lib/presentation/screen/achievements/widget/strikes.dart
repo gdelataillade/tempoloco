@@ -17,6 +17,7 @@ class AchievementsStrikes extends StatelessWidget {
             'strikes'.trParams({
               'nbDays': state.user.strikes.length.toString(),
             }),
+            style: Theme.of(context).textTheme.titleLarge,
           ),
           const SizedBox(height: 15),
           Obx(() {
@@ -38,7 +39,7 @@ class AchievementsStrikes extends StatelessWidget {
                     ? Center(
                         child: Text(
                           'comeBackTomorrow'.tr,
-                          style: Theme.of(context).textTheme.titleMedium,
+                          style: Theme.of(context).textTheme.titleLarge,
                         ),
                       )
                     : Row(
@@ -48,9 +49,16 @@ class AchievementsStrikes extends StatelessWidget {
                             'strikesCollect'.trParams({
                               'nbDays': state.user.strikes.length.toString(),
                             }),
-                            style: const TextStyle(color: ktempoDark),
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(color: ktempoDark),
                           ),
-                          const Icon(Icons.star_rounded, color: ktempoYellow),
+                          const Icon(
+                            Icons.star_rounded,
+                            color: ktempoYellow,
+                            size: 30,
+                          ),
                         ],
                       ),
               ),

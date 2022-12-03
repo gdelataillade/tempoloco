@@ -203,7 +203,6 @@ const List<Map<String, dynamic>> gameOverPhrases = [
     'phrases': [
       "You're wesome!",
       'Perfect!',
-      '',
     ],
   },
 ];

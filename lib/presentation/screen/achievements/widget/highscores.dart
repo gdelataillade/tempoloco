@@ -11,6 +11,7 @@ class AchievementsHighscores extends StatelessWidget {
     final scrollCtrl = ScrollController();
 
     return Expanded(
+      flex: 2,
       child: Scrollbar(
         thumbVisibility: true,
         controller: scrollCtrl,
@@ -21,7 +22,7 @@ class AchievementsHighscores extends StatelessWidget {
           itemBuilder: (context, index) {
             final item = state.highscores[index];
             return Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,

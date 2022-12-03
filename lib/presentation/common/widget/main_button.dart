@@ -18,7 +18,7 @@ class MainButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
         child: AnimatedOpacity(
           opacity: disable ? 0.3 : 1,
           duration: const Duration(milliseconds: 200),
@@ -33,7 +33,7 @@ class MainButton extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  label ?? 'continueStr'.tr,
+                  label ?? 'continue'.tr,
                   style: Theme.of(context)
                       .textTheme
                       .titleLarge!

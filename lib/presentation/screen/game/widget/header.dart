@@ -54,27 +54,29 @@ class GameHeader extends StatelessWidget {
                   duration = snapshot.data;
                 }
 
-                return CustomPaint(
-                  foregroundPainter: duration != null && !hasError
-                      ? GameHeaderProgressionPainter(
-                          height: size,
-                          progression: 100 *
-                              duration.inMilliseconds /
-                              state.audioPlayer.duration!.inMilliseconds,
-                        )
-                      : null,
-                  child: Container(
-                    height: size,
-                    width: size,
-                    margin: const EdgeInsets.only(top: 10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(size)),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(2),
-                      child: ClipRRect(
+                return Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: CustomPaint(
+                    foregroundPainter: duration != null && !hasError
+                        ? GameHeaderProgressionPainter(
+                            height: size,
+                            progression: 100 *
+                                duration.inMilliseconds /
+                                state.audioPlayer.duration!.inMilliseconds,
+                          )
+                        : null,
+                    child: Container(
+                      height: size,
+                      width: size,
+                      decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(size)),
-                        child: image,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(2),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(size)),
+                          child: image,
+                        ),
                       ),
                     ),
                   ),

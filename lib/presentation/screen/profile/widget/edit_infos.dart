@@ -32,30 +32,12 @@ class _ProfileEditInfosState extends State<ProfileEditInfos> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Padding(
-          padding: const EdgeInsets.all(10),
-          child: TextField(
-            autocorrect: false,
-            controller: usernameCtrl,
-            cursorColor: ktempoWhite,
-            textInputAction: TextInputAction.done,
-            textAlign: TextAlign.center,
-            style: Theme.of(context)
-                .textTheme
-                .titleLarge!
-                .copyWith(fontWeight: FontWeight.w600),
-            onSubmitted: (input) async {
-              final res = await state
-                  .updateUsername(input.trim().toLowerCase().removeSpaces);
-              if (!res) usernameCtrl.text = user.username;
-            },
-            decoration: const InputDecoration(
-              prefixIcon: SizedBox.shrink(),
-              suffixIcon: Icon(Icons.edit, color: ktempoWhite),
-              focusedBorder: InputBorder.none,
-              enabledBorder: InputBorder.none,
-            ),
-          ),
+        Text(
+          usernameCtrl.text,
+          style: Theme.of(context)
+              .textTheme
+              .titleLarge!
+              .copyWith(fontWeight: FontWeight.w600),
         ),
         Padding(
           padding: const EdgeInsets.all(10),

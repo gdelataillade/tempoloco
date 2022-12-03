@@ -21,7 +21,6 @@ class Auth {
       String msg = e.toString();
       if (!msg.contains('The password is invalid')) {}
       if (msg.contains('user-not-found')) {
-        // TODO: Go back to email input step
         msg = 'account_do_not_exists'.trParams({'email': email});
       } else if (msg.contains('wrong-password')) {
         msg = 'wrong_password'.tr;
