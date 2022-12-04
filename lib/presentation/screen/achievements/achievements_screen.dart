@@ -49,29 +49,25 @@ class Achievements extends StatelessWidget {
               ),
             ],
           ),
-          body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              children: [
-                Center(
-                  child: Text(
-                    'achievements'.tr,
-                    style: Theme.of(context).textTheme.headline5,
+          body: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                children: [
+                  Center(
+                    child: Text(
+                      'highscores'.tr,
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            fontSize: 50,
+                            fontWeight: FontWeight.w600,
+                          ),
+                    ),
                   ),
-                ),
-                const SizedBox(height: 30),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'yourHighscores'.tr,
-                    style: Theme.of(context).textTheme.headline5,
-                  ),
-                ),
-                const SizedBox(height: 10),
-                const AchievementsHighscores(),
-                const Spacer(),
-                const AchievementsStrikes(),
-              ],
+                  const SizedBox(height: 10),
+                  const AchievementsHighscores(),
+                  const AchievementsStrikes(),
+                ],
+              ),
             ),
           ),
         );

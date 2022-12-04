@@ -33,6 +33,8 @@ class ProfileState extends GetxController {
   Future<void> loadFriendsAvatar() async {
     final userFriends = userCtrl.user.value.friends;
 
+    friends.clear();
+
     for (int i = 0; i < userFriends.length; i++) {
       final svgCode = multiavatar(userFriends[i], trBackground: true);
       final root = await svg.fromSvgString(svgCode, userFriends[i]);

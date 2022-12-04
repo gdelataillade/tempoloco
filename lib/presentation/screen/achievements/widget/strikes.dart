@@ -10,7 +10,8 @@ class AchievementsStrikes extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = Get.find<AchievementsState>();
 
-    return Expanded(
+    return Padding(
+      padding: const EdgeInsets.only(top: 20),
       child: Column(
         children: [
           Text(

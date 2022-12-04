@@ -10,7 +10,7 @@ const settingsBox = 'settings';
 ///
 /// `credentialsBox` email and password
 ///
-/// `settingsBox`  volume and language
+/// `settingsBox` language
 const hiveBoxes = <String>[
   credentialsBox,
   settingsBox,

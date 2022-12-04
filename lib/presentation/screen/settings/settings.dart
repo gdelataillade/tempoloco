@@ -5,7 +5,6 @@ import 'package:tempoloco/controller/user_controller.dart';
 import 'package:tempoloco/presentation/screen/settings/settings_state.dart';
 import 'package:tempoloco/presentation/screen/settings/widgets/vibrations.dart';
 import 'package:tempoloco/presentation/screen/settings/widgets/language.dart';
-import 'package:tempoloco/presentation/screen/settings/widgets/volume_slider.dart';
 import 'package:tempoloco/theme.dart';
 import 'package:tempoloco/utils/helper.dart';
 
@@ -34,13 +33,17 @@ class Settings extends StatelessWidget {
                         userCtrl.user.value.nbStars.toString(),
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
-                      const Icon(Icons.star, color: ktempoYellow, size: 30),
+                      const Icon(
+                        Icons.star_rounded,
+                        color: ktempoYellow,
+                        size: 30,
+                      ),
                     ],
                   ),
                 ),
                 const Padding(
                   padding: EdgeInsets.only(right: 10),
-                  child: Icon(FeatherIcons.user, color: ktempoWhite),
+                  child: Icon(FeatherIcons.user, color: ktempoWhite, size: 30),
                 ),
               ],
             ),
@@ -57,11 +60,12 @@ class Settings extends StatelessWidget {
                 children: [
                   Text(
                     'settings'.tr,
-                    style: Theme.of(context).textTheme.headline3,
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          fontSize: 50,
+                          fontWeight: FontWeight.w600,
+                        ),
                   ),
-                  const SizedBox(height: 20),
-                  const SettingsVolumeSlider(),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 30),
                   const SettingsLanguage(),
                   const SizedBox(height: 20),
                   const SettingsVibrations(),

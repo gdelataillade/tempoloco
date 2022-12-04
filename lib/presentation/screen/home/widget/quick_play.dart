@@ -25,54 +25,58 @@ class HomeQuickPlay extends StatelessWidget {
             final item = state.library[index];
             final size = Get.size.width * 0.7;
 
-            return GestureDetector(
-              onTap: () {
-                Get.toNamed('/game', arguments: item);
-              },
-              child: SizedBox(
-                width: size,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Hero(
-                      tag: item.id!,
-                      child: Container(
-                        height: size,
-                        margin: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          color: ktempoDark,
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(20)),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.5),
-                              spreadRadius: 0.2,
-                              blurRadius: 2,
-                              offset: const Offset(1, 1),
+            return Tooltip(
+              message: item.name,
+              triggerMode: TooltipTriggerMode.longPress,
+              child: GestureDetector(
+                onTap: () {
+                  Get.toNamed('/game', arguments: item);
+                },
+                child: SizedBox(
+                  width: size,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Hero(
+                        tag: item.id!,
+                        child: Container(
+                          height: size,
+                          margin: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: ktempoDark,
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20)),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.5),
+                                spreadRadius: 0.2,
+                                blurRadius: 2,
+                                offset: const Offset(1, 1),
+                              ),
+                            ],
+                          ),
+                          child: ClipRRect(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20)),
+                            child: Image.network(
+                              Helper.getMaxResImage(item.album!.images!),
+                              fit: BoxFit.cover,
                             ),
-                          ],
-                        ),
-                        child: ClipRRect(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(20)),
-                          child: Image.network(
-                            Helper.getMaxResImage(item.album!.images!),
-                            fit: BoxFit.cover,
                           ),
                         ),
                       ),
-                    ),
-                    Text(
-                      item.name!,
-                      style: Theme.of(context).textTheme.titleLarge,
-                      textAlign: TextAlign.center,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    const SizedBox(height: 5),
-                    Text(item.artists!.first.name!),
-                  ],
+                      Text(
+                        item.name!,
+                        style: Theme.of(context).textTheme.titleLarge,
+                        textAlign: TextAlign.center,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const SizedBox(height: 5),
+                      Text(item.artists!.first.name!),
+                    ],
+                  ),
                 ),
               ),
             );

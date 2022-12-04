@@ -1,7 +1,7 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:spotify/spotify.dart';
@@ -9,6 +9,7 @@ import 'package:tempoloco/controller/user_controller.dart';
 import 'package:tempoloco/model/chart_item.dart';
 import 'package:tempoloco/service/database.dart';
 import 'package:tempoloco/service/locator.dart';
+import 'package:tempoloco/theme.dart';
 import 'package:tempoloco/utils/helper.dart';
 
 class GameState extends GetxController {
@@ -25,8 +26,10 @@ class GameState extends GetxController {
   int starsEarned = 0;
 
   final userCtrl = Get.find<UserController>();
+  final hasVibrations = Helper.hasVibrations();
   final taps = <Duration>[];
   final accuracyList = <ChartItem>[];
+  final splashColor = ktempoPurple.obs;
 
   RxBool loading = true.obs;
   RxBool isOver = false.obs;
@@ -35,7 +38,6 @@ class GameState extends GetxController {
 
   bool get isLiked => userCtrl.isFavorite(track.id!);
 
-  // TODO: Improve algo with standard deviation (delete weird taps)
   void setPlayerTempo() {
     if (taps.isEmpty) {
       playerTempo = 0;
@@ -94,7 +96,7 @@ class GameState extends GetxController {
       }
 
       SystemSound.play(SystemSoundType.click);
-      if (Helper.hasVibrations()) HapticFeedback.lightImpact();
+      if (hasVibrations) HapticFeedback.lightImpact();
     });
   }
 
@@ -177,6 +179,28 @@ class GameState extends GetxController {
     liked.toggle();
   }
 
+  double getAccuracyAtThisTime() {
+    final durationBetweenLastTaps =
+        taps[taps.length - 1] - taps[taps.length - 2];
+
+    final double tempo = 1000 * 60 / durationBetweenLastTaps.inMilliseconds;
+
+    final accuracy = tempo > trackTempo
+        ? 100 * trackTempo / tempo
+        : 100 * tempo / trackTempo;
+
+    if (accuracy > 95) {
+      splashColor.value = Colors.green.withOpacity(0.5);
+    } else if (accuracy < 80) {
+      splashColor.value = ktempoRed.withOpacity(0.5);
+    } else {
+      splashColor.value = ktempoGrey.withOpacity(0.7);
+    }
+    debugPrint("[Debug] accuracy: $accuracy");
+
+    return accuracy;
+  }
+
   Future<void> onTap() async {
     if (!audioPlayer.playing) await audioPlayer.play();
 
@@ -185,10 +209,9 @@ class GameState extends GetxController {
 
     if (taps.length > 1) {
       setPlayerTempo();
-      setPrecision();
       accuracyList.add(
         ChartItem(
-          accuracy: precision.toPrecision(2),
+          accuracy: getAccuracyAtThisTime().toPrecision(2),
           position: audioPlayer.position,
         ),
       );

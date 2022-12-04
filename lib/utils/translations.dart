@@ -339,6 +339,11 @@ const Map<String, Map<String, String>> translations = {
     "fr": "Accomplissements",
     "es": "",
   },
+  "highscores": {
+    "en": "Highscores",
+    "fr": "Meilleurs scores",
+    "es": "",
+  },
   "strikes": {
     "en": "You played @nbDays day(s) in a row",
     "fr": "Tu as joué @nbDays jour(s) à la suite",

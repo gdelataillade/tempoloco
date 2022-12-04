@@ -7,11 +7,6 @@ class SettingsState extends GetxController {
   Rx<bool> vibrations = Helper.hasVibrations().obs;
   Rx<String> language = Helper.language.obs;
 
-  void saveVolume(double volume) {
-    debugPrint('[Settings] Setting volume to $volume');
-    Storage.writeData(settingsBox, 'volume', volume);
-  }
-
   Future<void> setLanguage(String value) async {
     debugPrint('[Settings] Setting language to $value');
     Get.updateLocale(Locale(value));

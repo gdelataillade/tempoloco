@@ -31,16 +31,16 @@ class Profile extends StatelessWidget {
                     const SizedBox(height: 20),
                     const ProfileEditInfos(),
                     const SizedBox(height: 20),
-                    const Padding(
-                      padding: EdgeInsets.all(10),
-                      child: ProfileFriendList(),
-                    ),
+                    const ProfileFriendList(),
                     const ProfileFriendRequests(),
                     const SizedBox(height: 10),
                     const Spacer(),
-                    MainButton(
-                      label: 'signOut'.tr,
-                      onTap: Auth.signOut,
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 1 / 2,
+                      child: MainButton(
+                        label: 'signOut'.tr,
+                        onTap: Auth.signOut,
+                      ),
                     ),
                   ],
                 ),

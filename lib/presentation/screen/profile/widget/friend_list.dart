@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:tempoloco/presentation/common/widget/avatar_card.dart';
 import 'package:tempoloco/presentation/screen/profile/profile_state.dart';
 import 'package:tempoloco/presentation/screen/profile/widget/add_friend_modal.dart';
+import 'package:tempoloco/theme.dart';
 import 'package:tempoloco/utils/modal.dart';
 
-// TODO: Refresh list when friend added
 class ProfileFriendList extends StatelessWidget {
   const ProfileFriendList({Key? key}) : super(key: key);
 
@@ -23,17 +23,24 @@ class ProfileFriendList extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       IconButton(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
                         onPressed: () => Modal.showSimpleModal(
                           context,
                           const AddFriendModal(),
                         ),
-                        padding: const EdgeInsets.only(top: 0, right: 8),
                         icon: const Icon(Icons.add_circle_sharp, size: 95),
                         iconSize: 90,
                         splashRadius: 30,
+                        color: ktempoYellow.withOpacity(0.7),
                       ),
                       const SizedBox(height: 6),
-                      Text('addFriend'.tr),
+                      Text(
+                        'addFriend'.tr,
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                              color: ktempoYellow.withOpacity(0.8),
+                              fontSize: 18,
+                            ),
+                      ),
                     ],
                   ),
                   Expanded(
@@ -47,6 +54,8 @@ class ProfileFriendList extends StatelessWidget {
                               final friend = state.friends[index];
 
                               return RawMaterialButton(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
                                 onPressed: () => Get.toNamed(
                                   '/friend',
                                   arguments: friend.username,
@@ -55,9 +64,21 @@ class ProfileFriendList extends StatelessWidget {
                                   children: [
                                     const SizedBox(height: 8),
                                     AvatarCard(
-                                        size: 80, svgRoot: friend.svgRoot),
+                                      size: 80,
+                                      svgRoot: friend.svgRoot,
+                                    ),
                                     const SizedBox(height: 8),
-                                    Text(friend.username),
+                                    Text(
+                                      friend.username,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium!
+                                          .copyWith(
+                                            color:
+                                                ktempoYellow.withOpacity(0.8),
+                                            fontSize: 18,
+                                          ),
+                                    ),
                                   ],
                                 ),
                               );

@@ -34,27 +34,33 @@ class _ProfileEditInfosState extends State<ProfileEditInfos> {
       children: [
         Text(
           usernameCtrl.text,
-          style: Theme.of(context)
-              .textTheme
-              .titleLarge!
-              .copyWith(fontWeight: FontWeight.w600),
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                fontWeight: FontWeight.w600,
+                color: ktempoYellow.withOpacity(0.8),
+                fontSize: 30,
+              ),
         ),
         Padding(
           padding: const EdgeInsets.all(10),
           child: TextField(
             autocorrect: false,
             controller: emailCtrl,
-            cursorColor: ktempoWhite,
+            cursorColor: ktempoYellow.withOpacity(0.6),
             textInputAction: TextInputAction.done,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.titleLarge,
+            style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                  color: ktempoYellow.withOpacity(0.6),
+                ),
             onSubmitted: (input) async {
               final res = await state.updateEmail(input.trim().removeSpaces);
               if (!res) emailCtrl.text = user.email;
             },
-            decoration: const InputDecoration(
-              prefixIcon: SizedBox.shrink(),
-              suffixIcon: Icon(Icons.edit, color: ktempoWhite),
+            decoration: InputDecoration(
+              prefixIcon: const SizedBox.shrink(),
+              suffixIcon: Icon(
+                Icons.edit,
+                color: ktempoYellow.withOpacity(0.6),
+              ),
               focusedBorder: InputBorder.none,
               enabledBorder: InputBorder.none,
             ),

@@ -20,6 +20,7 @@ class GameTapArea extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(35),
           ),
+          splashColor: state.splashColor.value,
           child: Container(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,

@@ -23,13 +23,13 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.only(left: 10, top: 10),
           child:
               Text('artists'.tr, style: Theme.of(context).textTheme.titleLarge),
         ),
         const HomeArtists(),
         Padding(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.only(top: 30, left: 10),
           child: Text('quickPlay'.tr,
               style: Theme.of(context).textTheme.titleLarge),
         ),

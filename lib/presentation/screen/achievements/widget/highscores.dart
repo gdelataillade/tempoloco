@@ -11,7 +11,6 @@ class AchievementsHighscores extends StatelessWidget {
     final scrollCtrl = ScrollController();
 
     return Expanded(
-      flex: 2,
       child: Scrollbar(
         thumbVisibility: true,
         controller: scrollCtrl,
