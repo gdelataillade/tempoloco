@@ -40,7 +40,11 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
               appBar: AppBar(
                 leading: IconButton(
                   splashColor: Colors.transparent,
-                  icon: const Icon(FeatherIcons.settings, size: 30),
+                  icon: const Icon(
+                    FeatherIcons.settings,
+                    size: 30,
+                    color: ktempoYellow,
+                  ),
                   onPressed: () {
                     Helper.hapticFeedback();
                     Get.toNamed('/settings');
@@ -50,13 +54,20 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
                   Center(
                     child: Text(
                       state.user.nbStars.toString(),
-                      style: Theme.of(context).textTheme.titleLarge,
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleLarge!
+                          .copyWith(color: ktempoYellow),
                     ),
                   ),
                   const Icon(Icons.star_rounded, color: ktempoYellow, size: 30),
                   IconButton(
                     splashColor: Colors.transparent,
-                    icon: const Icon(Icons.emoji_events_outlined, size: 30),
+                    icon: const Icon(
+                      Icons.emoji_events_outlined,
+                      size: 30,
+                      color: ktempoYellow,
+                    ),
                     onPressed: () {
                       Helper.hapticFeedback();
                       Get.toNamed(
@@ -67,7 +78,11 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
                   ),
                   IconButton(
                     splashColor: Colors.transparent,
-                    icon: const Icon(FeatherIcons.user, size: 30),
+                    icon: const Icon(
+                      FeatherIcons.user,
+                      size: 30,
+                      color: ktempoYellow,
+                    ),
                     onPressed: () {
                       Helper.hapticFeedback();
                       Get.toNamed('/profile');
@@ -90,9 +105,9 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
                   iconSize: 30,
                   elevation: 1,
                   opacity: 0.1,
-                  selectedColor: ktempoYellow,
-                  strokeColor: ktempoYellow,
-                  unSelectedColor: ktempoWhite,
+                  selectedColor: ktempoWhite,
+                  strokeColor: ktempoWhite,
+                  unSelectedColor: ktempoYellow.withOpacity(0.9),
                   backgroundColor: ktempoPurple,
                   scaleCurve: Curves.easeInOut,
                   currentIndex: selectedIndex,

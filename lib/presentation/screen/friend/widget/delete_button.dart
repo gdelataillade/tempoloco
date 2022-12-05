@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tempoloco/theme.dart';
 
 class FriendScreenDeleteButton extends StatelessWidget {
   const FriendScreenDeleteButton({Key? key}) : super(key: key);
@@ -11,7 +12,7 @@ class FriendScreenDeleteButton extends StatelessWidget {
         onPressed: () {},
         child: Text(
           'Delete friend',
-          style: TextStyle(color: Colors.red.withOpacity(0.7)),
+          style: TextStyle(color: ktempoRed.withOpacity(0.7)),
         ),
       ),
     );

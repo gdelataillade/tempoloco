@@ -33,7 +33,7 @@ class GameOver extends StatelessWidget {
                       state.liked.value
                           ? Icons.favorite
                           : Icons.favorite_border_rounded,
-                      color: Colors.red,
+                      color: ktempoRed,
                     ),
                   ),
                   iconSize: 40,

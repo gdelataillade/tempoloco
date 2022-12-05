@@ -4,6 +4,7 @@ import 'package:tempoloco/presentation/common/animation/fade_in.dart';
 import 'package:tempoloco/presentation/common/widget/main_button.dart';
 import 'package:tempoloco/presentation/funnel/onboarding/onboarding_state.dart';
 import 'package:tempoloco/presentation/funnel/onboarding/widget/genre_item.dart';
+import 'package:tempoloco/theme.dart';
 import 'package:tempoloco/utils/constant.dart';
 import 'package:tempoloco/utils/helper.dart';
 
@@ -19,8 +20,25 @@ class OnboardingMusicStep extends StatelessWidget {
           Expanded(
             child: Column(
               children: [
-                Text('kindOfMusic'.tr),
-                Text('pick2Genres'.tr),
+                Text(
+                  'kindOfMusic'.tr,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                        fontSize: 25,
+                        color: ktempoYellow,
+                        fontWeight: FontWeight.w600,
+                      ),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  'pick2Genres'.tr,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                        fontSize: 18,
+                        color: ktempoRed,
+                        fontWeight: FontWeight.w400,
+                      ),
+                ),
               ],
             ),
           ),

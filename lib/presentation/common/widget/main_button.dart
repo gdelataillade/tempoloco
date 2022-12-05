@@ -28,7 +28,7 @@ class MainButton extends StatelessWidget {
               height: 50,
               width: double.infinity,
               decoration: BoxDecoration(
-                color: ktempoYellow.withOpacity(0.6),
+                color: ktempoYellow,
                 borderRadius: BorderRadius.circular(25),
               ),
               child: Center(
@@ -36,7 +36,7 @@ class MainButton extends StatelessWidget {
                   label ?? 'continue'.tr,
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                         color: ktempoPurple,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w700,
                       ),
                 ),
               ),

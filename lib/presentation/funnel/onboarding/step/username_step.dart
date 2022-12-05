@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:tempoloco/presentation/common/animation/fade_in.dart';
 import 'package:tempoloco/presentation/funnel/onboarding/onboarding_state.dart';
 import 'package:tempoloco/presentation/funnel/onboarding/widget/text_input.dart';
+import 'package:tempoloco/theme.dart';
 import 'package:tempoloco/utils/extension/string.dart';
 
 class OnboardingUsernameStep extends StatelessWidget {
@@ -14,12 +15,15 @@ class OnboardingUsernameStep extends StatelessWidget {
 
     return FadeIn(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          const SizedBox(),
           Text(
             'username'.tr,
-            style: Theme.of(context).textTheme.titleLarge,
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  fontSize: 35,
+                  color: ktempoYellow,
+                  fontWeight: FontWeight.w600,
+                ),
           ),
           OnboardingTextInput(
             value: state.username,

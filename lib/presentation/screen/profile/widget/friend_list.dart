@@ -45,7 +45,17 @@ class ProfileFriendList extends StatelessWidget {
                   ),
                   Expanded(
                     child: state.friends.isEmpty
-                        ? Center(child: Text('checkFriendHighscores'.tr))
+                        ? Center(
+                            child: Text(
+                              'checkFriendHighscores'.tr,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge!
+                                  .copyWith(
+                                    color: ktempoYellow.withOpacity(0.8),
+                                  ),
+                            ),
+                          )
                         : ListView.builder(
                             physics: const BouncingScrollPhysics(),
                             scrollDirection: Axis.horizontal,

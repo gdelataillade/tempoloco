@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tempoloco/presentation/screen/game/game_state.dart';
+import 'package:tempoloco/theme.dart';
 import 'package:tempoloco/utils/helper.dart';
 
 class GameHeader extends StatelessWidget {
@@ -94,13 +95,16 @@ class GameHeader extends StatelessWidget {
               Text(
                 state.track.name!,
                 maxLines: 1,
-                style: Theme.of(context).textTheme.headline4,
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                      fontSize: 35,
+                      fontWeight: FontWeight.w600,
+                    ),
               ),
               Text(
                 state.track.artists!.first.name!,
-                style: Theme.of(context).textTheme.headline5,
+                style: Theme.of(context).textTheme.headline6,
               ),
             ],
           ),
@@ -122,7 +126,7 @@ class GameHeaderProgressionPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint complete = Paint()
-      ..color = Colors.white
+      ..color = ktempoYellow
       ..strokeCap = StrokeCap.square
       ..style = PaintingStyle.stroke
       ..strokeWidth = 3.0;

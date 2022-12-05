@@ -32,7 +32,7 @@ class _OnboardingTextInputState extends State<OnboardingTextInput> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(15),
+      padding: const EdgeInsets.only(left: 15, right: 15, bottom: 15, top: 70),
       child: TextField(
         autofocus: true,
         autocorrect: false,
@@ -41,24 +41,28 @@ class _OnboardingTextInputState extends State<OnboardingTextInput> {
             widget.isPassword ? TextInputAction.done : TextInputAction.next,
         controller: controller,
         textAlign: TextAlign.center,
-        cursorColor: ktempoWhite,
+        cursorColor: ktempoYellow,
         onSubmitted: (input) => widget.onSubmit(input.trim()),
+        style: Theme.of(context)
+            .textTheme
+            .titleLarge!
+            .copyWith(color: ktempoYellow),
         decoration: InputDecoration(
           prefixIcon: const SizedBox.shrink(),
           suffixIcon: widget.isPassword
               ? IconButton(
                   icon: Icon(
                     hidePassword ? Icons.visibility : Icons.visibility_off,
-                    color: ktempoWhite,
+                    color: ktempoYellow,
                   ),
                   onPressed: () => setState(() => hidePassword = !hidePassword),
                 )
               : const SizedBox.shrink(),
           focusedBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: ktempoWhite),
+            borderSide: BorderSide(color: ktempoYellow),
           ),
           enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: ktempoWhite.withOpacity(0.7)),
+            borderSide: BorderSide(color: ktempoYellow.withOpacity(0.7)),
           ),
         ),
       ),

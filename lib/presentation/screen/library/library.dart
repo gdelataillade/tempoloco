@@ -59,6 +59,9 @@ class _LibraryScreenState extends State<LibraryScreen>
                               ? FontWeight.w700
                               : FontWeight.w200,
                           fontSize: selectedIndex == 0 ? 23 : 20,
+                          color: selectedIndex == 0
+                              ? ktempoWhite
+                              : ktempoYellow.withOpacity(0.9),
                         ),
                   ),
                   Text(
@@ -68,6 +71,9 @@ class _LibraryScreenState extends State<LibraryScreen>
                               ? FontWeight.w700
                               : FontWeight.w200,
                           fontSize: selectedIndex == 1 ? 23 : 20,
+                          color: selectedIndex == 1
+                              ? ktempoWhite
+                              : ktempoYellow.withOpacity(0.9),
                         ),
                   ),
                   Text(
@@ -77,6 +83,9 @@ class _LibraryScreenState extends State<LibraryScreen>
                               ? FontWeight.w700
                               : FontWeight.w200,
                           fontSize: selectedIndex == 2 ? 23 : 20,
+                          color: selectedIndex == 2
+                              ? ktempoWhite
+                              : ktempoYellow.withOpacity(0.9),
                         ),
                   ),
                 ],

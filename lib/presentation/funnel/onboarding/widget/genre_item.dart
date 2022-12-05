@@ -42,7 +42,7 @@ class OnBoardingMusicStepGenreItem extends StatelessWidget {
                     width: 100,
                     decoration: BoxDecoration(
                       color: Colors.transparent,
-                      border: Border.all(color: ktempoWhite, width: 3),
+                      border: Border.all(color: ktempoYellow, width: 3),
                       borderRadius: BorderRadius.circular(80),
                     ),
                     child: const SizedBox.expand(),
@@ -53,8 +53,10 @@ class OnBoardingMusicStepGenreItem extends StatelessWidget {
           const SizedBox(height: 5),
           Text(
             genre,
-            style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w300),
+            style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.w300,
+                  color: ktempoYellow,
+                ),
           ),
         ],
       );

@@ -38,7 +38,7 @@ class HomeArtistItem extends StatelessWidget {
                 margin:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white),
+                  border: Border.all(color: ktempoWhite),
                   color: ktempoDark,
                   borderRadius: BorderRadius.all(Radius.circular(size)),
                   boxShadow: [
@@ -61,7 +61,7 @@ class HomeArtistItem extends StatelessWidget {
                 width: size + 20,
                 child: Text(
                   name,
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: Theme.of(context).textTheme.titleSmall!,
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
                 ),

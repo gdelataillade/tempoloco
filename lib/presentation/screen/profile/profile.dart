@@ -7,6 +7,7 @@ import 'package:tempoloco/presentation/screen/profile/widget/edit_infos.dart';
 import 'package:tempoloco/presentation/screen/profile/widget/friend_list.dart';
 import 'package:tempoloco/presentation/screen/profile/widget/friend_requests.dart';
 import 'package:tempoloco/service/auth.dart';
+import 'package:tempoloco/theme.dart';
 
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
@@ -20,7 +21,7 @@ class Profile extends StatelessWidget {
           return SafeArea(
             child: Stack(
               children: [
-                const BackButton(),
+                const BackButton(color: ktempoYellow),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [

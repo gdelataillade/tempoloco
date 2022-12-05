@@ -15,7 +15,10 @@ class SearchScreen extends StatelessWidget {
         children: [
           Text(
             'search'.tr,
-            style: Theme.of(context).textTheme.headline3,
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  fontSize: 35,
+                  fontWeight: FontWeight.w600,
+                ),
           ),
           const SearchBar(),
           const Expanded(child: SearchResultsTabBar()),

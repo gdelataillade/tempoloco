@@ -44,7 +44,7 @@ class PurchaseTrackModal extends StatelessWidget {
               child: Text(
                 'purchase'.tr,
                 style: TextStyle(
-                  color: enoughStars ? Colors.green : Colors.red,
+                  color: enoughStars ? Colors.green : ktempoRed,
                 ),
               ),
             ),

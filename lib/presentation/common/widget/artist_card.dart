@@ -49,7 +49,7 @@ class ArtistCard extends StatelessWidget {
             child: Text(
               name,
               style:
-                  Theme.of(context).textTheme.headline5!.copyWith(fontSize: 28),
+                  Theme.of(context).textTheme.headline5!.copyWith(fontSize: 20),
             ),
           ),
         ],

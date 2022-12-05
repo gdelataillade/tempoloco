@@ -45,7 +45,7 @@ class History extends StatelessWidget {
             final List<Track> history = buildHistoryTracks(state);
 
             if (history.isEmpty) {
-              return Center(child: Text('noHistory'.tr));
+              return Expanded(child: Center(child: Text('noHistory'.tr)));
             }
 
             return Expanded(

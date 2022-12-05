@@ -68,13 +68,18 @@ class HomeQuickPlay extends StatelessWidget {
                       ),
                       Text(
                         item.name!,
-                        style: Theme.of(context).textTheme.titleLarge,
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                              fontWeight: FontWeight.w600,
+                            ),
                         textAlign: TextAlign.center,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
                       const SizedBox(height: 5),
-                      Text(item.artists!.first.name!),
+                      Text(
+                        item.artists!.first.name!,
+                        style: Theme.of(context).textTheme.titleSmall!,
+                      ),
                     ],
                   ),
                 ),

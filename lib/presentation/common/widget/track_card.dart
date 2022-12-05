@@ -27,10 +27,12 @@ class TrackCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userCtrl = Get.find<UserController>();
-    final titleStyle =
-        Theme.of(context).textTheme.titleLarge!.copyWith(color: ktempoDark);
+    final titleStyle = Theme.of(context)
+        .textTheme
+        .titleMedium!
+        .copyWith(color: ktempoDark, fontWeight: FontWeight.w600);
     final textStyle =
-        Theme.of(context).textTheme.bodyMedium!.copyWith(color: ktempoDark);
+        Theme.of(context).textTheme.bodySmall!.copyWith(color: ktempoDark);
 
     return GestureDetector(
       onTap: () {
@@ -76,6 +78,7 @@ class TrackCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.center,
                     ),
+                    const SizedBox(height: 3),
                     Text(
                       artist,
                       maxLines: 1,
@@ -98,7 +101,7 @@ class TrackCard extends StatelessWidget {
                             userCtrl.isFavorite(id)
                                 ? Icons.favorite
                                 : Icons.favorite_border_rounded,
-                            color: Colors.red,
+                            color: ktempoRed,
                           ),
                         )
                       : Row(

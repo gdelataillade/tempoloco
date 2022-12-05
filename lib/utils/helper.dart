@@ -81,7 +81,7 @@ class Helper {
       titleText: Text(
         title,
         style: const TextStyle(
-          color: ktempoWhite,
+          color: ktempoYellow,
           fontWeight: FontWeight.w800,
           fontSize: 16,
         ),
@@ -89,16 +89,16 @@ class Helper {
       messageText: Text(
         content,
         style: const TextStyle(
-          color: ktempoWhite,
+          color: ktempoYellow,
           fontWeight: FontWeight.w300,
           fontSize: 14,
         ),
       ),
       duration: duration,
-      backgroundColor: ktempoDark,
+      backgroundColor: ktempoRed.withOpacity(0.6),
       margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
       snackPosition: SnackPosition.TOP,
-      borderColor: ktempoDark,
+      // borderColor: ktempoDark,
       borderWidth: 2,
     );
   }
