@@ -30,7 +30,7 @@ class _OnboardingState extends State<OnboardingFunnel> {
                         ? const Loading(debugLabel: 'On Boarding')
                         : state.steps[index],
                   ),
-                  if (index > 0 && index < 2)
+                  if (index != 0 && index != 4)
                     Align(
                       alignment: Alignment.topLeft,
                       child: GestureDetector(

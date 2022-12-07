@@ -58,9 +58,14 @@ const Map<String, Map<String, String>> translations = {
     "fr": "Inscription",
     "es": "",
   },
+  "already_have_account": {
+    "en": "Already have an account? ",
+    "fr": "Déjà inscrit ? ",
+    "es": "",
+  },
   "login": {
-    "en": "Already have an account? Log in",
-    "fr": "Déjà inscrit ? Connectez-vous",
+    "en": "Log in",
+    "fr": "Connectez-vous",
     "es": "",
   },
   "username": {

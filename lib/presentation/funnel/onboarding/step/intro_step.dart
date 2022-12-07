@@ -5,15 +5,8 @@ import 'package:tempoloco/presentation/common/widget/main_button.dart';
 import 'package:tempoloco/presentation/funnel/onboarding/onboarding_state.dart';
 import 'package:tempoloco/theme.dart';
 
-class OnboardingIntroStep extends StatefulWidget {
+class OnboardingIntroStep extends StatelessWidget {
   const OnboardingIntroStep({Key? key}) : super(key: key);
-
-  @override
-  State<OnboardingIntroStep> createState() => _OnboardingIntroStepState();
-}
-
-class _OnboardingIntroStepState extends State<OnboardingIntroStep> {
-  bool isTapped = false;
 
   @override
   Widget build(BuildContext context) {
@@ -31,47 +24,35 @@ class _OnboardingIntroStepState extends State<OnboardingIntroStep> {
                   fontWeight: FontWeight.w600,
                 ),
           ),
-          isTapped
-              ? AnimatedOpacity(
-                  opacity: isTapped ? 1 : 0,
-                  duration: const Duration(milliseconds: 500),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        width: 250,
-                        child: MainButton(
-                          onTap: state.startRegister,
-                          label: 'register'.tr,
-                        ),
-                      ),
-                      RawMaterialButton(
-                        onPressed: state.startLogin,
-                        child: Text(
-                          'login'.tr,
-                          style:
-                              Theme.of(context).textTheme.bodyLarge!.copyWith(
-                                    fontSize: 15,
-                                    color: ktempoYellow,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-              : RawMaterialButton(
-                  onPressed: () {
-                    setState(() => isTapped = true);
-                  },
-                  child: Text(
-                    'Tap',
+          Column(
+            children: [
+              SizedBox(
+                width: 250,
+                child: MainButton(
+                  onTap: state.startRegister,
+                  label: 'register'.tr,
+                ),
+              ),
+              RawMaterialButton(
+                onPressed: state.startLogin,
+                child: RichText(
+                  text: TextSpan(
+                    text: 'already_have_account'.tr,
                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           fontSize: 15,
                           color: ktempoYellow,
                           fontWeight: FontWeight.w600,
                         ),
+                    children: <TextSpan>[
+                      TextSpan(
+                          text: 'login'.tr,
+                          style: const TextStyle(fontWeight: FontWeight.bold)),
+                    ],
                   ),
                 ),
+              ),
+            ],
+          ),
         ],
       ),
     );
