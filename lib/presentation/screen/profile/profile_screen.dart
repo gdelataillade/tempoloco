@@ -15,7 +15,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GetX<ProfileState>(
+      body: GetBuilder<ProfileState>(
         init: ProfileState(),
         builder: (state) {
           return SafeArea(
@@ -25,9 +25,12 @@ class ProfileScreen extends StatelessWidget {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    AvatarCard(
-                      size: 150,
-                      svgRoot: state.avatarLoaded.value ? state.svgRoot : null,
+                    Hero(
+                      tag: 'avatar',
+                      child: AvatarCard(
+                        size: 150,
+                        svgRoot: state.avatarSvgRoot,
+                      ),
                     ),
                     const SizedBox(height: 20),
                     const ProfileEditInfos(),

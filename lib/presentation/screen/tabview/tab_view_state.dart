@@ -1,4 +1,6 @@
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:multiavatar/multiavatar.dart';
 import 'package:spotify/spotify.dart' as spotify;
 import 'package:tempoloco/controller/user_controller.dart';
 import 'package:tempoloco/model/user.dart';
@@ -33,8 +35,16 @@ class TabViewState extends GetxController {
   RxBool noMoreResults = false.obs;
 
   late UserController userCtrl;
+  late DrawableRoot svgRoot;
 
   User get user => userCtrl.user.value;
+
+  Future<void> loadAvatar() async {
+    final username = userCtrl.user.value.username;
+    final svgCode = multiavatar(username, trBackground: true);
+
+    svgRoot = await svg.fromSvgString(svgCode, username);
+  }
 
   @override
   Future<void> onInit() async {
@@ -43,6 +53,7 @@ class TabViewState extends GetxController {
     await Future.wait([
       loadLibrary(),
       loadArtists(),
+      loadAvatar(),
     ]);
 
     ever<User>(userCtrl.user, (_) {

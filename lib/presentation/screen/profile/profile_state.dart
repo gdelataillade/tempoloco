@@ -11,24 +11,14 @@ import 'package:tempoloco/service/remote.dart';
 import 'package:tempoloco/utils/helper.dart';
 
 class ProfileState extends GetxController {
-  late DrawableRoot svgRoot;
-
   List<Friend> friends = [];
 
   RxList friendRequests = [].obs;
 
-  RxBool avatarLoaded = false.obs;
   RxBool friendsLoaded = false.obs;
 
   final userCtrl = Get.find<UserController>();
-
-  Future<void> loadUserAvatar() async {
-    final username = userCtrl.user.value.username;
-    final svgCode = multiavatar(username, trBackground: true);
-
-    svgRoot = await svg.fromSvgString(svgCode, username);
-    avatarLoaded.value = true;
-  }
+  final avatarSvgRoot = Get.arguments as DrawableRoot;
 
   Future<void> loadFriendsAvatar() async {
     final userFriends = userCtrl.user.value.friends;
@@ -48,10 +38,7 @@ class ProfileState extends GetxController {
 
   @override
   Future<void> onReady() async {
-    await Future.wait([
-      loadUserAvatar(),
-      loadFriendsAvatar(),
-    ]);
+    await loadFriendsAvatar();
     friendRequests.value = userCtrl.user.value.friendRequests;
     super.onReady();
   }
@@ -65,10 +52,6 @@ class ProfileState extends GetxController {
     if (!res) {
       await Auth.updateUsername(username);
       await DB.updateUser({'username': username});
-
-      avatarLoaded.value = false;
-      await loadUserAvatar();
-      avatarLoaded.value = true;
 
       Helper.snack(
         'username_updated'.tr,

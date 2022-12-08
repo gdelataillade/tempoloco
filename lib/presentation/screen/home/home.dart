@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
       children: [
         // TODO: Improve logo
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 30),
+          padding: const EdgeInsets.symmetric(vertical: 20),
           child: Image.asset(
             'assets/images/logo.png',
             fit: BoxFit.fitWidth,

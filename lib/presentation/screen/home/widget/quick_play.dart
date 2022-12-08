@@ -29,9 +29,7 @@ class HomeQuickPlay extends StatelessWidget {
               message: item.name,
               triggerMode: TooltipTriggerMode.longPress,
               child: GestureDetector(
-                onTap: () {
-                  Get.toNamed('/game', arguments: item);
-                },
+                onTap: () => Get.toNamed('/game', arguments: item),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -65,19 +63,28 @@ class HomeQuickPlay extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Text(
-                      item.name!,
-                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                            fontWeight: FontWeight.w600,
-                          ),
-                      textAlign: TextAlign.center,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+                    SizedBox(
+                      width: Get.size.width / 2,
+                      child: Text(
+                        item.name!,
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleLarge!
+                            .copyWith(fontWeight: FontWeight.w600),
+                        textAlign: TextAlign.center,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                     const SizedBox(height: 5),
-                    Text(
-                      item.artists!.first.name!,
-                      style: Theme.of(context).textTheme.titleSmall!,
+                    SizedBox(
+                      width: Get.size.width * 0.6,
+                      child: Text(
+                        item.artists!.first.name!,
+                        style: Theme.of(context).textTheme.titleSmall!,
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ],
                 ),

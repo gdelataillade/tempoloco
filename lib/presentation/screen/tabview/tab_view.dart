@@ -2,6 +2,7 @@ import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
+import 'package:tempoloco/presentation/common/widget/avatar_card.dart';
 import 'package:tempoloco/presentation/common/widget/loading.dart';
 import 'package:tempoloco/presentation/screen/home/home.dart';
 import 'package:tempoloco/presentation/screen/library/library.dart';
@@ -65,14 +66,19 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
                       );
                     },
                   ),
-                  IconButton(
-                    splashColor: Colors.transparent,
-                    icon: const Icon(FeatherIcons.user, size: 30),
-                    onPressed: () {
-                      Helper.hapticFeedback();
-                      Get.toNamed('/profile');
-                    },
-                  ),
+                  state.isLoaded.value
+                      ? GestureDetector(
+                          onTap: () {
+                            Helper.hapticFeedback();
+                            Get.toNamed('/profile', arguments: state.svgRoot);
+                          },
+                          child: Hero(
+                            tag: 'avatar',
+                            child: AvatarCard(size: 28, svgRoot: state.svgRoot),
+                          ),
+                        )
+                      : const Icon(FeatherIcons.user, size: 30),
+                  const SizedBox(width: 8),
                 ],
               ),
               body: TabBarView(
