@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:tempoloco/controller/user_controller.dart';
+import 'package:tempoloco/presentation/common/widget/highscore_list.dart';
 import 'package:tempoloco/presentation/screen/achievements/achievements_state.dart';
-import 'package:tempoloco/presentation/screen/achievements/widget/highscores.dart';
 import 'package:tempoloco/presentation/screen/achievements/widget/strikes.dart';
 import 'package:tempoloco/theme.dart';
 import 'package:tempoloco/utils/helper.dart';
@@ -65,7 +65,7 @@ class Achievements extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  const AchievementsHighscores(),
+                  HighscoreList(highscores: state.highscores),
                   const AchievementsStrikes(),
                 ],
               ),
