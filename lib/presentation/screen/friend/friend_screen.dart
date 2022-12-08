@@ -26,7 +26,7 @@ class FriendScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: const [
                           FriendScreenHeader(),
-                          SizedBox(height: 10),
+                          SizedBox(height: 20),
                           FriendScreenHighscores(),
                           FriendScreenDeleteButton(),
                         ],

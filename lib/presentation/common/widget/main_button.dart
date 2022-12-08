@@ -5,12 +5,14 @@ import 'package:tempoloco/theme.dart';
 class MainButton extends StatelessWidget {
   final String? label;
   final bool disable;
+  final Color color;
   final Function() onTap;
 
   const MainButton({
     Key? key,
     this.label,
     this.disable = false,
+    this.color = ktempoYellow,
     required this.onTap,
   }) : super(key: key);
 
@@ -28,7 +30,7 @@ class MainButton extends StatelessWidget {
               height: 50,
               width: double.infinity,
               decoration: BoxDecoration(
-                color: ktempoYellow,
+                color: color,
                 borderRadius: BorderRadius.circular(25),
               ),
               child: Center(

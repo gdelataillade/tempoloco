@@ -31,13 +31,12 @@ class ProfileFriendList extends StatelessWidget {
                         icon: const Icon(Icons.add_circle_sharp, size: 95),
                         iconSize: 90,
                         splashRadius: 30,
-                        color: ktempoYellow.withOpacity(0.7),
+                        color: ktempoYellow,
                       ),
                       const SizedBox(height: 6),
                       Text(
                         'addFriend'.tr,
                         style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                              color: ktempoYellow.withOpacity(0.8),
                               fontSize: 18,
                             ),
                       ),
@@ -83,11 +82,7 @@ class ProfileFriendList extends StatelessWidget {
                                       style: Theme.of(context)
                                           .textTheme
                                           .titleMedium!
-                                          .copyWith(
-                                            color:
-                                                ktempoYellow.withOpacity(0.8),
-                                            fontSize: 18,
-                                          ),
+                                          .copyWith(fontSize: 18),
                                     ),
                                   ],
                                 ),

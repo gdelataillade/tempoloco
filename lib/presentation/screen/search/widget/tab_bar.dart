@@ -69,7 +69,11 @@ class _SearchResultsTabBarState extends State<SearchResultsTabBar>
                               Theme.of(context).textTheme.headline5!.copyWith(
                                     fontWeight: selectedIndex == 0
                                         ? FontWeight.w700
-                                        : FontWeight.w400,
+                                        : FontWeight.w600,
+                                    fontSize: selectedIndex == 0 ? 25 : 20,
+                                    color: selectedIndex == 0
+                                        ? ktempoYellow
+                                        : ktempoWhite,
                                   ),
                         ),
                         Text(
@@ -78,7 +82,11 @@ class _SearchResultsTabBarState extends State<SearchResultsTabBar>
                               Theme.of(context).textTheme.headline5!.copyWith(
                                     fontWeight: selectedIndex == 1
                                         ? FontWeight.w700
-                                        : FontWeight.w400,
+                                        : FontWeight.w600,
+                                    fontSize: selectedIndex == 1 ? 25 : 20,
+                                    color: selectedIndex == 1
+                                        ? ktempoYellow
+                                        : ktempoWhite,
                                   ),
                         ),
                       ],

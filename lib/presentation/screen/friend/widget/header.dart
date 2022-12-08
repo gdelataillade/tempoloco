@@ -10,25 +10,21 @@ class FriendScreenHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = Get.find<FriendState>();
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      child: Column(
-        children: [
-          const SizedBox(height: 10),
-          AvatarCard(
-            size: 150,
-            svgRoot: state.svgRoot,
-          ),
-          Container(
-            height: 45,
-            alignment: Alignment.bottomCenter,
-            child: Text(
-              state.username,
-              style: Theme.of(context).textTheme.headline5,
-            ),
-          ),
-        ],
-      ),
+    return Column(
+      children: [
+        AvatarCard(
+          size: 150,
+          svgRoot: state.svgRoot,
+        ),
+        const SizedBox(height: 20),
+        Text(
+          state.username,
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                fontWeight: FontWeight.w600,
+                fontSize: 30,
+              ),
+        ),
+      ],
     );
   }
 }

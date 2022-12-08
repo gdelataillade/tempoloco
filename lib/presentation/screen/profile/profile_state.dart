@@ -73,6 +73,7 @@ class ProfileState extends GetxController {
       Helper.snack(
         'username_updated'.tr,
         'new_username'.trParams({'username': username}),
+        error: false,
       );
     } else {
       Helper.snack('username_update_error'.tr, 'username_already_taken'.tr);
@@ -87,7 +88,11 @@ class ProfileState extends GetxController {
 
     if (res) {
       await DB.updateUser({'email': email});
-      Helper.snack('email_updated'.tr, 'new_email'.trParams({'email': email}));
+      Helper.snack(
+        'email_updated'.tr,
+        'new_email'.trParams({'email': email}),
+        error: false,
+      );
       return true;
     }
     return false;
@@ -117,6 +122,7 @@ class ProfileState extends GetxController {
       Helper.snack(
         'invitation_sent'.tr,
         'invitation_username'.trParams({'username': username}),
+        error: false,
       );
       return;
     } else {

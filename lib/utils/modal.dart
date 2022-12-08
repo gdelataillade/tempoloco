@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:spotify/spotify.dart';
-import 'package:tempoloco/presentation/common/modal/purchase_track.dart';
+import 'package:tempoloco/presentation/common/modal/purchase_track_modal.dart';
 
 class Modal {
   static showPurchaseModal(

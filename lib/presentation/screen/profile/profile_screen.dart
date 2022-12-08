@@ -9,8 +9,8 @@ import 'package:tempoloco/presentation/screen/profile/widget/friend_requests.dar
 import 'package:tempoloco/service/auth.dart';
 import 'package:tempoloco/theme.dart';
 
-class Profile extends StatelessWidget {
-  const Profile({Key? key}) : super(key: key);
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

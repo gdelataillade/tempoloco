@@ -40,13 +40,16 @@ class OnboardingIntroStep extends StatelessWidget {
                     text: 'already_have_account'.tr,
                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           fontSize: 15,
-                          color: ktempoYellow,
                           fontWeight: FontWeight.w600,
                         ),
                     children: <TextSpan>[
                       TextSpan(
-                          text: 'login'.tr,
-                          style: const TextStyle(fontWeight: FontWeight.bold)),
+                        text: 'login'.tr,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: ktempoYellow,
+                        ),
+                      ),
                     ],
                   ),
                 ),

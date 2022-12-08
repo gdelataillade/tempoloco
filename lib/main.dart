@@ -9,7 +9,7 @@ import 'package:tempoloco/presentation/screen/achievements/achievements_screen.d
 import 'package:tempoloco/presentation/screen/artist/artist_screen.dart';
 import 'package:tempoloco/presentation/screen/friend/friend_screen.dart';
 import 'package:tempoloco/presentation/screen/game/game.dart';
-import 'package:tempoloco/presentation/screen/profile/profile.dart';
+import 'package:tempoloco/presentation/screen/profile/profile_screen.dart';
 import 'package:tempoloco/presentation/screen/settings/settings.dart';
 import 'package:tempoloco/presentation/screen/splash_screen.dart';
 import 'package:tempoloco/presentation/screen/tabview/tab_view.dart';
@@ -82,7 +82,7 @@ class MyApp extends StatelessWidget {
           ),
           GetPage(
             name: '/profile',
-            page: () => const Profile(),
+            page: () => const ProfileScreen(),
             transition: Transition.fadeIn,
             transitionDuration: const Duration(milliseconds: 200),
           ),

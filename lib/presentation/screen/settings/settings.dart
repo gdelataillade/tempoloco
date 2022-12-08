@@ -17,6 +17,7 @@ class Settings extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        leading: const BackButton(color: ktempoYellow),
         actions: <Widget>[
           GestureDetector(
             onTap: () {

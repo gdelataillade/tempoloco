@@ -43,7 +43,7 @@ class _SearchResultsTrackState extends State<SearchResultsTrack> {
         return Center(child: Text('noResults'.tr));
       }
       return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
+        padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
         child: BottomShaderMask(
           child: ListView.builder(
             physics: const BouncingScrollPhysics(),

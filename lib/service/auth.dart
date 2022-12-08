@@ -75,6 +75,7 @@ class Auth {
     await Get.deleteAll();
 
     await Future.wait([
+      Storage.writeData('credentials', 'email', ''),
       Storage.writeData('credentials', 'password', ''),
       FirebaseAuth.instance.signOut(),
     ]);

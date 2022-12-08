@@ -40,7 +40,7 @@ class _LibraryScreenState extends State<LibraryScreen>
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(kToolbarHeight),
           child: SizedBox(
-            height: 40,
+            height: 30,
             child: AppBar(
               backgroundColor: Colors.transparent,
               bottom: TabBar(
@@ -57,11 +57,10 @@ class _LibraryScreenState extends State<LibraryScreen>
                     style: Theme.of(context).textTheme.headline5!.copyWith(
                           fontWeight: selectedIndex == 0
                               ? FontWeight.w700
-                              : FontWeight.w200,
-                          fontSize: selectedIndex == 0 ? 23 : 20,
-                          color: selectedIndex == 0
-                              ? ktempoWhite
-                              : ktempoYellow.withOpacity(0.9),
+                              : FontWeight.w600,
+                          fontSize: selectedIndex == 0 ? 25 : 20,
+                          color:
+                              selectedIndex == 0 ? ktempoYellow : ktempoWhite,
                         ),
                   ),
                   Text(
@@ -69,11 +68,10 @@ class _LibraryScreenState extends State<LibraryScreen>
                     style: Theme.of(context).textTheme.headline5!.copyWith(
                           fontWeight: selectedIndex == 1
                               ? FontWeight.w700
-                              : FontWeight.w200,
-                          fontSize: selectedIndex == 1 ? 23 : 20,
-                          color: selectedIndex == 1
-                              ? ktempoWhite
-                              : ktempoYellow.withOpacity(0.9),
+                              : FontWeight.w600,
+                          fontSize: selectedIndex == 1 ? 25 : 20,
+                          color:
+                              selectedIndex == 1 ? ktempoYellow : ktempoWhite,
                         ),
                   ),
                   Text(
@@ -81,11 +79,11 @@ class _LibraryScreenState extends State<LibraryScreen>
                     style: Theme.of(context).textTheme.headline5!.copyWith(
                           fontWeight: selectedIndex == 2
                               ? FontWeight.w700
-                              : FontWeight.w200,
-                          fontSize: selectedIndex == 2 ? 23 : 20,
+                              : FontWeight.w600,
+                          fontSize: selectedIndex == 2 ? 25 : 20,
                           color: selectedIndex == 2
-                              ? ktempoWhite
-                              : ktempoYellow.withOpacity(0.9),
+                              ? ktempoYellow.withOpacity(0.9)
+                              : ktempoWhite,
                         ),
                   ),
                 ],

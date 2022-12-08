@@ -4,6 +4,7 @@ import 'package:tempoloco/presentation/screen/game/game_state.dart';
 import 'package:tempoloco/presentation/screen/game/widget/game_over/game_over.dart';
 import 'package:tempoloco/presentation/screen/game/widget/header.dart';
 import 'package:tempoloco/presentation/screen/game/widget/tap_area.dart';
+import 'package:tempoloco/theme.dart';
 
 class Game extends StatelessWidget {
   const Game({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class Game extends StatelessWidget {
         body: SafeArea(
           child: Stack(
             children: [
-              const BackButton(),
+              const BackButton(color: ktempoYellow),
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

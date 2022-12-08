@@ -18,12 +18,12 @@ class HomeQuickPlay extends StatelessWidget {
           return const Loading(debugLabel: 'Quick Play');
         }
         return ListView.builder(
+          shrinkWrap: true,
           physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
           itemCount: state.library.length,
           itemBuilder: (context, index) {
             final item = state.library[index];
-            final size = Get.size.width * 0.7;
 
             return Tooltip(
               message: item.name,
@@ -32,16 +32,14 @@ class HomeQuickPlay extends StatelessWidget {
                 onTap: () {
                   Get.toNamed('/game', arguments: item);
                 },
-                child: SizedBox(
-                  width: size,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Hero(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Hero(
                         tag: item.id!,
                         child: Container(
-                          height: size,
                           margin: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
                             color: ktempoDark,
@@ -66,22 +64,22 @@ class HomeQuickPlay extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Text(
-                        item.name!,
-                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                              fontWeight: FontWeight.w600,
-                            ),
-                        textAlign: TextAlign.center,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      const SizedBox(height: 5),
-                      Text(
-                        item.artists!.first.name!,
-                        style: Theme.of(context).textTheme.titleSmall!,
-                      ),
-                    ],
-                  ),
+                    ),
+                    Text(
+                      item.name!,
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                            fontWeight: FontWeight.w600,
+                          ),
+                      textAlign: TextAlign.center,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      item.artists!.first.name!,
+                      style: Theme.of(context).textTheme.titleSmall!,
+                    ),
+                  ],
                 ),
               ),
             );

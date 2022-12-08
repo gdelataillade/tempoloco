@@ -8,7 +8,7 @@ const Color ktempoRed = Color(0xFFCD4631);
 const Color ktempoPink = Color(0xff8534A1);
 const Color ktempoDark = Color(0xff19033A);
 const Color ktempoWhite = Color(0xffF5EEFC);
-const Color ktempoGrey = Color(0x66C8C8C8);
+const Color ktempoGrey = Color(0xFFCED0CE);
 
 final ThemeData themeData = ThemeData(
   brightness: Brightness.dark,

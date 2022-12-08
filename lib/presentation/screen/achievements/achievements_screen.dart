@@ -19,6 +19,7 @@ class Achievements extends StatelessWidget {
       builder: (state) {
         return Scaffold(
           appBar: AppBar(
+            leading: const BackButton(color: ktempoYellow),
             actions: <Widget>[
               GestureDetector(
                 onTap: () {
