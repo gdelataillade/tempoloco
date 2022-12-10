@@ -40,7 +40,7 @@ class _LibraryScreenState extends State<LibraryScreen>
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(kToolbarHeight),
           child: SizedBox(
-            height: 30,
+            height: 35,
             child: AppBar(
               backgroundColor: Colors.transparent,
               bottom: TabBar(

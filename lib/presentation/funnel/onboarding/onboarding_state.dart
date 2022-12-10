@@ -90,10 +90,9 @@ class OnboardingState extends GetxController {
 
     final res = await Auth.login(email, password);
 
-    debugPrint('[Auth] login ${res ? 'succesful' : 'failed'}');
+    debugPrint('[Auth] login ${res ? 'successful' : 'failed'}');
 
     if (!res) {
-      // TODO: Don't erase password if network error
       Storage.writeData(credentialsBox, 'password', '');
       isLoading.value = false;
     } else {
@@ -111,7 +110,7 @@ class OnboardingState extends GetxController {
 
     final res = await Auth.register(email, password);
 
-    debugPrint('[Auth] register ${res != null ? 'succesful' : 'failed'}');
+    debugPrint('[Auth] register ${res != null ? 'successful' : 'failed'}');
 
     if (res == null) {
       isLoading.value = false;

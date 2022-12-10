@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 
+const showLogs = false;
 const credentialsBox = 'credentials';
 const settingsBox = 'settings';
 
@@ -32,14 +33,14 @@ class Storage {
     assert(hiveBoxes.contains(box),
         'Storage:writeData => Box $box does not exists.');
     Hive.box(box).put(key, value);
-    debugPrint('[Storage] write in box $box: $key => $value');
+    if (showLogs) debugPrint('[Storage] write in box $box: $key => $value');
   }
 
   static dynamic readData(String box, String key) {
     assert(hiveBoxes.contains(box),
         'Storage:writeData => Box $box does not exists.');
     final res = Hive.box(box).get(key);
-    debugPrint('[Storage] read in box $box: $key => $res');
+    if (showLogs) debugPrint('[Storage] read in box $box: $key => $res');
     return res;
   }
 
@@ -47,13 +48,13 @@ class Storage {
     assert(hiveBoxes.contains(box),
         'Storage:writeData => Box $box does not exists.');
     await Hive.box(box).delete(key);
-    debugPrint('[Storage] delete in box $box: $key');
+    if (showLogs) debugPrint('[Storage] delete in box $box: $key');
   }
 
   static Future<void> clearBox(String box) async {
     assert(hiveBoxes.contains(box),
         'Storage:writeData => Box $box does not exists.');
     await Hive.box(box).clear();
-    debugPrint('[Storage] clear box all entries of box: $box');
+    if (showLogs) debugPrint('[Storage] clear box all entries of box: $box');
   }
 }

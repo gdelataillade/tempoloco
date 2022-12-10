@@ -43,27 +43,6 @@ class ProfileState extends GetxController {
     super.onReady();
   }
 
-  // TODO: Update username in friend's model
-  Future<bool> updateUsername(String username) async {
-    if (username == userCtrl.user.value.username) return false;
-
-    final res = await DB.usernameAlreadyExists(username);
-
-    if (!res) {
-      await Auth.updateUsername(username);
-      await DB.updateUser({'username': username});
-
-      Helper.snack(
-        'username_updated'.tr,
-        'new_username'.trParams({'username': username}),
-        error: false,
-      );
-    } else {
-      Helper.snack('username_update_error'.tr, 'username_already_taken'.tr);
-    }
-    return !res;
-  }
-
   Future<bool> updateEmail(String email) async {
     if (email == userCtrl.user.value.email) return false;
 

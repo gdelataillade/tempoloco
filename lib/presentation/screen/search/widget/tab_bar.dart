@@ -51,7 +51,7 @@ class _SearchResultsTabBarState extends State<SearchResultsTabBar>
               appBar: PreferredSize(
                 preferredSize: const Size.fromHeight(kToolbarHeight),
                 child: SizedBox(
-                  height: 30,
+                  height: 35,
                   child: AppBar(
                     backgroundColor: Colors.transparent,
                     bottom: TabBar(
