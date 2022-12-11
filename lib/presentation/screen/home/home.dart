@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
       children: [
         // TODO: Improve logo
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20),
+          padding: const EdgeInsets.symmetric(vertical: 15),
           child: Image.asset(
             'assets/images/logo.png',
             fit: BoxFit.fitWidth,
@@ -38,7 +38,7 @@ class HomeScreen extends StatelessWidget {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 30, left: 10),
+                  padding: const EdgeInsets.only(top: 20, left: 10),
                   child: Text(
                     'quickPlay'.tr,
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(

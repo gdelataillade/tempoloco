@@ -25,6 +25,7 @@ class HomeQuickPlay extends StatelessWidget {
           itemBuilder: (context, index) {
             final item = state.library[index];
 
+            // TODO: Fix text overflow
             return Tooltip(
               message: item.name,
               triggerMode: TooltipTriggerMode.longPress,
@@ -63,28 +64,22 @@ class HomeQuickPlay extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      width: Get.size.width / 2,
-                      child: Text(
-                        item.name!,
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleLarge!
-                            .copyWith(fontWeight: FontWeight.w600),
-                        textAlign: TextAlign.center,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
+                    Text(
+                      item.name!,
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleLarge!
+                          .copyWith(fontWeight: FontWeight.w600),
+                      textAlign: TextAlign.center,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: 5),
-                    SizedBox(
-                      width: Get.size.width * 0.6,
-                      child: Text(
-                        item.artists!.first.name!,
-                        style: Theme.of(context).textTheme.titleSmall!,
-                        textAlign: TextAlign.center,
-                        overflow: TextOverflow.ellipsis,
-                      ),
+                    Text(
+                      item.artists!.first.name!,
+                      style: Theme.of(context).textTheme.titleSmall!,
+                      textAlign: TextAlign.center,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ],
                 ),

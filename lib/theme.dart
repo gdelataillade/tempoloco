@@ -20,4 +20,12 @@ final ThemeData themeData = ThemeData(
   fontFamily: 'SF-Pro-Display',
   splashColor: Colors.transparent,
   highlightColor: Colors.transparent,
+  // textTheme: const TextTheme(
+  //   titleLarge: TextStyle(fontSize: 35, fontWeight: FontWeight.w600),
+  //   titleMedium: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
+  //   titleSmall: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+  //   bodyLarge: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+  //   bodyMedium: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+  //   bodySmall: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+  // ),
 );

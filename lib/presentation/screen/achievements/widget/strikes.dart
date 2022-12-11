@@ -11,7 +11,7 @@ class AchievementsStrikes extends StatelessWidget {
     final state = Get.find<AchievementsState>();
 
     return Padding(
-      padding: const EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.symmetric(vertical: 20),
       child: Column(
         children: [
           Text(
