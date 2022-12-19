@@ -52,6 +52,11 @@ const Map<String, Map<String, String>> translations = {
     "fr": "Email non valide",
     "es": "",
   },
+  "price": {
+    "en": "Price: @price",
+    "fr": "Prix: @price",
+    "es": "Precio: @price",
+  },
   // On boarding
   "register": {
     "en": "Register",
@@ -280,6 +285,11 @@ const Map<String, Map<String, String>> translations = {
   "new_email": {
     "en": "Your email is now @email",
     "fr": "Ton nouvel email est @email",
+    "es": "",
+  },
+  "send_invitation": {
+    "en": "Send invitation",
+    "fr": "Envoyer invitation",
     "es": "",
   },
   "invitation_sent": {
