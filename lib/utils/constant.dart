@@ -45,6 +45,18 @@ List<Map<String, dynamic>> onboardingGenres = [
         'title': '1EzrEOXmMH3G43AXT1y7pA', // I'm yours
         'artist': '4phGZZrJZRo4ElhRtViYdl', // Jason Mraz
       },
+      {
+        'title': '32OlwWuMpZ6b0aN2RZOeMS', // Uptown Funk
+        'artist': '3hv9jJF3adDNsBSIQDqcjp', // Mark Ronson
+      },
+      {
+        'title': '0GjEhVFGZW8afUYGChu3Rr', // Dancing Queen
+        'artist': '0LcJLqbBmaGUft1e9Mm8HV', // ABBA
+      },
+      {
+        'title': '0VjIjW4GlUZAMYd2vXMi3b', // Blinding Lights
+        'artist': '1Xyo4u8uXC1ZmMpatF05PJ', // The Weeknd
+      },
     ],
   },
   {
@@ -67,6 +79,30 @@ List<Map<String, dynamic>> onboardingGenres = [
       {
         'title': '33yAEqzKXexYM3WlOYtTfQ', // D.A.N.C.E
         'artist': '1gR0gsQYfi6joyO1dlp76N', // Justice
+      },
+      {
+        'title': '5UqCQaDshqbIk3pkhy4Pjg', // Levels - Radio Edit
+        'artist': '1vCWHaC5f2uS3yhpwWbIA6', // Avicii
+      },
+      {
+        'title': '1x5MjCffpcdHLf65eR9r3T', // Down The Road
+        'artist': '28INUgyzTTRbvSphrJbgZ2', // C2C
+      },
+      {
+        'title': '1x5MjCffpcdHLf65eR9r3T', // Down The Road
+        'artist': '28INUgyzTTRbvSphrJbgZ2', // C2C
+      },
+      {
+        'title': '1A8j067qyiNwQnZT0bzUpZ', // This Girl
+        'artist': '7keGfmQR4X5w0two1xKZ7d', // Kungs
+      },
+      {
+        'title': '3q9oTSo64CrjOiPwI4DbWE', // Baianá
+        'artist': '3MyFDtqB80WZvbtCZRsekM', // Bakermat
+      },
+      {
+        'title': '7FOQQJNvfC7x8yO6DQBSFO', // Ani Kuni - Edit
+        'artist': '45yEuthJ9yq1rNXAOpBnqM', // Polo & Pan
       },
     ],
   },
@@ -91,6 +127,22 @@ List<Map<String, dynamic>> onboardingGenres = [
         'title': '39shmbIHICJ2Wxnk1fPSdz', // Should I stay or should I go
         'artist': '3RGLhK1IP9jnYFH4BRFJBS', // The Clash
       },
+      {
+        'title': '5CQ30WqJwcep0pYcV4AMNc', // Stairway to Heaven
+        'artist': '36QJpDe2go2KgaRleHCDTp', // Led Zeppelin
+      },
+      {
+        'title': '7snQQk1zcKl8gZ92AnueZW', // Sweet Child O' Mine
+        'artist': '3qm84nBOXUEQ2vnTfUTTFC', // Guns N' Roses
+      },
+      {
+        'title': '54flyrjcdnQdco7300avMJ', // We Will Rock You
+        'artist': '1dfeR4HaWDbWqFHLkxsg1d', // Queen
+      },
+      {
+        'title': '2zYzyRzz6pRmhPzyfMEC8s', // Highway to Hell
+        'artist': '711MCceyCBcFnzjGY4Q7Un', // AC/DC
+      },
     ],
   },
   {
@@ -113,6 +165,18 @@ List<Map<String, dynamic>> onboardingGenres = [
       {
         'title': '2amrInRmNzmt4Etb6Yn1er', // Cote Ouest
         'artist': '0aXaZj4wB5jLF2E2d8WEVi', // 47ter
+      },
+      {
+        'title': '6DCZcSspjsKoFjzjrWoCdn', // God's Plan
+        'artist': '3TVXtAsR1Inumwj472S9r4', // Drake
+      },
+      {
+        'title': '3yfqSUWxFvZELEM4PmlwIR', // The Real Slim Shady
+        'artist': '7dGJo4pcD2V6oG8kP0tJRR', // Eminem
+      },
+      {
+        'title': '57I5KhEpQFC9XBgKt6nklL', // On verra
+        'artist': '4LXBc13z5EWsc5N32bLxfH', // Nekfeu
       },
     ],
   },
@@ -137,6 +201,18 @@ List<Map<String, dynamic>> onboardingGenres = [
         'title': '61mWefnWQOLf90gepjOCb3', // Duality
         'artist': '05fG473iIaoy82BF1aGhL8', // Slipknot
       },
+      {
+        'title': '0sxYYT48UPkmrDx8p4Hnrl', // Run to the Hills
+        'artist': '6mdiAmATAx73kdxrNrnlao', // Iron Maiden
+      },
+      {
+        'title': '2RaA6kIcvomt77qlIgGhCT', // Breaking the Law
+        'artist': '2tRsMl4eGxwoNabM08Dm4I', // Judas Priest
+      },
+      {
+        'title': '7ACxUo21jtTHzy7ZEV56vU', // Crazy Train
+        'artist': '6ZLTlhejhndI4Rh53vYhrY', // Ozzy Osbourne
+      },
     ],
   },
   {
@@ -160,16 +236,23 @@ List<Map<String, dynamic>> onboardingGenres = [
         'title': '0mD19MC6H0OzHvEUADHypU', // Police in Helicopter
         'artist': '312pFk2xpEwYWLGPehc4Nu', // John Holt
       },
+      {
+        'title': '7vggqxNKwd6xdRoYS0pQtM', // Three Little Birds
+        'artist': '2QsynagSdAqZj3U9HgDzjD', // Bob Marley & The Wailers
+      },
+      {
+        'title': '4uOKFydzAejjSFqYbv1XPt', // Red Red Wine
+        'artist': '69MEO1AADKg1IZrq2XLzo5', // UB40
+      },
+      {
+        'title': '7JXVnZsBrFLRwVk9ZqRciI', // Here I Am
+        'artist': '2vaWvC8suCFkRXejDOK7EE', // SOJA
+      },
+      {
+        'title': '61iRFcNPdE7dg2RmdhrdZe', // Calypso Queen
+        'artist': '56QlZ0AFfkaaHyANLVkg5h', // Calypso Rose
+      },
     ],
-  },
-];
-
-// Copy a famous Spotify playlist
-// Get id and add it here
-const List<Map<String, String>> playlists = [
-  {
-    'name': 'Best of Rock: 1970',
-    'id': '37i9dQZF1DXe9Gx5fVy1RT',
   },
 ];
 
@@ -188,6 +271,8 @@ const List<Map<String, dynamic>> gameOverPhrases = [
     'phrases': [
       'Could be better',
       'You can improve',
+      'You can do better',
+      'Try again !',
     ],
   },
   {
@@ -196,13 +281,16 @@ const List<Map<String, dynamic>> gameOverPhrases = [
       'You got it',
       'Well done',
       'Nice',
+      "You're almost there !",
     ],
   },
   {
     'nbStars': 3,
     'phrases': [
       "You're wesome!",
-      'Perfect!',
+      'Perfect !',
+      'Awesome !',
+      'Amazing !',
     ],
   },
 ];
